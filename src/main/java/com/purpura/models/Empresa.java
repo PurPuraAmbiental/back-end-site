@@ -2,19 +2,16 @@ package com.purpura.models;
 
 public class Empresa {
     // atributos
-    private int nCdEmpresa;
     private String cNmEmpresa;
     private String cSenha;
-    private String cCnpj;
+    private final String cCnpj;
     private char cAtivo;
     private String cEmail;
     private String cTelefone;
 
     // construtor
-    public Empresa(int nCdEmpresa, String cNmEmpresa, String cSenha,
-                   String cCnpj, char cAtivo, String cEmail,
-                   String cTelefone) {
-        this.nCdEmpresa = nCdEmpresa;
+    public Empresa(String cNmEmpresa, String cSenha, String cCnpj,
+                   char cAtivo, String cEmail, String cTelefone) {
         this.cNmEmpresa = cNmEmpresa;
         this.cSenha = cSenha;
         this.cCnpj = cCnpj;
@@ -24,7 +21,6 @@ public class Empresa {
     }
 
     // getters
-    public int getNCdEmpresa() {return nCdEmpresa;}
     public String getCNmEmpresa() {return cNmEmpresa;}
     public String getCSenha() {return cSenha;}
     public String getCCnpj() {return cCnpj;}
