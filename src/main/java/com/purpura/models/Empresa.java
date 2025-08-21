@@ -38,9 +38,8 @@ public class Empresa {
     // toString
     @Override
     public String toString(){
-        return "Código: " + nCdEmpresa + "\nNome: " + cNmEmpresa +
-                "\nSenha: " + cSenha + "\nCNPJ: " + cCnpj +
-                "\nAtivo: " + cAtivo + "\nEmail: " + cEmail +
-                "\nTelefone: " + cTelefone;
+        return "CNPJ: " + cCnpj + "\nNome: " + cNmEmpresa +
+                "\nSenha: " + cSenha + "\nAtivo: " + cAtivo +
+                "\nEmail: " + cEmail + "\nTelefone: " + cTelefone;
     }
 }
