@@ -28,4 +28,18 @@ public class Empresa {
     public char getCAtivo() {return cAtivo;}
     public String getCEmail() {return cEmail;}
     public String getCTelefone() {return cTelefone;}
+
+    public void setCNmEmpresa(String cNmEmpresa) {this.cNmEmpresa = cNmEmpresa;}
+    public void setCSenha(String cSenha) {this.cSenha = cSenha;}
+    public void setCAtivo(char cAtivo) {this.cAtivo = cAtivo;}
+    public void setCEmail(String cEmail) {this.cEmail = cEmail;}
+    public void setCTelefone(String cTelefone) {this.cTelefone = cTelefone;}
+
+    @Override
+    public String toString(){
+        return "Código: " + nCdEmpresa + "\nNome: " + cNmEmpresa +
+                "\nSenha: " + cSenha + "\nCNPJ: " + cCnpj +
+                "\nAtivo: " + cAtivo + "\nEmail: " + cEmail +
+                "\nTelefone: " + cTelefone;
+    }
 }
