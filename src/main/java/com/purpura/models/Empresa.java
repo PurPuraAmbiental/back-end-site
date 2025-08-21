@@ -1,6 +1,7 @@
 package com.purpura.models;
 
 public class Empresa {
+    // atributos
     private int nCdEmpresa;
     private String cNmEmpresa;
     private String cSenha;
@@ -9,6 +10,7 @@ public class Empresa {
     private String cEmail;
     private String cTelefone;
 
+    // construtor
     public Empresa(int nCdEmpresa, String cNmEmpresa, String cSenha,
                    String cCnpj, char cAtivo, String cEmail,
                    String cTelefone) {
@@ -21,6 +23,7 @@ public class Empresa {
         this.cTelefone = cTelefone;
     }
 
+    // getters
     public int getNCdEmpresa() {return nCdEmpresa;}
     public String getCNmEmpresa() {return cNmEmpresa;}
     public String getCSenha() {return cSenha;}
@@ -29,12 +32,14 @@ public class Empresa {
     public String getCEmail() {return cEmail;}
     public String getCTelefone() {return cTelefone;}
 
+    // setters
     public void setCNmEmpresa(String cNmEmpresa) {this.cNmEmpresa = cNmEmpresa;}
     public void setCSenha(String cSenha) {this.cSenha = cSenha;}
     public void setCAtivo(char cAtivo) {this.cAtivo = cAtivo;}
     public void setCEmail(String cEmail) {this.cEmail = cEmail;}
     public void setCTelefone(String cTelefone) {this.cTelefone = cTelefone;}
 
+    // toString
     @Override
     public String toString(){
         return "Código: " + nCdEmpresa + "\nNome: " + cNmEmpresa +
