@@ -9,11 +9,12 @@ public class Residuo {
     private double nVolumePadrao;
     private String cCategoria;
     private String cDescricao;
+    private int nCdEmpresa;
 
     // construtor
     public Residuo(int nCdResiduo, String cNmResiduo, String cTipoUnidade,
                    double nPrecoPadrao, double nVolumePadrao, String cCategoria,
-                   String cDescricao){
+                   String cDescricao, int nCdEmpresa){
         this.nCdResiduo = nCdResiduo;
         this.cNmResiduo = cNmResiduo;
         this.cTipoUnidade = cTipoUnidade;
@@ -21,6 +22,7 @@ public class Residuo {
         this.nVolumePadrao = nVolumePadrao;
         this.cCategoria = cCategoria;
         this.cDescricao = cDescricao;
+        this.nCdEmpresa = nCdEmpresa;
     }
 
     // getters
@@ -31,6 +33,7 @@ public class Residuo {
     public double getNVolumePadrao() {return nVolumePadrao;}
     public String getCCategoria() {return cCategoria;}
     public String getCDescricao() {return cDescricao;}
+    public int getNCdEmpresa() {return nCdEmpresa;}
 
     // setters
     public void setCNmResiduo(String cNmResiduo) {this.cNmResiduo = cNmResiduo;}
@@ -39,6 +42,7 @@ public class Residuo {
     public void setNVolumePadrao(double nVolumePadrao) {this.nVolumePadrao = nVolumePadrao;}
     public void setCCategoria(String cCategoria) {this.cCategoria = cCategoria;}
     public void setCDescricao(String cDescricao) {this.cDescricao = cDescricao;}
+    public void setNCdEmpresa(int nCdEmpresa) {this.nCdEmpresa = nCdEmpresa;}
 
     // toString
     @Override
@@ -46,6 +50,6 @@ public class Residuo {
         return "Código: " + nCdResiduo + "\nNome: " + cNmResiduo +
                 "\nTipo Unidade: " + cTipoUnidade + "\nPreço Padrão: " + nPrecoPadrao +
                 "\nVolume Padrão: " + nVolumePadrao + "\nCategoria: " + cCategoria +
-                "\nDescrição: " + cDescricao;
+                "\nDescrição: " + cDescricao + "\nEmpresa: " + nCdEmpresa;
     }
 }
