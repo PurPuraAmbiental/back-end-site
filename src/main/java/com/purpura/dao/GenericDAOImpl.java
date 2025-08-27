@@ -24,6 +24,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
         }
     }
 
+    @Override
     public List<T> findAll() {
         List<T> lista = new ArrayList<>();
         String sql = "SELECT * FROM " + getTableName();
