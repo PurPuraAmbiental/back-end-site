@@ -1,21 +1,24 @@
+package com.purpura.models;
+
+import java.time.LocalDate;
+
 public class Pedido {
     private double nValorTotal;
     private String cStatus;
     private LocalDate dPedido;
     private String cFrequencia;
     private LocalDate dAgendamentoColeta;
-    private String cOservações;
-    private Final nCdPedido;
+    private String cOservacoes;
+    private final int nCdPedido;
 
-    public Pedido(double nValorTotal, String cStatus, LocalDate dPedido, String cFrequencia,  LocalDate dAgendamentoColeta, String cOservações, Final nCdPedido){
+    public Pedido(double nValorTotal, String cStatus, LocalDate dPedido, String cFrequencia,  LocalDate dAgendamentoColeta, String cOservacoes, int nCdPedido){
         this.nValorTotal = nValorTotal;
         this.cStatus = cStatus;
         this.cFrequencia = cFrequencia;
-        this.cOservações = cOservações;
-        this.nCdPedido = nCdPedido;
+        this.cOservacoes = cOservacoes;
         this.dAgendamentoColeta = dAgendamentoColeta;
         this.nCdPedido = nCdPedido;
-
+        this.dPedido = dPedido;
     }
 
     public double getnValorTotal() {
@@ -38,8 +41,8 @@ public class Pedido {
         return dAgendamentoColeta;
     }
 
-    public String getcOservações() {
-        return cOservações;
+    public String getcOservacoees() {
+        return cOservacoes;
     }
 
     public String getcStatus() {
@@ -50,8 +53,8 @@ public class Pedido {
         this.cFrequencia = cFrequencia;
     }
 
-    public void setcOservações(String cOservações) {
-        this.cOservações = cOservações;
+    public void setcOservacoes(String cOservacoes) {
+        this.cOservacoes = cOservacoes;
     }
 
     public void setdAgendamentoColeta(LocalDate dAgendamentoColeta) {
@@ -70,12 +73,11 @@ public class Pedido {
         this.nValorTotal = nValorTotal;
     }
 
+    @Override
     public String toString(){
-        return ""
-
+        return "Código: " + nCdPedido + "\nValor Total: " + nValorTotal +
+                "\nStatus: " + cStatus + "\nData Pedido: " + dPedido +
+                "\nFrequência" + cFrequencia + "\nData Agendamento: " + dAgendamentoColeta +
+                "\nObservações: " + cOservacoes;
     }
-
-
-
-
 }
