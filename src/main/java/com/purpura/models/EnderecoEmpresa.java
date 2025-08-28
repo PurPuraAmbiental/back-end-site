@@ -1,89 +1,96 @@
+package com.purpura.models;
+
 public  class EnderecoEmpresa {
-    //ADCIONANDO ATRIBUTOS DO MODELO LOGICO
+    //ADICIONANDO ATRIBUTOS DO MODELO LOGICO
     private int nCdEnderecoEmpresa;
     private String cBairro;
-    private String clogradouro;
+    private String cLogradouro;
     private String cEstado;
     private String cCidade;
     private String cCep;
     private String cComplemento;
-    private String cNumero;
+    private int iNrEnderecoEmpresa;
+    private String cCnpj;
 
-    //ADICONANDO METODO CONSTRUTOR
-    public EnderecoEmpresa(int nCdEnderecoEmpresa, String cbairro, String clogradouro, String cEstado, String cCidade, String cComplemento, String cCep, String cNumero){
+    //ADICIONANDO METODO CONSTRUTOR
+    public EnderecoEmpresa(int nCdEnderecoEmpresa, String cbairro, String clogradouro, String cEstado, String cCidade, String cComplemento, String cCep, String cNumero, String cCnpj) {
         this.nCdEnderecoEmpresa = nCdEnderecoEmpresa;
         this.cBairro = cbairro;
-        this.clogradouro = clogradouro;
+        this.cLogradouro = clogradouro;
         this.cEstado = cEstado;
         this.cCidade = cCidade;
         this.cComplemento = cComplemento;
         this.cCep = cCep;
-        this.cNumero = cNumero;
+        this.iNrEnderecoEmpresa = iNrEnderecoEmpresa;
+        this.cCnpj = cCnpj;
     }
 
-    //ADICIONANDO GETTRS
-    public String getcBairro() {
-        return bairro;
+    //ADICIONANDO GETTERS
+    public String getCBairro() {
+        return cBairro;
     }
 
-    public int getnCdEnderecoEmpresa() {
+    public int getNCdEnderecoEmpresa() {
         return nCdEnderecoEmpresa;
     }
 
-    public String getcCep() {
+    public String getCCep() {
         return cCep;
     }
 
-    public String getcCidade() {
+    public String getCCidade() {
         return cCidade;
     }
 
-    public String getcEstado() {
+    public String getCEstado() {
         return cEstado;
     }
 
-    public String getcComplemento() {
+    public String getCComplemento() {
         return cComplemento;
     }
 
-    public String getClogradouro() {
-        return clogradouro;
+    public String getCLogradouro() {
+        return cLogradouro;
     }
+
+    public String getCCnpj() {return cCnpj;}
 
     //ADICIONANDO OS SETTERS NECESSARIOS
-    public void setcBairro(String bairro) {
-        this.bairro = bairro;
+    public void setCBairro(String bairro) {
+        this.cBairro = bairro;
     }
 
-    public void setcCep(String cCep) {
+    public void setCCep(String cCep) {
         this.cCep = cCep;
     }
 
-    public void setcCidade(String cCidade) {
+    public void setCCidade(String cCidade) {
         this.cCidade = cCidade;
     }
 
-    public void setcComplemento(String cComplemento) {
+    public void setCComplemento(String cComplemento) {
         this.cComplemento = cComplemento;
     }
 
-    public void setcEstado(String cEstado) {
+    public void setCEstado(String cEstado) {
         this.cEstado = cEstado;
     }
 
     public void setClogradouro(String clogradouro) {
-        this.clogradouro = clogradouro;
+        this.cLogradouro = clogradouro;
     }
 
     //ADICIONANDO METODO TO STRING
+    @Override
     public String toString(){
-        return "\ncodigo de endereco da empresa"+this.nCdEnderecoEmpresa+
-                "\nrua: "+this.clogradouro+
-                "\nnumero: "+this.cNumero+
-                "\ncidade: "+this.getcCidade+
-                "\nbairro: "+this.getBairro()+
-                "\nestado: "this.getcEstado()+
-                "\ncomplemento: "this.getcComplemento()+
-                "\ncep: "+this.getcCep();
+        return "\nCódigo: "+nCdEnderecoEmpresa+
+                "\nLogradouro: "+cLogradouro+
+                "\nNúmero: "+iNrEnderecoEmpresa+
+                "\nCidade: "+cCidade+
+                "\nBairro: "+cBairro+
+                "\nEstado: "+ cEstado+
+                "\nComplemento: " + cComplemento+
+                "\nCEP: "+ cCep;
     }
 }
