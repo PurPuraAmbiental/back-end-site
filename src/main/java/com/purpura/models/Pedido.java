@@ -21,55 +21,55 @@ public class Pedido {
         this.dPedido = dPedido;
     }
 
-    public double getnValorTotal() {
+    public double getNValotTotal() {
         return nValorTotal;
     }
 
-    public int getnCdPedido() {
+    public int getNCdPedido() {
         return nCdPedido;
     }
 
-    public LocalDate getdPedido() {
+    public LocalDate getDPedido() {
         return dPedido;
     }
 
-    public String getcFrequencia() {
+    public String getCFrequencia() {
         return cFrequencia;
     }
 
-    public LocalDate getdAgendamentoColeta() {
+    public LocalDate getDAgendamentoColeta() {
         return dAgendamentoColeta;
     }
 
-    public String getcOservacoees() {
+    public String getCObservacoes() {
         return cOservacoes;
     }
 
-    public String getcStatus() {
+    public String getCStatus() {
         return cStatus;
     }
 
-    public void setcFrequencia(String cFrequencia) {
+    public void setCFrequencia(String cFrequencia) {
         this.cFrequencia = cFrequencia;
     }
 
-    public void setcOservacoes(String cOservacoes) {
+    public void setCObservacoes(String cOservacoes) {
         this.cOservacoes = cOservacoes;
     }
 
-    public void setdAgendamentoColeta(LocalDate dAgendamentoColeta) {
+    public void setDAgendamentoColeta(LocalDate dAgendamentoColeta) {
         this.dAgendamentoColeta = dAgendamentoColeta;
     }
 
-    public void setcStatus(String cStatus) {
+    public void setCStatus(String cStatus) {
         this.cStatus = cStatus;
     }
 
-    public void setdPedido(LocalDate dPedido) {
+    public void setDPedido(LocalDate dPedido) {
         this.dPedido = dPedido;
     }
 
-    public void setnValorTotal(double nValorTotal) {
+    public void setNValorTotal(double nValorTotal) {
         this.nValorTotal = nValorTotal;
     }
 
