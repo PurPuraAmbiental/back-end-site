@@ -3,7 +3,7 @@ package com.purpura.dao;
 import java.util.List;
 
 public interface GenericDAO<T> {
-    void save(T entidade);
+    boolean save(T entidade);
     void update(T entidade);
     void deleteById(int id);
     T findById(int id);
