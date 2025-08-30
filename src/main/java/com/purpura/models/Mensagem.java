@@ -4,23 +4,23 @@ public class Mensagem {
     // atributos
     private final int nCdMensagem;
     private final String cConteudo; // atributos final para garantir que mensagem não seja alterada
-    private final int nCdEmpresaRemetente; // armazenam o código
-    private final int nCdEmpresaDestinataria;
+    private final String cCnpjRemetente; // armazenam o código
+    private final String cCnpjDestinatario;
 
     // construtor
-    public Mensagem(int nCdMensagem, String cConteudo, int nCdEmpresaRemetente,
-                    int nCdEmpresaDestinataria) {
+    public Mensagem(int nCdMensagem, String cConteudo, String cCnpjRemetente,
+                    String cCnpjDestinatario) {
         this.nCdMensagem = nCdMensagem;
         this.cConteudo = cConteudo;
-        this.nCdEmpresaRemetente = nCdEmpresaRemetente;
-        this.nCdEmpresaDestinataria = nCdEmpresaDestinataria;
+        this.cCnpjRemetente = cCnpjRemetente;
+        this.cCnpjDestinatario = cCnpjDestinatario;
     }
 
     // getters
     public int getNCdMensagem() {return nCdMensagem;}
     public String getCConteudo() {return cConteudo;}
-    public int getNCdEmpresaRemetente() {return nCdEmpresaRemetente;}
-    public int getNCdEmpresaDestinataria() {return nCdEmpresaDestinataria;}
+    public String getNCdEmpresaRemetente() {return cCnpjRemetente;}
+    public String getNCdEmpresaDestinataria() {return cCnpjDestinatario;}
 
     // sem setters, pois o conteúdo da mensagem e quem a enviou não podem ser alterados
 
@@ -28,6 +28,6 @@ public class Mensagem {
     @Override
     public String toString() {
         return "Código: " + nCdMensagem + "\nConteúdo: " + cConteudo +
-                "\nEmpresa Remetente: " + nCdEmpresaRemetente + "\nEmpresa Destinatária: " + nCdEmpresaDestinataria;
+                "\nEmpresa Remetente: " + cCnpjRemetente + "\nEmpresa Destinatária: " + cCnpjDestinatario;
     }
 }
