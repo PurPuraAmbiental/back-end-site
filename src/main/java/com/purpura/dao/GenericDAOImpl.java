@@ -45,5 +45,5 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
     }
 
     public abstract String getTableName();
-    public abstract T mapResultSet(ResultSet rs) throws SQLException;
+    protected abstract T mapResultSet(ResultSet rs) throws SQLException;
 }

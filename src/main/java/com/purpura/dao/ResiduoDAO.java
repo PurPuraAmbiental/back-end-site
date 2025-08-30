@@ -90,4 +90,23 @@ public class ResiduoDAO extends GenericDAOImpl<Residuo> implements GenericDAO<Re
         }
         return null;
     }
+
+    @Override
+    public String getTableName() {
+        return "Residuo";
+    }
+
+    @Override
+    protected Residuo mapResultSet(ResultSet rs) throws SQLException {
+        return new Residuo(
+                rs.getInt("nCdResiduo"),
+                rs.getString("cNmResiduo"),
+                rs.getString("cTipoUnidade"),
+                rs.getDouble("nPrecoPadrao"),
+                rs.getDouble("nVolumePadrao"),
+                rs.getString("cCategoria"),
+                rs.getString("cDescricao"),
+                rs.getString("cCnpj")
+        );
+    }
 }
