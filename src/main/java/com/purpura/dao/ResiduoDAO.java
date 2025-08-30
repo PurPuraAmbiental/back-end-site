@@ -5,6 +5,7 @@ import com.purpura.util.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ResiduoDAO extends GenericDAOImpl<Residuo> implements GenericDAO<Residuo>{
@@ -60,5 +61,33 @@ public class ResiduoDAO extends GenericDAOImpl<Residuo> implements GenericDAO<Re
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Residuo find(int id){
+        String sql = "SELECT * FROM Residuo WHERE nCdResiduo = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+
+            stmt.setInt(1, id);
+            try(ResultSet rs = stmt.executeQuery()){
+                if(rs.next()){
+                    return new Residuo(
+                            rs.getInt("nCdResiduo"),
+                            rs.getString("cNmResiduo"),
+                            rs.getString("cTipoUnidade"),
+                            rs.getDouble("nPrecoPadrao"),
+                            rs.getDouble("nVolumePadrao"),
+                            rs.getString("cCategoria"),
+                            rs.getString("cDescricao"),
+                            rs.getString("cCnpj")
+                    );
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
