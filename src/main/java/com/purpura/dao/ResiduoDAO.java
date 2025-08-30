@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ResiduoDAO extends GenericDAOImpl<Residuo> implements GenericDAO<Residuo>{
+public class ResiduoDAO extends GenericDAOImpl<Residuo>{
     @Override
     public String getNomeTabela() {
         return "Residuo";
