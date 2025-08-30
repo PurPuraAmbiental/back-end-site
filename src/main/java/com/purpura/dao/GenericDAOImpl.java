@@ -11,17 +11,19 @@ import java.util.List;
 
 public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
     @Override
-    public void delete(int id){
+    public boolean delete(int id){
         String sql = "DELETE FROM " + getTableName() +
                 " WHERE nCd" + getTableName() + " = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
                 stmt.setInt(1, id);
-                stmt.executeUpdate();
+                int linhasDeletadas = stmt.executeUpdate();
+                return linhasDeletadas > 0;
             } catch (SQLException e){
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
