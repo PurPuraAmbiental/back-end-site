@@ -9,12 +9,12 @@ public class Residuo {
     private double nVolumePadrao;
     private String cCategoria;
     private String cDescricao;
-    private int nCdEmpresa;
+    private String cCnpj;
 
     // construtor
     public Residuo(int nCdResiduo, String cNmResiduo, String cTipoUnidade,
                    double nPrecoPadrao, double nVolumePadrao, String cCategoria,
-                   String cDescricao, int nCdEmpresa){
+                   String cDescricao, String cCnpj){
         this.nCdResiduo = nCdResiduo;
         this.cNmResiduo = cNmResiduo;
         this.cTipoUnidade = cTipoUnidade;
@@ -22,7 +22,7 @@ public class Residuo {
         this.nVolumePadrao = nVolumePadrao;
         this.cCategoria = cCategoria;
         this.cDescricao = cDescricao;
-        this.nCdEmpresa = nCdEmpresa;
+        this.cCnpj = cCnpj;
     }
 
     // getters
@@ -33,7 +33,7 @@ public class Residuo {
     public double getNVolumePadrao() {return nVolumePadrao;}
     public String getCCategoria() {return cCategoria;}
     public String getCDescricao() {return cDescricao;}
-    public int getNCdEmpresa() {return nCdEmpresa;}
+    public String getCCnpj() {return cCnpj;}
 
     // setters
     public void setCNmResiduo(String cNmResiduo) {this.cNmResiduo = cNmResiduo;}
@@ -42,7 +42,7 @@ public class Residuo {
     public void setNVolumePadrao(double nVolumePadrao) {this.nVolumePadrao = nVolumePadrao;}
     public void setCCategoria(String cCategoria) {this.cCategoria = cCategoria;}
     public void setCDescricao(String cDescricao) {this.cDescricao = cDescricao;}
-    public void setNCdEmpresa(int nCdEmpresa) {this.nCdEmpresa = nCdEmpresa;}
+    public void setCCnpj(String cCnpj) {this.cCnpj = cCnpj;}
 
     // toString
     @Override
@@ -50,6 +50,6 @@ public class Residuo {
         return "Código: " + nCdResiduo + "\nNome: " + cNmResiduo +
                 "\nTipo Unidade: " + cTipoUnidade + "\nPreço Padrão: " + nPrecoPadrao +
                 "\nVolume Padrão: " + nVolumePadrao + "\nCategoria: " + cCategoria +
-                "\nDescrição: " + cDescricao + "\nEmpresa: " + nCdEmpresa;
+                "\nDescrição: " + cDescricao + "\nCNPJ: " + cCnpj;
     }
 }
