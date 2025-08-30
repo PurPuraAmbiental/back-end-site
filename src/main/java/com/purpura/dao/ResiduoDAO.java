@@ -1,9 +1,7 @@
 package com.purpura.dao;
 
 import com.purpura.models.Residuo;
-import com.purpura.util.ConnectionFactory;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
