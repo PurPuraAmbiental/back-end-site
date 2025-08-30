@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
     @Override
-    public void deleteById(int id){
+    public void delete(int id){
         String sql = "DELETE FROM " + getTableName() +
                 " WHERE nCd" + getTableName() + " = ?";
 
