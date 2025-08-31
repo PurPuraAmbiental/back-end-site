@@ -24,11 +24,6 @@ public class MensagemDAO extends GenericDAOImpl<Mensagem>{
     }
 
     @Override
-    protected String getPlaceholders(){
-        return "?, ?, ?, ?";
-    }
-
-    @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Mensagem entidade) throws java.sql.SQLException {
         stmt.setInt(1, entidade.getNCdMensagem());
         stmt.setString(2, entidade.getCConteudo());

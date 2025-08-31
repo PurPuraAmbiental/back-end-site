@@ -28,11 +28,6 @@ public class EmpresaDAO extends GenericDAOImpl<Empresa>{
     }
 
     @Override
-    protected String getPlaceholders() {
-        return "?, ?, ?, ?, ?, ?";
-    }
-
-    @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Empresa entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmEmpresa());
         stmt.setString(2, entidade.getCSenha());

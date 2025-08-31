@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
@@ -95,10 +96,14 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
         return lista;
     }
 
+    protected String getPlaceholders() {
+        int quantidade = getNomesColunas().split("\\s*,\\s*").length;
+        return String.join(", ", Collections.nCopies(quantidade, "?"));
+    }
+
     public abstract String getNomeTabela(); // retorna nome da entidade
     protected abstract T mapResultSet(ResultSet rs) throws SQLException; // retorna objeto da entidade
     protected abstract String getNomesColunas(); // retorna o nome das colunas
-    protected abstract String getPlaceholders(); // retorna placeholders pra prepareStatement
     protected abstract void prepareStatementForSave(PreparedStatement stmt, T entidade) throws SQLException; // prepareStatement pra método save
     protected abstract void prepareStatementForUpdate(PreparedStatement stmt, T entidade) throws SQLException; // prepareStatement pra método update
     protected abstract String getColunasUpdate(); // retorna as colunas para método update

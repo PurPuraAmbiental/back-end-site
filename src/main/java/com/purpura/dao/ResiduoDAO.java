@@ -34,11 +34,6 @@ public class ResiduoDAO extends GenericDAOImpl<Residuo>{
     }
 
     @Override
-    protected String getPlaceholders() {
-        return "?, ?, ?, ?, ?, ?, ?, ?";
-    }
-
-    @Override
     protected void prepareStatementForSave(PreparedStatement stmt, Residuo entidade) throws SQLException {
         stmt.setInt(1, entidade.getNCdResiduo());
         stmt.setString(2, entidade.getCNmResiduo());
