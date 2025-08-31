@@ -48,11 +48,6 @@ public class EmpresaDAO extends GenericDAOImpl<Empresa>{
     }
 
     @Override
-    protected String getColunasUpdate() {
-        return "cNmEmpresa = ?, cSenha = ?, cAtivo = ?, cEmail = ?, cTelefone = ?";
-    }
-
-    @Override
     protected String getColunaId() {
         return "cCnpj";
     }

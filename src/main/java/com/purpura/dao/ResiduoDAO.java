@@ -58,13 +58,6 @@ public class ResiduoDAO extends GenericDAOImpl<Residuo>{
     }
 
     @Override
-    protected String getColunasUpdate() {
-        return "cNmResiduo = ?, cTipoUnidade = ?, nPrecoPadrao = ?, " +
-                "nVolumePadrao = ?, cCategoria = ?, cDescricao = ?, " +
-                "cCnpj = ?";
-    }
-
-    @Override
     protected String getColunaId() {
         return "nCdResiduo";
     }

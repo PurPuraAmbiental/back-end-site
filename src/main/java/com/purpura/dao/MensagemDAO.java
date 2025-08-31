@@ -43,9 +43,4 @@ public class MensagemDAO extends GenericDAOImpl<Mensagem>{
     protected String getColunaId(){
         return "nCdMensagem";
     }
-
-    @Override
-    protected String getColunasUpdate(){
-        return "cConteudo = ?, cCnpjRemetente = ?, cCnpjDestinatario = ?";
-    }
 }

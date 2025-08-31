@@ -96,9 +96,22 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
         return lista;
     }
 
+    // métodos utilitários
     protected String getPlaceholders() {
         int quantidade = getNomesColunas().split("\\s*,\\s*").length;
         return String.join(", ", Collections.nCopies(quantidade, "?"));
+    }
+    protected String getColunasUpdate() {
+        String[] colunas = getNomesColunas().split("\\s*,\\s*");
+        String colunaId = getColunaId();
+
+        List<String> updates = new ArrayList<>();
+        for (String coluna : colunas) {
+            if (!coluna.equalsIgnoreCase(colunaId)) {
+                updates.add(coluna + " = ?");
+            }
+        }
+        return String.join(", ", updates);
     }
 
     public abstract String getNomeTabela(); // retorna nome da entidade
@@ -106,6 +119,5 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
     protected abstract String getNomesColunas(); // retorna o nome das colunas
     protected abstract void prepareStatementForSave(PreparedStatement stmt, T entidade) throws SQLException; // prepareStatement pra método save
     protected abstract void prepareStatementForUpdate(PreparedStatement stmt, T entidade) throws SQLException; // prepareStatement pra método update
-    protected abstract String getColunasUpdate(); // retorna as colunas para método update
     protected abstract String getColunaId(); // retorna nome da coluna com id (primary key)
 }
