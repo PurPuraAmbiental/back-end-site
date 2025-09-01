@@ -1,7 +1,5 @@
 package com.purpura.models;
-
 import com.purpura.models.enums.CategoriaArquivo;
-
 import java.time.LocalDate;
 
 public class Arquivo {
