@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class DAO<T extends Model> {
-    public void save(T entidade) {
+    public void save(T entidade) throws NotFoundException, ConnectionFailedException {
         String sql = "INSERT INTO " + getNomeTabela() +
                 " (" + getNomesColunas() + ") VALUES (" + getPlaceholders() + ")";
         try(Connection conn = ConnectionFactory.getConnection();
@@ -27,12 +27,12 @@ public abstract class DAO<T extends Model> {
                 throw new NotFoundException(getNomeTabela(), entidade.getId());
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException e)  {
             throw new ConnectionFailedException();
         }
     }
 
-    public void update(T entidade) {
+    public void update(T entidade) throws NotFoundException, ConnectionFailedException{
         String sql = "UPDATE " + getNomeTabela() +
                 " SET " + getColunasUpdate() +
                 " WHERE " + getColunaId() + " = ?";
@@ -64,7 +64,7 @@ public abstract class DAO<T extends Model> {
         }
     }
 
-    public T find(int id) throws NotFoundException {
+    public T find(int id) throws NotFoundException, ConnectionFailedException {
         String sql = "SELECT * FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -82,7 +82,7 @@ public abstract class DAO<T extends Model> {
         }
     }
 
-    public List<T> findAll() {
+    public List<T> findAll() throws NotFoundException, ConnectionFailedException{
         List<T> lista = new ArrayList<>();
         String sql = "SELECT * FROM " + getNomeTabela();
 
