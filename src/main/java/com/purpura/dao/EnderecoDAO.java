@@ -29,7 +29,7 @@ public class EnderecoDAO extends DAO<EnderecoEmpresa> {
         );
     }
 
-    // CORRIGIR AQUI PARA USAR O MÉTODO CERTO
+    // CORRIGIR AQUI PARA USAR O METODO CERTO
     @Override
     protected String getNomesColunas() {
         return "nCdEnderecoEmpresa, cBairro, cLogradouro, cEstado, cCidade, cComplemento, cCep, iNrEnderecoEmpresa, cCnpj";
