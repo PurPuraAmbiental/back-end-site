@@ -1,0 +1,281 @@
+[33mcommit ec41f02cf419960d330268f0cb04d7353aa8a113[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: seminotckme0137 <leticiayreis@gmail.com>
+Date:   Mon Sep 1 20:59:19 2025 -0300
+
+    realise ArquivoDAO
+
+[33mcommit 074f3b18e3f354e3f4b1f8f5feb8110ac5f98197[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sun Aug 31 12:44:56 2025 -0300
+
+    Torna método getColunasUpdate concreto utilitário
+
+[33mcommit cc07d2da22ef77c093ace5d04b352dde5c75c4c2[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sun Aug 31 12:37:31 2025 -0300
+
+    Torna getPlaceholders método concreto utilitário
+
+[33mcommit 8f5558bd23769e7273f3b93b74cec52889e5ebed[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sun Aug 31 12:30:57 2025 -0300
+
+    Cria EmpresaDAO
+
+[33mcommit 807f2224aee20433ff02c8c90aca4c2366deabe3[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 19:13:17 2025 -0300
+
+    Cria MensagemDAO
+
+[33mcommit 84cc4f63715641f2ef4d219b1ddfdc77306bc119[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 18:52:14 2025 -0300
+
+    ResiduoDAO deixa de implementar GenericDAO
+
+[33mcommit 8a986d5224f932a1448cf732737a488faaef1cc2[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 15:26:07 2025 -0300
+
+    Retira importações desnecessárias
+
+[33mcommit 39dda6a2a35b3188ab144e59692efa497116706b[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 15:25:16 2025 -0300
+
+    Adapta ResiduoDAO para nova versão de GenericDAOImpl com métodos abstratos
+
+[33mcommit 9287800b75a83458f8cdf00a2cc0e83526e72891[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 15:14:11 2025 -0300
+
+    Cria métodos save, update e find no DAO abstrato
+
+[33mcommit e3cb31dde0a48c13d4e1432b884592102cc2be48[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 12:33:42 2025 -0300
+
+    Implementa métodos getTableName e mapResultSet em ResiduoDAO
+
+[33mcommit af16f09269571967da5ac00539bbdc6d2b914b19[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 12:28:38 2025 -0300
+
+    Implementa método find
+
+[33mcommit f4289e4c3937ff5b8b35ca454701b6d53c3630f6[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 12:14:53 2025 -0300
+
+    Torna método delete boolean
+
+[33mcommit 34bfe90367330034d9615197797d1f34244e0c61[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 12:12:23 2025 -0300
+
+    Renomeia deleteById e findById para delete e find
+
+[33mcommit edbe63a9453935b7196654712f610870d01d27a2[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 30 12:09:58 2025 -0300
+
+    Cria método update em ResiduoDAO e refatora nCdEmpresa
+
+[33mcommit b96931d2282e7b6bf46f6abb8a371f2d87f9d516[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 28 22:59:06 2025 -0300
+
+    Cria ResiduoDAO e implementa método save (retorno alterado para boolean)
+
+[33mcommit ba15d2299bb65afee7016b4546d1b3485c84852f[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 28 18:47:04 2025 -0300
+
+    Refatora models EnderecoEmpresa e Pagamento
+
+[33mcommit 0cca6425613b7fa4d9db46023dfff22f083d2665[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 28 07:55:48 2025 -0300
+
+    Refatora métodos de Pedido
+
+[33mcommit 5d0158b57923e5da49ac8108efd3cfac1d1e1d20[m
+Merge: 588f7b7 3ccf555
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Wed Aug 27 10:41:26 2025 -0300
+
+    Merge branch 'master' of https://github.com/Site-PurPura/back-end-site
+    Traz o master da Bruna
+
+[33mcommit 588f7b783ed77ee96f9265cbb57a59da62519228[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Wed Aug 27 10:34:53 2025 -0300
+
+    Implementa toString em Pedido e corrige ortografia
+
+[33mcommit df10d723023926cdfdb7c27c960fe60c01d190b8[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Wed Aug 27 10:15:22 2025 -0300
+
+    Adiciona Override no método findAll em GenericDAOImpl
+
+[33mcommit 3ccf5557562dcb6c04d4a97445e30a280cd94b89[m
+Author: Bruna Oliveira14 <bruna.jesus@germinare.org.br>
+Date:   Tue Aug 26 19:42:57 2025 -0300
+
+    Criando a classe Pagamento no java
+
+[33mcommit 9b3f8bf46062b400d1e5f903b7b4476223bfc197[m
+Author: Bruna Oliveira14 <bruna.jesus@germinare.org.br>
+Date:   Tue Aug 26 19:39:00 2025 -0300
+
+    criando a classe endereco
+
+[33mcommit 93c4a2e9deda25a2f50da35400c087ba2d80c2f9[m
+Merge: 915135d 6880ad3
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 19:18:19 2025 -0300
+
+    Merge branch 'main' of https://github.com/Site-PurPura/back-end-site
+
+[33mcommit 915135df1cbb4926851f88c8f84eb3525b908ffd[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 19:04:10 2025 -0300
+
+    Cria método findAll e método abstrato mapResultSet
+
+[33mcommit 927834aa45ca3d55afb11d73ed6b4e8190e0a0b3[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 18:46:46 2025 -0300
+
+    Corrige bloco try e declaração de stmt em deleteById
+
+[33mcommit 6880ad3e421d2d95ae15f238bc132239ef295440[m
+Merge: dcaa8e6 59aead5
+Author: BrunaOliveira14 <boo.bruna.oliveira@gmail.com>
+Date:   Tue Aug 26 18:38:16 2025 -0300
+
+    Merge pull request #1 from Site-PurPura/master
+    
+    tabela pedido no java
+
+[33mcommit 59aead5476680681d30f1291e4a70052cae70f53[m
+Author: Bruna Oliveira14 <bruna.jesus@germinare.org.br>
+Date:   Tue Aug 26 18:31:32 2025 -0300
+
+    tabela pedido no java
+
+[33mcommit a232ee886532309473a318c7ac42fa5ba6680c30[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 18:27:11 2025 -0300
+
+    Cria classe abstrata que implementa GenericDAO, implementa método deleteById e cria método abstrato getTableName
+
+[33mcommit dcaa8e61e465a23e96068a670e84c74d2e459fd1[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 12:06:40 2025 -0300
+
+    Cria interface GenericDAO para padronizar métodos dos DAOs
+
+[33mcommit 47eddf26815eac64eadea9b5d9ae778095cda20d[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 09:18:00 2025 -0300
+
+    Atualiza pom.xml
+
+[33mcommit 5fa89ffa2134ac109648085b651a024963922a0a[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 09:02:39 2025 -0300
+
+    Cria TestConnection
+
+[33mcommit 66a3d0b9f7647d2d75eef075a0745fe22ecb0815[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Tue Aug 26 08:57:17 2025 -0300
+
+    Cria ConnectionFactory
+
+[33mcommit 4aaf39040fece6ebb7f54fcdb1d3b2a6cbe3b4ed[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Mon Aug 25 19:58:58 2025 -0300
+
+    Cria classe ItemPedido
+
+[33mcommit 5647d54ebfda865945d9d3e40a0f70d66101e6fe[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Mon Aug 25 19:47:00 2025 -0300
+
+    Cria classe Transporte
+
+[33mcommit 842c1fada806702d2b2a99c17e662d364500b1f4[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Mon Aug 25 19:39:29 2025 -0300
+
+    Cria classe Arquivo
+
+[33mcommit 3c2258224c3be1628f8a60ebee06413611b9e587[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Mon Aug 25 19:29:28 2025 -0300
+
+    Cria Enum com tipos de donos de arquivos possíveis
+
+[33mcommit 8ce5ae109bd1d4dc901573d5d9135da5c6c3378e[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Sat Aug 23 19:20:31 2025 -0300
+
+    Adiciona atributo nCdEmpresa em Residuo
+
+[33mcommit 7df032ab1c9feaa1aa5a50539ecff09707bef980[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 21 18:13:22 2025 -0300
+
+    Cria classe Residuo
+
+[33mcommit 046e002ceaa96050c2d5c1a36016d5c7bc27f6f4[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 21 17:44:12 2025 -0300
+
+    Corrije método toString de Empresa (remove nCdEmpresa do retorno do método)
+
+[33mcommit 57eee23a2bc2bfd1f9777bedbde7fce2f1ed51cb[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 21 10:52:51 2025 -0300
+
+    Torna cCnpj final (será usado como primary key) e remove nCdMensagem
+
+[33mcommit 86a92663ecf1fa96ca035a785239a5101783aabe[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 21 10:47:10 2025 -0300
+
+    Cria model Mensagem
+
+[33mcommit 6ed64952e3eb38ac2d8cd53caf02a20974073328[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 21 07:20:51 2025 -0300
+
+    Comenta classe Empresa
+
+[33mcommit 0f13c11666ef1224ee78d0c01293680743cc5219[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Thu Aug 21 07:18:42 2025 -0300
+
+    Cria setters e toString na classe Empresa
+
+[33mcommit 103a8fd463627d0110be5a73fd479379816c11f2[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Wed Aug 20 19:58:42 2025 -0300
+
+    Cria pacote java.com.purpura.models e estrutura base da classe Empresa
+
+[33mcommit b6f56d92f8d98ba5fcd179355aae0168c881b204[m
+Author: Kevin de Oliveira <kevinmsoliveira@gmail.com>
+Date:   Wed Aug 20 14:23:53 2025 -0300
+
+    Criar estrutura básica do Maven
+
+[33mcommit b0eb7d43dddbf747a274f956ddb21abe27ebe701[m
+Author: Eduardo Rodrigues Silva <eduardoultimate29@gmail.com>
+Date:   Wed Aug 6 14:13:49 2025 -0300
+
+    Initial commit
