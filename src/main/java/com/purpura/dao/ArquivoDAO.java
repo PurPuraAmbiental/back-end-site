@@ -4,7 +4,7 @@ import com.purpura.models.enums.CategoriaArquivo;
 import java.sql.ResultSet;
 
 
-public class ArquivoDAO extends GenericDAOImpl<Arquivo>{
+public class ArquivoDAO extends DAO<Arquivo>{
     @Override
     public String getNomeTabela(){
         return "Arquivo";
