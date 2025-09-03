@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EnderecoDAO extends DAO<EnderecoEmpresa> {
+public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
 
     // RETORNAR O NOME DA TABELA
     @Override

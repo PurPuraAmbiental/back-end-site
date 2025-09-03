@@ -20,8 +20,8 @@ public class Pedido {
         this.nCdPedido = nCdPedido;
         this.dPedido = dPedido;
     }
-
-    public double getNValotTotal() {
+//MUDEI O NOME DO GET
+    public double getNValorTotal() {
         return nValorTotal;
     }
 
