@@ -13,10 +13,10 @@ public  class EnderecoEmpresa {
     private String cCnpj;
 
     //ADICIONANDO METODO CONSTRUTOR
-    public EnderecoEmpresa(int nCdEnderecoEmpresa, String cbairro, String clogradouro, String cEstado, String cCidade, String cComplemento, String cCep, String cNumero, String cCnpj) {
+    public EnderecoEmpresa(int nCdEnderecoEmpresa, String cBairro, String cLogradouro, String cEstado, String cCidade, String cComplemento, String cCep, int iNrEnderecoEmpresa, String cCnpj) {
         this.nCdEnderecoEmpresa = nCdEnderecoEmpresa;
-        this.cBairro = cbairro;
-        this.cLogradouro = clogradouro;
+        this.cBairro = cBairro;
+        this.cLogradouro = cLogradouro;
         this.cEstado = cEstado;
         this.cCidade = cCidade;
         this.cComplemento = cComplemento;
@@ -55,6 +55,7 @@ public  class EnderecoEmpresa {
     }
 
     public String getCCnpj() {return cCnpj;}
+    public int getINrEnderecoEmpresa() {return iNrEnderecoEmpresa;}
 
     //ADICIONANDO OS SETTERS NECESSARIOS
     public void setCBairro(String bairro) {

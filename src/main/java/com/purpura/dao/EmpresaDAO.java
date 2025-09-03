@@ -4,7 +4,7 @@ import com.purpura.models.Empresa;
 
 import java.sql.ResultSet;
 
-public class EmpresaDAO extends GenericDAOImpl<Empresa>{
+public class EmpresaDAO extends DAO<Empresa> {
     @Override
     public String getNomeTabela() {
         return "Empresa";

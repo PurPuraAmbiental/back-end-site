@@ -2,7 +2,7 @@ package com.purpura.dao;
 
 import com.purpura.models.Mensagem;
 
-public class MensagemDAO extends GenericDAOImpl<Mensagem>{
+public class MensagemDAO extends DAO<Mensagem> {
     @Override
     public String getNomeTabela(){
         return "Mensagem";
