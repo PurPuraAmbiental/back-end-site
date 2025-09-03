@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
-    @Override
+public abstract class DAO<T> {
     public boolean save(T entidade) {
         String sql = "INSERT INTO " + getNomeTabela() +
                 " (" + getNomesColunas() + ") VALUES (" + getPlaceholders() + ")";
@@ -28,7 +27,6 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
         return false;
     }
 
-    @Override
     public boolean update(T entidade) {
         String sql = "UPDATE " + getNomeTabela() +
                 " SET " + getColunasUpdate() +
@@ -44,7 +42,6 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
         return false;
     }
 
-    @Override
     public boolean delete(int id){
         String sql = "DELETE FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
@@ -60,7 +57,6 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
         return false;
     }
 
-    @Override
     public T find(int id) {
         String sql = "SELECT * FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
@@ -78,7 +74,6 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
         return null;
     }
 
-    @Override
     public List<T> findAll() {
         List<T> lista = new ArrayList<>();
         String sql = "SELECT * FROM " + getNomeTabela();

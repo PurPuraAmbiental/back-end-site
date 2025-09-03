@@ -1,58 +1,71 @@
-public class EnderecoDAO extends GenericDAOImpl<Endereco> {
-    //RETONAR O NOME DA ENTIDADE:
-    public  String getNomeTabela(){
+package com.purpura.dao;
+
+import com.purpura.models.EnderecoEmpresa;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class EnderecoDAO extends DAO<EnderecoEmpresa> {
+
+    // RETORNAR O NOME DA TABELA
+    @Override
+    public String getNomeTabela() {
         return "Endereco";
     }
 
-    //TRANSFORMAR UMA LINHA DE INFORMAÇÕES DO BANCO EM UMA INSTANCIA DE CLASSE:
-    protected Endereco mapResultSet(ResultSet rs) throws java.sql.SQLException{
-        return new Endereco(
-                rs.getString("ncdEnderecoEmpresa"),
+    // MAPEAR UMA LINHA DO RESULTSET PARA A CLASSE EnderecoEmpresa
+    @Override
+    protected EnderecoEmpresa mapResultSet(ResultSet rs) throws SQLException {
+        return new EnderecoEmpresa(
+                rs.getInt("nCdEnderecoEmpresa"),
                 rs.getString("cBairro"),
                 rs.getString("cLogradouro"),
                 rs.getString("cEstado"),
                 rs.getString("cCidade"),
-                rs.getString("cCep"),
                 rs.getString("cComplemento"),
-                rs.getString("iNrEnderecoEmpresa"),
+                rs.getString("cCep"),
+                rs.getInt("iNrEnderecoEmpresa"),  // CUIDADO: o tipo no construtor está errado
                 rs.getString("cCnpj")
         );
     }
 
-    //RETORNAR OS NOMES DAS COLUNAS
-    protected String getNomeColunas(){
-        return "nCdEnderecoEmpresa, cBairro, cLogradouro, cEstado, cCidade, cCep, cComplemento, iNrEnderecoEmpresa, cCnpj"
+    // CORRIGIR AQUI PARA USAR O MÉTODO CERTO
+    @Override
+    protected String getNomesColunas() {
+        return "nCdEnderecoEmpresa, cBairro, cLogradouro, cEstado, cCidade, cComplemento, cCep, iNrEnderecoEmpresa, cCnpj";
     }
 
-    //METODO PARA -----
-    protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Empresa entidade) throws java.sql.SQLException{
-        stmt.setString(1, entidade.getCnmEmpresa);
-        stmt.setString(2, entidade.getCbairro);
-        stmt.setString(3, entidade.cLogradouro);
-        stmt.setString(4, entidade.cEstado);
-        stmt.setString(5, entidade.cCidade);
-        stmt.setString(6, entidade.cComplemento);
-        stmt.setString(7, entidade.cCep);
-        stmt.setString(8, entidade.iNrEnderecoEmpresa);
-        stmt.setString(9, entidade.cCnpj);
+    // PREPARAR O STATEMENT PARA INSERÇÃO
+    @Override
+    protected void prepareStatementForSave(PreparedStatement stmt, EnderecoEmpresa entidade) throws SQLException {
+        stmt.setInt(1, entidade.getNCdEnderecoEmpresa());
+        stmt.setString(2, entidade.getCBairro());
+        stmt.setString(3, entidade.getCLogradouro());
+        stmt.setString(4, entidade.getCEstado());
+        stmt.setString(5, entidade.getCCidade());
+        stmt.setString(6, entidade.getCComplemento());
+        stmt.setString(7, entidade.getCCep());
+        stmt.setInt(8, entidade.getINrEnderecoEmpresa());  // Supondo que você adicione esse getter
+        stmt.setString(9, entidade.getCCnpj());
     }
 
-    protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Empresa entidade) throws java.sql.SQLException {
-        stmt.setString(1, entidade.getCnmEmpresa);
-        stmt.setString(2, entidade.getCbairro);
-        stmt.setString(3, entidade.cLogradouro);
-        stmt.setString(4, entidade.cEstado);
-        stmt.setString(5, entidade.cCidade);
-        stmt.setString(6, entidade.cComplemento);
-        stmt.setString(7, entidade.cCep);
-        stmt.setString(8, entidade.iNrEnderecoEmpresa);
-        stmt.setString(9, entidade.cCnpj);
+    // PREPARAR O STATEMENT PARA ATUALIZAÇÃO
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement stmt, EnderecoEmpresa entidade) throws SQLException {
+        stmt.setString(1, entidade.getCBairro());
+        stmt.setString(2, entidade.getCLogradouro());
+        stmt.setString(3, entidade.getCEstado());
+        stmt.setString(4, entidade.getCCidade());
+        stmt.setString(5, entidade.getCComplemento());
+        stmt.setString(6, entidade.getCCep());
+        stmt.setInt(7, entidade.getINrEnderecoEmpresa()); // getter necessário
+        stmt.setString(8, entidade.getCCnpj());
+        stmt.setInt(9, entidade.getNCdEnderecoEmpresa()); // WHERE id = ?
     }
 
-    //RETORNA ATRIBUTO IDENTIFICADOR
-    protected String getColunaId(){
-        return "nCdEnderecoEmpresa"
+    // COLUNA IDENTIFICADORA
+    @Override
+    protected String getColunaId() {
+        return "nCdEnderecoEmpresa";
     }
-
-
-    }
+}
