@@ -1,5 +1,6 @@
 package com.purpura.dao;
 
+import com.purpura.common.Constants;
 import com.purpura.util.ConnectionFactory;
 
 import java.sql.Connection;
@@ -93,11 +94,11 @@ public abstract class DAO<T> {
 
     // métodos utilitários
     protected String getPlaceholders() {
-        int quantidade = getNomesColunas().split("\\s*,\\s*").length;
+        int quantidade = getNomesColunas().split(Constants.COMMA_SEPARATOR_REGEX).length;
         return String.join(", ", Collections.nCopies(quantidade, "?"));
     }
     protected String getColunasUpdate() {
-        String[] colunas = getNomesColunas().split("\\s*,\\s*");
+        String[] colunas = getNomesColunas().split(Constants.COMMA_SEPARATOR_REGEX);
         String colunaId = getColunaId();
 
         List<String> updates = new ArrayList<>();
