@@ -2,7 +2,7 @@ package com.purpura.dao;
 
 import com.purpura.models.ItemPedido;
 
-public class ItemPedidoDAO extends GenericDAOImpl<ItemPedido>{
+public class ItemPedidoDAO extends DAO<ItemPedido>{
     @Override
     public String getNomeTabela(){
         return "ItemPedido";
