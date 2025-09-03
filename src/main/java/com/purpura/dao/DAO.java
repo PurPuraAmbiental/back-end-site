@@ -1,6 +1,9 @@
 package com.purpura.dao;
 
 import com.purpura.common.Constants;
+import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
+import com.purpura.models.Model;
 import com.purpura.util.ConnectionFactory;
 
 import java.sql.Connection;
@@ -11,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class DAO<T> {
-    public boolean save(T entidade) {
+public abstract class DAO<T extends Model> {
+    public void save(T entidade) {
         String sql = "INSERT INTO " + getNomeTabela() +
                 " (" + getNomesColunas() + ") VALUES (" + getPlaceholders() + ")";
         try(Connection conn = ConnectionFactory.getConnection();
@@ -20,15 +23,16 @@ public abstract class DAO<T> {
 
             prepareStatementForSave(stmt, entidade);
             int rows = stmt.executeUpdate();
-            return rows > 0;
+            if(rows == 0) {
+                throw new NotFoundException(getNomeTabela(), entidade.getId());
+            }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new ConnectionFailedException();
         }
-        return false;
     }
 
-    public boolean update(T entidade) {
+    public void update(T entidade) {
         String sql = "UPDATE " + getNomeTabela() +
                 " SET " + getColunasUpdate() +
                 " WHERE " + getColunaId() + " = ?";
@@ -36,14 +40,15 @@ public abstract class DAO<T> {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             prepareStatementForUpdate(stmt, entidade);
             int rows = stmt.executeUpdate();
-            return rows > 0;
+            if(rows == 0) {
+                throw new NotFoundException(getNomeTabela(), entidade.getId());
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new ConnectionFailedException();
         }
-        return false;
     }
 
-    public boolean delete(int id){
+    public void delete(int id) throws NotFoundException, ConnectionFailedException{
         String sql = "DELETE FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
 
@@ -51,14 +56,15 @@ public abstract class DAO<T> {
             PreparedStatement stmt = conn.prepareStatement(sql)){
                 stmt.setInt(1, id);
                 int linhasDeletadas = stmt.executeUpdate();
-                return linhasDeletadas > 0;
+                if (linhasDeletadas == 0) {
+                    throw new NotFoundException(getNomeTabela(), id);
+                }
             } catch (SQLException e){
-            e.printStackTrace();
+            throw new ConnectionFailedException();
         }
-        return false;
     }
 
-    public T find(int id) {
+    public T find(int id) throws NotFoundException {
         String sql = "SELECT * FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -67,12 +73,13 @@ public abstract class DAO<T> {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return mapResultSet(rs);
+                } else {
+                    throw new NotFoundException(getNomeTabela(), id);
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new ConnectionFailedException();
         }
-        return null;
     }
 
     public List<T> findAll() {
@@ -86,7 +93,11 @@ public abstract class DAO<T> {
                 lista.add(mapResultSet(rs));
             }
         } catch (SQLException e){
-            e.printStackTrace();
+            throw new ConnectionFailedException();
+        }
+
+        if (lista.isEmpty()) {
+            throw new NotFoundException(getNomeTabela(), -1);
         }
 
         return lista;
