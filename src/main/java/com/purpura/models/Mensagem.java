@@ -1,6 +1,6 @@
 package com.purpura.models;
 
-public class Mensagem {
+public class Mensagem implements Model{
     // atributos
     private final int nCdMensagem;
     private final String cConteudo; // atributos final para garantir que mensagem não seja alterada
@@ -30,4 +30,8 @@ public class Mensagem {
         return "Código: " + nCdMensagem + "\nConteúdo: " + cConteudo +
                 "\nEmpresa Remetente: " + cCnpjRemetente + "\nEmpresa Destinatária: " + cCnpjDestinatario;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdMensagem;}
 }

@@ -2,7 +2,7 @@ package com.purpura.models;
 
 import java.time.LocalDate;
 
-public class Transporte {
+public class Transporte implements Model{
     // atributos
     private final int nCdTransporte;
     private String cNmTransporte;
@@ -30,4 +30,8 @@ public class Transporte {
         return "Código: " + nCdTransporte + "\nNome: " + cNmTransporte +
                 "\nData Retirada: " + dRetirada;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdTransporte;}
 }

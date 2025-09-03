@@ -1,6 +1,6 @@
 package com.purpura.models;
 
-public class Empresa {
+public class Empresa implements Model{
     // atributos
     private String cNmEmpresa;
     private String cSenha;
@@ -42,4 +42,8 @@ public class Empresa {
                 "\nSenha: " + cSenha + "\nAtivo: " + cAtivo +
                 "\nEmail: " + cEmail + "\nTelefone: " + cTelefone;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return cCnpj;}
 }

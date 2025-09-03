@@ -2,7 +2,7 @@ package com.purpura.models;
 
 import java.time.LocalDate;
 
-public class Pedido {
+public class Pedido implements Model{
     private double nValorTotal;
     private String cStatus;
     private LocalDate dPedido;
@@ -80,4 +80,8 @@ public class Pedido {
                 "\nFrequência" + cFrequencia + "\nData Agendamento: " + dAgendamentoColeta +
                 "\nObservações: " + cOservacoes;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdPedido;}
 }

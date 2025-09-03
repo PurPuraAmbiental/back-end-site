@@ -2,7 +2,7 @@ package com.purpura.models;
 import com.purpura.models.enums.CategoriaArquivo;
 import java.time.LocalDate;
 
-public class Arquivo {
+public class Arquivo implements Model{
     // atributos
     private final int nCdArquivo;
     public String cNmArquivo;
@@ -43,4 +43,8 @@ public class Arquivo {
                 "\nTipo: " + cTipoArquivo + "\nData: " + dArquivo +
                 "\nCategoria: " + categoriaArquivo + "\nDono: " + nCdDono;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdArquivo;}
 }

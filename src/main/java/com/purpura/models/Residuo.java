@@ -1,6 +1,6 @@
 package com.purpura.models;
 
-public class Residuo {
+public class Residuo implements Model{
     // atributos
     private final int nCdResiduo;
     private String cNmResiduo;
@@ -52,4 +52,8 @@ public class Residuo {
                 "\nVolume Padrão: " + nVolumePadrao + "\nCategoria: " + cCategoria +
                 "\nDescrição: " + cDescricao + "\nCNPJ: " + cCnpj;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdResiduo;}
 }

@@ -2,8 +2,8 @@ package com.purpura.models;
 
 import java.time.LocalDate;
 
-public class Pagamento {
-    private int nCdPagamento;
+public class Pagamento implements Model{
+    private final int nCdPagamento;
     private LocalDate dPagamento;
     private String cStatusPagamento;
     private double nValorPago;
@@ -77,4 +77,8 @@ public class Pagamento {
                 "\nStatus Pagamento: "+cStatusPagamento+
                 "\nObservações: "+cObservacoes;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdPagamento;}
 }

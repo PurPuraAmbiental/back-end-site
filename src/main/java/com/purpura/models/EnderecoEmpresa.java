@@ -1,8 +1,8 @@
 package com.purpura.models;
 
-public  class EnderecoEmpresa {
+public  class EnderecoEmpresa implements Model{
     //ADICIONANDO ATRIBUTOS DO MODELO LOGICO
-    private int nCdEnderecoEmpresa;
+    private final int nCdEnderecoEmpresa;
     private String cBairro;
     private String cLogradouro;
     private String cEstado;
@@ -94,4 +94,8 @@ public  class EnderecoEmpresa {
                 "\nComplemento: " + cComplemento+
                 "\nCEP: "+ cCep;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdEnderecoEmpresa;}
 }

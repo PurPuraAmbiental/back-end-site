@@ -1,6 +1,6 @@
 package com.purpura.models;
 
-public class ItemPedido {
+public class ItemPedido implements Model{
     // atributos
     private final int nCdItemPedido;
     private double nPrecoUnitario;
@@ -36,4 +36,8 @@ public class ItemPedido {
                 "\nVolume: " + nVolume + "\nResíduo: " + nCdResiduo +
                 "\nPedido: " + nCdPedido;
     }
+
+    // métodos
+    @Override
+    public Object getId(){return nCdItemPedido;}
 }
