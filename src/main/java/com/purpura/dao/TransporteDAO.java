@@ -1,7 +1,7 @@
 package com.purpura.dao;
 import com.purpura.models.Transporte;
 
-public class TransporteDAO extends GenericDAOImpl<Transporte>{
+public class TransporteDAO extends DAO<Transporte>{
     @Override
     public String getNomeTabela(){
         return "Transporte";
