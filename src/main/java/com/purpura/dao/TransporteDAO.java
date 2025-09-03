@@ -1,6 +1,4 @@
 package com.purpura.dao;
-
-import com.purpura.models.Arquivo;
 import com.purpura.models.Transporte;
 
 public class TransporteDAO extends GenericDAOImpl<Transporte>{
