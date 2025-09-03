@@ -1,6 +1,6 @@
 package com.purpura.models;
 
-public class aItemPedido {
+public class ItemPedido {
     // atributos
     private final int nCdItemPedido;
     private double nPrecoUnitario;
