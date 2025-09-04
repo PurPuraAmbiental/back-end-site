@@ -5,6 +5,11 @@
   --cinza: #6b6b6b; /* muted */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 a{
   text-decoration: none;
 }
@@ -928,12 +933,4 @@ main {
   .plano-destaque:hover {
     transform: translateY(-10px) scale(1);
   }
-}
-#secao-sobre-nos,
-#secao-porque-escolher,
-.servicos-purpura,
-.faq-section,
-.beneficios-section,
-.planos-section {
-  scroll-margin-top: 120px; /* ajuste de acordo com o header */
 }
