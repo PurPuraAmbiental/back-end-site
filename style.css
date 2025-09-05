@@ -843,7 +843,7 @@ main {
 
 /* estilos do card de destaque */
 .plano-destaque {
-  background-color: #6a0dad;
+  background-color: #231d4f;
   color: #fff;
   transform: scale(1.05);
   position: relative;
@@ -879,7 +879,7 @@ main {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #b025f3;
+  background-color: #231d4f;
   color: #fff;
   padding: 5px 10px;
   border-radius: 15px;
