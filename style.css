@@ -269,7 +269,9 @@ main {
     flex-direction: column;
   }
 }
-
+.sobrenos-cabecalho {
+  text-align: center;
+}
 
 #secao-sobre-nos,
 #secao-porque-escolher {
