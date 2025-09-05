@@ -379,6 +379,33 @@ main {
 }
 
 /* --- seção de serviços --- */
+.servico-card {
+  background-color: #fff; /* cor padrão */
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  text-align: left;
+}
+
+/* efeito ao passar o mouse */
+.servico-card:hover {
+  background-color: var(--roxoclaro); /* fica roxo */
+  transform: translateY(-10px);
+  color: #fff; /* muda o texto para branco para contrastar */
+}
+
+/* garantir que os textos e ícones dentro mudem de cor também */
+.servico-card:hover h3,
+.servico-card:hover p,
+.servico-card:hover .icone-placeholder {
+  color: #fff;
+}
+
+/* ícone no círculo também */
+.servico-card:hover .icone-circulo {
+  background-color: var(--roxoescuro);
+}
 .servicos-purpura {
   padding: 80px 20px;
   text-align: center;
@@ -419,11 +446,6 @@ main {
 
 .servico-card:hover {
   transform: translateY(-10px);
-}
-
-.servico-card.destaque {
-  background-color: #9370db;
-  color: #fff;
 }
 
 .servico-card.destaque h3,
