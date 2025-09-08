@@ -529,13 +529,11 @@ main {
 
 /* --- responsividade --- */
 @media (max-width: 900px) {
-  /* ... (restante do código) ... */
 }
 
 @media (max-width: 768px) {
-  /* ... (restante do código) ... */
   .servicos-grid {
-      grid-template-columns: 1fr; /* Volta para 1 coluna em telas menores */
+      grid-template-columns: 1fr; 
   }
 }
 
