@@ -9,6 +9,9 @@ html {
   scroll-behavior: smooth;
 }
 
+body{
+  background-image: url('c:\Users\irisrodrigues-ieg\Downloads\img.png');
+}
 
 a{
   text-decoration: none;
@@ -388,6 +391,7 @@ main {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
   text-align: left;
+  background-image: url('c:\Users\irisrodrigues-ieg\Downloads\img.png');
 }
 
 /* efeito ao passar o mouse */
