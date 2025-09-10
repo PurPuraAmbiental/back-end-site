@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PurPura - Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
+    <style>
+        /* Estilos CSS da tela de cadastro */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(90deg, #f7eefe 0%, #eafdf5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #6a0dad;
+        }
+
+        .container-cadastro {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6a0dad;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            font-size: 1.2rem;
+            color: #9370db;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #555;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #9370db;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-group select {
+            width: 80px;
+            flex-grow: 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .input-group input {
+            flex-grow: 1;
+        }
+
+        .form-footer {
+            margin-top: 30px;
+        }
+
+        .btn-cadastro {
+            width: 100%;
+            padding: 15px;
+            background-color: #9370db;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-cadastro:hover {
+            background-color: #7d52cc;
+        }
+
+        .link-login {
+            display: block;
+            margin-top: 20px;
+            color: #6a0dad;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        /* Estilo para a mensagem de erro */
+        .error-message {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none; /* Inicia oculto */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-cadastro">
+        <h1 class="logo">PurPura</h1>
+        <p class="subtitulo">A sua jornada sustentável começa aqui!</p>
+        <form action="#" method="post" id="form-cadastro">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                <span id="nome-erro" class="error-message">Por favor, preencha seu nome.</span>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
+                <span id="email-erro" class="error-message">Por favor, insira um e-mail válido.</span>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <div class="input-group">
+                    <select id="ddd" name="ddd" required>
+                        <option value="" disabled selected>DDD</option>
+                        <option value="11">11</option>
+                        <option value="21">21</option>
+                        <option value="31">31</option>
+                        <option value="41">41</option>
+                        <option value="51">51</option>
+                        <option value="61">61</option>
+                        <option value="71">71</option>
+                        <option value="81">81</option>
+                        <option value="91">91</option>
+                    </select>
+                    <input type="tel" id="telefone" name="telefone" placeholder="99999-9999" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+                <span id="senha-erro" class="error-message">A senha deve ter pelo menos 6 caracteres.</span>
+            </div>
+            <div class="form-group">
+                <label for="confirmar-senha">Confirmar Senha</label>
+                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha" required>
+                <span id="confirmar-senha-erro" class="error-message">As senhas não coincidem.</span>
+            </div>
+            <div class="form-footer">
+                <button type="submit" class="btn-cadastro">Cadastrar</button>
+                <a href="login.html" class="link-login">Já tem uma conta? Faça login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('form-cadastro').addEventListener('submit', function(event) {
+            
+            const nomeInput = document.getElementById('nome');
+            const emailInput = document.getElementById('email');
+            const senhaInput = document.getElementById('senha');
+            const confirmarSenhaInput = document.getElementById('confirmar-senha');
+            
+            const nomeErro = document.getElementById('nome-erro');
+            const emailErro = document.getElementById('email-erro');
+            const senhaErro = document.getElementById('senha-erro');
+            const confirmarSenhaErro = document.getElementById('confirmar-senha-erro');
+            
+            let formularioValido = true;
+
+            // Validação do nome
+            if (nomeInput.value.trim() === '') {
+                nomeErro.style.display = 'block';
+                formularioValido = false;
+            } else {
+                nomeErro.style.display = 'none';
+            }
+
+            // Validação do e-mail
+            if (!emailInput.value.includes('@') || !emailInput.value.includes('.')) {
+                emailErro.style.display = 'block';
+                formularioValido = false;
+            } else {
+                emailErro.style.display = 'none';
+            }
+
+            // Validação da senha (comprimento mínimo)
+            if (senhaInput.value.length < 6) {
+                senhaErro.style.display = 'block';
+                formularioValido = false;
+            } else {
+                senhaErro.style.display = 'none';
+            }
+
+            // Validação da confirmação de senha
+            if (senhaInput.value !== confirmarSenhaInput.value) {
+                confirmarSenhaErro.style.display = 'block';
+                formularioValido = false;
+            } else {
+                confirmarSenhaErro.style.display = 'none';
+            }
+            
+            // Impede o envio do formulário se a validação falhar
+            if (!formularioValido) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
