@@ -1,10 +1,13 @@
 package com.purpura.models;
 
+import java.text.ParseException;
+import java.util.Map;
+
 public class Empresa implements Model{
     // atributos
     private String cNmEmpresa;
     private String cSenha;
-    private final String cCnpj;
+    private String cCnpj;
     private char cAtivo;
     private String cEmail;
     private String cTelefone;
@@ -18,6 +21,17 @@ public class Empresa implements Model{
         this.cAtivo = cAtivo;
         this.cEmail = cEmail;
         this.cTelefone = cTelefone;
+    }
+
+    public Empresa(Map<String, String> params) throws ParseException {
+        if(params.containsKey("cCnpj")) {
+            this.cCnpj = params.get("cCnpj");
+        }
+        this.cNmEmpresa = params.get("cNmEmpresa");
+        this.cSenha = params.get("cSenha");
+        this.cAtivo = params.get("cAtivo").charAt(0);
+        this.cEmail = params.get("cEmail");
+        this.cTelefone = params.get("cTelefone");
     }
 
     // getters
