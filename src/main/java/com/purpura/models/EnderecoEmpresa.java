@@ -1,8 +1,10 @@
 package com.purpura.models;
 
+import java.util.Map;
+
 public  class EnderecoEmpresa implements Model{
     //ADICIONANDO ATRIBUTOS DO MODELO LOGICO
-    private final int nCdEnderecoEmpresa;
+    private int nCdEnderecoEmpresa;
     private String cBairro;
     private String cLogradouro;
     private String cEstado;
@@ -23,6 +25,20 @@ public  class EnderecoEmpresa implements Model{
         this.cCep = cCep;
         this.iNrEnderecoEmpresa = iNrEnderecoEmpresa;
         this.cCnpj = cCnpj;
+    }
+
+    public EnderecoEmpresa(Map<String, String> params){
+        if(params.containsKey("nCdEnderecoEmpresa")){
+            this.nCdEnderecoEmpresa = Integer.parseInt(params.get("nCdEnderecoEmpresa"));
+        }
+        this.cBairro = params.get("cBairro");
+        this.cLogradouro = params.get("cLogradouro");
+        this.cEstado = params.get("cEstado");
+        this.cCidade = params.get("cCidade");
+        this.cComplemento = params.get("cComplemento");
+        this.cCep = params.get("cCep");
+        this.iNrEnderecoEmpresa = Integer.parseInt(params.get("iNrEnderecoEmpresa"));
+        this.cCnpj = params.get("cCnpj");
     }
 
     //ADICIONANDO GETTERS
