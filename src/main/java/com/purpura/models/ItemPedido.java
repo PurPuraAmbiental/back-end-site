@@ -1,8 +1,10 @@
 package com.purpura.models;
 
+import java.util.Map;
+
 public class ItemPedido implements Model{
     // atributos
-    private final int nCdItemPedido;
+    private int nCdItemPedido;
     private double nPrecoUnitario;
     private double nVolume;
     private final int nCdResiduo;
@@ -16,6 +18,16 @@ public class ItemPedido implements Model{
         this.nVolume = nVolume;
         this.nCdResiduo = nCdResiduo;
         this.nCdPedido = nCdPedido;
+    }
+
+    public ItemPedido(Map<String, String> params) {
+        if(params.containsKey("nCdItemPedido")) {
+            this.nCdItemPedido = Integer.parseInt(params.get("nCdItemPedido"));
+        }
+        this.nPrecoUnitario = Double.parseDouble(params.get("nPrecoUnitario"));
+        this.nVolume = Double.parseDouble(params.get("nVolume"));
+        this.nCdResiduo = Integer.parseInt(params.get("nCdResiduo"));
+        this.nCdPedido = Integer.parseInt(params.get("nCdPedido"));
     }
 
     // getters
