@@ -1,10 +1,11 @@
 package com.purpura.models;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class Transporte implements Model{
     // atributos
-    private final int nCdTransporte;
+    private int nCdTransporte;
     private String cNmTransporte;
     private LocalDate dRetirada;
 
@@ -13,6 +14,14 @@ public class Transporte implements Model{
         this.nCdTransporte = nCdTransporte;
         this.cNmTransporte = cNmTransporte;
         this.dRetirada = dRetirada;
+    }
+
+    public Transporte(Map<String, String> params) {
+        if(params.containsKey("nCdTransporte")) {
+            this.nCdTransporte = Integer.parseInt(params.get("nCdTransporte"));
+        }
+        this.cNmTransporte = params.get("cNmTransporte");
+        this.dRetirada = LocalDate.parse(params.get("dRetirada"));
     }
 
     // getters

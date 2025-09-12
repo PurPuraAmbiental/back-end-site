@@ -1,8 +1,10 @@
 package com.purpura.models;
 
+import java.util.Map;
+
 public class Mensagem implements Model{
     // atributos
-    private final int nCdMensagem;
+    private int nCdMensagem;
     private final String cConteudo; // atributos final para garantir que mensagem não seja alterada
     private final String cCnpjRemetente; // armazenam o código
     private final String cCnpjDestinatario;
@@ -14,6 +16,15 @@ public class Mensagem implements Model{
         this.cConteudo = cConteudo;
         this.cCnpjRemetente = cCnpjRemetente;
         this.cCnpjDestinatario = cCnpjDestinatario;
+    }
+
+    public Mensagem(Map<String, String> params) {
+        if(params.containsKey("nCdMensagem")) {
+            this.nCdMensagem = Integer.parseInt(params.get("nCdMensagem"));
+        }
+        this.cConteudo = params.get("cConteudo");
+        this.cCnpjRemetente = params.get("cCnpjRemetente");
+        this.cCnpjDestinatario = params.get("cCnpjDestinatario");
     }
 
     // getters

@@ -1,8 +1,10 @@
 package com.purpura.models;
 
+import java.util.Map;
+
 public class Residuo implements Model{
     // atributos
-    private final int nCdResiduo;
+    private int nCdResiduo;
     private String cNmResiduo;
     private String cTipoUnidade;
     private double nPrecoPadrao;
@@ -25,6 +27,18 @@ public class Residuo implements Model{
         this.cCnpj = cCnpj;
     }
 
+    public Residuo(Map<String, String> params) {
+        if(params.containsKey("nCdResiduo")) {
+            this.nCdResiduo = Integer.parseInt(params.get("nCdResiduo"));
+        }
+        this.cNmResiduo = params.get("cNmResiduo");
+        this.cTipoUnidade = params.get("cTipoUnidade");
+        this.nPrecoPadrao = Double.parseDouble(params.get("nPrecoPadrao"));
+        this.nVolumePadrao = Double.parseDouble(params.get("nVolumePadrao"));
+        this.cCategoria = params.get("cCategoria");
+        this.cDescricao = params.get("cDescricao");
+        this.cCnpj = params.get("cCnpj");
+    }
     // getters
     public int getNCdResiduo() {return nCdResiduo;}
     public String getCNmResiduo() {return cNmResiduo;}

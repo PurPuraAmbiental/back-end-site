@@ -1,6 +1,7 @@
 package com.purpura.models;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class Pedido implements Model{
     private double nValorTotal;
@@ -9,7 +10,7 @@ public class Pedido implements Model{
     private String cFrequencia;
     private LocalDate dAgendamentoColeta;
     private String cOservacoes;
-    private final int nCdPedido;
+    private int nCdPedido;
 
     public Pedido(double nValorTotal, String cStatus, LocalDate dPedido, String cFrequencia,  LocalDate dAgendamentoColeta, String cOservacoes, int nCdPedido){
         this.nValorTotal = nValorTotal;
@@ -19,6 +20,18 @@ public class Pedido implements Model{
         this.dAgendamentoColeta = dAgendamentoColeta;
         this.nCdPedido = nCdPedido;
         this.dPedido = dPedido;
+    }
+
+    public Pedido(Map<String, String> params){
+        if(params.containsKey("nCdPedido")){
+            this.nCdPedido = Integer.parseInt(params.get("nCdPedido"));
+        }
+        this.nValorTotal = Double.parseDouble(params.get("nValorTotal"));
+        this.cStatus = params.get("cStatus");
+        this.dPedido = LocalDate.parse(params.get("dPedido"));
+        this.cFrequencia = params.get("cFrequencia");
+        this.dAgendamentoColeta = LocalDate.parse(params.get("dAgendamentoColeta"));
+        this.cOservacoes = params.get("cObservacoes");
     }
 //MUDEI O NOME DO GET
     public double getNValorTotal() {

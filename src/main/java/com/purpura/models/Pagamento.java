@@ -1,9 +1,10 @@
 package com.purpura.models;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class Pagamento implements Model{
-    private final int nCdPagamento;
+    private int nCdPagamento;
     private LocalDate dPagamento;
     private String cStatusPagamento;
     private double nValorPago;
@@ -20,6 +21,18 @@ public class Pagamento implements Model{
         this.cFormaPagamento = cFormaPagamento;
         this.cObservacoes = cObservacoes;
         this.nCdPedido = nCdPedido;
+    }
+
+    public Pagamento(Map<String, String> params){
+        if(params.containsKey("nCdPagamento")){
+            this.nCdPagamento = Integer.parseInt(params.get("nCdPagamento"));
+        }
+        this.dPagamento = LocalDate.parse(params.get("dPagamento"));
+        this.cStatusPagamento = params.get("cStatusPagamento");
+        this.nValorPago = Double.parseDouble(params.get("nValorPago"));
+        this.cFormaPagamento = params.get("cFormaPagamento");
+        this.cObservacoes = params.get("cObservacoes");
+        this.nCdPedido = Integer.parseInt(params.get("nCdPedido"));
     }
 
     public double getNValorPago() {
