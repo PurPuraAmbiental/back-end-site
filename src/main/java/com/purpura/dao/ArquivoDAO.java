@@ -1,6 +1,5 @@
 package com.purpura.dao;
 import com.purpura.models.Arquivo;
-import com.purpura.models.enums.CategoriaArquivo;
 import java.sql.ResultSet;
 
 
@@ -17,14 +16,14 @@ public class ArquivoDAO extends DAO<Arquivo>{
                 rs.getString("cNmArquivo"),
                 rs.getString("cTipoArquivo"),
                 rs.getDate("dArquivo").toLocalDate(),
-                CategoriaArquivo.valueOf(rs.getString("categoriaArquivo")),
-                rs.getInt("nCdDono")
+                rs.getString("cCnpj"),
+                rs.getInt("nCdResiduo")
         );
     }
 
     @Override
     protected String getNomesColunas() {
-        return "nCdArquivo, cNmArquivo, cTipoArquivo, dArquivo, categoriaArquivo, nCdDono";
+        return "nCdArquivo, cNmArquivo, cTipoArquivo, dArquivo, cCnpj, nCdResiduo";
     }
     
     @Override
@@ -33,8 +32,8 @@ public class ArquivoDAO extends DAO<Arquivo>{
         stmt.setInt(2, entidade.getNCdArquivo());
         stmt.setString(3, entidade.getCTipoArquivo());
         stmt.setDate(4, java.sql.Date.valueOf(entidade.getDArquivo()));
-        stmt.setString(5, entidade.getCategoriaArquivo().name());
-        stmt.setInt(6, entidade.getNCdDono());
+        stmt.setString(5, entidade.cCnpj);
+        stmt.setInt(6, entidade.getNCdResiduo());
     }
 
     @Override
@@ -43,8 +42,8 @@ public class ArquivoDAO extends DAO<Arquivo>{
         stmt.setInt(2, entidade.getNCdArquivo());
         stmt.setString(3, entidade.getCTipoArquivo());
         stmt.setDate(4, java.sql.Date.valueOf(entidade.getDArquivo()));
-        stmt.setString(5, entidade.getCategoriaArquivo().name());
-        stmt.setInt(6, entidade.getNCdDono());
+        stmt.setString(5, entidade.getCCnpj());
+        stmt.setInt(6, entidade.getNCdResiduo());
     }
 
     @Override
