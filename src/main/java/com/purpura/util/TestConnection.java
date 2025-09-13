@@ -3,7 +3,7 @@ package com.purpura.util;
 import java.sql.*;
 
 public class TestConnection {
-    public static boolean main(String[] args) {
+    public boolean testar() {
         try (Connection conn = ConnectionFactory.getConnection()) {
             if (conn != null && !conn.isClosed()) {
                 System.out.println("Conexão com o banco estabelecida com sucesso!");
