@@ -1,5 +1,6 @@
 package com.purpura.dao;
 
+import com.purpura.exception.DAONotFoundException;
 import com.purpura.models.Model;
 
 import java.util.List;
@@ -17,12 +18,12 @@ public class DAOManager {
             new TransporteDAO()
     );
 
-    public static DAO<? extends Model> getDAO(String nome) {
+    public static DAO<? extends Model> getDAO(String nomeTabela) {
         for (DAO<? extends Model> dao : DAOS) {
-            if (dao.getNomeTabela().equals(nome)) {
+            if (dao.getNomeTabela().equals(nomeTabela)) {
                 return dao;
             }
         }
-        return null;
+        throw new DAONotFoundException(nomeTabela);
     }
 }
