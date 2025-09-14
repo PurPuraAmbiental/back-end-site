@@ -17,4 +17,9 @@ public class TestConnection {
             return false;
         }
     }
+
+    public static void main(String[] args) {
+        TestConnection testConnection = new TestConnection();
+        System.out.println(testConnection.testar());
+    }
 }
