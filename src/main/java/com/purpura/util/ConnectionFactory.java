@@ -9,16 +9,24 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     private static final Dotenv dotenv = Dotenv.load();
 
-    // Lê as variáveis de ambiente do sistema
-    private static String URL = dotenv.get("DB_URL");
+    private static final String URL = dotenv.get("DB_URL");
     private static final String USER = dotenv.get("DB_USER");
     private static final String PASSWORD = dotenv.get("DB_PASSWORD");
 
-    // Retorna uma conexão válida
+    static {
+        try {
+            // Força o registro do driver PostgreSQL
+            Class.forName("org.postgresql.Driver");
+            System.out.println("Driver Postgres carregado com sucesso");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Erro ao carregar driver", e);
+        }
+    }
+
     public static Connection getConnection() throws SQLException {
         if (URL == null || USER == null || PASSWORD == null) {
             throw new IllegalStateException(
-                    "Variáveis de ambiente DB_URL, DB_USER ou DB_PASSWORD não foram configuradas."
+                    "Variáveis DB_URL, DB_USER ou DB_PASSWORD não foram configuradas ou não foram lidas pelo Dotenv."
             );
         }
 
