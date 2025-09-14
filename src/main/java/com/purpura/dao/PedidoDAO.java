@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 
 public class PedidoDAO extends DAO<Pedido> {
-    Date sqlDate;
     @Override
     public String getNomeTabela() {
         return "Pedido";
@@ -28,7 +27,7 @@ public class PedidoDAO extends DAO<Pedido> {
     }
     @Override
     protected String getNomesColunas() {
-        return "nValorTotal, cStatus, dPedido, cFrequencia, dAgentamento, cObservacoes, nCdPedido";
+        return "nValorTotal, cStatus, dPedido, cFrequencia, dAgentamentoColeta, cObservacoes";
     }
 
 
@@ -40,16 +39,10 @@ public class PedidoDAO extends DAO<Pedido> {
         stmt.setString(4, entidade.getCFrequencia());
         stmt.setDate(5, Date.valueOf(entidade.getDAgendamentoColeta()));
         stmt.setString(6, entidade.getCObservacoes());
-        stmt.setInt(7, entidade.getNCdPedido());
     }
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Pedido entidade) throws java.sql.SQLException {
-        stmt.setDouble(1, entidade.getNValorTotal());
-        stmt.setString(2, entidade.getCStatus());
-        stmt.setDate(3, Date.valueOf(entidade.getDPedido()));
-        stmt.setString(4, entidade.getCFrequencia());
-        stmt.setDate(5, Date.valueOf(entidade.getDAgendamentoColeta()));
-        stmt.setString(6, entidade.getCObservacoes());
+        prepareStatementForSave(stmt, entidade);
         stmt.setInt(7, entidade.getNCdPedido());
     }
     @Override

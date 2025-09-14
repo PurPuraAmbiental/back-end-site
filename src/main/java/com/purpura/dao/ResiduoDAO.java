@@ -28,25 +28,13 @@ public class ResiduoDAO extends DAO<Residuo> {
 
     @Override
     protected String getNomesColunas() {
-        return "nCdResiduo, cNmResiduo, cTipoUnidade, " +
+        return "cNmResiduo, cTipoUnidade, " +
                 "nPrecoPadrao, nVolumePadrao, cCategoria, " +
                 "cDescricao, cCnpj";
     }
 
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, Residuo entidade) throws SQLException {
-        stmt.setInt(1, entidade.getNCdResiduo());
-        stmt.setString(2, entidade.getCNmResiduo());
-        stmt.setString(3, entidade.getCTipoUnidade());
-        stmt.setDouble(4, entidade.getNPrecoPadrao());
-        stmt.setDouble(5, entidade.getNVolumePadrao());
-        stmt.setString(6, entidade.getCCategoria());
-        stmt.setString(7, entidade.getCDescricao());
-        stmt.setString(8, entidade.getCCnpj());
-    }
-
-    @Override
-    protected void prepareStatementForUpdate(PreparedStatement stmt, Residuo entidade) throws SQLException {
         stmt.setString(1, entidade.getCNmResiduo());
         stmt.setString(2, entidade.getCTipoUnidade());
         stmt.setDouble(3, entidade.getNPrecoPadrao());
@@ -54,6 +42,11 @@ public class ResiduoDAO extends DAO<Residuo> {
         stmt.setString(5, entidade.getCCategoria());
         stmt.setString(6, entidade.getCDescricao());
         stmt.setString(7, entidade.getCCnpj());
+    }
+
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement stmt, Residuo entidade) throws SQLException {
+        prepareStatementForSave(stmt, entidade);
         stmt.setInt(8, entidade.getNCdResiduo());
     }
 

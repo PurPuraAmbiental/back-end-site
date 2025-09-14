@@ -30,8 +30,8 @@ public class Mensagem implements Model{
     // getters
     public int getNCdMensagem() {return nCdMensagem;}
     public String getCConteudo() {return cConteudo;}
-    public String getNCdEmpresaRemetente() {return cCnpjRemetente;}
-    public String getNCdEmpresaDestinataria() {return cCnpjDestinatario;}
+    public String getCCnpjRemetente() {return cCnpjRemetente;}
+    public String getCCnpjDestinatario() {return cCnpjDestinatario;}
 
     // sem setters, pois o conteúdo da mensagem e quem a enviou não podem ser alterados
 

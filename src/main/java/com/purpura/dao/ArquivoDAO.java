@@ -23,27 +23,22 @@ public class ArquivoDAO extends DAO<Arquivo>{
 
     @Override
     protected String getNomesColunas() {
-        return "nCdArquivo, cNmArquivo, cTipoArquivo, dArquivo, cCnpj, nCdResiduo";
+        return "cNmArquivo, cTipoArquivo, dArquivo, cCnpj, nCdResiduo";
     }
     
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Arquivo entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmArquivo());
-        stmt.setInt(2, entidade.getNCdArquivo());
-        stmt.setString(3, entidade.getCTipoArquivo());
-        stmt.setDate(4, java.sql.Date.valueOf(entidade.getDArquivo()));
-        stmt.setString(5, entidade.cCnpj);
-        stmt.setInt(6, entidade.getNCdResiduo());
+        stmt.setString(2, entidade.getCTipoArquivo());
+        stmt.setDate(3, java.sql.Date.valueOf(entidade.getDArquivo()));
+        stmt.setString(4, entidade.getCCnpj());
+        stmt.setInt(5, entidade.getNCdResiduo());
     }
 
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Arquivo entidade) throws java.sql.SQLException {
-        stmt.setString(1, entidade.getCNmArquivo());
-        stmt.setInt(2, entidade.getNCdArquivo());
-        stmt.setString(3, entidade.getCTipoArquivo());
-        stmt.setDate(4, java.sql.Date.valueOf(entidade.getDArquivo()));
-        stmt.setString(5, entidade.getCCnpj());
-        stmt.setInt(6, entidade.getNCdResiduo());
+        prepareStatementForSave(stmt, entidade);
+        stmt.setInt(6, entidade.getNCdArquivo());
     }
 
     @Override

@@ -21,25 +21,21 @@ public class ItemPedidoDAO extends DAO<ItemPedido>{
 
     @Override
     protected String getNomesColunas(){
-        return "nCdItemPedido, nPrecoUnitario, nVolume, nCdResiduo, nCdPedido";
+        return "nPrecoUnitario, nVolume, nCdResiduo, nCdPedido";
     }
 
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, ItemPedido entidade) throws java.sql.SQLException{
-        stmt.setInt(1, entidade.getNCdItemPedido());
-        stmt.setDouble(2, entidade.getNPrecoUnitario());
-        stmt.setDouble(3, entidade.getNVolume());
-        stmt.setInt(4, entidade.getNCdResiduo());
-        stmt.setInt(5, entidade.getNCdPedido());
+        stmt.setDouble(1, entidade.getNPrecoUnitario());
+        stmt.setDouble(2, entidade.getNVolume());
+        stmt.setInt(3, entidade.getNCdResiduo());
+        stmt.setInt(4, entidade.getNCdPedido());
     }
 
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, ItemPedido entidade) throws java.sql.SQLException{
-        stmt.setInt(1, entidade.getNCdItemPedido());
-        stmt.setDouble(2, entidade.getNPrecoUnitario());
-        stmt.setDouble(3, entidade.getNVolume());
-        stmt.setInt(4, entidade.getNCdResiduo());
-        stmt.setInt(5, entidade.getNCdPedido());
+        prepareStatementForSave(stmt, entidade);
+        stmt.setInt(5, entidade.getNCdItemPedido());
     }
 
     @Override

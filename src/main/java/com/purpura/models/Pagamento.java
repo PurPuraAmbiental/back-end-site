@@ -58,6 +58,7 @@ public class Pagamento implements Model{
     public String getCStatusPagamento() {
         return cStatusPagamento;
     }
+    public int getNCdPedido() {return nCdPedido;}
 
     //ADICIONANDO OS SETTRS NECESSARIOS
 

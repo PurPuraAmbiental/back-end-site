@@ -26,30 +26,22 @@ public class PagamentoDAO extends DAO<Pagamento> {
 
     @Override
     protected String getNomesColunas() {
-        return "nCdPagamento, dPagamento, cStatus, cFormaPagamento, cObservavoes, nCdPedido, nValorPago";
-    }
-
-    protected String getNomeColunas(){
-        return "nCdPagamento, dPagamento, cStatus, cFormaPagamento, cObservacoes, nCdPedido";
+        return "dPagamento, cStatusPagamento, cFormaPagamento, cObservacoes, nCdPedido, nValorPago";
     }
 
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Pagamento entidade) throws java.sql.SQLException{
-        stmt.setInt(1, entidade.getNCdPagamento());
-        stmt.setDate(2, Date.valueOf(entidade.getDPagamento()));
-        stmt.setString(3, entidade.getCStatusPagamento());
-        stmt.setDouble(4, entidade.getNValorPago());
-        stmt.setString(5, entidade.getCFormaPagamento());
-        stmt.setString(6, entidade.getCObservacoes());
+        stmt.setDate(1, Date.valueOf(entidade.getDPagamento()));
+        stmt.setString(2, entidade.getCStatusPagamento());
+        stmt.setString(3, entidade.getCFormaPagamento());
+        stmt.setString(4, entidade.getCObservacoes());
+        stmt.setInt(5, entidade.getNCdPedido());
+        stmt.setDouble(6, entidade.getNValorPago());
     }
 
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, Pagamento entidade) throws SQLException {
-        stmt.setInt(1, entidade.getNCdPagamento());
-        stmt.setDate(2, Date.valueOf(entidade.getDPagamento()));
-        stmt.setString(3, entidade.getCStatusPagamento());
-        stmt.setDouble(4, entidade.getNValorPago());
-        stmt.setString(5, entidade.getCFormaPagamento());
-        stmt.setString(6, entidade.getCObservacoes());
+        prepareStatementForSave(stmt, entidade);
+        stmt.setInt(7, entidade.getNCdPagamento());
     }
 
     protected String getColunaId(){

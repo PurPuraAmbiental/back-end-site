@@ -17,21 +17,19 @@ public class TransporteDAO extends DAO<Transporte>{
     }
 
     protected String getNomesColunas(){
-        return "nCdTransporte, cNmTransporte, dRetirada";
+        return "cNmTransporte, dRetirada";
     }
 
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Transporte entidade) throws java.sql.SQLException {
-        stmt.setInt(1, entidade.getNCdTransporte());
-        stmt.setString(2, entidade.getCNmTransporte());
-        stmt.setDate(3, java.sql.Date.valueOf(entidade.getDRetirada()));
+        stmt.setString(1, entidade.getCNmTransporte());
+        stmt.setDate(2, java.sql.Date.valueOf(entidade.getDRetirada()));
     }
 
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Transporte entidade) throws java.sql.SQLException {
-        stmt.setInt(1, entidade.getNCdTransporte());
-        stmt.setString(2, entidade.getCNmTransporte());
-        stmt.setDate(3, java.sql.Date.valueOf(entidade.getDRetirada()));
+        prepareStatementForSave(stmt, entidade);
+        stmt.setInt(3, entidade.getNCdTransporte());
     }
 
     @Override
