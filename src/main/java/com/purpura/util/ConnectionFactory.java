@@ -17,7 +17,6 @@ public class ConnectionFactory {
         try {
             // Força o registro do driver PostgreSQL
             Class.forName("org.postgresql.Driver");
-            System.out.println("Driver Postgres carregado com sucesso");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Erro ao carregar driver", e);
         }
