@@ -42,7 +42,6 @@ public class InsertServlet extends HttpServlet {
 
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro inserido com sucesso!");
-            System.out.println("istoramo");
             RequestDispatcher rd = request.getRequestDispatcher("inserirSaida.jsp");
             rd.forward(request, response);
         } catch (DAONotFoundException e) {
