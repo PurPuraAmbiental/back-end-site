@@ -29,7 +29,9 @@ public class Empresa implements Model{
         }
         this.cNmEmpresa = params.get("cNmEmpresa");
         this.cSenha = params.get("cSenha");
-        this.cAtivo = params.get("cAtivo").charAt(0);
+        if (params.containsKey("cAtivo") && params.get("cAtivo") != null && !params.get("cAtivo").isEmpty()) {
+            this.cAtivo = params.get("cAtivo").charAt(0);
+        }
         this.cEmail = params.get("cEmail");
         this.cTelefone = params.get("cTelefone");
     }
