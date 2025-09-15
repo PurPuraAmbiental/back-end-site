@@ -9,18 +9,18 @@ public class Arquivo implements Model{
     private int nCdArquivo;
     public String cNmArquivo;
     public String cTipoArquivo;
-    public final LocalDate dArquivo;
+    public final LocalDate dUpload;
     public final String cCnpj;
     public final int nCdResiduo;
 
 
     // construtores
     public Arquivo(int nCdArquivo, String cNmArquivo, String cTipoArquivo,
-                   LocalDate dArquivo, String cCnpj, int nCdResiduo) {
+                   LocalDate dUpload, String cCnpj, int nCdResiduo) {
         this.nCdArquivo = nCdArquivo;
         this.cNmArquivo = cNmArquivo;
         this.cTipoArquivo = cTipoArquivo;
-        this.dArquivo = dArquivo;
+        this.dUpload = dUpload;
         this.cCnpj = cCnpj;
         this.nCdResiduo = nCdResiduo;
     }
@@ -31,7 +31,7 @@ public class Arquivo implements Model{
         }
         this.cNmArquivo = params.get("cNmArquivo");
         this.cTipoArquivo = params.get("cTipoArquivo");
-        this.dArquivo = LocalDate.parse(params.get("dArquivo"));
+        this.dUpload = LocalDate.parse(params.get("dUpload"));
         this.cCnpj = params.get("cCnpj");
         this.nCdResiduo = Integer.parseInt(params.get("nCdResiduo"));
     }
@@ -40,7 +40,7 @@ public class Arquivo implements Model{
     public int getNCdArquivo(){return nCdArquivo;}
     public String getCNmArquivo(){return cNmArquivo;}
     public String getCTipoArquivo(){return cTipoArquivo;}
-    public LocalDate getDArquivo(){return dArquivo;}
+    public LocalDate getDUpload(){return dUpload;}
     public String getCCnpj(){return cCnpj;}
     public int  getNCdResiduo(){return nCdResiduo;}
 
@@ -52,7 +52,7 @@ public class Arquivo implements Model{
     @Override
     public String toString(){
         return "Código: " + nCdArquivo + "\nNome: " + cNmArquivo +
-                "\nTipo: " + cTipoArquivo + "\nData: " + dArquivo +
+                "\nTipo: " + cTipoArquivo + "\nData: " + dUpload +
                 "\nCNPJ: " + cCnpj + "\nResíduo: " + nCdResiduo;
     }
 

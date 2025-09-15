@@ -15,7 +15,7 @@ public class ArquivoDAO extends DAO<Arquivo>{
                 rs.getInt("nCdArquivo"),
                 rs.getString("cNmArquivo"),
                 rs.getString("cTipoArquivo"),
-                rs.getDate("dArquivo").toLocalDate(),
+                rs.getDate("dUpload").toLocalDate(),
                 rs.getString("cCnpj"),
                 rs.getInt("nCdResiduo")
         );
@@ -23,14 +23,14 @@ public class ArquivoDAO extends DAO<Arquivo>{
 
     @Override
     protected String getNomesColunas() {
-        return "cNmArquivo, cTipoArquivo, dArquivo, cCnpj, nCdResiduo";
+        return "cNmArquivo, cTipoArquivo, dUpload, cCnpj, nCdResiduo";
     }
     
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Arquivo entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmArquivo());
         stmt.setString(2, entidade.getCTipoArquivo());
-        stmt.setDate(3, java.sql.Date.valueOf(entidade.getDArquivo()));
+        stmt.setDate(3, java.sql.Date.valueOf(entidade.getDUpload()));
         stmt.setString(4, entidade.getCCnpj());
         stmt.setInt(5, entidade.getNCdResiduo());
     }
