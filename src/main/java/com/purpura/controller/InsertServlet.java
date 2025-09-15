@@ -42,8 +42,11 @@ public class InsertServlet extends HttpServlet {
 
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro inserido com sucesso!");
-            RequestDispatcher rd = request.getRequestDispatcher("inserirSaida.jsp");
-            rd.forward(request, response);
+//            RequestDispatcher rd = request.getRequestDispatcher("inserirSaida.jsp");
+//            rd.forward(request, response);
+
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write("Registro adicionado com sucesso na tabela " + tabelaNome);
         } catch (DAONotFoundException e) {
             // Nenhum DAO encontrado para a tabela
             request.setAttribute("erro", e.getMessage());
