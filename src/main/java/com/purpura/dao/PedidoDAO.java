@@ -22,12 +22,16 @@ public class PedidoDAO extends DAO<Pedido> {
                 rs.getString("cFrequencia"),
                 rs.getDate("dAgendamentoColeta").toLocalDate(),
                 rs.getString("cObservacoes"),
-                rs.getInt("nCdPedido")
+                rs.getInt("nCdPedido"),
+                rs.getString("cCnpjRemetente"),
+                rs.getString("cCnpjDestinatario"),
+                rs.getInt("nCdEnderecoEmpresaRemetente"),
+                rs.getInt("nCdEnderecoEmpredaDestinatario")
                 );
     }
     @Override
     protected String getNomesColunas() {
-        return "nValorTotal, cStatus, dPedido, cFrequencia, dAgentamentoColeta, cObservacoes";
+        return "nValorTotal, cStatus, dPedido, cFrequencia, dAgentamentoColeta, cObservacoes, cCnpjRemetente, cCnpjDestinatario, nCdEnderecoEmpresaRemetente, nCdEnderecoEmpredaDestinatario";
     }
 
 
