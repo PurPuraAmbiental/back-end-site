@@ -55,6 +55,7 @@ public class InsertServlet extends HttpServlet {
             request.setAttribute("erro", "Erro ao acessar o banco: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
             rd.forward(request, response);
+            e.printStackTrace();
 
         } catch (ParseException e) {
             // Erros de conversão de parâmetros
