@@ -31,7 +31,7 @@ public class PedidoDAO extends DAO<Pedido> {
     }
     @Override
     protected String getNomesColunas() {
-        return "nValorTotal, cStatus, dPedido, cFrequencia, dAgentamentoColeta, cObservacoes, cCnpjRemetente, cCnpjDestinatario, nCdEnderecoEmpresaRemetente, nCdEnderecoEmpredaDestinatario";
+        return "nValorTotal, cStatus, dPedido, cFrequencia, dAgendamentoColeta, cObservacoes, cCnpjRemetente, cCnpjDestinatario, nCdEnderecoEmpresaRemetente, nCdEnderecoEmpredaDestinatario";
     }
 
 
