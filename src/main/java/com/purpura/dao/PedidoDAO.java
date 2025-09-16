@@ -43,11 +43,15 @@ public class PedidoDAO extends DAO<Pedido> {
         stmt.setString(4, entidade.getCFrequencia());
         stmt.setDate(5, Date.valueOf(entidade.getDAgendamentoColeta()));
         stmt.setString(6, entidade.getCObservacoes());
+        stmt.setString(7, entidade.getCCnpjRemetente());
+        stmt.setString(8, entidade.getCCnpjDestinatario());
+        stmt.setInt(9, entidade.getNCdEnderecoEmpresaRemetente());
+        stmt.setInt(10, entidade.getNCdEnderecoEmpresaDestinatario());
     }
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Pedido entidade) throws java.sql.SQLException {
         prepareStatementForSave(stmt, entidade);
-        stmt.setInt(7, entidade.getNCdPedido());
+        stmt.setInt(11, entidade.getNCdPedido());
     }
     @Override
     protected String getColunaId() {
