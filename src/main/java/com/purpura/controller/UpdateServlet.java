@@ -17,10 +17,10 @@ import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@WebServlet(name = "InsertServlet", value="/insert")
-public class InsertServlet extends HttpServlet {
+@WebServlet(name = "UpdateServlet", value="/update")
+public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws jakarta.servlet.ServletException, java.io.IOException {
+            throws jakarta.servlet.ServletException, java.io.IOException {
         // verifica nome da tabela no qual os dados serão inseridos
         String tabelaNome = request.getParameter("tabelaNome");
 
@@ -38,15 +38,13 @@ public class InsertServlet extends HttpServlet {
             Model model = ModelCreator.createModel(tabelaNome, params);
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
 
-            dao.save(model);
+            dao.update(model);
 
             request.setAttribute("tabela", tabelaNome);
-            request.setAttribute("saida", "Registro inserido com sucesso!");
-//            RequestDispatcher rd = request.getRequestDispatcher("inserirSaida.jsp");
-//            rd.forward(request, response);
+            request.setAttribute("saida", "Registro alterado com sucesso!");
 
             response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("Registro adicionado com sucesso na tabela " + tabelaNome);
+            response.getWriter().write("Registro atualizado com sucesso na tabela " + tabelaNome);
         } catch (DAONotFoundException e) {
             // Nenhum DAO encontrado para a tabela
             request.setAttribute("erro", e.getMessage());
@@ -58,7 +56,6 @@ public class InsertServlet extends HttpServlet {
             request.setAttribute("erro", "Erro ao acessar o banco: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
             rd.forward(request, response);
-            e.printStackTrace();
 
         } catch (ParseException e) {
             // Erros de conversão de parâmetros
