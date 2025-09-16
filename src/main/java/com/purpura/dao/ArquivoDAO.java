@@ -1,5 +1,5 @@
 package com.purpura.dao;
-import com.purpura.models.Arquivo;
+import com.purpura.model.Arquivo;
 import java.sql.ResultSet;
 
 

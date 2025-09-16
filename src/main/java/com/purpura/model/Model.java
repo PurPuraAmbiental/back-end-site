@@ -1,4 +1,4 @@
-package com.purpura.models;
+package com.purpura.model;
 
 public interface Model {
     Object getId();

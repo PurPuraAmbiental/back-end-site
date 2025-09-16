@@ -1,4 +1,4 @@
-package com.purpura.controller;
+package com.purpura.servlet;
 
 import com.purpura.common.ModelCreator;
 import com.purpura.dao.DAO;
@@ -6,7 +6,7 @@ import com.purpura.dao.DAOManager;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.DAONotFoundException;
 import com.purpura.exception.NotFoundException;
-import com.purpura.models.Model;
+import com.purpura.model.Model;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

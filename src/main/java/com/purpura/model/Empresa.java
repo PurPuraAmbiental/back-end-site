@@ -1,4 +1,4 @@
-package com.purpura.models;
+package com.purpura.model;
 
 import java.text.ParseException;
 import java.util.Map;

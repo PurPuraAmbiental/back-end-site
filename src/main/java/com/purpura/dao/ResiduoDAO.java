@@ -1,6 +1,6 @@
 package com.purpura.dao;
 
-import com.purpura.models.Residuo;
+import com.purpura.model.Residuo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

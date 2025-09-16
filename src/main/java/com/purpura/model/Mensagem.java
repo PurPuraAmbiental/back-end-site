@@ -1,4 +1,4 @@
-package com.purpura.models;
+package com.purpura.model;
 
 import java.util.Map;
 

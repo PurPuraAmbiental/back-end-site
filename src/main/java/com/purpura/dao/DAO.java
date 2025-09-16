@@ -3,7 +3,7 @@ package com.purpura.dao;
 import com.purpura.common.Constants;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
-import com.purpura.models.Model;
+import com.purpura.model.Model;
 import com.purpura.util.ConnectionFactory;
 
 import java.sql.Connection;

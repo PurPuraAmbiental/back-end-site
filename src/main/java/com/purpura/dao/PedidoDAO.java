@@ -1,12 +1,9 @@
 package com.purpura.dao;
 
-import com.purpura.dao.DAO;
-import com.purpura.models.Pedido;
+import com.purpura.model.Pedido;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 
 public class PedidoDAO extends DAO<Pedido> {
     @Override

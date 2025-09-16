@@ -1,6 +1,6 @@
 package com.purpura.dao;
 
-import com.purpura.models.Mensagem;
+import com.purpura.model.Mensagem;
 
 public class MensagemDAO extends DAO<Mensagem> {
     @Override

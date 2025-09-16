@@ -1,6 +1,6 @@
 package com.purpura.dao;
 
-import com.purpura.models.Empresa;
+import com.purpura.model.Empresa;
 
 import java.sql.ResultSet;
 

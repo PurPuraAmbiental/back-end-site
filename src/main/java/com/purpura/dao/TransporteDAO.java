@@ -1,5 +1,5 @@
 package com.purpura.dao;
-import com.purpura.models.Transporte;
+import com.purpura.model.Transporte;
 
 public class TransporteDAO extends DAO<Transporte>{
     @Override

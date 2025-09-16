@@ -1,6 +1,6 @@
 package com.purpura.dao;
 
-import com.purpura.models.EnderecoEmpresa;
+import com.purpura.model.EnderecoEmpresa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

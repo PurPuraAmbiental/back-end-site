@@ -1,6 +1,6 @@
 package com.purpura.dao;
 
-import com.purpura.models.Pagamento;
+import com.purpura.model.Pagamento;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;

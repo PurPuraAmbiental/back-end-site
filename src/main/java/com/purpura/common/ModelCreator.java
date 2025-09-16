@@ -1,7 +1,7 @@
 package com.purpura.common;
 
 import com.purpura.exception.ModelNotFoundException;
-import com.purpura.models.*;
+import com.purpura.model.*;
 
 import java.text.ParseException;
 import java.util.Map;

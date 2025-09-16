@@ -1,7 +1,7 @@
 package com.purpura.dao;
 
 import com.purpura.exception.DAONotFoundException;
-import com.purpura.models.Model;
+import com.purpura.model.Model;
 
 import java.util.List;
 

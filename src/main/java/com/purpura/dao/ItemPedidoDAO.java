@@ -1,6 +1,6 @@
 package com.purpura.dao;
 
-import com.purpura.models.ItemPedido;
+import com.purpura.model.ItemPedido;
 
 public class ItemPedidoDAO extends DAO<ItemPedido>{
     @Override
