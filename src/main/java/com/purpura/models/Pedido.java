@@ -41,8 +41,8 @@ public class Pedido implements Model{
         this.cFrequencia = params.get("cFrequencia");
         this.dAgendamentoColeta = LocalDate.parse(params.get("dAgendamentoColeta"));
         this.cOservacoes = params.get("cObservacoes");
-        this.cCnpjRemetente = params.get(params.get("cCnpjRemetente"));
-        this.cCnpjDestinatario = params.get(params.get("cCnpjDestinatario"));
+        this.cCnpjRemetente = params.get("cCnpjRemetente");
+        this.cCnpjDestinatario = params.get("cCnpjDestinatario");
         this.nCdEnderecoEmpresaRemetente = Integer.parseInt(params.get("nCdEnderecoEmpresaRemetente"));
         this.nCdEnderecoEmpresaDestinatario = Integer.parseInt(params.get("nCdEnderecoEmpresaDestinatario"));
     }
