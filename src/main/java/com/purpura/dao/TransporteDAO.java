@@ -12,24 +12,26 @@ public class TransporteDAO extends DAO<Transporte>{
         return new Transporte(
           rs.getInt("nCdTransporte"),
           rs.getString("cNmTransporte"),
-                rs.getDate("dRetirada").toLocalDate()
+                rs.getDate("dRetirada").toLocalDate(),
+                rs.getInt("nCdPedido")
         );
     }
 
     protected String getNomesColunas(){
-        return "cNmTransporte, dRetirada";
+        return "cNmTransporte, dRetirada, nCdPedido";
     }
 
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Transporte entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmTransporte());
         stmt.setDate(2, java.sql.Date.valueOf(entidade.getDRetirada()));
+        stmt.setInt(3, entidade.getNCdPedido());
     }
 
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Transporte entidade) throws java.sql.SQLException {
         prepareStatementForSave(stmt, entidade);
-        stmt.setInt(3, entidade.getNCdTransporte());
+        stmt.setInt(4, entidade.getNCdTransporte());
     }
 
     @Override
