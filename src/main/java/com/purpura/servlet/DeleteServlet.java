@@ -27,7 +27,7 @@ public class DeleteServlet extends HttpServlet {
             request.setAttribute("saida", "Registro deletado com sucesso!");
 
             response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("Registro atualizado com sucesso na tabela " + tabelaNome);
+            response.getWriter().write("Registro deletado com sucesso na tabela " + tabelaNome);
         } catch (DAONotFoundException e) {
             request.setAttribute("erro", "Tabela não encontrada: " + tabelaNome);
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
