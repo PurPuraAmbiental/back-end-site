@@ -65,6 +65,22 @@ public abstract class DAO<T extends Model> {
         }
     }
 
+    public void deleteByAttribute(String atributo, Object valor) throws NotFoundException, ConnectionFailedException{
+        String sql = "DELETE FROM " + getNomeTabela() +
+                " WHERE " + atributo + " = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setObject(1, valor);
+            int linhasDeletadas = stmt.executeUpdate();
+            if (linhasDeletadas == 0) {
+                throw new NotFoundException(getNomeTabela(), valor);
+            }
+        } catch (SQLException e){
+            throw new ConnectionFailedException();
+        }
+    }
+
     public T findById(int id) throws NotFoundException, ConnectionFailedException {
         String sql = "SELECT * FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
