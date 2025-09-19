@@ -18,11 +18,20 @@ public class FindServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws jakarta.servlet.ServletException, java.io.IOException{
         String tabelaNome = request.getParameter("tabelaNome");
-        int id = Integer.parseInt(request.getParameter("id"));
-
+        String pk = request.getParameter("id");
         try{
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
-            Model model = dao.find(id);
+            Model model = null;
+            try {
+                int id = Integer.parseInt(pk);
+                model = dao.find(id);
+            } catch (NumberFormatException e){
+                model = dao.find(pk);
+            }
+
+            if (model == null) {
+                throw new NotFoundException(tabelaNome, pk);
+            }
 
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro encontrado com sucesso!");
@@ -33,11 +42,13 @@ public class FindServlet extends HttpServlet {
             request.setAttribute("erro", "Tabela não encontrada: " + tabelaNome);
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
             rd.forward(request, response);
+            e.printStackTrace();
         } catch (ConnectionFailedException | NotFoundException e) {
             // Erros de banco
             request.setAttribute("erro", "Erro ao acessar o banco: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
             rd.forward(request, response);
+            e.printStackTrace();
         }
     }
 }

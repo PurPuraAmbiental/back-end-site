@@ -83,6 +83,24 @@ public abstract class DAO<T extends Model> {
         }
     }
 
+    public T find(String id) throws NotFoundException, ConnectionFailedException {
+        String sql = "SELECT * FROM " + getNomeTabela() +
+                " WHERE " + getColunaId() + " = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSet(rs);
+                } else {
+                    throw new NotFoundException(getNomeTabela(), id);
+                }
+            }
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+    }
+
     public List<T> findAll() throws NotFoundException, ConnectionFailedException{
         List<T> lista = new ArrayList<>();
         String sql = "SELECT * FROM " + getNomeTabela();
