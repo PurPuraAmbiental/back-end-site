@@ -7,14 +7,13 @@ import com.purpura.exception.DAONotFoundException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Model;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "FindServlet", value="/find")
-public class FindServlet extends HttpServlet {
+@WebServlet(name = "FindByIdServlet", value="/findId")
+public class FindByIdServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws jakarta.servlet.ServletException, java.io.IOException{
         String tabelaNome = request.getParameter("tabelaNome");
@@ -24,9 +23,9 @@ public class FindServlet extends HttpServlet {
             Model model = null;
             try {
                 int id = Integer.parseInt(pk);
-                model = dao.find(id);
+                model = dao.findById(id);
             } catch (NumberFormatException e){
-                model = dao.find(pk);
+                model = dao.findById(pk);
             }
 
             if (model == null) {

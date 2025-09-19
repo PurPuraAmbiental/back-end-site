@@ -65,7 +65,7 @@ public abstract class DAO<T extends Model> {
         }
     }
 
-    public T find(int id) throws NotFoundException, ConnectionFailedException {
+    public T findById(int id) throws NotFoundException, ConnectionFailedException {
         String sql = "SELECT * FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -83,7 +83,7 @@ public abstract class DAO<T extends Model> {
         }
     }
 
-    public T find(String id) throws NotFoundException, ConnectionFailedException {
+    public T findById(String id) throws NotFoundException, ConnectionFailedException {
         String sql = "SELECT * FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
         try (Connection conn = ConnectionFactory.getConnection();
