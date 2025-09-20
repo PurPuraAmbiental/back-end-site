@@ -36,6 +36,9 @@ public class ModelCreator {
             case "Transporte" -> {
                 return new Transporte(params);
             }
+            case "Administrador" -> {
+                return new Administrador(params);
+            }
             default -> throw new ModelNotFoundException(nomeTabela);
         }
     }
