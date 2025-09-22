@@ -2,6 +2,7 @@ package com.purpura.model;
 
 import java.text.ParseException;
 import java.util.Map;
+
 /**Classe modelo para a tabela Empresa
  *@author Kevin Oliveira*/
 public class Empresa implements Model{
