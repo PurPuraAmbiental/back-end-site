@@ -49,6 +49,25 @@ public abstract class DAO<T extends Model> {
         }
     }
 
+    public void updateByAttribute(T entidade, String atributo, Object valor) throws NotFoundException, ConnectionFailedException{
+        String sql = "UPDATE " + getNomeTabela() +
+                " SET " + getNomesColunas() +
+                " WHERE " + atributo + " = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            prepareStatementForSave(stmt, entidade);
+
+            int numeroColunas = getNomesColunas().split(Constants.COMMA_SEPARATOR_REGEX).length;
+            stmt.setObject(numeroColunas + 1, valor);
+            int rows = stmt.executeUpdate();
+            if(rows == 0) {
+                throw new NotFoundException(getNomeTabela(), entidade.getId());
+            }
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+    }
+
     public void delete(int id) throws NotFoundException, ConnectionFailedException{
         String sql = "DELETE FROM " + getNomeTabela() +
                 " WHERE " + getColunaId() + " = ?";
