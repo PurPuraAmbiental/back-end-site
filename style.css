@@ -64,12 +64,6 @@ a{
   justify-content: space-between;
 }
 
-.logo {
-  font-weight: 700;
-  color: var(--roxoescuro);
-  font-size: 1.25rem;
-}
-
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -151,7 +145,6 @@ main {
  margin-bottom: 60px;
 }
 
-/* --- ajustes hero para ficar mais bonito --- */
 .hero-left h1 {
   font-size: 3.2rem;
   line-height: 1.2; 
@@ -241,7 +234,7 @@ main {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  flex-direction: row-reverse; /* Imagem à direita no desktop */
+  flex-direction: row-reverse; 
 }
 
 #secao-porque-escolher .texto-secao {
@@ -384,8 +377,8 @@ main {
 }
 
 /* --- seção de serviços --- */
-.servico-card {
-  background-color: #fff; /* cor padrão */
+.servico-card  {
+  background-color: #fff;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -394,21 +387,19 @@ main {
   background-image: url('c:\Users\irisrodrigues-ieg\Downloads\img.png');
 }
 
-/* efeito ao passar o mouse */
+/* efeito de passar o mouse nas caixinhas */
 .servico-card:hover {
-  background-color: var(--roxoclaro); /* fica roxo */
+  background-color: var(--roxoclaro); 
   transform: translateY(-10px);
-  color: #fff; /* muda o texto para branco para contrastar */
+  color: #fff; 
 }
 
-/* garantir que os textos e ícones dentro mudem de cor também */
 .servico-card:hover h3,
 .servico-card:hover p,
 .servico-card:hover .icone-placeholder {
   color: #fff;
 }
 
-/* ícone no círculo também */
 .servico-card:hover .icone-circulo {
   background-color: var(--roxoescuro);
 }
@@ -434,7 +425,6 @@ main {
 
 .servicos-grid {
   display: grid;
-  /* Altera a forma como as colunas se comportam, criando 3 colunas iguais. */
   grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
   max-width: 1200px;
