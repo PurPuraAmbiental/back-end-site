@@ -3,7 +3,12 @@ package com.purpura.model;
 import java.time.LocalDate;
 import java.util.Map;
 
+/** Classe Modelo para a tabela Pedido
+ *@author Bruna Oliveira
+ * */
 public class Pedido implements Model{
+    /**Adicionando os atributos da tabela como atributos da classe
+     * atributos dados com prefixos da tabela de banco de dado*/
     private double nValorTotal;
     private String cStatus;
     private LocalDate dPedido;
@@ -16,6 +21,19 @@ public class Pedido implements Model{
     private final int nCdEnderecoEmpresaRemetente;
     private final int nCdEnderecoEmpresaDestinatario;
 
+    /**Adicionando um metodo Construtor
+     * @param nValorTotal - valor total do pedido
+     * @param cStatus - status atual do pedido
+     * @param dPedido - data em que o pedido foi realizado
+     * @param cFrequencia - frequência de coleta
+     * @param dAgendamentoColeta - data agendada para coleta
+     * @param cOservacoes - observações adicionais do pedido
+     * @param nCdPedido - atributo identificador dessa instancia de Pedido
+     * @param cCnpjRemetente - chave estrangeira da Empresa remetente
+     * @param cCnpjDestinatario - chave estrangeira da Empresa destinatária
+     * @param nCdEnderecoEmpresaRemetente - chave estrangeira do endereço da Empresa remetente
+     * @param nCdEnderecoEmpresaDestinatario - chave estrangeira do endereço da Empresa destinatária
+     * */
     public Pedido(double nValorTotal, String cStatus, LocalDate dPedido, String cFrequencia,  LocalDate dAgendamentoColeta, String cOservacoes, int nCdPedido,
                   String cCnpjRemetente, String cCnpjDestinatario, int nCdEnderecoEmpresaRemetente, int nCdEnderecoEmpresaDestinatario){
         this.nValorTotal = nValorTotal;
@@ -31,6 +49,8 @@ public class Pedido implements Model{
         this.nCdEnderecoEmpresaDestinatario = nCdEnderecoEmpresaDestinatario;
     }
 
+    /**Construtor que inicializa objetos
+     *@param params -> um map*/
     public Pedido(Map<String, String> params){
         if(params.containsKey("nCdPedido")){
             this.nCdPedido = Integer.parseInt(params.get("nCdPedido"));
@@ -46,62 +66,77 @@ public class Pedido implements Model{
         this.nCdEnderecoEmpresaRemetente = Integer.parseInt(params.get("nCdEnderecoEmpresaRemetente"));
         this.nCdEnderecoEmpresaDestinatario = Integer.parseInt(params.get("nCdEnderecoEmpresaDestinatario"));
     }
-//MUDEI O NOME DO GET
-    public double getNValorTotal() {
-        return nValorTotal;
-    }
 
-    public int getNCdPedido() {
-        return nCdPedido;
-    }
+    /**Metodo getNValorTotal
+     * @return valor total do pedido*/
+    public double getNValorTotal() { return nValorTotal; }
 
-    public LocalDate getDPedido() {
-        return dPedido;
-    }
+    /**Metodo getNCdPedido
+     * @return Primary key*/
+    public int getNCdPedido() { return nCdPedido; }
 
-    public String getCFrequencia() {
-        return cFrequencia;
-    }
+    /**Metodo getDPedido
+     * @return data em que o pedido foi realizado*/
+    public LocalDate getDPedido() { return dPedido; }
 
-    public LocalDate getDAgendamentoColeta() {
-        return dAgendamentoColeta;
-    }
+    /**Metodo getCFrequencia
+     * @return frequência de coleta*/
+    public String getCFrequencia() { return cFrequencia; }
 
-    public String getCObservacoes() {
-        return cOservacoes;
-    }
+    /**Metodo getDAgendamentoColeta
+     * @return data agendada para coleta*/
+    public LocalDate getDAgendamentoColeta() { return dAgendamentoColeta; }
 
-    public String getCStatus() {
-        return cStatus;
-    }
-    public String getCCnpjRemetente() {return cCnpjRemetente;}
-    public String getCCnpjDestinatario() {return cCnpjDestinatario;}
-    public int getNCdEnderecoEmpresaRemetente() {return nCdEnderecoEmpresaRemetente;}
-    public int getNCdEnderecoEmpresaDestinatario() {return nCdEnderecoEmpresaDestinatario;}
+    /**Metodo getCObservacoes
+     * @return observações adicionais*/
+    public String getCObservacoes() { return cOservacoes; }
 
-    public void setCFrequencia(String cFrequencia) {
-        this.cFrequencia = cFrequencia;
-    }
+    /**Metodo getCStatus
+     * @return status atual do pedido*/
+    public String getCStatus() { return cStatus; }
 
-    public void setCObservacoes(String cOservacoes) {
-        this.cOservacoes = cOservacoes;
-    }
+    /**Metodo getCCnpjRemetente
+     * @return CNPJ da empresa remetente*/
+    public String getCCnpjRemetente() { return cCnpjRemetente; }
 
-    public void setDAgendamentoColeta(LocalDate dAgendamentoColeta) {
-        this.dAgendamentoColeta = dAgendamentoColeta;
-    }
+    /**Metodo getCCnpjDestinatario
+     * @return CNPJ da empresa destinatária*/
+    public String getCCnpjDestinatario() { return cCnpjDestinatario; }
 
-    public void setCStatus(String cStatus) {
-        this.cStatus = cStatus;
-    }
+    /**Metodo getNCdEnderecoEmpresaRemetente
+     * @return código do endereço da empresa remetente*/
+    public int getNCdEnderecoEmpresaRemetente() { return nCdEnderecoEmpresaRemetente; }
 
-    public void setDPedido(LocalDate dPedido) {
-        this.dPedido = dPedido;
-    }
+    /**Metodo getNCdEnderecoEmpresaDestinatario
+     * @return código do endereço da empresa destinatária*/
+    public int getNCdEnderecoEmpresaDestinatario() { return nCdEnderecoEmpresaDestinatario; }
 
-    public void setNValorTotal(double nValorTotal) {
-        this.nValorTotal = nValorTotal;
-    }
+    /**Metodo setCFrequencia
+     * @param cFrequencia*/
+    public void setCFrequencia(String cFrequencia) { this.cFrequencia = cFrequencia; }
+
+    /**Metodo setCObservacoes
+     * @param cOservacoes*/
+    public void setCObservacoes(String cOservacoes) { this.cOservacoes = cOservacoes; }
+
+    /**Metodo setDAgendamentoColeta
+     * @param dAgendamentoColeta*/
+    public void setDAgendamentoColeta(LocalDate dAgendamentoColeta) { this.dAgendamentoColeta = dAgendamentoColeta; }
+
+    /**Metodo setCStatus
+     * @param cStatus*/
+    public void setCStatus(String cStatus) { this.cStatus = cStatus; }
+
+    /**Metodo setDPedido
+     * @param dPedido*/
+    public void setDPedido(LocalDate dPedido) { this.dPedido = dPedido; }
+
+    /**Metodo setNValorTotal
+     * @param nValorTotal*/
+    public void setNValorTotal(double nValorTotal) { this.nValorTotal = nValorTotal; }
+
+    /**Metodo toString
+     *@return informação dos campos da tabela*/
     @Override
     public String toString(){
         return "Código: " + nCdPedido + "\nValor Total: " + nValorTotal +
@@ -112,7 +147,8 @@ public class Pedido implements Model{
                 "\nEndereço Destinatário: " + nCdEnderecoEmpresaDestinatario;
     }
 
-    // métodos
+    /**Metodo para retornar a tabela
+     * @return nome da tabela*/
     @Override
-    public Object getId(){return nCdPedido;}
+    public Object getId(){ return nCdPedido; }
 }

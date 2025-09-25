@@ -132,43 +132,26 @@
     <div class="container-cadastro">
         <h1 class="logo">PurPura</h1>
         <p class="subtitulo">A sua jornada sustentável começa aqui!</p>
-        <form action="#" method="post" id="form-cadastro">
+        <form action="insert" method="post" id="form-cadastro">
             <div class="form-group">
+                <input type="hidden" name="tabelaNome" value="Administrador">
                 <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                <input type="text" id="nome" name="cNmAdministrador" placeholder="Seu nome" required>
                 <span id="nome-erro" class="error-message">Por favor, preencha seu nome.</span>
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
+                <input type="email" id="email" name="cEmail" placeholder="nome@exemplo.com" required>
                 <span id="email-erro" class="error-message">Por favor, insira um e-mail válido.</span>
             </div>
             <div class="form-group">
-                <label for="telefone">Telefone</label>
-                <div class="input-group">
-                    <select id="ddd" name="ddd" required>
-                        <option value="" disabled selected>DDD</option>
-                        <option value="11">11</option>
-                        <option value="21">21</option>
-                        <option value="31">31</option>
-                        <option value="41">41</option>
-                        <option value="51">51</option>
-                        <option value="61">61</option>
-                        <option value="71">71</option>
-                        <option value="81">81</option>
-                        <option value="91">91</option>
-                    </select>
-                    <input type="tel" id="telefone" name="telefone" placeholder="99999-9999" required>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+                <input type="password" id="senha" name="cSenha" placeholder="Sua senha" required>
                 <span id="senha-erro" class="error-message">A senha deve ter pelo menos 6 caracteres.</span>
             </div>
             <div class="form-group">
                 <label for="confirmar-senha">Confirmar Senha</label>
-                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha" required>
+                <input type="password" id="confirmar-senha" placeholder="Confirme sua senha" required>
                 <span id="confirmar-senha-erro" class="error-message">As senhas não coincidem.</span>
             </div>
             <div class="form-footer">

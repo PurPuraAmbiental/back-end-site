@@ -13,31 +13,26 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "FindServlet", value="/find")
-public class FindServlet extends HttpServlet {
+import java.io.IOException;
+import java.util.List;
+
+
+@WebServlet(name = "FindAllServlet", value = "/findAll")
+public class FindAllServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws jakarta.servlet.ServletException, java.io.IOException{
+    throws ServletException, IOException {
         String tabelaNome = request.getParameter("tabelaNome");
-        String pk = request.getParameter("id");
         try{
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
-            Model model = null;
-            try {
-                int id = Integer.parseInt(pk);
-                model = dao.find(id);
-            } catch (NumberFormatException e){
-                model = dao.find(pk);
-            }
 
-            if (model == null) {
-                throw new NotFoundException(tabelaNome, pk);
-            }
-
+            List<Model> models = dao.findAll();
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro encontrado com sucesso!");
 
             response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write(model.toString());
+            for(Model model : models){
+                response.getWriter().write(model.toString() + "\n--------------------\n");
+            }
         } catch (DAONotFoundException e){
             request.setAttribute("erro", "Tabela não encontrada: " + tabelaNome);
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");

@@ -15,7 +15,8 @@ public class DAOManager {
             new PagamentoDAO(),
             new PedidoDAO(),
             new ResiduoDAO(),
-            new TransporteDAO()
+            new TransporteDAO(),
+            new AdministradorDAO()
     );
 
     public static DAO<? extends Model> getDAO(String nomeTabela) {
