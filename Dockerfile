@@ -1,19 +1,15 @@
-FROM maven:eclipse-temurin AS build
+FROM maven:3.8-jdk17-temurin AS builder
 
 WORKDIR /app
 
 COPY pom.xml .
-
 RUN mvn dependency:go-offline
 
-COPY src ./src
+COPY src/ ./src/
+RUN mvn package
 
-RUN mvn clean package -DskipTests
+FROM tomcat:9.0-jdk17-temurin
 
-FROM tomcat:10.1.28-jdk17
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY --from=build /app/target/AthletaServerlet-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
-
-EXPOSE 8080
-
-CMD ["catalina.sh","run"]
+COPY --from=builder /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
