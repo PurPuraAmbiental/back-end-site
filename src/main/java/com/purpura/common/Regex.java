@@ -7,25 +7,24 @@ import java.util.regex.Pattern;
 public class Regex {
 
     public boolean validarCnpj(String cnpj){
-    String regex = Constants.COMMA_SEPARATOR_REGEX;
+        String regex = Constants.CNPJ_REGEX;
         Pattern patternt = Pattern.compile(regex);
         Matcher matcher = patternt.matcher(cnpj);
-        if (matcher.find()){
-            return true;
-        }else {
-            return false;
-        }
+        return matcher.find();
     }
 
     public boolean validarTelefone(String telefone){
         String regex = Constants.TELEFONE_REGEX;
         Pattern patternt = Pattern.compile(regex);
         Matcher matcher = patternt.matcher(telefone);
-        if (matcher.find()){
-            return true;
-        }else {
-            return false;
-        }
+        return matcher.find();
+    }
+
+    public boolean validarEmail(String email){
+        String regex = Constants.EMAIL_REGEX;
+        Pattern patternt = Pattern.compile(regex);
+        Matcher matcher = patternt.matcher(email);
+        return matcher.find();
     }
 
 }
