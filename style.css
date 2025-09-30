@@ -964,7 +964,7 @@ main {
   padding: 20px; 
 }
 footer {
-  background: linear-gradient(135deg, #6A1B9A, #9C27B0);
+  background: var(--roxoclaro);
   color: #fff;
   padding: 20px 30px; 
   display: flex;
@@ -992,7 +992,7 @@ footer {
   transition: color 0.3s ease;
 }
 .footer-col a:hover {
-  color: #c3e733;
+  color: #FDFFE5;
 }
 .social-icons {
   margin-bottom: 6px;
@@ -1009,7 +1009,7 @@ footer {
   transition: 0.3s;
 }
 .social-icons a:hover {
-  background: #c3e733;
+  background: #FDFFE5;
   color: #6A1B9A;
 }
 .secret {

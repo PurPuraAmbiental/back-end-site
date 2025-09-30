@@ -6,7 +6,62 @@
     <title>Login - PurPura</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
-    <style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="logo">PurPura</h1>
+        <p class="subtitulo">A sua jornada sustentável continua aqui!</p>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
+                <span id="email-error" class="error-message">Por favor, insira um e-mail válido.</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Sua senha" required>
+                <span id="password-error" class="error-message">Por favor, insira sua senha.</span>
+            </div>
+            <div class="form-footer">
+                <button type="submit" class="btn-login">Entrar</button>
+                <a href="cadastro.html" class="link-cadastro">Ainda não tem conta? Cadastre-se</a>
+                <a href="#" class="link-senha">Esqueceu a senha?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+            
+            let formIsValid = true;
+
+            // validação do email
+            if (emailInput.value.trim() === '' || !emailInput.value.includes('@') || !emailInput.value.includes('.')) {
+                emailError.style.display = 'block';
+                formIsValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // validação da senha
+            if (passwordInput.value.trim() === '') {
+                passwordError.style.display = 'block';
+                formIsValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+            
+            if (!formIsValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+       <style>
         /* /*css */
         body {
             font-family: 'Poppins', sans-serif;
@@ -116,60 +171,5 @@
             display: none;
         }
     </style>
-</head>
-<body>
-    <div class="login-container">
-        <h1 class="logo">PurPura</h1>
-        <p class="subtitulo">A sua jornada sustentável continua aqui!</p>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
-                <span id="email-error" class="error-message">Por favor, insira um e-mail válido.</span>
-            </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="Sua senha" required>
-                <span id="password-error" class="error-message">Por favor, insira sua senha.</span>
-            </div>
-            <div class="form-footer">
-                <button type="submit" class="btn-login">Entrar</button>
-                <a href="cadastro.html" class="link-cadastro">Ainda não tem conta? Cadastre-se</a>
-                <a href="#" class="link-senha">Esqueceu a senha?</a>
-            </div>
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const emailError = document.getElementById('email-error');
-            const passwordError = document.getElementById('password-error');
-            
-            let formIsValid = true;
-
-            // validação do email
-            if (emailInput.value.trim() === '' || !emailInput.value.includes('@') || !emailInput.value.includes('.')) {
-                emailError.style.display = 'block';
-                formIsValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            // validação da senha
-            if (passwordInput.value.trim() === '') {
-                passwordError.style.display = 'block';
-                formIsValid = false;
-            } else {
-                passwordError.style.display = 'none';
-            }
-            
-            if (!formIsValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
 </body>
 </html>
