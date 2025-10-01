@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
     <link rel="stylesheet" href="crud.css">
-    <title>crud</title>
+    <title>CRUD</title>
 </head>
 <body>
-    <!-- barra lateral -->
+    <!-- aba lateral -->
     <div class="sidebar">
         <h2>CRUD OPERATIONS</h2>
         <div class="profile">
@@ -16,14 +17,19 @@
             <p>Admin</p>
         </div>
         <div class="menu">
-            <a href="#" class="active"> <img src="x.png" alt="">Empresas</a>
-            <a href="#"><img src="x.png" alt="">Resíduos</a>
-            <a href="#"><img src="x.png" alt="">Students</a>
-            <a href="#"><img src="x.png" alt="">Payment</a>
-            <a href="#"><img src="x.png" alt="">Report</a>
-            <a href="#"><img src="x.png" alt="">Admin</a>
+            <a href="empresas.html" target="conteudo-principal" class="active"> <img src="x.png" alt="">Empresas</a>
+            <a href="residuos.html" target="conteudo-principal"><img src="x.png" alt="">Resíduos</a>
+            <a href="students.html" target="conteudo-principal"><img src="x.png" alt="">Students</a>
+            <a href="payment.html" target="conteudo-principal"><img src="x.png" alt="">Payment</a>
+            <a href="report.html" target="conteudo-principal"><img src="x.png" alt="">Report</a>
+            <a href="admin.html" target="conteudo-principal"><img src="x.png" alt="">Admin</a>
         </div>
-        <a href="#" class="logout"><img src="icondologout.png" alt="">Logout</a>
+        <a href="#" class="logout"><img src="icon_do_logout.png" alt="">Logout</a>
     </div>
+    
+    <main class="content">
+        <iframe name="conteudo-principal" src="empresas.html"></iframe>
+    </main>
+
 </body>
 </html>
