@@ -1,0 +1,82 @@
+/* body */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    background: #f8f4fc;
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+/* barra lateral */
+.sidebar{
+    width: 250px;
+    background: #fff;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+.sidebar h2{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.profile{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.profile img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile h3{
+    margin: 10px 0 5px;
+    font-size: 16px;
+}
+.profile p{
+    font-size: 14px;
+    color: #9c27b0;
+}
+.menu{
+    flex: 1;
+}
+.menu a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #333;
+    border-radius: 6px;
+    transition: backgroud 0.3s, color 0.3s;
+}
+.menu a:hover{
+    background: #e2c8f5;
+    color: #9c27b0;
+}
+.menu a img{
+    width: 20px;
+}
+.logout{
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    text-decoration: none;
+    color: #333;
+}
+.logout img{
+    width: 20px;
+}
+/* corpo da pág */
