@@ -5,15 +5,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**Classe DAO para a tabela EnderecoEmpresa
+ * @author [Seu nome ou autor do código]*/
+
+/**Classe implementando a interface generica DAO
+ * e adicionando a Classe model equivalente: EnderecoEmpresa*/
 public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
 
-    // RETORNAR O NOME DA TABELA
+    /**Metodo para retornar o nome da tabela
+     * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
         return "EnderecoEmpresa";
     }
 
-    // MAPEAR UMA LINHA DO RESULTSET PARA A CLASSE EnderecoEmpresa
+    /**Metodo para instanciar um objeto
+     * @param rs -> ResultSet
+     * @return objeto EnderecoEmpresa*/
     @Override
     protected EnderecoEmpresa mapResultSet(ResultSet rs) throws SQLException {
         return new EnderecoEmpresa(
@@ -24,18 +32,21 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
                 rs.getString("cCidade"),
                 rs.getString("cComplemento"),
                 rs.getString("cCep"),
-                rs.getInt("iNrEnderecoEmpresa"),  // CUIDADO: o tipo no construtor está errado
+                rs.getInt("iNrEnderecoEmpresa"),
                 rs.getString("cCnpj")
         );
     }
 
-    // CORRIGIR AQUI PARA USAR O METODO CERTO
+    /**Adicionando Metodo para pegar o nome das colunas
+     * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
         return "cBairro, cLogradouro, cEstado, cCidade, cComplemento, cCep, iNrEnderecoEmpresa, cCnpj";
     }
 
-    // PREPARAR O STATEMENT PARA INSERÇÃO
+    /**Adicionando metodo para Inserir conteudo no banco de dados
+     * @param stmt -> String com o comando sql
+     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, EnderecoEmpresa entidade) throws SQLException {
         stmt.setString(1, entidade.getCBairro());
@@ -44,18 +55,21 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
         stmt.setString(4, entidade.getCCidade());
         stmt.setString(5, entidade.getCComplemento());
         stmt.setString(6, entidade.getCCep());
-        stmt.setInt(7, entidade.getINrEnderecoEmpresa());  // Supondo que você adicione esse getter
+        stmt.setInt(7, entidade.getINrEnderecoEmpresa());
         stmt.setString(8, entidade.getCCnpj());
     }
 
-    // PREPARAR O STATEMENT PARA ATUALIZAÇÃO
+    /**Adicionando metodo para Atualizar conteudo no banco de dados
+     * @param stmt -> String com o comando sql
+     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, EnderecoEmpresa entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
-        stmt.setInt(9, entidade.getNCdEnderecoEmpresa()); // WHERE id = ?
+        stmt.setInt(9, entidade.getNCdEnderecoEmpresa());
     }
 
-    // COLUNA IDENTIFICADORA
+    /**Adcionando Metodo para buscar a primary key da coluna
+     * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
         return "nCdEnderecoEmpresa";
