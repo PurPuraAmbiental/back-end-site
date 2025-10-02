@@ -6,23 +6,23 @@ import java.util.StringTokenizer;
 
 public class Telefone implements Model{
     private int nCdTelefone;
-    private String fone;
-    private String descricao;
+    private String cfone;
+    private String cdescricao;
     private int nCdEmpresa;
 
     public Telefone(int nCdEmpresa, int nCdTelefone, String fone, String descricao){
         this.nCdEmpresa = nCdEmpresa;
         this.nCdTelefone = nCdTelefone;
-        this.fone = fone;
-        this.descricao = descricao;
+        this.cfone = fone;
+        this.cdescricao = descricao;
     }
 
     public Telefone(Map<String, String> params) throws ParseException {
         if(params.containsKey("nCdTelefone")) {
-            this.fone = params.get("nCdTelefone");
+            this.cfone = params.get("nCdTelefone");
         }
-        this.fone = params.get("fone");
-        this.descricao = params.get("descricao");
+        this.cfone = params.get("fone");
+        this.cdescricao = params.get("descricao");
         if(params.containsKey("nCdEmpresa")) {
             this.nCdEmpresa = Integer.parseInt(params.get("nCdEmpresa"));
         }
@@ -36,23 +36,23 @@ public class Telefone implements Model{
         return nCdTelefone;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getCDescricao() {
+        return cdescricao;
     }
 
-    public String getFone() {
-        return fone;
+    public String getCFone() {
+        return cfone;
     }
 
     public void setFone(String fone) {
-        this.fone = fone;
+        this.cfone = fone;
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.cdescricao = descricao;
     }
     public String toString(){
-        return "Telefone: "+this.getnCdTelefone()+"\nDescricao: "+this.descricao;
+        return "Telefone: "+this.getnCdTelefone()+"\nDescricao: "+this.cdescricao;
     }
 
     @Override
