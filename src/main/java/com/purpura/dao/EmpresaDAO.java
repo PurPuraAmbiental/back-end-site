@@ -4,12 +4,23 @@ import com.purpura.model.Empresa;
 
 import java.sql.ResultSet;
 
+/**Classe DAO para a tabela Empresa
+ * @author [Seu nome ou autor do código]*/
+
+/**Classe implementando a interface generica DAO
+ * e adicionando a Classe model equivalente: Empresa*/
 public class EmpresaDAO extends DAO<Empresa> {
+
+    /**Metodo para retornar o nome da tabela
+     * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
         return "Empresa";
     }
 
+    /**Metodo para instanciar um objeto
+     * @param rs -> ResultSet
+     * @return objeto Empresa*/
     @Override
     protected Empresa mapResultSet(ResultSet rs) throws java.sql.SQLException {
         return new Empresa(
@@ -22,11 +33,16 @@ public class EmpresaDAO extends DAO<Empresa> {
         );
     }
 
+    /**Adicionando Metodo para pegar o nome das colunas
+     * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
         return "cNmEmpresa, cSenha, cCnpj, cAtivo, cEmail, cTelefone";
     }
 
+    /**Adicionando metodo para Inserir conteudo no banco de dados
+     * @param stmt -> String com o comando sql
+     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Empresa entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmEmpresa());
@@ -37,6 +53,9 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(6, entidade.getCTelefone());
     }
 
+    /**Adicionando metodo para Atualizar conteudo no banco de dados
+     * @param stmt -> String com o comando sql
+     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Empresa entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmEmpresa());
@@ -47,6 +66,8 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(6, entidade.getCCnpj());
     }
 
+    /**Adcionando Metodo para buscar a primary key da coluna
+     * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
         return "cCnpj";
