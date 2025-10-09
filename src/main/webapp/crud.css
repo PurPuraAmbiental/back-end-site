@@ -7,7 +7,7 @@
 }
 body{
     display: flex;
-    background: #f8f4fc;
+    background: #F6E9FA;
     color: #333;
     min-height: 100vh;
     overflow-x: hidden;
@@ -79,7 +79,7 @@ body{
 .logout img{
     width: 20px;
 }
-/* corpo da pág */
+/* corpo da pág empresas*/
 .content {
     flex-grow: 1;
     height: 100vh; 
@@ -133,7 +133,7 @@ body{
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
-    min-width: 700px; /* mantém largura mínima */
+    min-width: 700px; 
   }
   
   thead {
@@ -184,7 +184,7 @@ body{
     letter-spacing: 2px;
   }
   
-  /* ====== Responsividade ====== */
+  /*responsividade*/
   @media (max-width: 1024px) {
     .sidebar {
       width: 200px;
