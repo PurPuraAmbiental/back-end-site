@@ -175,6 +175,36 @@ public abstract class DAO<T extends Model> {
         return lista;
     }
 
+    public ResultSet find() throws NotFoundException, ConnectionFailedException {
+        String sql = "SELECT * FROM " + getNomeTabela();
+        ResultSet rs = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            rs = stmt.executeQuery();  // Executa a consulta e obtém o ResultSet
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+
+        // Verifica se o ResultSet está vazio
+        try {
+            if (rs != null && !rs.next()) {
+                throw new NotFoundException(getNomeTabela(), -1);
+            }
+            // Volta o ponteiro para o início do ResultSet
+            if (rs != null) {
+                rs.beforeFirst(); // Vai para o começo, pois rs.next() já avançaria para a primeira linha
+            }
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+
+        return rs;  // Retorna o ResultSet
+    }
+
+
+
+
     // métodos utilitários
     protected String getPlaceholders() {
         int quantidade = getNomesColunas().split(Constants.COMMA_SEPARATOR_REGEX).length;
