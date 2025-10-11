@@ -8,10 +8,6 @@
     <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
 </head>
 <body>
-    <% String erro = (String) request.getAttribute("erro"); %>
-    <% if (erro != null) { %>
-    <p style="color:red;"><%= erro %></p>
-    <% } %>
     <div class="login-container">
         <h1 class="logo">PurPura</h1>
         <p class="subtitulo">A sua jornada sustentável continua aqui!</p>
@@ -26,6 +22,10 @@
                 <input type="password" id="password" name="senha" placeholder="Sua senha" required>
                 <span id="password-error" class="error-message">Por favor, insira sua senha.</span>
             </div>
+            <% String erro = (String) request.getAttribute("erro"); %>
+            <% if (erro != null) { %>
+            <p style="color:red;"><%= erro %></p>
+            <% } %>
             <div class="form-footer">
                 <button type="submit" class="btn-login">Entrar</button>
                 <a href="cadastro.html" class="link-cadastro">Ainda não tem conta? Cadastre-se</a>
