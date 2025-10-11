@@ -8,6 +8,10 @@
     <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
 </head>
 <body>
+    <% String erro = (String) request.getAttribute("erro"); %>
+    <% if (erro != null) { %>
+    <p style="color:red;"><%= erro %></p>
+    <% } %>
     <div class="login-container">
         <h1 class="logo">PurPura</h1>
         <p class="subtitulo">A sua jornada sustentável continua aqui!</p>

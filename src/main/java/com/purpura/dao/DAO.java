@@ -150,6 +150,7 @@ public abstract class DAO<T extends Model> {
                 }
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new ConnectionFailedException();
         }
     }

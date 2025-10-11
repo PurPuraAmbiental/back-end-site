@@ -4,6 +4,7 @@ import com.purpura.dao.DAO;
 import com.purpura.dao.DAOManager;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.DAONotFoundException;
+import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -26,7 +27,7 @@ public class LoginServlet extends HttpServlet {
             DAO<Administrador> administradorDAO =
                     (DAO<Administrador>) DAOManager.getDAO("Administrador");
 
-            Administrador administrador = administradorDAO.findByAttribute("email", email);
+            Administrador administrador = administradorDAO.findByAttribute("cEmail", email);
 
             if (administrador != null && administrador.getCSenha().equals(senha)) {
                 HttpSession session = request.getSession();
@@ -41,9 +42,17 @@ public class LoginServlet extends HttpServlet {
                 rd.forward(request, response);
             }
         } catch (DAONotFoundException e){
-            e.printStackTrace();
+            request.setAttribute("erro", "Erro de conexão");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
         } catch (ConnectionFailedException e) {
-            e.printStackTrace();
+            request.setAttribute("erro", "Erro de conexão");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+        } catch (NotFoundException e) {
+            request.setAttribute("erro", "E-mail ou senha incorretos.");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
         }
     }
 }
