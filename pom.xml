@@ -37,6 +37,11 @@
       <version>5.0.0</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>at.favre.lib</groupId>
+      <artifactId>bcrypt</artifactId>
+      <version>0.10.2</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>back-end-site</finalName><plugins><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration><source>14</source><target>14</target></configuration></plugin></plugins>
