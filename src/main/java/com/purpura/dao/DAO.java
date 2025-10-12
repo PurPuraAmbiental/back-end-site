@@ -74,12 +74,12 @@ public abstract class DAO<T extends Model> {
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
-                stmt.setInt(1, id);
-                int linhasDeletadas = stmt.executeUpdate();
-                if (linhasDeletadas == 0) {
-                    throw new NotFoundException(getNomeTabela(), id);
-                }
-            } catch (SQLException e){
+            stmt.setInt(1, id);
+            int linhasDeletadas = stmt.executeUpdate();
+            if (linhasDeletadas == 0) {
+                throw new NotFoundException(getNomeTabela(), id);
+            }
+        } catch (SQLException e){
             throw new ConnectionFailedException();
         }
     }
@@ -89,7 +89,7 @@ public abstract class DAO<T extends Model> {
                 " WHERE " + atributo + " = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql)){
+            PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setObject(1, valor);
             int linhasDeletadas = stmt.executeUpdate();
             if (linhasDeletadas == 0) {
@@ -150,6 +150,7 @@ public abstract class DAO<T extends Model> {
                 }
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new ConnectionFailedException();
         }
     }
