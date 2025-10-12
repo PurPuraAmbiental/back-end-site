@@ -15,11 +15,11 @@ public class Administrador implements Model{
     /**Adicionando um método Construtor
      * @param cEmail - email do administrador
      * @param cSenha - senha do administrador
-     * @param cCnpj - nome do administrador (inserido incorretamente como cCnpj)*/
-    public Administrador(String cEmail, String cSenha, String cCnpj) {
+     * @param cNmAdministrador - nome do administrador */
+    public Administrador(String cEmail, String cSenha, String cNmAdministrador) {
         this.cEmail = cEmail;
         this.cSenha = cSenha;
-        this.cNmAdministrador = cCnpj;
+        this.cNmAdministrador = cNmAdministrador;
     }
 
     /**Adicionando um método construtor que inicializa objetos
@@ -49,8 +49,8 @@ public class Administrador implements Model{
      * @param cSenha -> altera a senha do administrador*/
     public void setCSenha(String cSenha) {this.cSenha = cSenha;}
     /**Método setCNmAdministrador
-     * @param cCnpj -> altera o nome do administrador (parametro nomeado como cCnpj)*/
-    public void setCNmAdministrador(String cCnpj) {this.cNmAdministrador = cCnpj;}
+     * @param cNmAdministrador-> altera o nome do administrador*/
+    public void setCNmAdministrador(String cNmAdministrador) {this.cNmAdministrador = cNmAdministrador;}
 
     /**Método toString
      * @return informações sobre os campos da tabela Administrador*/
