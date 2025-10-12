@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.text.ParseException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "InsertServlet", value="/insert")
@@ -23,6 +24,7 @@ public class InsertServlet extends HttpServlet {
     throws jakarta.servlet.ServletException, java.io.IOException {
         // verifica nome da tabela no qual os dados serão inseridos
         String tabelaNome = request.getParameter("tabelaNome");
+        //ta certinho tabelaNome = administrador
 
         // cria um map que guarda os atributos
         Map<String, String> params = new LinkedHashMap<>();
@@ -43,12 +45,15 @@ public class InsertServlet extends HttpServlet {
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro inserido com sucesso!");
 
-            if(tabelaNome.equals("Administrador")){
-                response.sendRedirect(request.getContextPath() + "/index.html");
-            } else {
-                response.setStatus(HttpServletResponse.SC_OK);
-                response.getWriter().write("Registro inserido com sucesso na tabela " + tabelaNome);
-            }
+            List<Model> lista = dao.findAll();
+            request.setAttribute("models", lista);
+            request.getRequestDispatcher("WEB-INF/ListarAdm.jsp").forward(request, response);
+//            if(tabelaNome.equals("Administrador")){
+//                response.sendRedirect(request.getContextPath() + "/index.html");
+//            } else {
+//                response.setStatus(HttpServletResponse.SC_OK);
+//                response.getWriter().write("Registro inserido com sucesso na tabela " + tabelaNome);
+//            }
 
         } catch (DAONotFoundException e) {
             // TODO: Criar uma classe chamada `ErrorRedirect` que tenha um método static que receba o request, o response, uma mensagem de erro
