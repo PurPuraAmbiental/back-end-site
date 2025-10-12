@@ -4,6 +4,7 @@ import com.purpura.dao.DAO;
 import com.purpura.dao.DAOManager;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.DAONotFoundException;
+import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
@@ -21,29 +23,45 @@ public class LoginServlet extends HttpServlet {
     throws ServletException, IOException{
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
+        boolean loginSucesso = false;
 
         try{
             DAO<Administrador> administradorDAO =
                     (DAO<Administrador>) DAOManager.getDAO("Administrador");
 
-            Administrador administrador = administradorDAO.findByAttribute("email", email);
+            Administrador administrador = administradorDAO.findByAttribute("cEmail", email);
 
-            if (administrador != null && administrador.getCSenha().equals(senha)) {
-                HttpSession session = request.getSession();
-                session.setAttribute("usuario", administrador);
+            if (administrador != null) {
+                String hashArmazenado = administrador.getCSenha();
 
-                // Redireciona para a página do crud
-                response.sendRedirect(request.getContextPath() + "/private.html");
-            } else {
-                // Login inválido
+                if(BCrypt.checkpw(senha, hashArmazenado)){
+                    loginSucesso = true;
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuario", administrador);
+
+                    // Redireciona para a página do crud
+                    response.sendRedirect(request.getContextPath() + "/private.html");
+                }
+            }
+
+            if (!loginSucesso) {
                 request.setAttribute("erro", "E-mail ou senha incorretos.");
                 RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                 rd.forward(request, response);
             }
+
         } catch (DAONotFoundException e){
-            e.printStackTrace();
+            request.setAttribute("erro", "Erro de conexão");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
         } catch (ConnectionFailedException e) {
-            e.printStackTrace();
+            request.setAttribute("erro", "Erro de conexão");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+        } catch (NotFoundException e) {
+            request.setAttribute("erro", "E-mail ou senha incorretos.");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
         }
     }
 }

@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.text.ParseException;
 import java.util.LinkedHashMap;
@@ -35,6 +36,16 @@ public class InsertServlet extends HttpServlet {
                 params.put(key, values[0]);
             }
         }); // adiciona os valores ao map, exceto o nome da tabela que não faz parte do model
+
+        // bloco de criptografia
+        if (tabelaNome.equals("Administrador") && params.containsKey("cSenha")) {
+            String senhaLimpa = params.get("cSenha");
+
+            String hash = BCrypt.hashpw(senhaLimpa, BCrypt.gensalt(10));
+            
+            params.put("cSenha", hash);
+        }
+
 
         try{
             Model model = ModelCreator.createModel(tabelaNome, params);
