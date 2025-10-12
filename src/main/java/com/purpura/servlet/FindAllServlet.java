@@ -31,7 +31,7 @@ public class FindAllServlet extends HttpServlet {
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro encontrado com sucesso!");
 
-            request.getRequestDispatcher("WEB-INF/teste.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/ListarAdm.jsp").forward(request, response);
 
             response.setStatus(HttpServletResponse.SC_OK);
 //            for(Model model : models){
