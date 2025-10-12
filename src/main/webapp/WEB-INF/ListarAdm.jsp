@@ -27,6 +27,7 @@
         <th>id</th>
         <th>Login</th>
         <th>Senha</th>
+        <th>Ações</th>
     </tr>
     <%
         List<Administrador> administrador = (List<Administrador>) request.getAttribute("models");
@@ -34,9 +35,14 @@
             for (Administrador adm : administrador) {
     %>
     <tr>
-        <td><%= adm.getCNmAdministrador()         %></td>
+        <td><%= adm.getCNmAdministrador() %></td>
         <td><%= adm.getCEmail()      %></td>
         <td><%= adm.getCSenha()      %></td>
+        <td> <form action="delete" method="post">
+            <input type="hidden" name="cnmadministrador" value="<%= adm.getCEmail()  %>">
+            <input type="hidden" name="tabelaNome" value="Administrador">
+            <input type="submit" value="Deletar Registro">
+        </form>  </td>
     </tr>
     <%
         }
