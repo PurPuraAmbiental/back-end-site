@@ -12,22 +12,26 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.util.List;
+
 @WebServlet(name = "DeleteServlet", value="/delete")
 public class DeleteServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws jakarta.servlet.ServletException, java.io.IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+     //   int id = Integer.parseInt(request.getParameter("id"));
         String tabelaNome = request.getParameter("tabelaNome");
-
+        String PkLinha = request.getParameter("cEmail");
         try {
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
-            dao.delete(id);
+            dao.delete(PkLinha);
 
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro deletado com sucesso!");
-
+            List<Model> lista = dao.findAll();
+            request.setAttribute("models", lista);
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write("Registro deletado com sucesso na tabela " + tabelaNome);
+            request.getRequestDispatcher("WEB-INF/ListarAdm.jsp").forward(request, response);
         } catch (DAONotFoundException e) {
             request.setAttribute("erro", "Tabela não encontrada: " + tabelaNome);
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");

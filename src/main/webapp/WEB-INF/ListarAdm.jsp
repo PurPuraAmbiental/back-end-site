@@ -39,7 +39,7 @@
         <td><%= adm.getCEmail()      %></td>
         <td><%= adm.getCSenha()      %></td>
         <td> <form action="delete" method="post">
-            <input type="hidden" name="cnmadministrador" value="<%= adm.getCEmail()  %>">
+            <input type="hidden" name="cEmail" value="<%= adm.getCEmail()  %>">
             <input type="hidden" name="tabelaNome" value="Administrador">
             <input type="submit" value="Deletar Registro">
         </form>  </td>
