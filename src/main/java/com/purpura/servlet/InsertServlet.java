@@ -39,10 +39,8 @@ public class InsertServlet extends HttpServlet {
         if (tabelaNome.equals("Administrador") && params.containsKey("cSenha")) {
             String senhaLimpa = params.get("cSenha");
 
-            // 10 é o 'cost factor' padrão. Ajuste para o seu ambiente.
             String hash = BCrypt.hashpw(senhaLimpa, BCrypt.gensalt(10));
-
-            // Substitui a senha limpa no mapa pelo hash gerado
+            
             params.put("cSenha", hash);
         }
 
