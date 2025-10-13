@@ -42,7 +42,14 @@
             <input type="hidden" name="cEmail" value="<%= adm.getCEmail()  %>">
             <input type="hidden" name="tabelaNome" value="Administrador">
             <input type="submit" value="Deletar Registro">
-        </form>  </td>
+        </form>
+            <form action="findId" method="post">
+                <input type="hidden" name="tabelaNome" value="Administrador">
+                <input type="hidden" name="id" value="<%= adm.getCEmail()  %>">
+                <input type="submit" value="Modificar Registro">
+            </form>
+
+        </td>
     </tr>
     <%
         }
