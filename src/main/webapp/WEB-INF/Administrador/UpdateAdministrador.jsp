@@ -22,7 +22,7 @@
     <input type="hidden" name="tabelaNome" value="Administrador">
     <input type="hidden" name="atributo" value="cEmail">
     <input type="hidden" name="valor" value="<%=email%>">
-
+    <input type="hidden" name="caminho" value="WEB-INF/Administrador/ListarAdm.jsp">
     <label>Nome: </label><br>
     <input type="text" name="cNmAdministrador" value="<%=nome%>"><br>
 

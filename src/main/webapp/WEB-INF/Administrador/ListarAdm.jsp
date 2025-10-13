@@ -46,6 +46,7 @@
             <form action="findId" method="post">
                 <input type="hidden" name="tabelaNome" value="Administrador">
                 <input type="hidden" name="id" value="<%= adm.getCEmail()  %>">
+                <input type="hidden" name="caminho" value="WEB-INF/Administrador/UpdateAdministrador.jsp">
                 <input type="submit" value="Modificar Registro">
             </form>
 
