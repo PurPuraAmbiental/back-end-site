@@ -55,7 +55,7 @@ public abstract class DAO<T extends Model> {
                 " WHERE " + atributo + " = ?";
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            prepareStatementForSave(stmt, entidade);
+            prepareStatementForUpdate(stmt, entidade);
 
             int numeroColunas = getNomesColunas().split(Constants.COMMA_SEPARATOR_REGEX).length;
             stmt.setObject(numeroColunas + 1, valor);
@@ -182,6 +182,7 @@ public abstract class DAO<T extends Model> {
                 lista.add(mapResultSet(rs));
             }
         } catch (SQLException e){
+            e.printStackTrace();
             throw new ConnectionFailedException();
         }
 

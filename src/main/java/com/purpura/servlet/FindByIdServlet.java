@@ -31,8 +31,9 @@ public class FindByIdServlet extends HttpServlet {
             if (model == null) {
                 throw new NotFoundException(tabelaNome, pk);
             }
-
+            request.setAttribute("model", model);
             request.setAttribute("tabela", tabelaNome);
+            request.getRequestDispatcher("UpdateAdministrador.jsp").forward(request, response);
             request.setAttribute("saida", "Registro encontrado com sucesso!");
 
             response.setStatus(HttpServletResponse.SC_OK);

@@ -36,7 +36,7 @@ public class AdministradorDAO extends DAO<Administrador> {
      * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas(){
-        return "cEmail, cSenha, cNmAdministrador";
+        return "cNmAdministrador = ?, cEmail = ?, cSenha = ?";
     }
 
     /**Adicionando metodo para Inserir conteudo no banco de dados
@@ -44,19 +44,19 @@ public class AdministradorDAO extends DAO<Administrador> {
      * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, Administrador entidade) throws SQLException{
-        stmt.setString(1, entidade.getCEmail());
-        stmt.setString(2, entidade.getCSenha());
-        stmt.setString(3, entidade.getCNmAdministrador());
+        stmt.setString(1, entidade.getCNmAdministrador());
+        stmt.setString(2, entidade.getCEmail());
+        stmt.setString(3, entidade.getCSenha());
     }
 
     /**Adicionando metodo para Atualizar conteudo no banco de dados
      * @param stmt -> String com o comando sql
      * @param entidade -> nome da tabela*/
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement stmt, Administrador entidade) throws SQLException{
-        stmt.setString(1, entidade.getCSenha());
-        stmt.setString(2, entidade.getCNmAdministrador());
-        stmt.setString(3, entidade.getCEmail());
+    protected void prepareStatementForUpdate(PreparedStatement stmt, Administrador entidade) throws SQLException {
+        stmt.setString(1, entidade.getCNmAdministrador());
+        stmt.setString(2, entidade.getCEmail());
+        stmt.setString(3, entidade.getCSenha());
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna
