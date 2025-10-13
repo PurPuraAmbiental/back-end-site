@@ -1,9 +1,16 @@
 package com.purpura.dao;
 
+import com.purpura.dto.EndecoEmpresaView;
+import com.purpura.exception.ConnectionFailedException;
 import com.purpura.model.EnderecoEmpresa;
+import com.purpura.util.ConnectionFactory;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**Classe DAO para a tabela EnderecoEmpresa
  * @author [Seu nome ou autor do código]*/
@@ -73,5 +80,40 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
     @Override
     protected String getColunaId() {
         return "nCdEnderecoEmpresa";
+    }
+
+    public List<EndecoEmpresaView> listarComEmpresa() throws ConnectionFailedException {
+        List<EndecoEmpresaView> listaView = new ArrayList<>();
+
+        String sql_join = "SELECT " +
+                "a.nCdEnderecoEmpresa, a.cBairro, a.cLogradouro, a.cEstado, a.cCidade, " +
+                "a.cCep, a.cComplemento, a.iNrEnderecoEmpresa, " +
+                "e.cNmEmpresa, a.cCnpj " +
+                "FROM EnderecoEmpresa a " +
+                "INNER JOIN Empresa e ON a.cCnpj = e.cCnpj";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql_join);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                EndecoEmpresaView view = new EndecoEmpresaView(
+                        rs.getInt("nCdEnderecoEmpresa"),
+                        rs.getString("cBairro"),
+                        rs.getString("cLogradouro"),
+                        rs.getString("cEstado"),
+                        rs.getString("cCidade"),
+                        rs.getString("cCep"),
+                        rs.getString("cComplemento"),
+                        rs.getInt("iNrEnderecoEmpresa"),
+                        rs.getString("cNmEmpresa"),
+                        rs.getString("cCnpj")
+                );
+                listaView.add(view);
+            }
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+        return listaView;
     }
 }

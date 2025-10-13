@@ -1,10 +1,16 @@
 package com.purpura.dao;
 
+import com.purpura.dto.ResiduoView;
+import com.purpura.exception.ConnectionFailedException;
 import com.purpura.model.Residuo;
+import com.purpura.util.ConnectionFactory;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**Classe DAO para a tabela Residuo
  * @author [Seu nome ou autor do código]*/
@@ -74,5 +80,39 @@ public class ResiduoDAO extends DAO<Residuo> {
     @Override
     protected String getColunaId() {
         return "nCdResiduo";
+    }
+
+    public List<ResiduoView> listarComEmpresa() throws ConnectionFailedException {
+        List<ResiduoView> listaView = new ArrayList<>();
+
+        final String sql_join = "SELECT " +
+                "r.nCdResiduo, r.cNmResiduo, r.cTipoUnidade, r.nPrecoPadrao, r.nVolumePadrao, " +
+                "r.cCategoria, r.cDescricao, " +
+                "e.cNmEmpresa, r.cCnpj " +
+                "FROM Residuo r " +
+                "INNER JOIN Empresa e ON r.cCnpj = e.cCnpj";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql_join);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                ResiduoView view = new ResiduoView(
+                        rs.getInt("nCdResiduo"),
+                        rs.getString("cNmResiduo"),
+                        rs.getString("cTipoUnidade"),
+                        rs.getDouble("nPrecoPadrao"),
+                        rs.getDouble("nVolumePadrao"),
+                        rs.getString("cCategoria"),
+                        rs.getString("cDescricao"),
+                        rs.getString("cNmEmpresa"),
+                        rs.getString("cCnpj")
+                );
+                listaView.add(view);
+            }
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+        return listaView;
     }
 }

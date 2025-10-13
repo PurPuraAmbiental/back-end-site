@@ -1,10 +1,16 @@
 package com.purpura.dao;
 
+import com.purpura.dto.TelefoneView;
+import com.purpura.exception.ConnectionFailedException;
 import com.purpura.model.Telefone;
+import com.purpura.util.ConnectionFactory;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**Classe DAO para a tabela Telefone
  * @author [Seu nome ou autor do código]*/
@@ -65,5 +71,33 @@ public class TelefoneDAO extends DAO<Telefone> {
     @Override
     protected String getColunaId() {
         return "nCdTelefone";
+    }
+
+    public List<TelefoneView> listarComEmpresa() throws ConnectionFailedException {
+        List<TelefoneView> listaView = new ArrayList<>();
+
+         String sql_join = "SELECT " +
+                "t.nCdTelefone, t.cNrTelefone, " +
+                "t.cCnpj, e.cNmEmpresa " +
+                "FROM Telefone t " +
+                "INNER JOIN Empresa e ON t.cCnpj = e.cCnpj";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql_join);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                TelefoneView view = new TelefoneView(
+                        rs.getInt("nCdTelefone"),
+                        rs.getString("cNrTelefone"),
+                        rs.getString("cCnpj"),
+                        rs.getString("cNmEmpresa")
+                );
+                listaView.add(view);
+            }
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+        return listaView;
     }
 }
