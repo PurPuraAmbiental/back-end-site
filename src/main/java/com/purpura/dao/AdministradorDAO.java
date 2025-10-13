@@ -36,7 +36,7 @@ public class AdministradorDAO extends DAO<Administrador> {
      * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas(){
-        return "cNmAdministrador = ?, cEmail = ?, cSenha = ?";
+        return "cNmAdministrador, cEmail, cSenha";
     }
 
     /**Adicionando metodo para Inserir conteudo no banco de dados
