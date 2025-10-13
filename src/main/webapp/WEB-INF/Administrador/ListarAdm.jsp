@@ -41,7 +41,9 @@
         <td> <form action="delete" method="post">
             <input type="hidden" name="cEmail" value="<%= adm.getCEmail()  %>">
             <input type="hidden" name="tabelaNome" value="Administrador">
+            <input type="hidden" name="caminho" value="WEB-INF/Administrador/ListarAdm.jsp">
             <input type="submit" value="Deletar Registro">
+
         </form>
             <form action="findId" method="post">
                 <input type="hidden" name="tabelaNome" value="Administrador">
@@ -63,7 +65,7 @@
 
 </table>
 <br>
-<a href="popUpAdministrador.html">
+<a href="PopUpAdministrador.html">
     adicionar item
 </a>
 </body>

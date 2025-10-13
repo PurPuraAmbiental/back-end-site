@@ -21,6 +21,7 @@ public class DeleteServlet extends HttpServlet {
      //   int id = Integer.parseInt(request.getParameter("id"));
         String tabelaNome = request.getParameter("tabelaNome");
         String PkLinha = request.getParameter("cEmail");
+        String caminho = request.getParameter("caminho");
         try {
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
             dao.delete(PkLinha);
@@ -31,7 +32,7 @@ public class DeleteServlet extends HttpServlet {
             request.setAttribute("models", lista);
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write("Registro deletado com sucesso na tabela " + tabelaNome);
-            request.getRequestDispatcher("WEB-INF/ListarAdm.jsp").forward(request, response);
+            request.getRequestDispatcher(caminho).forward(request, response);
         } catch (DAONotFoundException e) {
             request.setAttribute("erro", "Tabela não encontrada: " + tabelaNome);
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
