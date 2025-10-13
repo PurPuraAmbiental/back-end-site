@@ -7,6 +7,7 @@ import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.DAONotFoundException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Model;
+import com.purpura.util.Criptografia;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -41,9 +42,7 @@ public class InsertServlet extends HttpServlet {
         // bloco de criptografia
         if (tabelaNome.equals("Administrador") && params.containsKey("cSenha")) {
             String senhaLimpa = params.get("cSenha");
-
-            String hash = BCrypt.hashpw(senhaLimpa, BCrypt.gensalt(10));
-            
+            String hash = Criptografia.criptografar(senhaLimpa);
             params.put("cSenha", hash);
         }
 
