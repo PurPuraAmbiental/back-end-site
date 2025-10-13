@@ -1,4 +1,4 @@
-package com.purpura.servlet;
+package com.purpura.servlet.list;
 
 import com.purpura.dao.DAO;
 import com.purpura.dao.DAOManager;
