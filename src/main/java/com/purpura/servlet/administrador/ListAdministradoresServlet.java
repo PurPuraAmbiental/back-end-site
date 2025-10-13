@@ -1,8 +1,7 @@
-package com.purpura.servlet.list;
+package com.purpura.servlet.administrador;
 
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
-import com.purpura.dao.DAOManager;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;

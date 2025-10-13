@@ -1,8 +1,7 @@
-package com.purpura.servlet.list;
+package com.purpura.servlet.enderecoEmpresa;
 
-import com.purpura.dao.DAOManager;
-import com.purpura.dao.ResiduoDAO;
-import com.purpura.dto.ResiduoView;
+import com.purpura.dao.EnderecoEmpresaDAO;
+import com.purpura.dto.EndecoEmpresaView;
 import com.purpura.exception.ConnectionFailedException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,28 +13,28 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListResiduosServlet", value = "/residuo/list")
-public class ListResiduosServlet extends HttpServlet {
+@WebServlet(name = "ListEnderecosEmpresaServlet", value = "/endereco-empresa/list")
+public class ListEnderecosEmpresaServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            ResiduoDAO residuoDAO = new ResiduoDAO();
+            EnderecoEmpresaDAO enderecoDAO = new EnderecoEmpresaDAO();
+            List<EndecoEmpresaView> enderecos = enderecoDAO.listarComEmpresa();
 
-            List<ResiduoView> residuos = residuoDAO.listarComEmpresa();
+            request.setAttribute("listaEnderecos", enderecos);
 
-            request.setAttribute("listaResiduos", residuos);
-
-            RequestDispatcher rd = request.getRequestDispatcher("/private/residuos.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/private/enderecos.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {
-            request.setAttribute("erro", "Erro ao carregar lista de resíduos: " + e.getMessage());
+            request.setAttribute("erro", "Erro ao carregar lista de endereços: " + e.getMessage());
             e.printStackTrace();
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
-            request.setAttribute("erro", "Erro inesperado ao buscar Resíduos: " + e.getMessage());
+            request.setAttribute("erro", "Erro inesperado ao buscar Endereços: " + e.getMessage());
             e.printStackTrace();
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);

@@ -1,8 +1,7 @@
-package com.purpura.servlet.list;
+package com.purpura.servlet.telefone;
 
-import com.purpura.dao.DAOManager;
-import com.purpura.dao.EnderecoEmpresaDAO;
-import com.purpura.dto.EndecoEmpresaView;
+import com.purpura.dao.TelefoneDAO;
+import com.purpura.dto.TelefoneView;
 import com.purpura.exception.ConnectionFailedException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,28 +13,28 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListEnderecosEmpresaServlet", value = "/endereco-empresa/list")
-public class ListEnderecosEmpresaServlet extends HttpServlet {
+@WebServlet(name = "ListTelefonesServlet", value = "/telefone/list")
+public class ListTelefonesServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            EnderecoEmpresaDAO enderecoDAO = new EnderecoEmpresaDAO();
-            List<EndecoEmpresaView> enderecos = enderecoDAO.listarComEmpresa();
+            TelefoneDAO telefoneDAO = new TelefoneDAO();
+            List<TelefoneView> telefones = telefoneDAO.listarComEmpresa();
 
-            request.setAttribute("listaEnderecos", enderecos);
+            request.setAttribute("listaTelefones", telefones);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/enderecos.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/private/telefones.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {
-            request.setAttribute("erro", "Erro ao carregar lista de endereços: " + e.getMessage());
+            request.setAttribute("erro", "Erro ao carregar lista de telefones: " + e.getMessage());
             e.printStackTrace();
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
-            request.setAttribute("erro", "Erro inesperado ao buscar Endereços: " + e.getMessage());
+            request.setAttribute("erro", "Erro inesperado ao buscar Telefones: " + e.getMessage());
             e.printStackTrace();
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
