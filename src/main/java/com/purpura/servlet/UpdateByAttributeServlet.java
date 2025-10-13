@@ -24,6 +24,7 @@ import java.util.Map;
 public class UpdateByAttributeServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String tabelaNome = request.getParameter("tabelaNome");
+        String caminho = request.getParameter("caminho");
         Map<String, String[]> parameterMap = request.getParameterMap();
         Map<String, String> params = new LinkedHashMap<>();
 
@@ -49,7 +50,7 @@ public class UpdateByAttributeServlet extends HttpServlet {
             //mandando a atualização para a pagina principal
             List<Model> lista = dao.findAll();
             request.setAttribute("models", lista);
-            request.getRequestDispatcher("WEB-INF/ListarAdm.jsp").forward(request, response);
+            request.getRequestDispatcher(caminho).forward(request, response);
         } catch (DAONotFoundException e) {
             // Nenhum DAO encontrado para a tabela
             request.setAttribute("erro", e.getMessage());

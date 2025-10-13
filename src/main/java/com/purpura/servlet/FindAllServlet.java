@@ -22,6 +22,7 @@ public class FindAllServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String tabelaNome = request.getParameter("tabelaNome");
+        String caminho = request.getParameter("caminho");
         try{
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
 
@@ -30,8 +31,7 @@ public class FindAllServlet extends HttpServlet {
            request.setAttribute("models", models);
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro encontrado com sucesso!");
-
-            request.getRequestDispatcher("WEB-INF/ListarAdm.jsp").forward(request, response);
+            request.getRequestDispatcher(caminho).forward(request, response);
 
             response.setStatus(HttpServletResponse.SC_OK);
 //            for(Model model : models){

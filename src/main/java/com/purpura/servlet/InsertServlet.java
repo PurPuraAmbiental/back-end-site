@@ -25,6 +25,7 @@ public class InsertServlet extends HttpServlet {
     throws jakarta.servlet.ServletException, java.io.IOException {
         // verifica nome da tabela no qual os dados serão inseridos
         String tabelaNome = request.getParameter("tabelaNome");
+        String caminho = request.getParameter("caminho");
         //ta certinho tabelaNome = administrador
 
         // cria um map que guarda os atributos
@@ -58,7 +59,7 @@ public class InsertServlet extends HttpServlet {
 
             List<Model> lista = dao.findAll();
             request.setAttribute("models", lista);
-            request.getRequestDispatcher("WEB-INF/ListarAdm.jsp").forward(request, response);
+            request.getRequestDispatcher(caminho).forward(request, response);
 //            if(tabelaNome.equals("Administrador")){
 //                response.sendRedirect(request.getContextPath() + "/index.html");
 //            } else {

@@ -18,6 +18,7 @@ public class FindByIdServlet extends HttpServlet {
     throws jakarta.servlet.ServletException, java.io.IOException{
         String tabelaNome = request.getParameter("tabelaNome");
         String pk = request.getParameter("id");
+        String caminho = request.getParameter("caminho");
         try{
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
             Model model = null;
@@ -33,7 +34,7 @@ public class FindByIdServlet extends HttpServlet {
             }
             request.setAttribute("model", model);
             request.setAttribute("tabela", tabelaNome);
-            request.getRequestDispatcher("UpdateAdministrador.jsp").forward(request, response);
+            request.getRequestDispatcher(caminho).forward(request, response);
             request.setAttribute("saida", "Registro encontrado com sucesso!");
 
             response.setStatus(HttpServletResponse.SC_OK);
