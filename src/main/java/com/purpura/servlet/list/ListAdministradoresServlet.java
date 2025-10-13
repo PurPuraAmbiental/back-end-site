@@ -1,5 +1,6 @@
 package com.purpura.servlet.list;
 
+import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.dao.DAOManager;
 import com.purpura.exception.ConnectionFailedException;
@@ -15,14 +16,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListAdministradorServlet", value = "/list/administrador")
+@WebServlet(name = "ListAdministradorServlet", value = "/administrador/list")
 public class ListAdministradoresServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            DAO<Administrador> administradorDAO = (DAO<Administrador>) DAOManager.getDAO("Administrador");
+            DAO<Administrador> administradorDAO = new AdministradorDAO();
 
             List<Administrador> administradores = administradorDAO.findAll();
 

@@ -14,14 +14,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListEnderecosEmpresaServlet", value = "/list/endereco-empresa")
+@WebServlet(name = "ListEnderecosEmpresaServlet", value = "/endereco-empresa/list")
 public class ListEnderecosEmpresaServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            EnderecoEmpresaDAO enderecoDAO = (EnderecoEmpresaDAO) DAOManager.getDAO("EnderecoEmpresa");
+            EnderecoEmpresaDAO enderecoDAO = new EnderecoEmpresaDAO();
             List<EndecoEmpresaView> enderecos = enderecoDAO.listarComEmpresa();
 
             request.setAttribute("listaEnderecos", enderecos);

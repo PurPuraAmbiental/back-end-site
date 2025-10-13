@@ -2,6 +2,7 @@ package com.purpura.servlet.list;
 
 import com.purpura.dao.DAO;
 import com.purpura.dao.DAOManager;
+import com.purpura.dao.EmpresaDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
@@ -15,14 +16,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListEmpresaServlet", value = "/list/empresa")
+@WebServlet(name = "ListEmpresaServlet", value = "/empresa/list")
 public class ListEmpresasServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            DAO<Empresa> empresaDAO = (DAO<Empresa>) DAOManager.getDAO("Empresa");
+            DAO<Empresa> empresaDAO = new EmpresaDAO();
 
             List<Empresa> empresas = empresaDAO.findAll();
 

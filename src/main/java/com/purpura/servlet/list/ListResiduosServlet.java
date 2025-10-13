@@ -14,13 +14,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListResiduosServlet", value = "/list/residuo")
+@WebServlet(name = "ListResiduosServlet", value = "/residuo/list")
 public class ListResiduosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            ResiduoDAO residuoDAO = (ResiduoDAO) DAOManager.getDAO("Residuo");
+            ResiduoDAO residuoDAO = new ResiduoDAO();
 
             List<ResiduoView> residuos = residuoDAO.listarComEmpresa();
 

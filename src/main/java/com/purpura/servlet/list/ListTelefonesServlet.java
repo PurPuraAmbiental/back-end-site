@@ -14,14 +14,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListTelefonesServlet", value = "/list/telefone")
+@WebServlet(name = "ListTelefonesServlet", value = "/telefone/list")
 public class ListTelefonesServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            TelefoneDAO telefoneDAO = (TelefoneDAO) DAOManager.getDAO("Telefone");
+            TelefoneDAO telefoneDAO = new TelefoneDAO();
             List<TelefoneView> telefones = telefoneDAO.listarComEmpresa();
 
             request.setAttribute("listaTelefones", telefones);
