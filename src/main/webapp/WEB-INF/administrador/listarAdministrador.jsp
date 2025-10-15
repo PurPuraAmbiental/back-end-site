@@ -30,7 +30,7 @@
         <th>Ações</th>
     </tr>
     <%
-        List<Administrador> administrador = (List<Administrador>) request.getAttribute("models");
+        List<Administrador> administrador = (List<Administrador>) request.getAttribute("listaAdministradores");
         if (administrador != null) {
             for (Administrador adm : administrador) {
     %>
