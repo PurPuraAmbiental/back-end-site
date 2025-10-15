@@ -1,9 +1,10 @@
-package com.purpura.servlet.administrador;
+package com.purpura.servlet.AdministradorSERVLET;
 
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
+import com.purpura.model.Administrador;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "DeleteAdministradorServlet", value = "/administrador/delete")
 public class DeleteAdministradorServlet extends HttpServlet {
@@ -20,7 +22,13 @@ public class DeleteAdministradorServlet extends HttpServlet {
         try {
             DAO<?> dao = new AdministradorDAO();
             dao.delete(cEmail);
-            response.sendRedirect(request.getContextPath() + "/administrador/list");
+
+
+            List<?> administradores = dao.findAll();
+
+            request.setAttribute("listaAdministradores", administradores);
+
+            request.getRequestDispatcher("/WEB-INF/AdministradorJSP/listarAdministrador.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao deletar Administrador: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
