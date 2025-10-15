@@ -2,7 +2,6 @@ package com.purpura.servlet.enderecoEmpresa;
 
 import com.purpura.dao.DAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
-import com.purpura.dao.ResiduoDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.EnderecoEmpresa;
