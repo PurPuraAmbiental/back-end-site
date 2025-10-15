@@ -28,7 +28,7 @@ public class ListAdministradoresServlet extends HttpServlet {
 
             request.setAttribute("listaAdministradores", administradores);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/administradores.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/administrador/listarAdministrador.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {
