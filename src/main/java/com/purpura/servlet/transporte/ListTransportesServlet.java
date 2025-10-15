@@ -28,7 +28,7 @@ public class ListTransportesServlet extends HttpServlet {
 
             request.setAttribute("listaTransportes", transportes);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/transportes.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/transporte/listTransporte.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {

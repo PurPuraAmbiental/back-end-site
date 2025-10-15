@@ -28,7 +28,7 @@ public class ListEmpresasServlet extends HttpServlet {
 
             request.setAttribute("listaEmpresas", empresas);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/empresas.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/empresa/listEmpresa.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {

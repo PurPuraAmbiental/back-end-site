@@ -25,7 +25,7 @@ public class ListResiduosServlet extends HttpServlet {
 
             request.setAttribute("listaResiduos", residuos);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/residuos.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/residuo/listResiduo.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {
