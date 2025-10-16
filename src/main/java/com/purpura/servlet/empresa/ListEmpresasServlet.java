@@ -28,8 +28,9 @@ public class ListEmpresasServlet extends HttpServlet {
 
             request.setAttribute("listaEmpresas", empresas);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/empresa/listEmpresa.jsp");
-            rd.forward(request, response);
+            request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response);
+
+
 
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao carregar lista de Empresas: " + e.getMessage());

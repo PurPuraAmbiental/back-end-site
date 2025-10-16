@@ -36,7 +36,6 @@
         <td> <form action="${pageContext.request.contextPath}/administrador/delete" method="post">
             <input type="hidden" name="cEmail" value="<%= adm.getCEmail()  %>">
             <input type="submit" value="Deletar Registro">
-
         </form>
             <form action="findId" method="post">
                 <input type="hidden" name="tabelaNome" value="Administrador">

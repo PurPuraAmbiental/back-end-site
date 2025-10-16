@@ -12,6 +12,15 @@
     <title>Title</title>
 </head>
 <body>
+<table border="1">
+<tr>
+    <th>Nome</th>
+    <th>CNPJ</th>
+    <th>Email</th>
+    <th>Senha</th>
+    <th>ativo</th>
+    <th>acoes</th>
+</tr>
 <%
     List<Empresa> empresa = (List<Empresa>) request.getAttribute("listaEmpresas");
     if (empresa != null) {
@@ -21,13 +30,20 @@
         <td> <%= empresa1.getCNmEmpresa() %></td>
         <td><%= empresa1.getCCnpj()%></td>
         <td><%= empresa1.getCEmail()%></td>
-        <td><%= empresa1.getCTelefone()%></td>
-        <td><%= empresa1.getCAtivo()%></td
         <td><%= empresa1.getCSenha()%></td>
-        <td><form action="" method="post">
-            <input type="hidden" name="cCnpj" value="<%=empresa1.getCSenha()%>">
+        <td><%= empresa1.getCAtivo()%></td
+        <td> <form action="${pageContext.request.contextPath}/empresa/insert" method="post">
+            <input type="hidden" name="cEmail" value="<%= empresa1.getCCnpj()  %>">
             <input type="submit" value="Deletar Registro">
-        </form></td>
+        </form>
+            <form action="" method="post">
+                <input type="hidden" name="tabelaNome" value="Administrador">
+                <input type="hidden" name="id" value="<%= empresa1.getCEmail()  %>">
+                <input type="hidden" name="caminho" value="WEB-INF/Administrador/UpdateAdministrador.jsp">
+                <input type="submit" value="Modificar Registro">
+            </form>
+
+        </td>
     </tr>
     <%
       }
@@ -37,5 +53,7 @@
         <%
     }
         %>
+</table>
+<a href=""></a>
 </body>
 </html>
