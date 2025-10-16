@@ -1,4 +1,4 @@
-package com.purpura.servlet.administrador;
+package com.purpura.servlet.AdministradorSERVLET;
 
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
@@ -28,7 +28,7 @@ public class ListAdministradoresServlet extends HttpServlet {
 
             request.setAttribute("listaAdministradores", administradores);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/administradores.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AdministradorJSP/listarAdministrador.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {

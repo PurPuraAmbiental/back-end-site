@@ -25,7 +25,7 @@ public class ListTelefonesServlet extends HttpServlet {
 
             request.setAttribute("listaTelefones", telefones);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/telefones.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/telefone/listTelefone.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {
