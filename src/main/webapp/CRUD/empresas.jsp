@@ -1,5 +1,6 @@
 <%@ page import="com.purpura.model.Empresa" %>
 <%@ page import="java.util.List" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -23,38 +24,45 @@
             <th>Senha</th>
             <th>CNPJ</th>
             <th>Ativo</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
         <%
-            List<Empresa> empresa = (List<Empresa>) request.getAttribute("listaEmpresas");
-            if (empresa != null) {
-                for (Empresa empresa1 : empresa) {
+            List<Empresa> empresas = (List<Empresa>) request.getAttribute("listaEmpresas");
+            if (empresas != null && !empresas.isEmpty()) {
+                for (Empresa empresa : empresas) {
         %>
         <tr>
-            <td> <%= empresa1.getCNmEmpresa() %></td>
-            <td><%= empresa1.getCEmail()%></td>
+            <td><%= empresa.getCNmEmpresa() %></td>
+            <td><%= empresa.getCEmail() %></td>
             <td>
-                <span class="hidden-password"><td><%= empresa1.getCSenha()%></td></span>
-                <img src="c:\Users\irisrodrigues-ieg\Downloads\Vector (6).png" alt="Mostrar" class="toggle-password">
+                <span class="hidden-password"><%= empresa.getCSenha() %></span>
             </td>
-            <td><%= empresa1.getCCnpj()%></td>
+            <td><%= empresa.getCCnpj() %></td>
+            <% if (empresa.getCAtivo() == '1') {%>
+            <td> Ativo </td>
+            <%}else{%>
+            <td> Inativo </td> <%}%>
 
             <td class="actions">
                 <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
                 <img src="c:\Users\irisrodrigues-ieg\Downloads\trash 1.png" alt="Excluir">
             </td>
         </tr>
-        </tbody>
         <%
             }
         } else {
         %>
-        <tr><td colspan="3">Nenhum administrador encontrado.</td></tr>
+        <tr>
+            <td colspan="6">Nenhuma empresa encontrada.</td>
+        </tr>
         <%
             }
         %>
+        </tbody>
     </table>
+
 </div>
 
 <script src="script.js"></script>
