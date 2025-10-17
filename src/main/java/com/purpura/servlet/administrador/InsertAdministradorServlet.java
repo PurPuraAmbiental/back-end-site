@@ -1,4 +1,4 @@
-package com.purpura.servlet.AdministradorSERVLET;
+package com.purpura.servlet.administrador;
 
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
