@@ -1,5 +1,6 @@
 package com.purpura.servlet;
 
+import com.purpura.common.Regex;
 import com.purpura.dao.DAO;
 import com.purpura.dao.DAOManager;
 import com.purpura.exception.ConnectionFailedException;
@@ -24,7 +25,12 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         boolean loginSucesso = false;
-
+        if (!Regex.validarEmail(email) || !Regex.validarSenha(senha)){
+            request.setAttribute("erro", "E-mail ou senha com formato invalido");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+            return;
+        }
         try{
             DAO<Administrador> administradorDAO =
                     (DAO<Administrador>) DAOManager.getDAO("Administrador");
@@ -41,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 
                     // Redireciona para a página do crud
                     response.sendRedirect(request.getContextPath() + "/CRUD/crud.jsp");
+                    return;
                 }
             }
 
