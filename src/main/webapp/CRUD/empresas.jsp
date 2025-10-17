@@ -1,6 +1,8 @@
 <%@ page import="com.purpura.model.Empresa" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -47,7 +49,10 @@
 
             <td class="actions">
                 <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
-                <img src="c:\Users\irisrodrigues-ieg\Downloads\trash 1.png" alt="Excluir">
+                <form action="${pageContext.request.contextPath}/empresa/delete" method="post">
+                 <input type="hidden" name="ccnpj" value="<%=empresa.getCCnpj()%>>" >
+                 <input type="submit" value="Delete">
+                </form>
             </td>
         </tr>
         <%
