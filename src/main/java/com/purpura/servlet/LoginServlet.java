@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("usuario", administrador);
 
                     // Redireciona para a página do crud
-                    response.sendRedirect(request.getContextPath() + "/private.html");
+                    response.sendRedirect(request.getContextPath() + "/CRUD/crud.jsp");
                 }
             }
 

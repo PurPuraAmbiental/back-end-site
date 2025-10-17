@@ -1,4 +1,6 @@
+<%@ page import="com.purpura.model.Administrador" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,7 +16,7 @@
     <h2>CRUD OPERATIONS</h2>
     <div class="profile">
         <img src="https://png.pngtree.com/png-vector/20190704/ourmid/pngtree-administration-icon-in-trendy-style-isolated-background-png-image_1538647.jpg" alt="foto do admin">
-        <h3>Nome Do Administrador</h3>
+        <h3><%= ((Administrador) session.getAttribute("usuario")).getCNmAdministrador() %></h3>
         <p>Admin</p>
     </div>
     <div class="menu">
