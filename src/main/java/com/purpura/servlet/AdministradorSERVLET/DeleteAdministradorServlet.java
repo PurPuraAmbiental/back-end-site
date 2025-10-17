@@ -28,7 +28,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
 
             request.setAttribute("listaAdministradores", administradores);
 
-            request.getRequestDispatcher("/WEB-INF/AdministradorJSP/listarAdministrador.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/administrador/list");
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao deletar Administrador: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
