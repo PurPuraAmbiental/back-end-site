@@ -107,25 +107,24 @@
         <div class="popup">
             <button class="close-btn" onclick="fecharPopup()">×</button>
             <h2>Cadastrar Empresa</h2>
-            <form action="/empresa/insert" method="post">
-                <label for="cnmempresa">Nome da empresa</label>
-                <input type="text" name="cnmempresa" id="cnmempresa">
+            <form action="${pageContext.request.contextPath}/empresa/insert" method="post">
+                <label for="cNmEmpresa">Nome da empresa</label>
+                <input type="text" name="cNmEmpresa" id="cNmEmpresa">
 
-                <label for="cemail">Email</label>
-                <input type="text" name="cemail" id="cemail">
+                <label for="cEmail">Email</label>
+                <input type="text" name="cEmail" id="cEmail">
 
-                <label for="csenha">Senha</label>
-                <input type="text" name="csenha" id="csenha">
+                <label for="cSenha">Senha</label>
+                <input type="text" name="cSenha" id="cSenha">
 
-                <label for="ccnpj">CNPJ</label>
-                <input type="text" name="ccnpj" id="ccnpj">
+                <label for="cCnpj">CNPJ</label>
+                <input type="text" name="cCnpj" id="cCnpj">
 
-                <label for="ativo">Status</label>
-                <select name="ativo" id="ativo">
-                    <option value="true">Ativo</option>
-                    <option value="false">Não Ativo</option>
+                <label for="cAtivo">Ativo</label>
+                <select name="cAtivo" id="cAtivo">
+                    <option value="1">Ativo</option>
+                    <option value="0">Não Ativo</option>
                 </select>
-
                 <button type="submit">Adicionar</button>
             </form>
         </div>

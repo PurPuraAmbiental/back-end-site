@@ -20,7 +20,7 @@ public abstract class DAO<T extends Model> {
                 " (" + getNomesColunas() + ") VALUES (" + getPlaceholders() + ")";
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+            System.out.println(sql);
             prepareStatementForSave(stmt, entidade);
             int rows = stmt.executeUpdate();
             if(rows == 0) {

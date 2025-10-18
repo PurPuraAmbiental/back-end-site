@@ -14,18 +14,29 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "InsertEmpresaServlet", value = "/empresa/insert")
 public class InsertEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+//        Stringrequest.getAttribute("cnmempresa");
+//        request.getAttribute("cemail");
+//        request.getAttribute("");
+//        request.getAttribute("");
+//        request.getAttribute("");
+
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
             Empresa model = new Empresa(params);
             DAO<Empresa> dao = new EmpresaDAO();
             dao.save(model);
+
+            List<?> empresas = dao.findAll();
+            request.setAttribute("listaEmpresas",  empresas);
+            request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response);
             response.sendRedirect(request.getContextPath() + "/empresa/list");
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao inserir Empresa: " + e.getMessage());
