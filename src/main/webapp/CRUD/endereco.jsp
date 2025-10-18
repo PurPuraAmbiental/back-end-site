@@ -41,7 +41,13 @@
             <td><%= endereco.cCidade() %></td>
             <td><%= endereco.cBairro() %></td>
             <td><%= endereco.cLogradouro() %></td>
+
+            <%if (endereco.cComplemento() != null) {%>
             <td><%= endereco.cComplemento() %></td>
+            <%}else {%>
+            <td> </td>
+            <%}%>
+
             <td><%= endereco.iNrEnderecoEmpresa() %></td>
             <td><%= endereco.cCep() %></td>
             <td><%= endereco.cNmEmpresa() %></td>
