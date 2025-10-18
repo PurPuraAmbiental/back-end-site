@@ -5,6 +5,7 @@ import com.purpura.dao.EmpresaDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
+import com.purpura.util.Criptografia;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,6 +31,10 @@ public class InsertEmpresaServlet extends HttpServlet {
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
+            if (params.containsKey("cSenha")) {
+                String hash = Criptografia.criptografar(params.get("cSenha"));
+                params.put("cSenha", hash);
+            }
             Empresa model = new Empresa(params);
             DAO<Empresa> dao = new EmpresaDAO();
             dao.save(model);
