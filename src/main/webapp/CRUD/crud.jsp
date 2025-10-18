@@ -21,7 +21,7 @@
     </div>
     <div class="menu">
         <a href= "<%= request.getContextPath() %>/empresa/list" target="conteudo-principal" class="active"> <img src="c:\Users\irisrodrigues-ieg\Downloads\Vector (8).png" alt="">Empresas</a>
-        <a href="residuos.html" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\mdi_organic-outline.png" alt="">Resíduos</a>
+        <a href="<%=request.getContextPath() %>/residuo/list" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\mdi_organic-outline.png" alt="">Resíduos</a>
         <a href="endereco.html" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\mdi_address-marker.png" alt="">Endereço</a>
         <a href="telefone.html" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\Vector (9).png" alt="">Telefone</a>
         <a href="transporte.html" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\Vector (10).png" alt="">Transporte</a>
