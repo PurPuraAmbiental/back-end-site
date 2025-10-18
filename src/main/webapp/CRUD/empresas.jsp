@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
-
+<% boolean mostrarPopUp = false;%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -11,12 +11,137 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <title>empresas-crud</title>
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .popup {
+        position: relative;
+        background: #ffffff;
+        padding: 30px 40px;
+        border-radius: 10px;
+        width: 400px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border-top: 5px solid #9c27b0; /* destaque roxo */
+    }
+
+    .popup h2 {
+        margin-top: 0;
+        font-size: 22px;
+        color: #333;
+    }
+
+    .popup label {
+        display: block;
+        text-align: left;
+        margin: 10px 0 4px;
+        font-weight: bold;
+        color: #444;
+    }
+
+    .popup input,
+    .popup select {
+        width: 100%;
+        padding: 8px 10px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    .popup button[type="submit"] {
+        background-color: #9c27b0;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .popup button[type="submit"]:hover {
+        background-color: #9c27b0;
+    }
+
+    /* Botão X de fechar */
+    .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: #999;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        color: #333;
+    }
+</style>
+
 <body>
 <div class="main">
     <div class="header">
         <h1>Lista de Empresas</h1>
-        <button class="add-btn">Adicionar Empresa</button>
+        <button class="add-btn" onclick="mostrarPopup()">Adicionar Empresa</button>
     </div>
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <button class="close-btn" onclick="fecharPopup()">×</button>
+            <h2>Cadastrar Empresa</h2>
+            <form action="/empresa/insert" method="post">
+                <label for="cnmempresa">Nome da empresa</label>
+                <input type="text" name="cnmempresa" id="cnmempresa">
+
+                <label for="cemail">Email</label>
+                <input type="text" name="cemail" id="cemail">
+
+                <label for="csenha">Senha</label>
+                <input type="text" name="csenha" id="csenha">
+
+                <label for="ccnpj">CNPJ</label>
+                <input type="text" name="ccnpj" id="ccnpj">
+
+                <label for="ativo">Status</label>
+                <select name="ativo" id="ativo">
+                    <option value="true">Ativo</option>
+                    <option value="false">Não Ativo</option>
+                </select>
+
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+            function mostrarPopup() {
+                document.getElementById('popup').style.display = 'flex';
+            }
+
+            function fecharPopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
+
+
 
     <table>
         <thead>
