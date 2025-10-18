@@ -55,7 +55,7 @@
             <td class="actions">
                 <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
                 <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post">
-                    <input type="hidden" name="nCdResiduo" value="<%=endereco.nCdEnderecoEmpresa()%>" >
+                    <input type="hidden" name="nCdEnderecoEmpresa" value="<%=endereco.nCdEnderecoEmpresa()%>" >
                     <input type="submit" value="Delete">
                 </form>
             </td>
