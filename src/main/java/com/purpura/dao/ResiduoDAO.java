@@ -23,7 +23,7 @@ public class ResiduoDAO extends DAO<Residuo> {
      * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
-        return "Residuo";
+        return "residuo";
     }
 
     /**Metodo para instanciar um objeto

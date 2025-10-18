@@ -15,7 +15,7 @@ public class EmpresaDAO extends DAO<Empresa> {
      * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
-        return "Empresa";
+        return "empresa";
     }
 
     /**Metodo para instanciar um objeto
@@ -67,6 +67,6 @@ public class EmpresaDAO extends DAO<Empresa> {
      * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
-        return "cCnpj";
+        return "ccnpj";
     }
 }

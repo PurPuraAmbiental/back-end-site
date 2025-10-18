@@ -108,9 +108,6 @@ public abstract class DAO<T extends Model> {
             PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setObject(1, valor);
             int linhasDeletadas = stmt.executeUpdate();
-            if (linhasDeletadas == 0) {
-                throw new NotFoundException(getNomeTabela(), valor);
-            }
         } catch (SQLException e){
             throw new ConnectionFailedException();
         }

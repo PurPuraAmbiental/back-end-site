@@ -50,7 +50,7 @@
             <td class="actions">
                 <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
                 <form action="${pageContext.request.contextPath}/empresa/delete" method="post">
-                 <input type="hidden" name="ccnpj" value="<%=empresa.getCCnpj()%>>" >
+                 <input type="hidden" name="ccnpj" value="<%=empresa.getCCnpj()%>" >
                  <input type="submit" value="Delete">
                 </form>
             </td>
