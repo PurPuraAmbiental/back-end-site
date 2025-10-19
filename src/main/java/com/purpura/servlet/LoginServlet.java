@@ -1,8 +1,8 @@
 package com.purpura.servlet;
 
 import com.purpura.common.Regex;
+import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
-import com.purpura.dao.DAOManager;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.DAONotFoundException;
 import com.purpura.exception.NotFoundException;
@@ -32,8 +32,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         try{
-            DAO<Administrador> administradorDAO =
-                    (DAO<Administrador>) DAOManager.getDAO("Administrador");
+            DAO<Administrador> administradorDAO = new AdministradorDAO();
 
             Administrador administrador = administradorDAO.findByAttribute("cEmail", email);
 
