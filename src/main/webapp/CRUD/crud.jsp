@@ -24,7 +24,7 @@
         <a href="<%=request.getContextPath() %>/residuo/list" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\mdi_organic-outline.png" alt="">Resíduos</a>
         <a href="<%=request.getContextPath() %>/endereco-empresa/list" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\mdi_address-marker.png" alt="">Endereço</a>
         <a href="<%=request.getContextPath() %>/telefone/list" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\Vector (9).png" alt="">Telefone</a>
-        <a href="<%=request.getContextPath()%>/transportadora/list" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\Vector (10).png" alt="">Transporte</a>
+        <a href="<%=request.getContextPath()%>/transportadora/list" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\Vector (10).png" alt="">Transportadora</a>
         <a href="<%=request.getContextPath()%>/administrador/list" target="conteudo-principal"><img src="c:\Users\irisrodrigues-ieg\Downloads\sliders-v-square 1.png" alt="">Admin</a>
     </div>
     <a href="/index.html" class="logout"><img src="c:\Users\irisrodrigues-ieg\Downloads\sign-out-alt 1.png" alt="">Logout</a>
