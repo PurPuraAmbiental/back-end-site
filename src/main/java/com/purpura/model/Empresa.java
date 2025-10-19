@@ -13,7 +13,6 @@ public class Empresa implements Model{
     private String cCnpj;
     private char cAtivo;
     private String cEmail;
-    private String cTelefone;
 
     /**Adicionando metodo Construtor
      * @param cCnpj - atributo identificador da tabela
@@ -21,15 +20,14 @@ public class Empresa implements Model{
      * @param cEmail - email da empresa
      * @param cNmEmpresa - nome da empresa
      * @param cSenha - senha do email da empresa
-     * @param cTelefone - telefone da empresa*/
+     */
     public Empresa(String cNmEmpresa, String cSenha, String cCnpj,
-                   char cAtivo, String cEmail, String cTelefone) {
+                   char cAtivo, String cEmail) {
         this.cNmEmpresa = cNmEmpresa;
         this.cSenha = cSenha;
         this.cCnpj = cCnpj;
         this.cAtivo = cAtivo;
         this.cEmail = cEmail;
-        this.cTelefone = cTelefone;
     }
     /**contrutor que inicializa objetos
      * @param params -> um map*/
@@ -43,7 +41,6 @@ public class Empresa implements Model{
             this.cAtivo = params.get("cAtivo").charAt(0);
         }
         this.cEmail = params.get("cEmail");
-        this.cTelefone = params.get("cTelefone");
     }
     /**Metodo getCNmEmpresa
      * @return primary key da tabela*/
@@ -60,9 +57,6 @@ public class Empresa implements Model{
     /**Metodo getCEmail
      * @return o email da empresa*/
     public String getCEmail() {return cEmail;}
-    /**Metodo getCTelefone
-     * @return telefone da empresa*/
-    public String getCTelefone() {return cTelefone;}
 
     /**Metodo setCNmEmpresa
      * @param cNmEmpresa */
@@ -76,9 +70,7 @@ public class Empresa implements Model{
     /**Metodo setCEmail
      * @param cEmail */
     public void setCEmail(String cEmail) {this.cEmail = cEmail;}
-    /**Metodo setCTelefone
-     * @param cTelefone */
-    public void setCTelefone(String cTelefone) {this.cTelefone = cTelefone;}
+
 
     /**Adicionando o metodo toString
      * @return informações sobre os campos das tabelas*/
@@ -86,7 +78,7 @@ public class Empresa implements Model{
     public String toString(){
         return "CNPJ: " + cCnpj + "\nNome: " + cNmEmpresa +
                 "\nSenha: " + cSenha + "\nAtivo: " + cAtivo +
-                "\nEmail: " + cEmail + "\nTelefone: " + cTelefone;
+                "\nEmail: " + cEmail ;
     }
 
     /**Metodo getID

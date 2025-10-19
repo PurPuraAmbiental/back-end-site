@@ -23,7 +23,7 @@ public class TelefoneDAO extends DAO<Telefone> {
      * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
-        return "Telefone";
+        return "telefone";
     }
 
     /**Metodo para instanciar um objeto

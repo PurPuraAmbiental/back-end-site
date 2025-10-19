@@ -11,12 +11,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%--%>
-<%--    // Mock de administradores--%>
-<%--    List<Administrador> administrador = new ArrayList<>();--%>
-<%--    administrador.add(new Administrador("admin1", "123"));--%>
-<%--    administrador.add(new Administrador("admin2", "456"));--%>
-<%--%>--%>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -30,7 +25,7 @@
         <th>Ações</th>
     </tr>
     <%
-        List<Administrador> administrador = (List<Administrador>) request.getAttribute("models");
+        List<Administrador> administrador = (List<Administrador>) request.getAttribute("listaAdministradores");
         if (administrador != null) {
             for (Administrador adm : administrador) {
     %>
@@ -38,12 +33,9 @@
         <td><%= adm.getCNmAdministrador() %></td>
         <td><%= adm.getCEmail()      %></td>
         <td><%= adm.getCSenha()      %></td>
-        <td> <form action="delete" method="post">
+        <td> <form action="${pageContext.request.contextPath}/administrador/delete" method="post">
             <input type="hidden" name="cEmail" value="<%= adm.getCEmail()  %>">
-            <input type="hidden" name="tabelaNome" value="Administrador">
-            <input type="hidden" name="caminho" value="WEB-INF/Administrador/ListarAdm.jsp">
             <input type="submit" value="Deletar Registro">
-
         </form>
             <form action="findId" method="post">
                 <input type="hidden" name="tabelaNome" value="Administrador">

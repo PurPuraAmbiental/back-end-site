@@ -14,7 +14,7 @@ package com.purpura.dto;
  * @param cNmEmpresa nome da empresa detentora do endereço
  * @param cCnpj CNPJ da empresa detentora do endereço
  */
-public record EndecoEmpresaView(
+public record EnderecoEmpresaView(
         int nCdEnderecoEmpresa,
         String cBairro,
         String cLogradouro,

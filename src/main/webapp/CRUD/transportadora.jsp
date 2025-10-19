@@ -1,0 +1,66 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.purpura.model.Transportadora" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
+    <title>transportadora-crud</title>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <h1>Lista de transportadoras</h1>
+        <button class="add-btn">Adicionar Transportadora</button>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nome da transportadora</th>
+            <th>CNPJ</th>
+            <th>Região atendida</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            List<Transportadora> transportadoras = (List<Transportadora>) request.getAttribute("listaTransportadoras");
+            if (transportadoras != null && !transportadoras.isEmpty()) {
+                for (Transportadora transportadora : transportadoras) {
+        %>
+        <tr>
+            <td><%= transportadora.getCNmTransporte() %></td>
+            <td><%= transportadora.getCCnpj() %></td>
+            <td><%= transportadora.getCRegiaoAtendida() %></td>
+            <td><%= transportadora.getCEmail() %></td>
+
+            <td class="actions">
+                <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
+                <form action="${pageContext.request.contextPath}/transportadora/delete" method="post">
+                    <input type="hidden" name="cEmail" value="<%=transportadora.getCCnpj()%>">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+
+        <%
+            }
+        } else {
+        %>
+        <tr>
+            <td colspan="6">Nenhuma transportadora encontrada.</td>
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

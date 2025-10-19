@@ -1,10 +1,10 @@
-package com.purpura.servlet.transporte;
+package com.purpura.servlet.transportadora;
 
 import com.purpura.dao.DAO;
-import com.purpura.dao.TransporteDAO;
+import com.purpura.dao.TransportadoraDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
-import com.purpura.model.Transporte;
+import com.purpura.model.Transportadora;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,20 +15,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListTransporteServlet", value = "/transporte/list")
-public class ListTransportesServlet extends HttpServlet {
+@WebServlet(name = "ListTransportadoraServlet", value = "/transportadora/list")
+public class ListTransportadoraServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            DAO<Transporte> transporteDAO = new TransporteDAO();
+            DAO<Transportadora> transporteDAO = new TransportadoraDAO();
 
-            List<Transporte> transportes = transporteDAO.findAll();
+            List<Transportadora> transportadoras = transporteDAO.findAll();
 
-            request.setAttribute("listaTransportes", transportes);
+            request.setAttribute("listaTransportadoras", transportadoras);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/transportes.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/transportadora.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {

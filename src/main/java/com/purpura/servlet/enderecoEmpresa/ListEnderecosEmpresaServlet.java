@@ -1,7 +1,7 @@
 package com.purpura.servlet.enderecoEmpresa;
 
 import com.purpura.dao.EnderecoEmpresaDAO;
-import com.purpura.dto.EndecoEmpresaView;
+import com.purpura.dto.EnderecoEmpresaView;
 import com.purpura.exception.ConnectionFailedException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -21,11 +21,11 @@ public class ListEnderecosEmpresaServlet extends HttpServlet {
 
         try {
             EnderecoEmpresaDAO enderecoDAO = new EnderecoEmpresaDAO();
-            List<EndecoEmpresaView> enderecos = enderecoDAO.listarComEmpresa();
+            List<EnderecoEmpresaView> enderecos = enderecoDAO.listarComEmpresa();
 
             request.setAttribute("listaEnderecos", enderecos);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/private/enderecos.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/endereco.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {

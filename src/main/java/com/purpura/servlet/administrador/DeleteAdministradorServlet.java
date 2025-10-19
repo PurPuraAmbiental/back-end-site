@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "DeleteAdministradorServlet", value = "/administrador/delete")
 public class DeleteAdministradorServlet extends HttpServlet {
@@ -20,6 +21,12 @@ public class DeleteAdministradorServlet extends HttpServlet {
         try {
             DAO<?> dao = new AdministradorDAO();
             dao.delete(cEmail);
+
+
+            List<?> administradores = dao.findAll();
+
+            request.setAttribute("listaAdministradores", administradores);
+
             response.sendRedirect(request.getContextPath() + "/administrador/list");
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao deletar Administrador: " + e.getMessage());

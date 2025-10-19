@@ -1,6 +1,6 @@
 package com.purpura.dao;
 
-import com.purpura.dto.EndecoEmpresaView;
+import com.purpura.dto.EnderecoEmpresaView;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.model.EnderecoEmpresa;
 import com.purpura.util.ConnectionFactory;
@@ -82,8 +82,8 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
         return "nCdEnderecoEmpresa";
     }
 
-    public List<EndecoEmpresaView> listarComEmpresa() throws ConnectionFailedException {
-        List<EndecoEmpresaView> listaView = new ArrayList<>();
+    public List<EnderecoEmpresaView> listarComEmpresa() throws ConnectionFailedException {
+        List<EnderecoEmpresaView> listaView = new ArrayList<>();
 
         String sql_join = "SELECT " +
                 "a.nCdEnderecoEmpresa, a.cBairro, a.cLogradouro, a.cEstado, a.cCidade, " +
@@ -97,7 +97,7 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                EndecoEmpresaView view = new EndecoEmpresaView(
+                EnderecoEmpresaView view = new EnderecoEmpresaView(
                         rs.getInt("nCdEnderecoEmpresa"),
                         rs.getString("cBairro"),
                         rs.getString("cLogradouro"),

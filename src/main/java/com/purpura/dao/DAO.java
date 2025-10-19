@@ -20,7 +20,7 @@ public abstract class DAO<T extends Model> {
                 " (" + getNomesColunas() + ") VALUES (" + getPlaceholders() + ")";
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+            System.out.println(sql);
             prepareStatementForSave(stmt, entidade);
             int rows = stmt.executeUpdate();
             if(rows == 0) {
@@ -108,9 +108,6 @@ public abstract class DAO<T extends Model> {
             PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setObject(1, valor);
             int linhasDeletadas = stmt.executeUpdate();
-            if (linhasDeletadas == 0) {
-                throw new NotFoundException(getNomeTabela(), valor);
-            }
         } catch (SQLException e){
             throw new ConnectionFailedException();
         }
@@ -170,6 +167,30 @@ public abstract class DAO<T extends Model> {
             throw new ConnectionFailedException();
         }
     }
+
+    public List<T> findAllByAttribute(String coluna, Object valor)
+            throws ConnectionFailedException {
+        String sql = "SELECT * FROM " + getNomeTabela() + " WHERE " + coluna + " = ?";
+        List<T> resultados = new ArrayList<>();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setObject(1, valor);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    resultados.add(mapResultSet(rs));
+                }
+            }
+            return resultados;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new ConnectionFailedException();
+        }
+    }
+
 
     public List<T> findAll() throws NotFoundException, ConnectionFailedException{
         List<T> lista = new ArrayList<>();

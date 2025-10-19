@@ -14,13 +14,12 @@
         <form id="login-form" action="login-auth" method="post">
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
-                <span id="email-error" class="error-message">Por favor, insira um e-mail válido.</span>
+                <input type="text" id="email" name="email" placeholder="nome@exemplo.com" required>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="senha" placeholder="Sua senha" required>
-                <span id="password-error" class="error-message">Por favor, insira sua senha.</span>
+                <span id="password-error" class="error-message">6 Digitos mininos</span>
             </div>
             <% String erro = (String) request.getAttribute("erro"); %>
             <% if (erro != null) { %>
@@ -33,38 +32,6 @@
             </div>
         </form>
     </div>
-
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const emailError = document.getElementById('email-error');
-            const passwordError = document.getElementById('password-error');
-            
-            let formIsValid = true;
-
-            // validação do email
-            if (emailInput.value.trim() === '' || !emailInput.value.includes('@') || !emailInput.value.includes('.')) {
-                emailError.style.display = 'block';
-                formIsValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            // validação da senha
-            if (passwordInput.value.trim() === '') {
-                passwordError.style.display = 'block';
-                formIsValid = false;
-            } else {
-                passwordError.style.display = 'none';
-            }
-            
-            if (!formIsValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
        <style>
         /* /*css */
         body {

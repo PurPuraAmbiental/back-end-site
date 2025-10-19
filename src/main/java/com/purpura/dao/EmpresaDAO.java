@@ -15,7 +15,7 @@ public class EmpresaDAO extends DAO<Empresa> {
      * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
-        return "Empresa";
+        return "empresa";
     }
 
     /**Metodo para instanciar um objeto
@@ -28,8 +28,7 @@ public class EmpresaDAO extends DAO<Empresa> {
                 rs.getString("cSenha"),
                 rs.getString("cCnpj"),
                 rs.getString("cAtivo").charAt(0),
-                rs.getString("cEmail"),
-                rs.getString("cTelefone")
+                rs.getString("cEmail")
         );
     }
 
@@ -37,7 +36,7 @@ public class EmpresaDAO extends DAO<Empresa> {
      * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
-        return "cNmEmpresa, cSenha, cCnpj, cAtivo, cEmail, cTelefone";
+        return "cNmEmpresa, cSenha, cCnpj, cAtivo, cEmail";
     }
 
     /**Adicionando metodo para Inserir conteudo no banco de dados
@@ -50,7 +49,6 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(3, entidade.getCCnpj());
         stmt.setString(4, String.valueOf(entidade.getCAtivo()));
         stmt.setString(5, entidade.getCEmail());
-        stmt.setString(6, entidade.getCTelefone());
     }
 
     /**Adicionando metodo para Atualizar conteudo no banco de dados
@@ -62,14 +60,13 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(2, entidade.getCSenha());
         stmt.setString(3, String.valueOf(entidade.getCAtivo()));
         stmt.setString(4, entidade.getCEmail());
-        stmt.setString(5, entidade.getCTelefone());
-        stmt.setString(6, entidade.getCCnpj());
+        stmt.setString(5, entidade.getCCnpj());
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna
      * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
-        return "cCnpj";
+        return "ccnpj";
     }
 }
