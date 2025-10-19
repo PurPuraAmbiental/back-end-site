@@ -55,7 +55,7 @@ public abstract class DAO<T extends Model> {
                 " WHERE " + atributo + " = ?";
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            prepareStatementForSave(stmt, entidade);
+            prepareStatementForUpdate(stmt, entidade);
 
             int numeroColunas = getNomesColunas().split(Constants.COMMA_SEPARATOR_REGEX).length;
             stmt.setObject(numeroColunas + 1, valor);
@@ -74,12 +74,28 @@ public abstract class DAO<T extends Model> {
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
-                stmt.setInt(1, id);
-                int linhasDeletadas = stmt.executeUpdate();
-                if (linhasDeletadas == 0) {
-                    throw new NotFoundException(getNomeTabela(), id);
-                }
-            } catch (SQLException e){
+            stmt.setInt(1, id);
+            int linhasDeletadas = stmt.executeUpdate();
+            if (linhasDeletadas == 0) {
+                throw new NotFoundException(getNomeTabela(), id);
+            }
+        } catch (SQLException e){
+            throw new ConnectionFailedException();
+        }
+    }
+
+    public void delete(String id) throws NotFoundException, ConnectionFailedException{
+        String sql = "DELETE FROM " + getNomeTabela() +
+                " WHERE " + getColunaId() + " = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, id);
+            int linhasDeletadas = stmt.executeUpdate();
+            if (linhasDeletadas == 0) {
+                throw new NotFoundException(getNomeTabela(), id);
+            }
+        } catch (SQLException e){
             throw new ConnectionFailedException();
         }
     }
@@ -89,7 +105,7 @@ public abstract class DAO<T extends Model> {
                 " WHERE " + atributo + " = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql)){
+            PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setObject(1, valor);
             int linhasDeletadas = stmt.executeUpdate();
             if (linhasDeletadas == 0) {
@@ -136,6 +152,25 @@ public abstract class DAO<T extends Model> {
         }
     }
 
+    public T findByAttribute(String coluna, Object valor) throws NotFoundException, ConnectionFailedException {
+        String sql = "SELECT * FROM " + getNomeTabela() +
+                " WHERE " + coluna + " = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setObject(1, valor);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSet(rs);
+                } else {
+                    throw new NotFoundException(getNomeTabela(), coluna);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new ConnectionFailedException();
+        }
+    }
+
     public List<T> findAll() throws NotFoundException, ConnectionFailedException{
         List<T> lista = new ArrayList<>();
         String sql = "SELECT * FROM " + getNomeTabela();
@@ -147,6 +182,7 @@ public abstract class DAO<T extends Model> {
                 lista.add(mapResultSet(rs));
             }
         } catch (SQLException e){
+            e.printStackTrace();
             throw new ConnectionFailedException();
         }
 
@@ -156,6 +192,36 @@ public abstract class DAO<T extends Model> {
 
         return lista;
     }
+
+    public ResultSet find() throws NotFoundException, ConnectionFailedException {
+        String sql = "SELECT * FROM " + getNomeTabela();
+        ResultSet rs = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            rs = stmt.executeQuery();  // Executa a consulta e obtém o ResultSet
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+
+        // Verifica se o ResultSet está vazio
+        try {
+            if (rs != null && !rs.next()) {
+                throw new NotFoundException(getNomeTabela(), -1);
+            }
+            // Volta o ponteiro para o início do ResultSet
+            if (rs != null) {
+                rs.beforeFirst(); // Vai para o começo, pois rs.next() já avançaria para a primeira linha
+            }
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+
+        return rs;  // Retorna o ResultSet
+    }
+
+
+
 
     // métodos utilitários
     protected String getPlaceholders() {

@@ -3,28 +3,24 @@ package com.purpura.dao;
 import com.purpura.exception.DAONotFoundException;
 import com.purpura.model.Model;
 
-import java.util.List;
+import java.util.Map;
 
 public class DAOManager {
-    private static final List<DAO<? extends Model>> DAOS = List.of(
-            new ArquivoDAO(),
-            new EmpresaDAO(),
-            new EnderecoEmpresaDAO(),
-            new ItemPedidoDAO(),
-            new MensagemDAO(),
-            new PagamentoDAO(),
-            new PedidoDAO(),
-            new ResiduoDAO(),
-            new TransporteDAO(),
-            new AdministradorDAO()
+
+    private static final Map<String, DAO<? extends Model>> DAO_MAP = Map.of(
+            "empresa", new EmpresaDAO(),
+            "enderecoempresa", new EnderecoEmpresaDAO(),
+            "residuo", new ResiduoDAO(),
+            "transporte", new TransporteDAO(),
+            "administrador", new AdministradorDAO(),
+            "Telefone", new TelefoneDAO()
     );
 
     public static DAO<? extends Model> getDAO(String nomeTabela) {
-        for (DAO<? extends Model> dao : DAOS) {
-            if (dao.getNomeTabela().equals(nomeTabela)) {
-                return dao;
-            }
+        DAO<? extends Model> dao = DAO_MAP.get(nomeTabela.toLowerCase());
+        if (dao == null) {
+            throw new DAONotFoundException("DAO não encontrado para: " + nomeTabela);
         }
-        throw new DAONotFoundException(nomeTabela);
+        return dao;
     }
 }

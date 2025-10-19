@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
  * @author Bruna Oliveira*/
 public class Regex {
 
-    public boolean validarCnpj(String cnpj){
+    public static boolean validarCnpj(String cnpj){
         String regex = Constants.CNPJ_REGEX;
         Pattern patternt = Pattern.compile(regex);
         Matcher matcher = patternt.matcher(cnpj);
@@ -20,7 +20,7 @@ public class Regex {
         return matcher.find();
     }
 
-    public boolean validarEmail(String email){
+    public static boolean validarEmail(String email){
         String regex = Constants.EMAIL_REGEX;
         Pattern patternt = Pattern.compile(regex);
         Matcher matcher = patternt.matcher(email);

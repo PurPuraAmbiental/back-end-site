@@ -7,14 +7,17 @@ import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.DAONotFoundException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Model;
+import com.purpura.util.Criptografia;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.text.ParseException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "InsertServlet", value="/insert")
@@ -23,6 +26,8 @@ public class InsertServlet extends HttpServlet {
     throws jakarta.servlet.ServletException, java.io.IOException {
         // verifica nome da tabela no qual os dados serão inseridos
         String tabelaNome = request.getParameter("tabelaNome");
+        String caminho = request.getParameter("caminho");
+        //ta certinho tabelaNome = administrador
 
         // cria um map que guarda os atributos
         Map<String, String> params = new LinkedHashMap<>();
@@ -34,6 +39,14 @@ public class InsertServlet extends HttpServlet {
             }
         }); // adiciona os valores ao map, exceto o nome da tabela que não faz parte do model
 
+        // bloco de criptografia
+        if (tabelaNome.equals("Administrador") && params.containsKey("cSenha")) {
+            String senhaLimpa = params.get("cSenha");
+            String hash = Criptografia.criptografar(senhaLimpa);
+            params.put("cSenha", hash);
+        }
+
+
         try{
             Model model = ModelCreator.createModel(tabelaNome, params);
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
@@ -42,11 +55,17 @@ public class InsertServlet extends HttpServlet {
 
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro inserido com sucesso!");
-//            RequestDispatcher rd = request.getRequestDispatcher("inserirSaida.jsp");
-//            rd.forward(request, response);
 
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("Registro adicionado com sucesso na tabela " + tabelaNome);
+            List<Model> lista = dao.findAll();
+            request.setAttribute("models", lista);
+            request.getRequestDispatcher(caminho).forward(request, response);
+//            if(tabelaNome.equals("Administrador")){
+//                response.sendRedirect(request.getContextPath() + "/index.html");
+//            } else {
+//                response.setStatus(HttpServletResponse.SC_OK);
+//                response.getWriter().write("Registro inserido com sucesso na tabela " + tabelaNome);
+//            }
+
         } catch (DAONotFoundException e) {
             // TODO: Criar uma classe chamada `ErrorRedirect` que tenha um método static que receba o request, o response, uma mensagem de erro
             // Nenhum DAO encontrado para a tabela

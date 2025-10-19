@@ -22,17 +22,21 @@ public class FindAllServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String tabelaNome = request.getParameter("tabelaNome");
+        String caminho = request.getParameter("caminho");
         try{
             DAO<Model> dao = (DAO<Model>) DAOManager.getDAO(tabelaNome);
 
-            List<Model> models = dao.findAll();
+           List<Model> models = dao.findAll();
+            //alteração tinha 30
+           request.setAttribute("models", models);
             request.setAttribute("tabela", tabelaNome);
             request.setAttribute("saida", "Registro encontrado com sucesso!");
+            request.getRequestDispatcher(caminho).forward(request, response);
 
             response.setStatus(HttpServletResponse.SC_OK);
-            for(Model model : models){
-                response.getWriter().write(model.toString() + "\n--------------------\n");
-            }
+//            for(Model model : models){
+//                response.getWriter().write(model.toString() + "\n--------------------\n");
+//            }
         } catch (DAONotFoundException e){
             request.setAttribute("erro", "Tabela não encontrada: " + tabelaNome);
             RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
