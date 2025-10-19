@@ -1,6 +1,7 @@
 <%@ page import="com.purpura.dto.ResiduoView" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -44,6 +45,10 @@
 
                     <label for="cNmEmpresa">Empresa</label>
                     <input type="text" name="cNmEmpresa" id="cNmEmpresa">
+
+                    <label for="cDescricao">Descrição</label>
+                    <input type="text" name="cDescricao" id="cDescricao">
+
                     <% if (erro != null) { %>
                     <p style="color:red;"><%= erro %></p>
                     <% } %>

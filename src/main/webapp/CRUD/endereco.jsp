@@ -7,13 +7,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
+
     <title>endereço-crud</title>
 </head>
 <body>
 <div class="main">
     <div class="header">
-        <h1>Lista de Endereços</h1>
-        <button class="add-btn">Adicionar Endereço</button>
+        <h1>Lista de Empresas</h1>
+        <button class="add-btn" onclick="mostrarPopup()">Cadastrar Endereco</button>
+        <div class="popup-overlay" id="popup">
+            <div class="popup">
+                <button class="close-btn" onclick="fecharPopup()">×</button>
+                <% String erro = (String) request.getAttribute("erro");%>
+                <h2>Cadastrar Endereço</h2>
+                <form action="${pageContext.request.contextPath}/endereco-empresa/insert" method="post">
+                    <label for="cBairro">Bairro</label>
+                    <input type="text" name="cBairro" id="cBairro">
+
+                    <label for="cLogradouro">Logradouro</label>
+                    <input type="text" name="cLogradouro" id="cLogradouro">
+
+                    <label for="cEstado">Estado</label>
+                    <input type="text" name="cEstado" id="cEstado">
+
+                    <label for="cCidade">Cidade</label>
+                    <input type="text" name="cCidade" id="cCidade">
+
+                    <label for="cCep">Cep</label>
+                    <input type="text" name="cCep" id="cCep">
+
+                    <label for="cComplemento">Complemento</label>
+                    <input type="text" name="cComplemento" id="cComplemento">
+
+                    <label for="cNmEmpresa">Complemento</label>
+                    <input type="text" name="cNmEmpresa" id="cNmEmpresa">
+                    
+                    <% if (erro != null) { %>
+                    <p style="color:red;"><%= erro %></p>
+                    <% } %>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function mostrarPopup() {
+                document.getElementById('popup').style.display = 'flex';
+            }
+
+            function fecharPopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
     </div>
 
     <table>
