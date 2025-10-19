@@ -1,19 +1,55 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.purpura.dto.TelefoneView" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
+
     <title>telefone-crud</title>
 </head>
 <body>
 <div class="main">
     <div class="header">
         <h1>Lista de Telefones</h1>
-        <button class="add-btn">Adicionar Telefone</button>
+        <button class="add-btn" onclick="mostrarPopup()">Adicionar Telefone</button>
+        <div class="popup-overlay" id="popup">
+            <div class="popup">
+                <button class="close-btn" onclick="fecharPopup()">×</button>
+                <% String erro = (String) request.getAttribute("erro");%>
+                <h2>Cadastrar Telefone</h2>
+                <form action="${pageContext.request.contextPath}/telefone/insert" method="post">
+                    <label for="cNmEmpresa">Empresa</label>
+                    <input type="text" name="cNmEmpresa" id="cNmEmpresa">
+
+                    <label for="cNrTelefone">Telefone</label>
+                    <input type="text" name="cNrTelefone" id="cNrTelefone">
+
+                    <label for="cDescricao">Descricao</label>
+                    <input type="text" name="cDescricao" id="cDescricao">
+
+                    <% if (erro != null) { %>
+                    <p style="color:red;"><%= erro %></p>
+                    <% } %>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function mostrarPopup() {
+                document.getElementById('popup').style.display = 'flex';
+            }
+
+            function fecharPopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
     </div>
 
     <table>

@@ -27,7 +27,7 @@ public class UpdateTelefoneServlet extends HttpServlet {
             DAO<Telefone> dao = new TelefoneDAO();
             dao.update(model);
             response.sendRedirect(request.getContextPath() + "/telefone/list");
-        } catch (ConnectionFailedException | NotFoundException | ParseException | NumberFormatException e) {
+        } catch (ConnectionFailedException | NotFoundException  | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao atualizar Telefone: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
