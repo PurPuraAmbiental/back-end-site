@@ -23,9 +23,12 @@ body {
     padding: 30px 40px;
     border-radius: 10px;
     width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border-top: 5px solid #9c27b0; /* destaque roxo */
+    border-top: 5px solid #9c27b0;
 }
+
 
 .popup h2 {
     margin-top: 0;

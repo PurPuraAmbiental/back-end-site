@@ -1,13 +1,14 @@
-<%@ page import="com.purpura.dto.EndecoEmpresaView" %>
+<%@ page import="com.purpura.dto.EnderecoEmpresaView" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css?v=2">
 
     <title>endereço-crud</title>
 </head>
@@ -40,9 +41,12 @@
                     <label for="cComplemento">Complemento</label>
                     <input type="text" name="cComplemento" id="cComplemento">
 
-                    <label for="cNmEmpresa">Complemento</label>
+                    <label for="iNrEnderecoEmpresa">Numero </label>
+                    <input type="text" name="iNrEnderecoEmpresa" id="iNrEnderecoEmpresa">
+
+                    <label for="cNmEmpresa">Empresa Responsavel </label>
                     <input type="text" name="cNmEmpresa" id="cNmEmpresa">
-                    
+
                     <% if (erro != null) { %>
                     <p style="color:red;"><%= erro %></p>
                     <% } %>
@@ -78,9 +82,9 @@
         </thead>
         <tbody>
         <%
-            List<EndecoEmpresaView> enderecos = (List<EndecoEmpresaView>) request.getAttribute("listaEnderecos");
+            List<EnderecoEmpresaView> enderecos = (List<EnderecoEmpresaView>) request.getAttribute("listaEnderecos");
             if (enderecos != null && !enderecos.isEmpty()) {
-                for (EndecoEmpresaView endereco : enderecos) {
+                for (EnderecoEmpresaView endereco : enderecos) {
         %>
         <tr>
             <td><%= endereco.cEstado() %></td>
