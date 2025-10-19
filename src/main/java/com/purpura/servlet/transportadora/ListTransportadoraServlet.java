@@ -21,10 +21,24 @@ public class ListTransportadoraServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            DAO<Transportadora> transporteDAO = new TransportadoraDAO();
+        String filtro = request.getParameter("filtro");
+        List<Transportadora> transportadoras = null;
 
-            List<Transportadora> transportadoras = transporteDAO.findAll();
+        try {
+            DAO<Transportadora> transportadoraDAO = new TransportadoraDAO();
+            String parametroBusca = request.getParameter("parametroBusca");
+            if ("nome".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                transportadoras = transportadoraDAO.findAllByAttribute("cNmTransportadora", parametroBusca);
+            }
+            else if ("cnpj".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                transportadoras = transportadoraDAO.findAllByAttribute("cCnpj", parametroBusca);
+            }
+            else if ("regiao".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                transportadoras = transportadoraDAO.findAllByAttribute("cRegiaoAtendida", parametroBusca);
+            }
+            else {
+                transportadoras = transportadoraDAO.findAll();
+            }
 
             request.setAttribute("listaTransportadoras", transportadoras);
 
