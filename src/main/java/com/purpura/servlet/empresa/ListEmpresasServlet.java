@@ -33,6 +33,9 @@ public class ListEmpresasServlet extends HttpServlet {
             else if ("cnpj".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
                 empresas = empresaDAO.findAllByAttribute("cCnpj", parametroBusca);
             }
+            else if ("atividade".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                empresas = empresaDAO.findAllByAttribute("cAtivo", parametroBusca);
+            }
             else {
                 empresas = empresaDAO.findAll();
             }
