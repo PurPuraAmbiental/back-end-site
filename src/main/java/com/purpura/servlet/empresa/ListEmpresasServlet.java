@@ -21,17 +21,20 @@ public class ListEmpresasServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String filtro = request.getParameter("filtro");
+        List<Empresa> empresas = null;
+
         try {
             DAO<Empresa> empresaDAO = new EmpresaDAO();
-
-            List<Empresa> empresas = empresaDAO.findAll();
+            String parametroBusca = request.getParameter("parametroBusca");
+            if ("nome".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                empresas = empresaDAO.findAllByAttribute("cNmEmpresa", parametroBusca);
+            } else {
+                empresas = empresaDAO.findAll();
+            }
 
             request.setAttribute("listaEmpresas", empresas);
-
             request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response);
-
-
-
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao carregar lista de Empresas: " + e.getMessage());
             e.printStackTrace();
