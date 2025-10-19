@@ -19,6 +19,46 @@
     <div class="header">
         <h1>Lista de Empresas</h1>
         <button class="add-btn" onclick="mostrarPopup()">Adicionar Empresa</button>
+        <div class="popup-overlay" id="popup">
+            <div class="popup">
+                <button class="close-btn" onclick="fecharPopup()">×</button>
+                <% String erro = (String) request.getAttribute("erro");%>
+                <h2>Cadastrar Empresa</h2>
+                <form action="${pageContext.request.contextPath}/empresa/insert" method="post">
+                    <label for="cNmEmpresa">Nome da empresa</label>
+                    <input type="text" name="cNmEmpresa" id="cNmEmpresa">
+
+                    <label for="cEmail">Email</label>
+                    <input type="text" name="cEmail" id="cEmail">
+
+                    <label for="cSenha">Senha</label>
+                    <input type="text" name="cSenha" id="cSenha">
+
+                    <label for="cCnpj">CNPJ</label>
+                    <input type="text" name="cCnpj" id="cCnpj">
+
+                    <label for="cAtivo">Ativo</label>
+                    <select name="cAtivo" id="cAtivo">
+                        <option value="1">Ativo</option>
+                        <option value="0">Não Ativo</option>
+                    </select>
+                    <% if (erro != null) { %>
+                    <p style="color:red;"><%= erro %></p>
+                    <% } %>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function mostrarPopup() {
+                document.getElementById('popup').style.display = 'flex';
+            }
+
+            function fecharPopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
     </div>
     <table>
         <thead>
@@ -71,46 +111,7 @@
     </table>
 
 </div>
-<div class="popup-overlay" id="popup">
-    <div class="popup">
-        <button class="close-btn" onclick="fecharPopup()">×</button>
-        <% String erro = (String) request.getAttribute("erro");%>
-        <h2>Cadastrar Empresa</h2>
-        <form action="${pageContext.request.contextPath}/empresa/insert" method="post">
-            <label for="cNmEmpresa">Nome da empresa</label>
-            <input type="text" name="cNmEmpresa" id="cNmEmpresa">
 
-            <label for="cEmail">Email</label>
-            <input type="text" name="cEmail" id="cEmail">
-
-            <label for="cSenha">Senha</label>
-            <input type="text" name="cSenha" id="cSenha">
-
-            <label for="cCnpj">CNPJ</label>
-            <input type="text" name="cCnpj" id="cCnpj">
-
-            <label for="cAtivo">Ativo</label>
-            <select name="cAtivo" id="cAtivo">
-                <option value="1">Ativo</option>
-                <option value="0">Não Ativo</option>
-            </select>
-            <% if (erro != null) { %>
-            <p style="color:red;"><%= erro %></p>
-            <% } %>
-            <button type="submit">Adicionar</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    function mostrarPopup() {
-        document.getElementById('popup').style.display = 'flex';
-    }
-
-    function fecharPopup() {
-        document.getElementById('popup').style.display = 'none';
-    }
-</script>
 <script src="script.js"></script>
 
 </body>
