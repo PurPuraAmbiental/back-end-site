@@ -1,10 +1,10 @@
-package com.purpura.servlet.transporte;
+package com.purpura.servlet.transportadora;
 
 import com.purpura.dao.DAO;
-import com.purpura.dao.TransporteDAO;
+import com.purpura.dao.TransportadoraDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
-import com.purpura.model.Transporte;
+import com.purpura.model.Transportadora;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,19 +15,19 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@WebServlet(name = "InsertTransporteServlet", value = "/transporte/insert")
-public class InsertTransporteServlet extends HttpServlet {
+@WebServlet(name = "UpdateTransportadoraServlet", value = "/transportadora/update")
+public class UpdateTransportadoraServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
-            Transporte model = new Transporte(params);
-            DAO<Transporte> dao = new TransporteDAO();
-            dao.save(model);
+            Transportadora model = new Transportadora(params);
+            DAO<Transportadora> dao = new TransportadoraDAO();
+            dao.update(model);
             response.sendRedirect(request.getContextPath() + "/transporte/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            request.setAttribute("erro", "Erro ao inserir Transporte: " + e.getMessage());
+            request.setAttribute("erro", "Erro ao atualizar Transporte: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
         }

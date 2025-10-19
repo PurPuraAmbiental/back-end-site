@@ -1,53 +1,57 @@
 package com.purpura.dao;
-import com.purpura.model.Transporte;
+import com.purpura.model.Transportadora;
 /**Classe DAO para a tabela Transporte
  * @author Leticia Reis*/
 
 /**Classe implementando a interface generica DAO
  * e adicionando a Classe model equivalente: Transporte*/
-public class TransporteDAO extends DAO<Transporte>{
+public class TransportadoraDAO extends DAO<Transportadora>{
     /**Implementando os metodos abstratos*/
 
     /**Metodo para retornar o nome da tabela
      * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela(){
-        return "Transporte";
+        return "Transportadora";
     }
     /**Metodo para instanciar um objeto
      * @param rs -> ResultSet
      * @return objeto Transporte*/
     @Override
-    protected Transporte mapResultSet(java.sql.ResultSet rs)throws java.sql.SQLException{
-        return new Transporte(
-          rs.getInt("nCdTransporte"),
-          rs.getString("cNmTransporte"),
-                rs.getDate("dRetirada").toLocalDate(),
-                rs.getInt("nCdPedido")
+    protected Transportadora mapResultSet(java.sql.ResultSet rs)throws java.sql.SQLException{
+        return new Transportadora(
+          rs.getString("cCnpj"),
+          rs.getString("cNmTransportadora"),
+                rs.getString("cEmail"),
+                rs.getString("cRegiaoAtendida")
         );
     }
     /**Adicionando Metodo para pegar o nome das colunas
      * @return String com os nomes dos atributos da model*/
     protected String getNomesColunas(){
-        return "cNmTransporte, dRetirada, nCdPedido";
+        return "cCnpj, cNmTransporte, dRetirada, nCdPedido";
     }
 
     /**Adicionando metodo para Inserir conteudo no banco de dados
      * @param stmt -> String com o comando sql
      * @param entidade -> nome da tabela*/
     @Override
-    protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Transporte entidade) throws java.sql.SQLException {
-        stmt.setString(1, entidade.getCNmTransporte());
-        stmt.setDate(2, java.sql.Date.valueOf(entidade.getDRetirada()));
-        stmt.setInt(3, entidade.getNCdPedido());
+    protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Transportadora entidade) throws java.sql.SQLException {
+        stmt.setString(1, entidade.getCCnpj());
+        stmt.setString(2, entidade.getCNmTransporte());
+        stmt.setString(3, entidade.getCRegiaoAtendida());
+        stmt.setString(4, entidade.getCEmail());
     }
+
     /**Adicionando metodo para Atualizar conteudo no banco de dados
      * @param stmt -> String com o comando sql
      * @param entidade -> nome da tabela*/
     @Override
-    protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Transporte entidade) throws java.sql.SQLException {
-        prepareStatementForSave(stmt, entidade);
-        stmt.setInt(4, entidade.getNCdTransporte());
+    protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Transportadora entidade) throws java.sql.SQLException {
+        stmt.setString(1, entidade.getCNmTransporte());
+        stmt.setString(2, entidade.getCRegiaoAtendida());
+        stmt.setString(3, entidade.getCEmail());
+        stmt.setString(4, entidade.getCCnpj());
     }
     /**Adcionando Metodo para buscar a primary key da coluna
      * @return chave primaria da coluna*/
