@@ -21,10 +21,20 @@ public class ListAdministradoresServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String filtro = request.getParameter("filtro");
+        List<Administrador> administradores = null;
         try {
             DAO<Administrador> administradorDAO = new AdministradorDAO();
-
-            List<Administrador> administradores = administradorDAO.findAll();
+            String parametroBusca = request.getParameter("parametroBusca");
+            if ("nome".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                administradores = administradorDAO.findAllByAttribute("cNmAdministrador", parametroBusca);
+            }
+            else if ("email".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                administradores = administradorDAO.findAllByAttribute("cEmail", parametroBusca);
+            }
+            else {
+                administradores = administradorDAO.findAll();
+            }
 
             request.setAttribute("listaAdministradores", administradores);
 
