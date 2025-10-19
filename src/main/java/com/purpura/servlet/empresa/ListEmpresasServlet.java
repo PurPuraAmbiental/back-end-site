@@ -29,7 +29,11 @@ public class ListEmpresasServlet extends HttpServlet {
             String parametroBusca = request.getParameter("parametroBusca");
             if ("nome".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
                 empresas = empresaDAO.findAllByAttribute("cNmEmpresa", parametroBusca);
-            } else {
+            }
+            else if ("cnpj".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
+                empresas = empresaDAO.findAllByAttribute("cCnpj", parametroBusca);
+            }
+            else {
                 empresas = empresaDAO.findAll();
             }
 
