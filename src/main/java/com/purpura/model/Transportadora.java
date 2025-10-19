@@ -34,8 +34,8 @@ public class Transportadora implements Model{
             this.cCnpj = params.get("cCnpj");
         }
         this.cNmTransportadora = params.get("cNmTransportadora");
-        this.cEmail = params.get("cEmail");
         this.cRegiaoAtendida = params.get("cRegiaoAtendida");
+        this.cEmail = params.get("cEmail");
     }
 
     /**Metodo getCCnpj
@@ -55,8 +55,8 @@ public class Transportadora implements Model{
     public String getCEmail(){return cEmail;}
 
     /**Metodo setCNmTransporte
-     * @param cNmTransporte*/
-    public void setCNmTransporte(String cNmTransporte) {this.cNmTransportadora = cNmTransporte;}
+     * @param cNmTransportadora*/
+    public void setCNmTransporte(String cNmTransportadora) {this.cNmTransportadora = cNmTransportadora;}
 
     /**Metodo setDRetirada
      * @param cRegiaoAtendida*/
