@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteTelefoneServlet", value = "/telefone/delete")
 public class DeleteTelefoneServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String idStr = request.getParameter("nCdTelefone");
