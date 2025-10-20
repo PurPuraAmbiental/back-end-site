@@ -21,7 +21,7 @@ public class DeleteEnderecoEmpresaServlet extends HttpServlet {
             int id = Integer.parseInt(idStr);
             DAO<?> dao = new EnderecoEmpresaDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
+            response.sendRedirect(request.getContextPath() + "/CRUD/endereco.jsp");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar EnderecoEmpresa: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

@@ -21,7 +21,7 @@ public class DeleteResiduoServlet extends HttpServlet {
             int id = Integer.parseInt(idStr);
             DAO<?> dao = new ResiduoDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/residuo/list");
+            response.sendRedirect(request.getContextPath() + "/CRUD/residuos.jsp");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar Residuo: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

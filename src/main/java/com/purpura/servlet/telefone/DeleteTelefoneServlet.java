@@ -21,7 +21,7 @@ public class DeleteTelefoneServlet extends HttpServlet {
             int id = Integer.parseInt(idStr);
             DAO<?> dao = new TelefoneDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/telefone/list");
+            response.sendRedirect(request.getContextPath() + "/CRUD/telefone.jsp");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar Telefone: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

@@ -21,7 +21,7 @@ public class DeleteTransportadoraServlet extends HttpServlet {
             int id = Integer.parseInt(idParam);
             DAO<?> dao = new TransportadoraDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/transporte/list");
+            response.sendRedirect(request.getContextPath() + "/CRUD/transportadora.jsp");
         } catch (NumberFormatException e) {
             request.setAttribute("erro", "Parâmetro inválido para nCdTransporte");
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
