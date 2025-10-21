@@ -90,10 +90,53 @@
             <td> Inativo </td> <%}%>
 
             <td class="actions">
-                <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
+                    <!-- POPUP DE UPDATE -->
+                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= empresa.getCCnpj() %>')">Modificar Empresa</button>
+
+                <div class="popup-overlay" id="popup-update-<%= empresa.getCCnpj() %>" style="display:none;">
+                    <div class="popup">
+                        <button class="close-btn" onclick="fecharPopupUpdate('<%= empresa.getCCnpj() %>')">×</button>
+                        <h2>Atualizar Empresa</h2>
+
+                        <form action="${pageContext.request.contextPath}/empresa/update" method="post">
+                            <label for="cNmEmpresa">Nome da empresa</label>
+                            <input type="text" name="cNmEmpresa" value="<%= empresa.getCNmEmpresa() %>">
+
+                            <label for="cEmail">Email</label>
+                            <input type="text" name="cEmail" value="<%= empresa.getCEmail() %>">
+
+                            <label for="cSenha">Senha</label>
+                            <input type="text" name="cSenha" value="<%= empresa.getCSenha() %>">
+
+                            <label for="cCnpj">CNPJ</label>
+                            <input type="text" name="cCnpj" value="<%= empresa.getCCnpj() %>" readonly>
+
+                            <label for="cAtivo">Ativo</label>
+                            <select name="cAtivo">
+                                <option value="1" <% if (empresa.getCAtivo() == '1') { %> selected <% } %>>Ativo</option>
+                                <option value="0" <% if (empresa.getCAtivo() == '0') { %> selected <% } %>>Não Ativo</option>
+                            </select>
+
+                            <button type="submit">Atualizar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <script>
+                    function mostrarPopupUpdate(cnpj) {
+                        document.getElementById('popup-update-' + cnpj).style.display = 'flex';
+                    }
+
+                    function fecharPopupUpdate(cnpj) {
+                        document.getElementById('popup-update-' + cnpj).style.display = 'none';
+                    }
+                </script>
+
+
+
                 <form action="${pageContext.request.contextPath}/empresa/delete" method="post">
                  <input type="hidden" name="ccnpj" value="<%=empresa.getCCnpj()%>" >
-                 <input type="submit" value="Delete">
+                 <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= empresa.getCCnpj() %>')">Deletar Empresa</button>
                 </form>
             </td>
         </tr>

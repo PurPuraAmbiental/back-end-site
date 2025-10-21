@@ -38,8 +38,7 @@ public class InsertResiduoServlet extends HttpServlet {
 
             List<ResiduoView> residuosView = dao.listarComEmpresa();
             request.setAttribute("listaResiduo", residuosView);
-            request.getRequestDispatcher("/CRUD/residuo.jsp").forward(request, response);
-            response.sendRedirect(request.getContextPath() + "/residuo/list");
+            request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao inserir Residuo: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

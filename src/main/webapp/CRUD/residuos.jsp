@@ -93,6 +93,7 @@
             <td><%= residuo.nVolumePadrao() %></td>
             <td><%= residuo.cCategoria() %></td>
             <td><%= residuo.cNmEmpresa() %></td>
+            <td><%= residuo.nCdResiduo()%></td>
 
             <td class="actions">
                 <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
