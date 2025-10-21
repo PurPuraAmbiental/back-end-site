@@ -25,7 +25,7 @@ public class InsertTransportadoraServlet extends HttpServlet {
             Transportadora model = new Transportadora(params);
             DAO<Transportadora> dao = new TransportadoraDAO();
             dao.save(model);
-            response.sendRedirect(request.getContextPath() + "/transporte/list");
+            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/transportadora.jsp");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao inserir Transporte: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

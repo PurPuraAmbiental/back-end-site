@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteResiduoServlet", value = "/residuo/delete")
 public class DeleteResiduoServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String idStr = request.getParameter("nCdResiduo");
@@ -21,7 +22,7 @@ public class DeleteResiduoServlet extends HttpServlet {
             int id = Integer.parseInt(idStr);
             DAO<?> dao = new ResiduoDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/residuo/list");
+            request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar Residuo: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

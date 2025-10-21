@@ -32,10 +32,10 @@ public class TelefoneDAO extends DAO<Telefone> {
     @Override
     protected Telefone mapResultSet(ResultSet rs) throws SQLException {
         return new Telefone(
-                rs.getInt("nCdTelefone"),
-                rs.getInt("nCdEmpresa"),
-                rs.getString("fone"),
-                rs.getString("Descricao")
+                rs.getString("nCdTelefone"),
+                rs.getInt("ccnpj"),
+                rs.getString("cNrTelefone"),
+                rs.getString("cDescricao")
         );
     }
 
@@ -43,7 +43,7 @@ public class TelefoneDAO extends DAO<Telefone> {
      * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
-        return "nCdTelefone, fone, nCdEmpresa, Descricao";
+        return "cNrTelefone, cCnpj, cDescricao";
     }
 
     /**Adicionando metodo para Inserir conteudo no banco de dados
@@ -51,11 +51,11 @@ public class TelefoneDAO extends DAO<Telefone> {
      * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, Telefone entidade) throws SQLException {
-        stmt.setInt(1, entidade.getnCdEmpresa());
-        stmt.setInt(2, entidade.getnCdTelefone());
-        stmt.setString(3, entidade.getCFone());
-        stmt.setString(4, entidade.getCDescricao());
+        stmt.setString(1, entidade.getcNrTelefone());
+        stmt.setString(2, entidade.getCcnpj());
+        stmt.setString(3, entidade.getCDescricao());
     }
+
 
     /**Adicionando metodo para Atualizar conteudo no banco de dados
      * @param stmt -> String com o comando sql
@@ -63,7 +63,7 @@ public class TelefoneDAO extends DAO<Telefone> {
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, Telefone entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
-        stmt.setInt(9, entidade.getnCdTelefone());
+        stmt.setInt(4, entidade.getnCdTelefone());
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna
@@ -90,7 +90,6 @@ public class TelefoneDAO extends DAO<Telefone> {
                 TelefoneView view = new TelefoneView(
                         rs.getInt("nCdTelefone"),
                         rs.getString("cNrTelefone"),
-                        rs.getString("cCnpj"),
                         rs.getString("cNmEmpresa")
                 );
                 listaView.add(view);

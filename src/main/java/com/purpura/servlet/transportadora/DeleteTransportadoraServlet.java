@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteTransportadoraServlet", value = "/transportadora/delete")
 public class DeleteTransportadoraServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String idParam = request.getParameter("nCdTransporte");
@@ -21,7 +22,7 @@ public class DeleteTransportadoraServlet extends HttpServlet {
             int id = Integer.parseInt(idParam);
             DAO<?> dao = new TransportadoraDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/transporte/list");
+            request.getRequestDispatcher("/CRUD/transportadora.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             request.setAttribute("erro", "Parâmetro inválido para nCdTransporte");
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

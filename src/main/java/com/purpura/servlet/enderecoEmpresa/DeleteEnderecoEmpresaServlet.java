@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteEnderecoEmpresaServlet", value = "/endereco-empresa/delete")
 public class DeleteEnderecoEmpresaServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String idStr = request.getParameter("nCdEnderecoEmpresa");
@@ -21,7 +22,7 @@ public class DeleteEnderecoEmpresaServlet extends HttpServlet {
             int id = Integer.parseInt(idStr);
             DAO<?> dao = new EnderecoEmpresaDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
+            request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar EnderecoEmpresa: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

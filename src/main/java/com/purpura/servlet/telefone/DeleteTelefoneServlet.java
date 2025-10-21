@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteTelefoneServlet", value = "/telefone/delete")
 public class DeleteTelefoneServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String idStr = request.getParameter("nCdTelefone");
@@ -21,7 +22,7 @@ public class DeleteTelefoneServlet extends HttpServlet {
             int id = Integer.parseInt(idStr);
             DAO<?> dao = new TelefoneDAO();
             dao.delete(id);
-            response.sendRedirect(request.getContextPath() + "/telefone/list");
+            request.getRequestDispatcher("/CRUD/telefone.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar Telefone: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

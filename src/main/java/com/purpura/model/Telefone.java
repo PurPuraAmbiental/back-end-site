@@ -2,7 +2,6 @@ package com.purpura.model;
 
 import java.text.ParseException;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 /**Classe modelo para a tabela Telefone
  *@author Bruna Oliveira*/
@@ -10,39 +9,50 @@ public class Telefone implements Model{
     /**Adicionando os atributos da tabela como atributos da classe
      * atributos dados com prefixo da tabela de banco de dados*/
     private int nCdTelefone;
-    private String cfone;
+    private String cNrTelefone;
     private String cdescricao;
-    private int nCdEmpresa;
+    private String ccnpj;
 
     /**Metodo Construtor
-     * @param nCdEmpresa - código identificador da empresa
+     * @param ccnpj - código identificador da empresa
      * @param nCdTelefone - código identificador do telefone
      * @param fone - número de telefone
      * @param descricao - descrição do telefone*/
-    public Telefone(int nCdEmpresa, int nCdTelefone, String fone, String descricao){
-        this.nCdEmpresa = nCdEmpresa;
+    public Telefone(String ccnpj, int nCdTelefone, String fone, String descricao){
+        this.ccnpj = ccnpj;
         this.nCdTelefone = nCdTelefone;
-        this.cfone = fone;
+        this.cNrTelefone = fone;
         this.cdescricao = descricao;
     }
 
     /**Construtor que inicializa objetos com parâmetros de um map
      * @param params -> um map de parâmetros para inicialização*/
-    public Telefone(Map<String, String> params) throws ParseException {
-        if(params.containsKey("nCdTelefone")) {
-            this.cfone = params.get("nCdTelefone");
+    public Telefone(Map<String, String> params) {
+        String telefone = params.get("cNrTelefone");
+        if (telefone != null && !telefone.trim().isEmpty()) {
+            this.cNrTelefone = telefone.trim();
+        } else {
+            this.cNrTelefone = null;
         }
-        this.cfone = params.get("fone");
-        this.cdescricao = params.get("descricao");
-        if(params.containsKey("nCdEmpresa")) {
-            this.nCdEmpresa = Integer.parseInt(params.get("nCdEmpresa"));
+        String descricao = params.get("cDescricao");
+        if (descricao != null && !descricao.trim().isEmpty()) {
+            this.cdescricao = descricao.trim();
+        } else {
+            this.cdescricao = null;
+        }
+        String cnpj = params.get("cCnpj");
+        if (cnpj != null && !cnpj.trim().isEmpty()) {
+            this.ccnpj = cnpj.trim();
+        } else {
+            this.ccnpj = null;
         }
     }
 
+
     /**Metodo getnCdEmpresa
      * @return código da empresa associada ao telefone*/
-    public int getnCdEmpresa() {
-        return nCdEmpresa;
+    public String getCcnpj() {
+        return ccnpj;
     }
 
     /**Metodo getnCdTelefone
@@ -57,16 +67,16 @@ public class Telefone implements Model{
         return cdescricao;
     }
 
-    /**Metodo getCFone
+    /**Metodo getcNrTelefone
      * @return número de telefone*/
-    public String getCFone() {
-        return cfone;
+    public String getcNrTelefone() {
+        return cNrTelefone;
     }
 
     /**Metodo setFone
      * @param fone - número do telefone*/
-    public void setFone(String fone) {
-        this.cfone = fone;
+    public void setcNrTelefone(String fone) {
+        this.cNrTelefone = fone;
     }
 
     /**Metodo setDescricao

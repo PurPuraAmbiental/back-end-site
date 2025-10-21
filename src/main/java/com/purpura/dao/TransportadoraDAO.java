@@ -24,12 +24,15 @@ public class TransportadoraDAO extends DAO<Transportadora>{
           rs.getString("cNmTransportadora"),
                 rs.getString("cEmail"),
                 rs.getString("cRegiaoAtendida")
+
+
+
         );
     }
     /**Adicionando Metodo para pegar o nome das colunas
      * @return String com os nomes dos atributos da model*/
     protected String getNomesColunas(){
-        return "cCnpj, cNmTransporte, dRetirada, nCdPedido";
+        return "cCnpj, cNmTransportadora, cRegiaoAtendida, cEmail";
     }
 
     /**Adicionando metodo para Inserir conteudo no banco de dados
