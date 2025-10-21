@@ -29,7 +29,7 @@ public class DeleteResiduoServlet extends HttpServlet {
             List<ResiduoView> residuo = dao.listarComEmpresa();
             request.setAttribute("listaResiduos",  residuo);
             request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
-        } catch (FileNotFoundException e) {
+        } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar Residuo: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);

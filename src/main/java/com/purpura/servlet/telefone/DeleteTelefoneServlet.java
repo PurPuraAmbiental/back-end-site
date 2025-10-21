@@ -2,6 +2,7 @@ package com.purpura.servlet.telefone;
 
 import com.purpura.dao.DAO;
 import com.purpura.dao.TelefoneDAO;
+import com.purpura.dto.TelefoneView;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import jakarta.servlet.RequestDispatcher;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "DeleteTelefoneServlet", value = "/telefone/delete")
 public class DeleteTelefoneServlet extends HttpServlet {
@@ -20,8 +22,10 @@ public class DeleteTelefoneServlet extends HttpServlet {
         String idStr = request.getParameter("nCdTelefone");
         try {
             int id = Integer.parseInt(idStr);
-            DAO<?> dao = new TelefoneDAO();
+            TelefoneDAO dao = new TelefoneDAO();
             dao.delete(id);
+            List<TelefoneView> telefone = dao.listarComEmpresa();
+            request.setAttribute("listaTelefones", telefone);
             request.getRequestDispatcher("/CRUD/telefone.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao deletar Telefone: " + e.getMessage());
