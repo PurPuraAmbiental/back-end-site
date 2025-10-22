@@ -71,7 +71,38 @@
             <td><%= administrador.getCSenha() %></td>
 
             <td class="actions">
-                <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
+                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= administrador.getCEmail() %>')">Modificar Empresa</button>
+
+                <div class="popup-overlay" id="popup-update-<%= administrador.getCEmail() %>" style="display:none;">
+                    <div class="popup">
+                        <button class="close-btn" onclick="fecharPopupUpdate('<%= administrador.getCEmail() %>')">×</button>
+                        <h2>Atualizar Empresa</h2>
+                        <form action="${pageContext.request.contextPath}/administrador/update" method="post">
+                        <label for="cNmAdministrador">Nome do Administrador</label>
+                        <input type="text" name="cNmAdministrador" id="cNmAdministrador" value="<%= administrador.getCNmAdministrador()%>">
+
+                        <label for="cEmail">Email</label>
+                        <input type="text" name="cEmail" id="cEmail" value="<%= administrador.getCEmail()%>">
+
+                        <label for="cSenha">Senha</label>
+                        <input type="text" name="cSenha" id="cSenha" <%= administrador.getCSenha()%>>
+
+                            <button type="submit">Atualizar</button>
+
+                        </form>
+                    </div>
+                </div>
+
+                <script>
+                    function mostrarPopupUpdate(cEmail) {
+                        document.getElementById('popup-update-' + cEmail).style.display = 'flex';
+                    }
+
+                    function fecharPopupUpdate(cEmail) {
+                        document.getElementById('popup-update-' + cEmail).style.display = 'none';
+                    }
+                </script>
+
                 <form action="${pageContext.request.contextPath}/administrador/delete" method="post">
                     <input type="hidden" name="cEmail" value="<%=administrador.getCEmail()%>">
                     <input type="submit" value="Delete">
