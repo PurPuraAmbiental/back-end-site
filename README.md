@@ -18,12 +18,3 @@ Este projeto de Back-End foi construído utilizando as seguintes tecnologias:
 * **Linguagens de Programação:** Java, JSP.
 * **Frameworks/Bibliotecas:** Jakarta EE.
 * **Banco de Dados:** PostgreSQL.
-
-## Como Executar o Projeto Localmente (W.I.P)
-Siga os passos abaixo para ter o Back-End do PurPura rodando em sua máquina:
-### Pré-requisitos
-Certifique-se de ter instalado:
-### 1. Clonar o Repositório
-```bash
-git clone [https://github.com/SeuUsuarioOuOrg/purpura-backend.git](https://github.com/SeuUsuarioOuOrg/purpura-backend.git)
-cd purpura-backend
