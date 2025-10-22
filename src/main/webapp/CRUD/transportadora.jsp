@@ -76,10 +76,10 @@
             <td><%= transportadora.getCRegiaoAtendida() %></td>
             <td><%= transportadora.getCEmail() %></td>
 
-            <td class="actions">
+            <td class="actions" >
                 <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
                 <form action="${pageContext.request.contextPath}/transportadora/delete" method="post">
-                    <input type="hidden" name="cEmail" value="<%=transportadora.getCCnpj()%>">
+                    <input type="hidden" name="nCdTransporte" value="<%=transportadora.getCCnpj()%>">
                     <input type="submit" value="Delete">
                 </form>
             </td>
