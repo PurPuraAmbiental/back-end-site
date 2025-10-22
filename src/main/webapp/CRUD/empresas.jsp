@@ -42,9 +42,6 @@
                         <option value="1">Ativo</option>
                         <option value="0">Não Ativo</option>
                     </select>
-                    <% if (erro != null) { %>
-                    <p style="color:red;"><%= erro %></p>
-                    <% } %>
                     <button type="submit">Adicionar</button>
                 </form>
             </div>
@@ -124,11 +121,11 @@
 
                 <script>
                     function mostrarPopupUpdate(ccnpj) {
-                        document.getElementById('popup-update-' + cnpj).style.display = 'flex';
+                        document.getElementById('popup-update-' + ccnpj).style.display = 'flex';
                     }
 
                     function fecharPopupUpdate(ccnpj) {
-                        document.getElementById('popup-update-' + cnpj).style.display = 'none';
+                        document.getElementById('popup-update-' + ccnpj).style.display = 'none';
                     }
                 </script>
 
