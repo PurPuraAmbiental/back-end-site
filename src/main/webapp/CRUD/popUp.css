@@ -1,7 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #6c3483;
 }
 
 .popup-overlay {
@@ -20,62 +21,113 @@ body {
 .popup {
     position: relative;
     background: #ffffff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    width: 400px;
+    padding: 40px 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border-top: 5px solid #9c27b0;
+    text-align: left;
 }
-
 
 .popup h2 {
-    margin-top: 0;
+    margin: 0 0 24px;
     font-size: 22px;
-    color: #333;
+    color: #b13cd4;
+    font-weight: 600;
+    text-align: left;
 }
 
+/* Labels */
 .popup label {
     display: block;
-    text-align: left;
-    margin: 10px 0 4px;
-    font-weight: bold;
-    color: #444;
-}
-
-.popup input,
-.popup select {
-    width: 100%;
-    padding: 8px 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #3c3c3c;
     font-size: 14px;
 }
 
+/* Inputs */
+.popup input,
+.popup select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border: 1px solid #d39fe9;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #3c3c3c;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+}
+
+.popup input::placeholder {
+    color: #d39fe9;
+    font-size: 13px;
+}
+
+.popup input:focus {
+    border-color: #a442c2;
+}
+
+/* Botões */
+.popup form button,
 .popup button[type="submit"] {
-    background-color: #9c27b0;
+    background: linear-gradient(90deg, #b13cd4 0%, #a442c2 100%);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
+    padding: 12px 20px;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background 0.3s ease;
 }
 
+.popup form button:hover,
 .popup button[type="submit"]:hover {
-    background-color: #9c27b0;
+    background: linear-gradient(90deg, #9a2bbb 0%, #9124b0 100%);
 }
 
-/* Botão X de fechar */
+/* Botão Cancelar */
+.popup .cancel-btn {
+    background: transparent;
+    border: 1px solid #d39fe9;
+    color: #b13cd4;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup .cancel-btn:hover {
+    background-color: #f7e9fc;
+}
+
+/* Erros */
+.popup p {
+    color: red;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 12px;
+}
+
+/* Botão de fechar */
 .close-btn {
     position: absolute;
-    top: 12px;
-    right: 15px;
+    top: 15px;
+    right: 20px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     color: #999;
     cursor: pointer;
