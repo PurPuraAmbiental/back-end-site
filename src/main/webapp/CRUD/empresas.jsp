@@ -123,11 +123,11 @@
                 </div>
 
                 <script>
-                    function mostrarPopupUpdate(cnpj) {
+                    function mostrarPopupUpdate(ccnpj) {
                         document.getElementById('popup-update-' + cnpj).style.display = 'flex';
                     }
 
-                    function fecharPopupUpdate(cnpj) {
+                    function fecharPopupUpdate(ccnpj) {
                         document.getElementById('popup-update-' + cnpj).style.display = 'none';
                     }
                 </script>
@@ -136,7 +136,8 @@
 
                 <form action="${pageContext.request.contextPath}/empresa/delete" method="post">
                  <input type="hidden" name="ccnpj" value="<%=empresa.getCCnpj()%>" >
-                 <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= empresa.getCCnpj() %>')">Deletar Empresa</button>
+              <%--   <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= empresa.getCCnpj() %>')">Deletar Empresa</button>--%>
+                 <input class="btn-pequeno" type="submit" value="Deletar">
                 </form>
             </td>
         </tr>
