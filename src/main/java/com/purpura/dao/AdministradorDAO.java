@@ -55,8 +55,9 @@ public class AdministradorDAO extends DAO<Administrador> {
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, Administrador entidade) throws SQLException {
         stmt.setString(1, entidade.getCNmAdministrador());
-        stmt.setString(2, entidade.getCEmail());
-        stmt.setString(3, entidade.getCSenha());
+        stmt.setString(2, entidade.getCSenha());
+        stmt.setString(3, entidade.getCEmail());
+        System.out.println("motivo do erro: nome: "+entidade.getCNmAdministrador()+" |senha: "+entidade.getCSenha()+" |email"+entidade.getCEmail());
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna

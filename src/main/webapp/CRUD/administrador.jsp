@@ -64,6 +64,9 @@
             List<Administrador> administradores = (List<Administrador>) request.getAttribute("listaAdministradores");
             if (administradores != null && !administradores.isEmpty()) {
                 for (Administrador administrador : administradores) {
+                    String nome = administrador.getCNmAdministrador();
+                    String email = administrador.getCEmail();
+                    String senha = administrador.getCSenha();
         %>
         <tr>
             <td><%= administrador.getCNmAdministrador() %></td>
@@ -78,16 +81,21 @@
                         <button class="close-btn" onclick="fecharPopupUpdate('<%= administrador.getCEmail() %>')">×</button>
                         <h2>Atualizar Empresa</h2>
                         <form action="${pageContext.request.contextPath}/administrador/update" method="post">
-                        <label for="cNmAdministrador">Nome do Administrador</label>
-                        <input type="text" name="cNmAdministrador" id="cNmAdministrador" value="<%= administrador.getCNmAdministrador()%>">
+                            <label for="cNmAdministrador">Nome do Administrador</label>
+                            <input type="text" name="cNmAdministrador" id="cNmAdministrador"
+                                   value="<%= nome %>">
 
-                        <label for="cEmail">Email</label>
-                        <input type="text" name="cEmail" id="cEmail" value="<%= administrador.getCEmail()%>">
+                            <label for="cEmail">Email</label>
+                            <input type="hidden" name="cEmail" value="<%= email %>">
 
-                        <label for="cSenha">Senha</label>
-                        <input type="text" name="cSenha" id="cSenha" <%= administrador.getCSenha()%>>
+
+                            <label for="cSenha">Senha</label>
+                            <input type="text" name="cSenha" id="cSenha"
+                                   value="<%= senha %>">
 
                             <button type="submit">Atualizar</button>
+                        </form>
+
 
                         </form>
                     </div>
