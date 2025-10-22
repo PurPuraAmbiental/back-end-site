@@ -77,7 +77,38 @@
             <td><%= transportadora.getCEmail() %></td>
 
             <td class="actions" >
-                <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
+                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= transportadora.getCCnpj()) %>')">Modificar Empresa</button>
+                <div class="popup-overlay" id="popup-update-<%= transportadora.getCCnpj() %>" style="display:none;">
+                    <div class="popup">
+                        <button class="close-btn" onclick="fecharPopupUpdate('<%= transportadora.getCCnpj() %>')">×</button>
+                        <h2>Atualizar Transportadora</h2>
+                        <form action="transportadora/update" method="post">
+                            <label for="cNmTransportadora">Nome da Transportadora</label>
+                            <input type="text" name="cNmTransportadora" id="cNmTransportadora" value="<%= transportadora.getCNmTransporte() %>">
+
+                            <label for="cCnpj">CNPJ</label>
+                            <input type="text" name="cCnpj" id="cCnpj" value="<%= transportadora.getCCnpj() %>">
+
+                            <label for="cEmail">Email</label>
+                            <input type="text" name="cEmail" id="cEmail" value="<%= transportadora.getCEmail() %>">
+
+                            <label for="cRegiaoAtendida">Região de atendimento</label>
+                            <input type="text" name="cRegiaoAtendida" id="cRegiaoAtendida" value="<%= transportadora.getCRegiaoAtendida() %>">
+
+                            <button type="submit">Atualizar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <script>
+                    function mostrarPopupUpdate(id) {
+                        document.getElementById('popup-update-' + id).style.display = 'flex';
+                    }
+
+                    function fecharPopupUpdate(id) {
+                        document.getElementById('popup-update-' + id).style.display = 'none';
+                    }
+                </script>
                 <form action="${pageContext.request.contextPath}/transportadora/delete" method="post">
                     <input type="hidden" name="nCdTransporte" value="<%=transportadora.getCCnpj()%>">
                     <input type="submit" value="Delete">
