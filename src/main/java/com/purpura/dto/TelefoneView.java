@@ -10,5 +10,6 @@ package com.purpura.dto;
 public record TelefoneView(
         int nCdTelefone,
         String cNrTelefone,
-        String cNmEmpresa
+        String cNmEmpresa,
+        String cDescricao
 ) {}

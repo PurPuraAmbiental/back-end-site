@@ -73,6 +73,19 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
     protected void prepareStatementForUpdate(PreparedStatement stmt, EnderecoEmpresa entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
         stmt.setInt(9, entidade.getNCdEnderecoEmpresa());
+        System.out.println(
+                "cBairro: " + entidade.getCBairro() + " | " +
+                        "cLogradouro: " + entidade.getCLogradouro() + " | " +
+                        "cEstado: " + entidade.getCEstado() + " | " +
+                        "cCidade: " + entidade.getCCidade() + " | " +
+                        "cComplemento: " + entidade.getCComplemento() + " | " +
+                        "cCep: " + entidade.getCCep() + " | " +
+                        "iNrEnderecoEmpresa: " + entidade.getINrEnderecoEmpresa() + " | " +
+                        "cCnpj: " + entidade.getCCnpj() + " | " +
+                        "nCdEnderecoEmpresa: " + entidade.getNCdEnderecoEmpresa()
+        );
+
+
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna

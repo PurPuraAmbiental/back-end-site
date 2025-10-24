@@ -49,15 +49,15 @@ public class Telefone implements Model{
     }
 
 
-    /**Metodo getnCdEmpresa
+    /**Metodo getNCdEmpresa
      * @return código da empresa associada ao telefone*/
-    public String getCcnpj() {
+    public String getCCnpj() {
         return ccnpj;
     }
 
-    /**Metodo getnCdTelefone
+    /**Metodo getNCdTelefone
      * @return código do telefone*/
-    public int getnCdTelefone() {
+    public int getNCdTelefone() {
         return nCdTelefone;
     }
 
@@ -67,9 +67,9 @@ public class Telefone implements Model{
         return cdescricao;
     }
 
-    /**Metodo getcNrTelefone
+    /**Metodo getCNrTelefone
      * @return número de telefone*/
-    public String getcNrTelefone() {
+    public String getCNrTelefone() {
         return cNrTelefone;
     }
 
@@ -81,14 +81,25 @@ public class Telefone implements Model{
 
     /**Metodo setDescricao
      * @param descricao - descrição do telefone*/
-    public void setDescricao(String descricao) {
+    public void setCDescricao(String descricao) {
         this.cdescricao = descricao;
     }
+
+    public void setNCdTelefone(int nCdTelefone) {
+        this.nCdTelefone = nCdTelefone;
+    }
+
+    public void setCNrTelefone(String cNrTelefone) {
+        this.cNrTelefone = cNrTelefone;
+    }
+
+
+
 
     /**Metodo toString
      * @return informações sobre o telefone e sua descrição*/
     public String toString(){
-        return "Telefone: "+this.getnCdTelefone()+"\nDescricao: "+this.cdescricao;
+        return "Telefone: "+this.getNCdTelefone()+"\nDescricao: "+this.cdescricao;
     }
 
     /**Metodo getID

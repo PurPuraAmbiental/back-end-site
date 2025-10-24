@@ -51,8 +51,8 @@ public class TelefoneDAO extends DAO<Telefone> {
      * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, Telefone entidade) throws SQLException {
-        stmt.setString(1, entidade.getcNrTelefone());
-        stmt.setString(2, entidade.getCcnpj());
+        stmt.setString(1, entidade.getCNrTelefone());
+        stmt.setString(2, entidade.getCCnpj());
         stmt.setString(3, entidade.getCDescricao());
     }
 
@@ -63,7 +63,14 @@ public class TelefoneDAO extends DAO<Telefone> {
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, Telefone entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
-        stmt.setInt(4, entidade.getnCdTelefone());
+        stmt.setInt(4, entidade.getNCdTelefone());
+        System.out.println(
+                "\nERRO: cNrTelefone: " + entidade.getCNrTelefone() + " | " +
+                        "cCnpj: " + entidade.getCCnpj() + " | " +
+                        "cDescricao: " + entidade.getCDescricao() + " | " +
+                        "nCdTelefone: " + entidade.getNCdTelefone()+"\n"
+        );
+
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna
@@ -77,7 +84,7 @@ public class TelefoneDAO extends DAO<Telefone> {
         List<TelefoneView> listaView = new ArrayList<>();
 
          String sql_join = "SELECT " +
-                "t.nCdTelefone, t.cNrTelefone, " +
+                "t.nCdTelefone, t.cNrTelefone, t.cDescricao," +
                 "t.cCnpj, e.cNmEmpresa " +
                 "FROM Telefone t " +
                 "INNER JOIN Empresa e ON t.cCnpj = e.cCnpj";
@@ -90,7 +97,8 @@ public class TelefoneDAO extends DAO<Telefone> {
                 TelefoneView view = new TelefoneView(
                         rs.getInt("nCdTelefone"),
                         rs.getString("cNrTelefone"),
-                        rs.getString("cNmEmpresa")
+                        rs.getString("cNmEmpresa"),
+                        rs.getString("cDescricao")
                 );
                 listaView.add(view);
             }

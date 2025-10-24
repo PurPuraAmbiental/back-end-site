@@ -78,6 +78,7 @@
             <th>CEP</th>
             <th>Nome da Empresa</th>
             <th>Ações</th>
+            <th>id ai</th>
         </tr>
         </thead>
         <tbody>
@@ -101,12 +102,59 @@
             <td><%= endereco.iNrEnderecoEmpresa() %></td>
             <td><%= endereco.cCep() %></td>
             <td><%= endereco.cNmEmpresa() %></td>
+            <td><%=endereco.nCdEnderecoEmpresa()%></td>
 
             <td class="actions">
-                <img src="c:\Users\irisrodrigues-ieg\Downloads\pen 1.png" alt="Editar">
-                <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post">
+                <button class="add-btn" onclick="mostrarPopupUpdate('<%= endereco.nCdEnderecoEmpresa() %>')">Modificar</button>
+
+                <div class="popup-overlay" id="popup-update-<%= endereco.nCdEnderecoEmpresa() %>" style="display:none;">
+                    <div class="popup">
+                        <button class="close-btn" onclick="fecharPopupUpdate('<%= endereco.nCdEnderecoEmpresa() %>')">×</button>
+                        <h2>Atualizar Empresa</h2>
+                        <form action="${pageContext.request.contextPath}/endereco-empresa/update" method="post">
+                            <label for="cBairro">Bairro</label>
+                            <input type="text" name="cBairro" id="cBairro" value="<%= endereco.cBairro() %>">
+
+                            <label for="cLogradouro">Logradouro</label>
+                            <input type="text" name="cLogradouro" id="cLogradouro" value="<%= endereco.cLogradouro() %>">
+
+                            <label for="cEstado">Estado</label>
+                            <input type="text" name="cEstado" id="cEstado" value="<%= endereco.cEstado() %>">
+
+                            <label for="cCidade">Cidade</label>
+                            <input type="text" name="cCidade" id="cCidade" value="<%= endereco.cCidade() %>">
+
+                            <label for="cCep">Cep</label>
+                            <input type="text" name="cCep" id="cCep" value="<%= endereco.cCep() %>">
+
+                            <label for="cComplemento">Complemento</label>
+                            <input type="text" name="cComplemento" id="cComplemento" value="<%= endereco.cComplemento() %>">
+
+                            <label for="iNrEnderecoEmpresa">Numero </label>
+                            <input type="text" name="iNrEnderecoEmpresa" id="iNrEnderecoEmpresa" value="<%= endereco.iNrEnderecoEmpresa() %>">
+
+                            <label for="cNmEmpresa">Empresa Responsavel </label>
+                            <input type="text" name="cNmEmpresa" id="cNmEmpresa" value="<%= endereco.cNmEmpresa() %>">
+
+                            <input type="hidden" name="nCdEnderecoEmpresa" value="<%=endereco.nCdEnderecoEmpresa()%>">
+
+                            <button type="submit">Atualizar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <script>
+                    function mostrarPopupUpdate(id) {
+                        document.getElementById('popup-update-' + id).style.display = 'flex';
+                    }
+
+                    function fecharPopupUpdate(id) {
+                        document.getElementById('popup-update-' + id).style.display = 'none';
+                    }
+                </script>
+                            <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post">
                     <input type="hidden" name="nCdEnderecoEmpresa" value="<%=endereco.nCdEnderecoEmpresa()%>" >
-                    <input type="submit" value="Delete">
+                    <input class="add-btn" type="submit" value="Delete">
                 </form>
             </td>
         </tr>

@@ -64,6 +64,7 @@ public class ResiduoDAO extends DAO<Residuo> {
         stmt.setString(5, entidade.getCCategoria());
         stmt.setString(6, entidade.getCDescricao());
         stmt.setString(7, entidade.getCCnpj());
+       // stmt.setInt(8, entidade.getNCdResiduo());
     }
 
     /**Adicionando metodo para Atualizar conteudo no banco de dados
@@ -73,6 +74,15 @@ public class ResiduoDAO extends DAO<Residuo> {
     protected void prepareStatementForUpdate(PreparedStatement stmt, Residuo entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
         stmt.setInt(8, entidade.getNCdResiduo());
+        System.out.println("Entidade:");
+        System.out.println("CNmResiduo: " + entidade.getCNmResiduo());
+        System.out.println("CTipoUnidade: " + entidade.getCTipoUnidade());
+        System.out.println("NPrecoPadrao: " + entidade.getNPrecoPadrao());
+        System.out.println("NVolumePadrao: " + entidade.getNVolumePadrao());
+        System.out.println("CCategoria: " + entidade.getCCategoria());
+        System.out.println("CDescricao: " + entidade.getCDescricao());
+        System.out.println("CCnpj: " + entidade.getCCnpj());
+
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna

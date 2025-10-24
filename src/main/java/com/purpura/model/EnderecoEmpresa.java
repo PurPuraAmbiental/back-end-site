@@ -107,9 +107,23 @@ public  class EnderecoEmpresa implements Model{
     }
     /**Metodo setClogradouro
      * @param clogradouro */
-    public void setClogradouro(String clogradouro) {
+    public void setCLogradouro(String clogradouro) {
         this.cLogradouro = clogradouro;
     }
+
+    public void setNCdEnderecoEmpresa(int nCdEnderecoEmpresa) {
+        this.nCdEnderecoEmpresa = nCdEnderecoEmpresa;
+    }
+
+    public void setINrEnderecoEmpresa(int iNrEnderecoEmpresa) {
+        this.iNrEnderecoEmpresa = iNrEnderecoEmpresa;
+    }
+
+    public void setCCnpj(String cCnpj) {
+        this.cCnpj = cCnpj;
+    }
+
+
 
     /**Metodo toString
      * @return informações sobre os campos da tabela Endereco Empresa*/

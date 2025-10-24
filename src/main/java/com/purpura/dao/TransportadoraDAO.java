@@ -60,6 +60,6 @@ public class TransportadoraDAO extends DAO<Transportadora>{
      * @return chave primaria da coluna*/
     @Override
     protected String getColunaId(){
-        return "nCdTransporte";
+        return "cCnpj";
     }
 }

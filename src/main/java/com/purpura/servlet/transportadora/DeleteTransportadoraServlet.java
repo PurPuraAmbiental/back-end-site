@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "DeleteTransportadoraServlet", value = "/transportadora/delete")
 public class DeleteTransportadoraServlet extends HttpServlet {
@@ -20,8 +21,10 @@ public class DeleteTransportadoraServlet extends HttpServlet {
         String idParam = request.getParameter("nCdTransporte");
         try {
             int id = Integer.parseInt(idParam);
-            DAO<?> dao = new TransportadoraDAO();
+            TransportadoraDAO dao = new TransportadoraDAO();
             dao.delete(id);
+            List<?> transportadora = dao.findAll();
+            request.setAttribute("listaTransportadoras", transportadora);
             request.getRequestDispatcher("/CRUD/transportadora.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             request.setAttribute("erro", "Parâmetro inválido para nCdTransporte");
