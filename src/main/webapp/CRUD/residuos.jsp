@@ -102,7 +102,10 @@
                     <div class="popup">
                         <button class="close-btn" onclick="fecharPopupUpdate('<%= residuo.nCdResiduo() %>')">×</button>
                         <h2>Atualizar Empresa</h2>
-                        <form action="${pageContext.request.contextPath}/residuo/update">
+                        <form action="${pageContext.request.contextPath}/residuo/update" method="post">
+                            <label for="cNmResiduo">Tipo do residuo</label>
+                            <input type="text" name="cNmResiduo" id="cNmResiduo" value="<%= residuo.cNmResiduo()%>">
+
                             <label for="nPrecoPadrao">Preço</label>
                             <input type="text" name="nPrecoPadrao" id="nPrecoPadrao" value="<%= residuo.nPrecoPadrao() %>">
 
@@ -117,7 +120,16 @@
 
                             <label for="cDescricao">Descrição</label>
                             <input type="text" name="cDescricao" id="cDescricao" value="<%= residuo.cDescricao() %>">
-                        </form>
+
+                            <label for="cTipoUnidade">Unidade de medida</label>
+                            <select name="cTipoUnidade" id="cTipoUnidade">
+                                <option value="kg">Kilogrmas (kg)</option>
+                                <option value="t">Tonelada (t)</option>
+                                <option value="kg/m³">Quilograma por metro cubico (kg/m³)</option>
+                                <option value="g">gramas (g)</option>
+                            </select>
+
+                            <input type="hidden" name="nCdResiduo" value="<%= residuo.nCdResiduo()%>">
                         <button type="submit">Atualizar</button>
                         </form>
                     </div>
