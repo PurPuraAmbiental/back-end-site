@@ -22,9 +22,6 @@ import java.util.Map;
 public class UpdateAdministradorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-        String cEmail = request.getParameter("cEmail");
-        String cSenha = request.getParameter("cSenha");
-        String cnmadministrador = request.getParameter("cnmadministrador");
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));

@@ -64,9 +64,6 @@
             List<Administrador> administradores = (List<Administrador>) request.getAttribute("listaAdministradores");
             if (administradores != null && !administradores.isEmpty()) {
                 for (Administrador administrador : administradores) {
-                    String nome = administrador.getCNmAdministrador();
-                    String email = administrador.getCEmail();
-                    String senha = administrador.getCSenha();
         %>
         <tr>
             <td><%= administrador.getCNmAdministrador() %></td>
@@ -83,15 +80,15 @@
                         <form action="${pageContext.request.contextPath}/administrador/update" method="post">
                             <label for="cNmAdministrador">Nome do Administrador</label>
                             <input type="text" name="cNmAdministrador" id="cNmAdministrador"
-                                   value="<%= nome %>">
+                                   value="<%= administrador.getCNmAdministrador() %>">
 
                             <label for="cEmail">Email</label>
-                            <input type="hidden" name="cEmail" value="<%= email %>">
+                            <input type="hidden" name="cEmail" value="<%= administrador.getCEmail() %>">
 
 
                             <label for="cSenha">Senha</label>
                             <input type="text" name="cSenha" id="cSenha"
-                                   value="<%= senha %>">
+                                   value="<%= administrador.getCSenha() %>">
 
                             <button type="submit">Atualizar</button>
                         </form>
