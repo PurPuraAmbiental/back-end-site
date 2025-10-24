@@ -62,6 +62,8 @@ public class Transportadora implements Model{
      * @param cRegiaoAtendida*/
     public void setcRegiaoAtendida(String cRegiaoAtendida) {this.cRegiaoAtendida = cRegiaoAtendida;}
 
+    public void setcEmail(String cEmail) {this.cEmail = cEmail;}
+
     /**Metodo toString
      *@return informação dos campos da tabela*/
     @Override

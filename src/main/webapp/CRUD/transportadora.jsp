@@ -77,26 +77,32 @@
             <td><%= transportadora.getCEmail() %></td>
 
             <td class="actions" >
-                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= transportadora.getCCnpj()) %>')">Modificar Empresa</button>
+                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= transportadora.getCCnpj() %>')">Modificar Transportadora</button>
                 <div class="popup-overlay" id="popup-update-<%= transportadora.getCCnpj() %>" style="display:none;">
                     <div class="popup">
                         <button class="close-btn" onclick="fecharPopupUpdate('<%= transportadora.getCCnpj() %>')">×</button>
                         <h2>Atualizar Transportadora</h2>
-                        <form action="transportadora/update" method="post">
-                            <label for="cNmTransportadora">Nome da Transportadora</label>
-                            <input type="text" name="cNmTransportadora" id="cNmTransportadora" value="<%= transportadora.getCNmTransporte() %>">
+                        <form action="${pageContext.request.contextPath}/transportadora/update" method="post">
+                            <label for="cNmTransporte">Nome da Transportadora</label>
+                            <input type="text" name="cNmTransporte" id="cNmTransporte"
+                                   value="<%= transportadora.getCNmTransporte() %>">
 
                             <label for="cCnpj">CNPJ</label>
-                            <input type="text" name="cCnpj" id="cCnpj" value="<%= transportadora.getCCnpj() %>">
+                            <input type="text" id="cCnpj" value="<%= transportadora.getCCnpj() %>" readonly>
+                            <input type="hidden" name="cCnpj" value="<%= transportadora.getCCnpj() %>">
 
                             <label for="cEmail">Email</label>
-                            <input type="text" name="cEmail" id="cEmail" value="<%= transportadora.getCEmail() %>">
+                            <input type="text" name="cEmail" id="cEmail"
+                                   value="<%= transportadora.getCEmail() %>">
 
-                            <label for="cRegiaoAtendida">Região de atendimento</label>
-                            <input type="text" name="cRegiaoAtendida" id="cRegiaoAtendida" value="<%= transportadora.getCRegiaoAtendida() %>">
+                            <label for="cRegiaoAtendida">Região de Atendimento</label>
+                            <input type="text" name="cRegiaoAtendida" id="cRegiaoAtendida"
+                                   value="<%= transportadora.getCRegiaoAtendida() %>">
 
                             <button type="submit">Atualizar</button>
                         </form>
+
+
                     </div>
                 </div>
 
