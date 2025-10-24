@@ -57,7 +57,9 @@
         <tr>
             <th>Número de telefone</th>
             <th>Nome da Empresa</th>
+            <th>Descricao</th>
             <th>Ações</th>
+            <th>ID</th>>
         </tr>
         </thead>
         <tbody>
@@ -69,6 +71,8 @@
         <tr>
             <td><%= telefone.cNrTelefone() %></td>
             <td><%= telefone.cNmEmpresa() %></td>
+            <td><%= telefone.cDescricao()%></td>
+            <td><%=telefone.nCdTelefone()%></td>
 
             <td class="actions">
                 <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= telefone.nCdTelefone() %>')">Modificar Empresa</button>
@@ -80,14 +84,16 @@
 
                         <form action="${pageContext.request.contextPath}/telefone/update" method="post">
                             <label for="cNmEmpresa">Empresa</label>
-                            <input type="text" name="cNmEmpresa" id="cNmEmpresa" value="<%= telefone.cNmEmpresa()%>">
+                            <input type="text" name="cNmEmpresa" id="cNmEmpresa" value="<%= telefone.cNmEmpresa()%>" readonly>
 
                             <label for="cNrTelefone">Telefone</label>
                             <input type="text" name="cNrTelefone" id="cNrTelefone" value="<%= telefone.cNrTelefone()%>">
 
-                           <%-- <label for="cDescricao">Descricao</label>
-                            <input type="text" name="cDescricao" id="cDescricao" value="">
-                            //FALAR COM O KEVIN --%>
+                           <label for="cDescricao">Descricao</label>
+                            <input type="text" name="cDescricao" id="cDescricao" value="<%=telefone.cDescricao()%>">
+
+                            <input type="hidden" name="nCdTelefone" value="<%=telefone.nCdTelefone()%>">
+
 
                             <% if (erro != null) { %>
                             <p style="color:red;"><%= erro %></p>
@@ -102,7 +108,7 @@
                         document.getElementById('popup-update-' + id).style.display = 'flex';
                     }
 
-                    function fecharPopupUpdate(od) {
+                    function fecharPopupUpdate(id) {
                         document.getElementById('popup-update-' + id).style.display = 'none';
                     }
                 </script>
