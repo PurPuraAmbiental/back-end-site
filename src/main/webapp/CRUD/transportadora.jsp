@@ -11,55 +11,21 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
 
-    <title>transportadora-crud</title>
+    <title>Transportadoras - CRUD</title>
 </head>
 <body>
 <div class="main">
     <div class="header">
-        <h1>Lista de transportadoras</h1>
-        <button class="add-btn" onclick="mostrarPopup()">Adicionar Transportadora</button>
-        <div class="popup-overlay" id="popup">
-            <div class="popup">
-                <button class="close-btn" onclick="fecharPopup()">×</button>
-                <% String erro = (String) request.getAttribute("erro");%>
-                <h2>Cadastrar Empresa</h2>
-                <form action="${pageContext.request.contextPath}/transportadora/insert" method="post">
-                    <label for="cNmTransportadora">Nome da Transportadora</label>
-                    <input type="text" name="cNmTransportadora" id="cNmTransportadora">
-
-                    <label for="cCnpj">CNPJ</label>
-                    <input type="text" name="cCnpj" id="cCnpj">
-
-                    <label for="cEmail">Email</label>
-                    <input type="text" name="cEmail" id="cEmail">
-
-                    <label for="cRegiaoAtendida">Regiao de atendimento</label>
-                    <input type="text" name="cRegiaoAtendida" id="cRegiaoAtendida">
-
-                    <% if (erro != null) { %>
-                    <p style="color:red;"><%= erro %></p>
-                    <% } %>
-                    <button type="submit">Adicionar</button>
-                </form>
-            </div>
-        </div>
-
-        <script>
-            function mostrarPopup() {
-                document.getElementById('popup').style.display = 'flex';
-            }
-
-            function fecharPopup() {
-                document.getElementById('popup').style.display = 'none';
-            }
-        </script>    </div>
+        <h1>Lista de Transportadoras</h1>
+        <button class="add-btn" onclick="abrirPopupInsertTransportadora()">Adicionar Transportadora</button>
+    </div>
 
     <table>
         <thead>
         <tr>
-            <th>Nome da transportadora</th>
+            <th>Nome da Transportadora</th>
             <th>CNPJ</th>
-            <th>Região atendida</th>
+            <th>Região Atendida</th>
             <th>Email</th>
             <th>Ações</th>
         </tr>
@@ -68,74 +34,59 @@
         <%
             List<Transportadora> transportadoras = (List<Transportadora>) request.getAttribute("listaTransportadoras");
             if (transportadoras != null && !transportadoras.isEmpty()) {
-                for (Transportadora transportadora : transportadoras) {
+                for (Transportadora t : transportadoras) {
         %>
         <tr>
-            <td><%= transportadora.getCNmTransporte() %></td>
-            <td><%= transportadora.getCCnpj() %></td>
-            <td><%= transportadora.getCRegiaoAtendida() %></td>
-            <td><%= transportadora.getCEmail() %></td>
+            <td><%= t.getCNmTransporte() %></td>
+            <td><%= t.getCCnpj() %></td>
+            <td><%= t.getCRegiaoAtendida() %></td>
+            <td><%= t.getCEmail() %></td>
+            <td class="actions">
 
-            <td class="actions" >
-                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= transportadora.getCCnpj() %>')">Modificar Transportadora</button>
-                <div class="popup-overlay" id="popup-update-<%= transportadora.getCCnpj() %>" style="display:none;">
-                    <div class="popup">
-                        <button class="close-btn" onclick="fecharPopupUpdate('<%= transportadora.getCCnpj() %>')">×</button>
-                        <h2>Atualizar Transportadora</h2>
-                        <form action="${pageContext.request.contextPath}/transportadora/update" method="post">
-                            <label for="cNmTransporte">Nome da Transportadora</label>
-                            <input type="text" name="cNmTransporte" id="cNmTransporte"
-                                   value="<%= transportadora.getCNmTransporte() %>">
+                <!-- BOTÃO EDITAR -->
+                <button class="add-btn"
+                        onclick="UpdateTransportadora('<%= t.getCCnpj() %>',
+                                '<%= t.getCNmTransporte() %>',
+                                '<%= t.getCEmail() %>',
+                                '<%= t.getCRegiaoAtendida() %>')">
+                    Editar
+                </button>
 
-                            <label for="cCnpj">CNPJ</label>
-                            <input type="text" id="cCnpj" value="<%= transportadora.getCCnpj() %>" readonly>
-                            <input type="hidden" name="cCnpj" value="<%= transportadora.getCCnpj() %>">
-
-                            <label for="cEmail">Email</label>
-                            <input type="text" name="cEmail" id="cEmail"
-                                   value="<%= transportadora.getCEmail() %>">
-
-                            <label for="cRegiaoAtendida">Região de Atendimento</label>
-                            <input type="text" name="cRegiaoAtendida" id="cRegiaoAtendida"
-                                   value="<%= transportadora.getCRegiaoAtendida() %>">
-
-                            <button type="submit">Atualizar</button>
-                        </form>
-
-
-                    </div>
-                </div>
-
-                <script>
-                    function mostrarPopupUpdate(id) {
-                        document.getElementById('popup-update-' + id).style.display = 'flex';
-                    }
-
-                    function fecharPopupUpdate(id) {
-                        document.getElementById('popup-update-' + id).style.display = 'none';
-                    }
-                </script>
-                <form action="${pageContext.request.contextPath}/transportadora/delete" method="post">
-                    <input type="hidden" name="nCdTransporte" value="<%=transportadora.getCCnpj()%>">
-                    <input type="submit" value="Delete">
+                <!-- BOTÃO EXCLUIR -->
+                <form action="${pageContext.request.contextPath}/transportadora/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="cCnpj" value="<%= t.getCCnpj() %>">
+                    <input type="submit" class="add-btn" value="Excluir">
                 </form>
             </td>
         </tr>
-
-        <%
-            }
-        } else {
-        %>
-        <tr>
-            <td colspan="6">Nenhuma transportadora encontrada.</td>
-        </tr>
-        <%
-            }
-        %>
+        <% } } else { %>
+        <tr><td colspan="5">Nenhuma transportadora encontrada.</td></tr>
+        <% } %>
         </tbody>
     </table>
 </div>
 
-<script src="script.js"></script>
+<!-- POPUPS -->
+<jsp:include page="/WEB-INF/popUp's/popUp-transportadora.jsp" />
+
+<script>
+    function abrirPopupInsertTransportadora() {
+        document.getElementById('popup-insert-transportadora').style.display = 'flex';
+    }
+
+    function fecharPopup(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    function UpdateTransportadora(cCnpj, cNmTransportadora, cEmail, cRegiaoAtendida) {
+        document.getElementById('upd-cCnpj').value = cCnpj;
+        document.getElementById('upd-cNmTransportadora').value = cNmTransportadora;
+        document.getElementById('upd-cEmail').value = cEmail;
+        document.getElementById('upd-cRegiaoAtendida').value = cRegiaoAtendida;
+
+        document.getElementById('popup-update-transportadora').style.display = 'flex';
+    }
+</script>
+
 </body>
 </html>
