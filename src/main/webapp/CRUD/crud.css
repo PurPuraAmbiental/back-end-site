@@ -248,13 +248,3 @@ tbody td.actions img:hover {
     }
 }
 
-.btn-pequeno {
-    padding: 4px 10px;
-    font-size: 12px;
-    border-radius: 6px;
-    background-color: #9c27b0;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin: 2px;
-}
