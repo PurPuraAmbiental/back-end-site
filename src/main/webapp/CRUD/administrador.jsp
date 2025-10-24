@@ -9,51 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
-    <title>administrador-crud</title>
+    <title>Administrador - CRUD</title>
 </head>
 <body>
 <div class="main">
     <div class="header">
         <h1>Lista de Administradores</h1>
-        <button class="add-btn" onclick="mostrarPopup()">Adicionar Residuo</button>
-        <div class="popup-overlay" id="popup">
-            <div class="popup">
-                <button class="close-btn" onclick="fecharPopup()">×</button>
-                <% String erro = (String) request.getAttribute("erro");%>
-                <h2>Cadastrar Empresa</h2>
-                <form action="${pageContext.request.contextPath}/administrador/insert" method="post">
-                    <label for="cNmAdministrador">Nome do Administrador</label>
-                    <input type="text" name="cNmAdministrador" id="cNmAdministrador">
-
-                    <label for="cEmail">Email</label>
-                    <input type="text" name="cEmail" id="cEmail">
-
-                    <label for="cSenha">Senha</label>
-                    <input type="text" name="cSenha" id="cSenha">
-
-                    <% if (erro != null) { %>
-                    <p style="color:red;"><%= erro %></p>
-                    <% } %>
-                    <button type="submit">Adicionar</button>
-                </form>
-            </div>
-        </div>
-
-        <script>
-            function mostrarPopup() {
-                document.getElementById('popup').style.display = 'flex';
-            }
-
-            function fecharPopup() {
-                document.getElementById('popup').style.display = 'none';
-            }
-        </script>
+        <button class="add-btn" onclick="abrirPopupInsertAdministrador()">Adicionar Administrador</button>
     </div>
 
     <table>
         <thead>
         <tr>
-            <th>Nome do administrador</th>
+            <th>Nome do Administrador</th>
             <th>Email</th>
             <th>Senha</th>
             <th>Ações</th>
@@ -69,59 +37,25 @@
             <td><%= administrador.getCNmAdministrador() %></td>
             <td><%= administrador.getCEmail() %></td>
             <td><%= administrador.getCSenha() %></td>
-
             <td class="actions">
-                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= administrador.getCEmail() %>')">Modificar Empresa</button>
+                <!-- Botão EDITAR -->
+                <button class="add-btn"
+                        onclick="UpdateAdministrador('<%= administrador.getCNmAdministrador() %>', '<%= administrador.getCEmail() %>', '<%= administrador.getCSenha() %>')">
+                    Editar
+                </button>
 
-                <div class="popup-overlay" id="popup-update-<%= administrador.getCEmail() %>" style="display:none;">
-                    <div class="popup">
-                        <button class="close-btn" onclick="fecharPopupUpdate('<%= administrador.getCEmail() %>')">×</button>
-                        <h2>Atualizar Empresa</h2>
-                        <form action="${pageContext.request.contextPath}/administrador/update" method="post">
-                            <label for="cNmAdministrador">Nome do Administrador</label>
-                            <input type="text" name="cNmAdministrador" id="cNmAdministrador"
-                                   value="<%= administrador.getCNmAdministrador() %>">
-
-                            <label for="cEmail">Email</label>
-                            <input type="hidden" name="cEmail" value="<%= administrador.getCEmail() %>">
-
-
-                            <label for="cSenha">Senha</label>
-                            <input type="text" name="cSenha" id="cSenha"
-                                   value="<%= administrador.getCSenha() %>">
-
-                            <button type="submit">Atualizar</button>
-                        </form>
-
-
-                        </form>
-                    </div>
-                </div>
-
-                <script>
-                    function mostrarPopupUpdate(cEmail) {
-                        document.getElementById('popup-update-' + cEmail).style.display = 'flex';
-                    }
-
-                    function fecharPopupUpdate(cEmail) {
-                        document.getElementById('popup-update-' + cEmail).style.display = 'none';
-                    }
-                </script>
-
-                <form action="${pageContext.request.contextPath}/administrador/delete" method="post">
-                    <input type="hidden" name="cEmail" value="<%=administrador.getCEmail()%>">
-                    <input type="submit" value="Delete">
+                <!-- Botão EXCLUIR -->
+                <form action="${pageContext.request.contextPath}/administrador/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="cEmail" value="<%= administrador.getCEmail() %>">
+                    <input type="submit" class="add-btn" value="Excluir">
                 </form>
             </td>
         </tr>
-
         <%
             }
         } else {
         %>
-        <tr>
-            <td colspan="6">Nenhum administrador encontrado.</td>
-        </tr>
+        <tr><td colspan="4">Nenhum administrador encontrado.</td></tr>
         <%
             }
         %>
@@ -129,6 +63,26 @@
     </table>
 </div>
 
-<script src="script.js"></script>
+<jsp:include page="/WEB-INF/popUp's/popUp-administracao.jsp" />
+
+<script>
+    // ABRIR POPUP DE INSERÇÃO
+    function abrirPopupInsertAdministrador() {
+        document.getElementById('popup-insert-administrador').style.display = 'flex';
+    }
+
+    // FECHAR POPUP (GENÉRICO)
+    function fecharPopup(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    // ABRIR POPUP DE UPDATE E PREENCHER OS CAMPOS
+    function UpdateAdministrador(cNmAministrador, cEmail, cSenha) {
+        document.getElementById('upd-cNmAdministrador').value = cNmAministrador;
+        document.getElementById('upd-cEmail').value = cEmail;
+        document.getElementById('upd-cSenha').value = cSenha;
+        document.getElementById('popup-update-administrador').style.display = 'flex';
+    }
+</script>
 </body>
 </html>
