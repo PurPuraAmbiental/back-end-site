@@ -1,69 +1,20 @@
 <%@ page import="com.purpura.dto.EnderecoEmpresaView" %>
 <%@ page import="java.util.List" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css?v=2">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css?v=2">
-
-    <title>endereço-crud</title>
+    <title>Endereços</title>
 </head>
 <body>
 <div class="main">
     <div class="header">
-        <h1>Lista de Empresas</h1>
-        <button class="add-btn" onclick="mostrarPopup()">Cadastrar Endereco</button>
-        <div class="popup-overlay" id="popup">
-            <div class="popup">
-                <button class="close-btn" onclick="fecharPopup()">×</button>
-                <% String erro = (String) request.getAttribute("erro");%>
-                <h2>Cadastrar Endereço</h2>
-                <form action="${pageContext.request.contextPath}/endereco-empresa/insert" method="post">
-                    <label for="cBairro">Bairro</label>
-                    <input type="text" name="cBairro" id="cBairro">
-
-                    <label for="cLogradouro">Logradouro</label>
-                    <input type="text" name="cLogradouro" id="cLogradouro">
-
-                    <label for="cEstado">Estado</label>
-                    <input type="text" name="cEstado" id="cEstado">
-
-                    <label for="cCidade">Cidade</label>
-                    <input type="text" name="cCidade" id="cCidade">
-
-                    <label for="cCep">Cep</label>
-                    <input type="text" name="cCep" id="cCep">
-
-                    <label for="cComplemento">Complemento</label>
-                    <input type="text" name="cComplemento" id="cComplemento">
-
-                    <label for="iNrEnderecoEmpresa">Numero </label>
-                    <input type="text" name="iNrEnderecoEmpresa" id="iNrEnderecoEmpresa">
-
-                    <label for="cNmEmpresa">Empresa Responsavel </label>
-                    <input type="text" name="cNmEmpresa" id="cNmEmpresa">
-
-                    <% if (erro != null) { %>
-                    <p style="color:red;"><%= erro %></p>
-                    <% } %>
-                    <button type="submit">Adicionar</button>
-                </form>
-            </div>
-        </div>
-
-        <script>
-            function mostrarPopup() {
-                document.getElementById('popup').style.display = 'flex';
-            }
-
-            function fecharPopup() {
-                document.getElementById('popup').style.display = 'none';
-            }
-        </script>
+        <h1>Lista de Endereços</h1>
+        <button class="add-btn" onclick="abrirPopupInsert()">Cadastrar Endereço</button>
     </div>
 
     <table>
@@ -76,104 +27,68 @@
             <th>Complemento</th>
             <th>Número</th>
             <th>CEP</th>
-            <th>Nome da Empresa</th>
+            <th>Empresa</th>
             <th>Ações</th>
-            <th>id ai</th>
         </tr>
         </thead>
         <tbody>
         <%
-            List<EnderecoEmpresaView> enderecos = (List<EnderecoEmpresaView>) request.getAttribute("listaEnderecos");
-            if (enderecos != null && !enderecos.isEmpty()) {
-                for (EnderecoEmpresaView endereco : enderecos) {
+            List<EnderecoEmpresaView> lista = (List<EnderecoEmpresaView>) request.getAttribute("listaEnderecos");
+            if (lista != null && !lista.isEmpty()) {
+                for (EnderecoEmpresaView e : lista) {
         %>
         <tr>
-            <td><%= endereco.cEstado() %></td>
-            <td><%= endereco.cCidade() %></td>
-            <td><%= endereco.cBairro() %></td>
-            <td><%= endereco.cLogradouro() %></td>
+            <td><%= e.cEstado() %></td>
+            <td><%= e.cCidade() %></td>
+            <td><%= e.cBairro() %></td>
+            <td><%= e.cLogradouro() %></td>
+            <td><%= e.cComplemento() != null ? e.cComplemento() : "" %></td>
+            <td><%= e.iNrEnderecoEmpresa() %></td>
+            <td><%= e.cCep() %></td>
+            <td><%= e.cNmEmpresa() %></td>
+            <td>
+                <button class="add-btn"
+                        onclick="abrirPopupUpdate('<%= e.nCdEnderecoEmpresa() %>', '<%= e.cBairro() %>', '<%= e.cLogradouro() %>',
+                                '<%= e.cEstado() %>', '<%= e.cCidade() %>', '<%= e.cCep() %>',
+                                '<%= e.cComplemento() != null ? e.cComplemento() : "" %>',
+                                '<%= e.iNrEnderecoEmpresa() %>', '<%= e.cNmEmpresa() %>')">
+                    Editar
+                </button>
 
-            <%if (endereco.cComplemento() != null) {%>
-            <td><%= endereco.cComplemento() %></td>
-            <%}else {%>
-            <td> </td>
-            <%}%>
-
-            <td><%= endereco.iNrEnderecoEmpresa() %></td>
-            <td><%= endereco.cCep() %></td>
-            <td><%= endereco.cNmEmpresa() %></td>
-            <td><%=endereco.nCdEnderecoEmpresa()%></td>
-
-            <td class="actions">
-                <button class="add-btn" onclick="mostrarPopupUpdate('<%= endereco.nCdEnderecoEmpresa() %>')">Modificar</button>
-
-                <div class="popup-overlay" id="popup-update-<%= endereco.nCdEnderecoEmpresa() %>" style="display:none;">
-                    <div class="popup">
-                        <button class="close-btn" onclick="fecharPopupUpdate('<%= endereco.nCdEnderecoEmpresa() %>')">×</button>
-                        <h2>Atualizar Empresa</h2>
-                        <form action="${pageContext.request.contextPath}/endereco-empresa/update" method="post">
-                            <label for="cBairro">Bairro</label>
-                            <input type="text" name="cBairro" id="cBairro" value="<%= endereco.cBairro() %>">
-
-                            <label for="cLogradouro">Logradouro</label>
-                            <input type="text" name="cLogradouro" id="cLogradouro" value="<%= endereco.cLogradouro() %>">
-
-                            <label for="cEstado">Estado</label>
-                            <input type="text" name="cEstado" id="cEstado" value="<%= endereco.cEstado() %>">
-
-                            <label for="cCidade">Cidade</label>
-                            <input type="text" name="cCidade" id="cCidade" value="<%= endereco.cCidade() %>">
-
-                            <label for="cCep">Cep</label>
-                            <input type="text" name="cCep" id="cCep" value="<%= endereco.cCep() %>">
-
-                            <label for="cComplemento">Complemento</label>
-                            <input type="text" name="cComplemento" id="cComplemento" value="<%= endereco.cComplemento() %>">
-
-                            <label for="iNrEnderecoEmpresa">Numero </label>
-                            <input type="text" name="iNrEnderecoEmpresa" id="iNrEnderecoEmpresa" value="<%= endereco.iNrEnderecoEmpresa() %>">
-
-                            <label for="cNmEmpresa">Empresa Responsavel </label>
-                            <input type="text" name="cNmEmpresa" id="cNmEmpresa" value="<%= endereco.cNmEmpresa() %>">
-
-                            <input type="hidden" name="nCdEnderecoEmpresa" value="<%=endereco.nCdEnderecoEmpresa()%>">
-
-                            <button type="submit">Atualizar</button>
-                        </form>
-                    </div>
-                </div>
-
-                <script>
-                    function mostrarPopupUpdate(id) {
-                        document.getElementById('popup-update-' + id).style.display = 'flex';
-                    }
-
-                    function fecharPopupUpdate(id) {
-                        document.getElementById('popup-update-' + id).style.display = 'none';
-                    }
-                </script>
-                            <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post">
-                    <input type="hidden" name="nCdEnderecoEmpresa" value="<%=endereco.nCdEnderecoEmpresa()%>" >
-                    <input class="add-btn" type="submit" value="Delete">
+                <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="nCdEnderecoEmpresa" value="<%= e.nCdEnderecoEmpresa() %>">
+                    <input class="add-btn" type="submit" value="Excluir">
                 </form>
             </td>
         </tr>
-
-        <%
-            }
-        } else {
-        %>
-        <tr>
-            <td colspan="6">Nenhum endereço encontrado.</td>
-        </tr>
-        <%
-            }
-        %>
+        <%  } } else { %>
+        <tr><td colspan="9">Nenhum endereço encontrado.</td></tr>
+        <% } %>
         </tbody>
     </table>
 </div>
 
-<script src="script.js"></script>
+<jsp:include page="/WEB-INF/popUp's/popUp-endereco.jsp" />
 
+<script>
+    function abrirPopupInsert() {
+        document.getElementById('popup-insert').style.display = 'flex';
+    }
+    function fecharPopup(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+    function abrirPopupUpdate(id, bairro, logradouro, estado, cidade, cep, complemento, numero, empresa) {
+        document.getElementById('upd-id').value = id;
+        document.getElementById('upd-bairro').value = bairro;
+        document.getElementById('upd-logradouro').value = logradouro;
+        document.getElementById('upd-estado').value = estado;
+        document.getElementById('upd-cidade').value = cidade;
+        document.getElementById('upd-cep').value = cep;
+        document.getElementById('upd-complemento').value = complemento;
+        document.getElementById('upd-numero').value = numero;
+        document.getElementById('upd-empresa').value = empresa;
+        document.getElementById('popup-update').style.display = 'flex';
+    }
+</script>
 </body>
 </html>
