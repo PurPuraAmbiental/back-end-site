@@ -78,6 +78,7 @@
             <th>CEP</th>
             <th>Nome da Empresa</th>
             <th>Ações</th>
+            <th>id ai</th>
         </tr>
         </thead>
         <tbody>
@@ -101,15 +102,16 @@
             <td><%= endereco.iNrEnderecoEmpresa() %></td>
             <td><%= endereco.cCep() %></td>
             <td><%= endereco.cNmEmpresa() %></td>
+            <td><%=endereco.nCdEnderecoEmpresa()%></td>
 
             <td class="actions">
-                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= endereco.nCdEnderecoEmpresa() %>')">Modificar Empresa</button>
+                <button class="add-btn" onclick="mostrarPopupUpdate('<%= endereco.nCdEnderecoEmpresa() %>')">Modificar</button>
 
                 <div class="popup-overlay" id="popup-update-<%= endereco.nCdEnderecoEmpresa() %>" style="display:none;">
                     <div class="popup">
                         <button class="close-btn" onclick="fecharPopupUpdate('<%= endereco.nCdEnderecoEmpresa() %>')">×</button>
                         <h2>Atualizar Empresa</h2>
-                        <form action="endereco-empresa/update" method="post">
+                        <form action="${pageContext.request.contextPath}/endereco-empresa/update" method="post">
                             <label for="cBairro">Bairro</label>
                             <input type="text" name="cBairro" id="cBairro" value="<%= endereco.cBairro() %>">
 
@@ -133,6 +135,10 @@
 
                             <label for="cNmEmpresa">Empresa Responsavel </label>
                             <input type="text" name="cNmEmpresa" id="cNmEmpresa" value="<%= endereco.cNmEmpresa() %>">
+
+                            <input type="hidden" name="nCdEnderecoEmpresa" value="<%=endereco.nCdEnderecoEmpresa()%>">
+
+                            <button type="submit">Atualizar</button>
                         </form>
                     </div>
                 </div>
@@ -148,7 +154,7 @@
                 </script>
                             <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post">
                     <input type="hidden" name="nCdEnderecoEmpresa" value="<%=endereco.nCdEnderecoEmpresa()%>" >
-                    <input type="submit" value="Delete">
+                    <input class="add-btn" type="submit" value="Delete">
                 </form>
             </td>
         </tr>

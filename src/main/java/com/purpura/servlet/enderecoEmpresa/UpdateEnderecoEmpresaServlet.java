@@ -1,9 +1,11 @@
 package com.purpura.servlet.enderecoEmpresa;
 
 import com.purpura.dao.DAO;
+import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
+import com.purpura.model.Empresa;
 import com.purpura.model.EnderecoEmpresa;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,11 +24,29 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
+
+            String nomeEmpresa = params.get("cNmEmpresa");
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
+            params.put("cCnpj", empresa.getCCnpj());
+            System.out.println(params.get("cNmEmpresa")+" | "+params.get("cCnpj"));
+
             EnderecoEmpresa model = new EnderecoEmpresa(params);
+
+            model.setCBairro(params.get("cBairro"));
+            model.setCLogradouro(params.get("cLogradouro"));
+            model.setCEstado(params.get("cEstado"));
+            model.setCCidade(params.get("cCidade"));
+            model.setCCep(params.get("cCep"));
+            model.setCComplemento(params.get("cComplemento"));
+            model.setINrEnderecoEmpresa(Integer.parseInt(params.get("iNrEnderecoEmpresa")));
+            model.setCCnpj(params.get("cCnpj"));
+            model.setNCdEnderecoEmpresa(Integer.parseInt(params.get("nCdEnderecoEmpresa")));
+
             DAO<EnderecoEmpresa> dao = new EnderecoEmpresaDAO();
             dao.update(model);
             response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
-        } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
+        } catch (ConnectionFailedException e) {
             request.setAttribute("erro", "Erro ao atualizar EnderecoEmpresa: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
