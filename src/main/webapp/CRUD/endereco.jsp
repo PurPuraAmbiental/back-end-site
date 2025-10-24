@@ -33,30 +33,30 @@
         </thead>
         <tbody>
         <%
-            List<EnderecoEmpresaView> lista = (List<EnderecoEmpresaView>) request.getAttribute("listaEnderecos");
-            if (lista != null && !lista.isEmpty()) {
-                for (EnderecoEmpresaView e : lista) {
+            List<EnderecoEmpresaView> listaEmpresa = (List<EnderecoEmpresaView>) request.getAttribute("listaEnderecos");
+            if (listaEmpresa != null && !listaEmpresa.isEmpty()) {
+                for (EnderecoEmpresaView empresa : listaEmpresa) {
         %>
         <tr>
-            <td><%= e.cEstado() %></td>
-            <td><%= e.cCidade() %></td>
-            <td><%= e.cBairro() %></td>
-            <td><%= e.cLogradouro() %></td>
-            <td><%= e.cComplemento() != null ? e.cComplemento() : "" %></td>
-            <td><%= e.iNrEnderecoEmpresa() %></td>
-            <td><%= e.cCep() %></td>
-            <td><%= e.cNmEmpresa() %></td>
+            <td><%= empresa.cEstado() %></td>
+            <td><%= empresa.cCidade() %></td>
+            <td><%= empresa.cBairro() %></td>
+            <td><%= empresa.cLogradouro() %></td>
+            <td><%= empresa.cComplemento() != null ? empresa.cComplemento() : "" %></td>
+            <td><%= empresa.iNrEnderecoEmpresa() %></td>
+            <td><%= empresa.cCep() %></td>
+            <td><%= empresa.cNmEmpresa() %></td>
             <td>
                 <button class="add-btn"
-                        onclick="abrirPopupUpdate('<%= e.nCdEnderecoEmpresa() %>', '<%= e.cBairro() %>', '<%= e.cLogradouro() %>',
-                                '<%= e.cEstado() %>', '<%= e.cCidade() %>', '<%= e.cCep() %>',
-                                '<%= e.cComplemento() != null ? e.cComplemento() : "" %>',
-                                '<%= e.iNrEnderecoEmpresa() %>', '<%= e.cNmEmpresa() %>')">
+                        onclick="UpdateEndereco('<%= empresa.nCdEnderecoEmpresa() %>', '<%= empresa.cBairro() %>', '<%= empresa.cLogradouro() %>',
+                                '<%= empresa.cEstado() %>', '<%= empresa.cCidade() %>', '<%= empresa.cCep() %>',
+                                '<%= empresa.cComplemento() != null ? empresa.cComplemento() : "" %>',
+                                '<%= empresa.iNrEnderecoEmpresa() %>', '<%= empresa.cNmEmpresa() %>')">
                     Editar
                 </button>
 
                 <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post" style="display:inline;">
-                    <input type="hidden" name="nCdEnderecoEmpresa" value="<%= e.nCdEnderecoEmpresa() %>">
+                    <input type="hidden" name="nCdEnderecoEmpresa" value="<%= empresa.nCdEnderecoEmpresa() %>">
                     <input class="add-btn" type="submit" value="Excluir">
                 </form>
             </td>
@@ -77,7 +77,7 @@
     function fecharPopup(id) {
         document.getElementById(id).style.display = 'none';
     }
-    function abrirPopupUpdate(id, bairro, logradouro, estado, cidade, cep, complemento, numero, empresa) {
+    function UpdateEndereco(id, bairro, logradouro, estado, cidade, cep, complemento, numero, empresa) {
         document.getElementById('upd-id').value = id;
         document.getElementById('upd-bairro').value = bairro;
         document.getElementById('upd-logradouro').value = logradouro;
