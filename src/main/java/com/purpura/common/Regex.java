@@ -2,9 +2,21 @@ package com.purpura.common;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-/**Metodos de regex para a validação de dados para a entrada do banco
- * @author Bruna Oliveira*/
+
+/**
+ * Classe utilitária para validação de dados usando expressões regulares.
+ * Fornece métodos estáticos para validação de CNPJ, telefone, email e senha.
+ *
+ * @author Bruna de Jesus
+ */
 public class Regex {
+
+    // Evita instanciação
+    private Regex() {
+        throw new UnsupportedOperationException("Classe utilitária - não deve ser instanciada.");
+    }
+
+    // ----- MÉTODOS DE VALIDAÇÃO -----
 
     public static boolean validarCnpj(String cnpj){
         String regex = Constants.CNPJ_REGEX;
@@ -33,5 +45,4 @@ public class Regex {
         Matcher matcher = pattern.matcher(senha);
         return matcher.find();
     }
-
 }
