@@ -90,6 +90,28 @@ public class EmpresaDAO extends DAO<Empresa> {
         return lista;
     }
 
+    public List<Empresa> buscarEmpresasSemResiduos(){
+        List<Empresa> lista = new ArrayList<>();
+        String sql =
+                "SELECT e.* " +
+                        "FROM empresa e " +
+                        "LEFT JOIN residuo r ON e.ccnpj = r.ccnpj " +
+                        "GROUP BY e.ccnpj " +
+                        "HAVING COUNT(r.ncdresiduo) = 0";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()){
+                lista.add(mapResultSet(rs));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            throw new ConnectionFailedException();
+        }
+        return lista;
+    }
+
     /**Adcionando Metodo para buscar a primary key da coluna
      * @return chave primaria da coluna*/
     @Override
