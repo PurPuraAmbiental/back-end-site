@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         boolean loginSucesso = false;
-        if (!Regex.validarEmail(email) || !Regex.validarSenha(senha)){
+        if (!Regex.validarEmail(email) || senha.length() < 6){
             request.setAttribute("erro", "E-mail ou senha com formato invalido");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
