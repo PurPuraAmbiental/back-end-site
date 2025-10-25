@@ -23,7 +23,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
             dao.delete(cEmail);
             List<?> administradores = dao.findAll();
             request.setAttribute("listaAdministradores", administradores);
-            request.getRequestDispatcher("/CRUD/admistrador.jsp").forward(request, response);
+            request.getRequestDispatcher("/CRUD/administrador.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao deletar Administrador: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");

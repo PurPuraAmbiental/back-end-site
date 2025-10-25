@@ -9,74 +9,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
-
-    <title>residuos-crud</title>
+    <title>Resíduos - CRUD</title>
 </head>
 <body>
 <div class="main">
     <div class="header">
         <h1>Lista de Resíduos</h1>
-        <button class="add-btn" onclick="mostrarPopup()">Adicionar Residuo</button>
-        <div class="popup-overlay" id="popup">
-            <div class="popup">
-                <button class="close-btn" onclick="fecharPopup()">×</button>
-                <% String erro = (String) request.getAttribute("erro");%>
-                <h2>Cadastrar Empresa</h2>
-                <form action="${pageContext.request.contextPath}/residuo/insert" method="post">
-                    <label for="cNmResiduo">Tipo do residuo</label>
-                    <input type="text" name="cNmResiduo" id="cNmResiduo">
-
-                    <label for="cTipoUnidade">Unidade de medida</label>
-                    <select name="cTipoUnidade" id="cTipoUnidade">
-                        <option value="kg">Kilogrmas (kg)</option>
-                        <option value="t">Tonelada (t)</option>
-                        <option value="kg/m³">Quilograma por metro cubico (kg/m³)</option>
-                        <option value="g">gramas (g)</option>
-                    </select>
-
-                    <label for="nPrecoPadrao">Preço</label>
-                    <input type="text" name="nPrecoPadrao" id="nPrecoPadrao">
-
-                    <label for="nVolumePadrao">Volume</label>
-                    <input type="text" name="nVolumePadrao" id="nVolumePadrao">
-
-                    <label for="cCategoria">Categoria</label>
-                    <input type="text" name="cCategoria" id="cCategoria">
-
-                    <label for="cNmEmpresa">Empresa</label>
-                    <input type="text" name="cNmEmpresa" id="cNmEmpresa">
-
-                    <label for="cDescricao">Descrição</label>
-                    <input type="text" name="cDescricao" id="cDescricao">
-
-                    <% if (erro != null) { %>
-                    <p style="color:red;"><%= erro %></p>
-                    <% } %>
-                    <button type="submit">Adicionar</button>
-                </form>
-            </div>
-        </div>
-
-        <script>
-            function mostrarPopup() {
-                document.getElementById('popup').style.display = 'flex';
-            }
-
-            function fecharPopup() {
-                document.getElementById('popup').style.display = 'none';
-            }
-        </script>
+        <button class="add-btn" onclick="abrirPopupInsertResiduo()">Adicionar Resíduo</button>
     </div>
-
+    <div class="table-container">
     <table>
         <thead>
         <tr>
             <th>Nome</th>
-            <th>Unidade de Medida</th>
+            <th>Unidade</th>
             <th>Preço</th>
             <th>Volume</th>
             <th>Categoria</th>
-            <th>Nome da Empresa</th>
+            <th>Empresa</th>
+            <th>Descrição</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -93,78 +44,62 @@
             <td><%= residuo.nVolumePadrao() %></td>
             <td><%= residuo.cCategoria() %></td>
             <td><%= residuo.cNmEmpresa() %></td>
-            <td><%= residuo.nCdResiduo()%></td>
+            <td><%= residuo.cDescricao() %></td>
 
             <td class="actions">
-                <button class="btn-pequeno" onclick="mostrarPopupUpdate('<%= residuo.nCdResiduo() %>')">Modificar Empresa</button>
+                <!-- BOTÃO EDITAR -->
+                <button class="add-btn"
+                        onclick="UpdateResiduo('<%= residuo.nCdResiduo() %>',
+                                '<%= residuo.cNmResiduo() %>',
+                                '<%= residuo.cTipoUnidade() %>',
+                                '<%= residuo.nPrecoPadrao() %>',
+                                '<%= residuo.nVolumePadrao() %>',
+                                '<%= residuo.cCategoria() %>',
+                                '<%= residuo.cNmEmpresa() %>',
+                                '<%= residuo.cDescricao() %>')">
+                    Editar
+                </button>
 
-                <div class="popup-overlay" id="popup-update-<%= residuo.nCdResiduo() %>" style="display:none;">
-                    <div class="popup">
-                        <button class="close-btn" onclick="fecharPopupUpdate('<%= residuo.nCdResiduo() %>')">×</button>
-                        <h2>Atualizar Empresa</h2>
-                        <form action="${pageContext.request.contextPath}/residuo/update" method="post">
-                            <label for="cNmResiduo">Tipo do residuo</label>
-                            <input type="text" name="cNmResiduo" id="cNmResiduo" value="<%= residuo.cNmResiduo()%>">
-
-                            <label for="nPrecoPadrao">Preço</label>
-                            <input type="text" name="nPrecoPadrao" id="nPrecoPadrao" value="<%= residuo.nPrecoPadrao() %>">
-
-                            <label for="nVolumePadrao">Volume</label>
-                            <input type="text" name="nVolumePadrao" id="nVolumePadrao" value="<%= residuo.nVolumePadrao() %>">
-
-                            <label for="cCategoria">Categoria</label>
-                            <input type="text" name="cCategoria" id="cCategoria" value="<%= residuo.cCategoria() %>">
-
-                            <label for="cNmEmpresa">Empresa</label>
-                            <input type="text" name="cNmEmpresa" id="cNmEmpresa" value="<%= residuo.cNmEmpresa() %>">
-
-                            <label for="cDescricao">Descrição</label>
-                            <input type="text" name="cDescricao" id="cDescricao" value="<%= residuo.cDescricao() %>">
-
-                            <label for="cTipoUnidade">Unidade de medida</label>
-                            <select name="cTipoUnidade" id="cTipoUnidade">
-                                <option value="kg">Kilogrmas (kg)</option>
-                                <option value="t">Tonelada (t)</option>
-                                <option value="kg/m³">Quilograma por metro cubico (kg/m³)</option>
-                                <option value="g">gramas (g)</option>
-                            </select>
-
-                            <input type="hidden" name="nCdResiduo" value="<%= residuo.nCdResiduo()%>">
-                        <button type="submit">Atualizar</button>
-                        </form>
-                    </div>
-                </div>
-
-                <script>
-                    function mostrarPopupUpdate(id) {
-                        document.getElementById('popup-update-' + id).style.display = 'flex';
-                    }
-
-                    function fecharPopupUpdate(id) {
-                        document.getElementById('popup-update-' + id).style.display = 'none';
-                    }
-                </script>
-                <form action="${pageContext.request.contextPath}/residuo/delete" method="post">
-                    <input type="hidden" name="nCdResiduo" value="<%=residuo.nCdResiduo()%>" >
-                    <input type="submit" value="Delete">
+                <!-- BOTÃO DELETAR -->
+                <form action="${pageContext.request.contextPath}/residuo/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="nCdResiduo" value="<%= residuo.nCdResiduo() %>">
+                    <input type="submit" class="add-btn" value="Excluir">
                 </form>
             </td>
         </tr>
-
-        <%
-            }
-        } else {
-        %>
-        <tr>
-            <td colspan="6">Nenhum resíduo encontrado.</td>
-        </tr>
-        <%
-            }
-        %>
+        <% } } else { %>
+        <tr><td colspan="8">Nenhum resíduo encontrado.</td></tr>
+        <% } %>
         </tbody>
     </table>
+    </div>
 </div>
 
-<script src="script.js"></script>
+<!-- POPUPS -->
+<jsp:include page="/WEB-INF/popUp's/popUp-residuo.jsp" />
+
+<script>
+    function abrirPopupInsertResiduo() {
+        document.getElementById('popup-insert-residuo').style.display = 'flex';
+    }
+
+    function fecharPopup(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    // FUNÇÃO DE UPDATE (mesmo nome dos atributos)
+    function UpdateResiduo(nCdResiduo, cNmResiduo, cTipoUnidade, nPrecoPadrao, nVolumePadrao, cCategoria, cNmEmpresa, cDescricao) {
+        document.getElementById('nCdResiduo').value = nCdResiduo;
+        document.getElementById('cNmResiduo').value = cNmResiduo;
+        document.getElementById('cTipoUnidade').value = cTipoUnidade;
+        document.getElementById('nPrecoPadrao').value = nPrecoPadrao;
+        document.getElementById('nVolumePadrao').value = nVolumePadrao;
+        document.getElementById('cCategoria').value = cCategoria;
+        document.getElementById('cNmEmpresa').value = cNmEmpresa;
+        document.getElementById('cDescricao').value = cDescricao;
+
+        document.getElementById('popup-update-residuo').style.display = 'flex';
+    }
+</script>
 </body>
 </html>
