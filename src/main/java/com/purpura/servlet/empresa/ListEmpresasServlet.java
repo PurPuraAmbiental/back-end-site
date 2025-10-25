@@ -1,6 +1,5 @@
 package com.purpura.servlet.empresa;
 
-import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
@@ -25,16 +24,29 @@ public class ListEmpresasServlet extends HttpServlet {
         List<Empresa> empresas = null;
 
         try {
-            DAO<Empresa> empresaDAO = new EmpresaDAO();
-            String parametroBusca = request.getParameter("parametroBusca");
-            if ("nome".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
-                empresas = empresaDAO.findAllByAttribute("cNmEmpresa", parametroBusca);
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+
+            if ("residuo".equals(filtro)) {
+                String possuiResiduo = request.getParameter("possuiResiduo");
+
+                if (possuiResiduo != null && !possuiResiduo.isBlank() && "0".equals(possuiResiduo)) {
+                    empresas = empresaDAO.buscarEmpresasSemResiduos();
+                }
+                else if (possuiResiduo != null && !possuiResiduo.isBlank() && "1".equals(possuiResiduo)) {
+                    empresas = empresaDAO.buscarEmpresasComResiduos();
+                }
+                else {
+                    empresas = empresaDAO.findAll();
+                }
             }
-            else if ("cnpj".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
-                empresas = empresaDAO.findAllByAttribute("cCnpj", parametroBusca);
-            }
-            else if ("atividade".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
-                empresas = empresaDAO.findAllByAttribute("cAtivo", parametroBusca);
+
+            else if ("atividade".equals(filtro)) {
+                String ativa = request.getParameter("ativa");
+                if (ativa != null && !ativa.isBlank()) {
+                    empresas = empresaDAO.findAllByAttribute("cAtivo", ativa);
+                } else {
+                    empresas = empresaDAO.findAll();
+                }
             }
             else {
                 empresas = empresaDAO.findAll();
