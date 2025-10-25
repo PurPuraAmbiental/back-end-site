@@ -18,7 +18,12 @@
         <h1>Lista de Empresas</h1>
         <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Adicionar Empresa</button>
     </div>
-
+    <br>
+    <% String erro = (String) request.getAttribute("erro");
+        if (erro != null){ %>
+            <h5> <%= erro%> </h5>
+       <% }%>
+    <br>
     <div class="table-container">
         <table>
             <thead>
@@ -82,11 +87,11 @@
 
     // FUNÇÃO DE UPDATE
     function UpdateEmpresa(cNmEmpresa, cEmail, cSenha, cCnpj, cAtivo) {
-        document.getElementById('cNmEmpresa').value = cNmEmpresa;
-        document.getElementById('cEmail').value = cEmail;
-        document.getElementById('cSenha').value = cSenha;
-        document.getElementById('cCnpj').value = cCnpj;
-        document.getElementById('cAtivo').value = cAtivo;
+        document.getElementById('update-empresa-cNmEmpresa').value = cNmEmpresa;
+        document.getElementById('update-empresa-cEmail').value = cEmail;
+        document.getElementById('update-empresa-cSenha').value = cSenha;
+        document.getElementById('update-empresa-cCnpj').value = cCnpj;
+        document.getElementById('update-empresa-cAtivo').value = cAtivo;
         document.getElementById('popup-update-empresa').style.display = 'flex';
     }
 </script>

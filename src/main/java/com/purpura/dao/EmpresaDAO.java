@@ -114,6 +114,6 @@ public class EmpresaDAO extends DAO<Empresa> {
 
     @Override
     protected String getColunaId() {
-        return "ccnpj";
+        return "cCnpj";
     }
 }
