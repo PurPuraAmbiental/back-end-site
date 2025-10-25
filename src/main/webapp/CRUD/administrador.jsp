@@ -36,7 +36,7 @@
         <tr>
             <td><%= administrador.getCNmAdministrador() %></td>
             <td><%= administrador.getCEmail() %></td>
-            <td><%= administrador.getCSenha() %></td>
+            <td class="senha"><%= administrador.getCSenha() %></td>
             <td class="actions">
                 <!-- Botão EDITAR -->
                 <button class="add-btn"

@@ -142,7 +142,7 @@ thead {
 }
 
 th, td {
-    padding: 12px 15px;
+    padding: 15px 25px;
     font-size: 14px;
     border-bottom: 1px solid #eee;
 }
@@ -182,6 +182,16 @@ tbody td.actions img:hover {
 .hidden-password {
     font-family: 'Courier New', monospace;
     letter-spacing: 2px;
+}
+
+.senha{
+
+    max-width:200px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    padding:2px;
+    scrollbar-width: none;
 }
 
 /*responsividade*/

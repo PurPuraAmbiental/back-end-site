@@ -39,7 +39,7 @@
         <tr>
             <td><%= empresa.getCNmEmpresa() %></td>
             <td><%= empresa.getCEmail() %></td>
-            <td><%= empresa.getCSenha() %></td>
+            <td class="senha"><%= empresa.getCSenha() %></td>
             <td><%= empresa.getCCnpj() %></td>
             <td><%= empresa.getCAtivo() == '1' ? "Ativo" : "Inativo" %></td>
 
