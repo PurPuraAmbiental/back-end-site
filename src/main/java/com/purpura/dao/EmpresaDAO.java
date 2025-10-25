@@ -67,6 +67,6 @@ public class EmpresaDAO extends DAO<Empresa> {
      * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
-        return "ccnpj";
+        return "cCnpj";
     }
 }

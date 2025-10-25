@@ -71,6 +71,9 @@ public class Empresa implements Model{
      * @param cEmail */
     public void setCEmail(String cEmail) {this.cEmail = cEmail;}
 
+    public void setcCnpj(String cCnpj) {
+        this.cCnpj = cCnpj;
+    }
 
     /**Adicionando o metodo toString
      * @return informações sobre os campos das tabelas*/
