@@ -11,7 +11,7 @@
             <input type="text" name="cNmEmpresa" id="cNmEmpresa" required>
 
             <label>Email</label>
-            <input type="email" name="cEmail" id="cEmail" required>
+            <input type="text" name="cEmail" id="cEmail" required>
 
             <label>Senha</label>
             <input type="password" name="cSenha" id="cSenha" required>
@@ -37,19 +37,19 @@
         <h2>Atualizar Empresa</h2>
         <form action="${pageContext.request.contextPath}/empresa/update" method="post">
             <label>Nome da Empresa</label>
-            <input type="text" name="cNmEmpresa" id="cNmEmpresa" required>
+            <input type="text" name="cNmEmpresa" id="update-empresa-cNmEmpresa" required>
 
             <label>Email</label>
-            <input type="email" name="cEmail" id="cEmail" required>
+            <input type="email" name="cEmail" id="update-empresa-cEmail" required>
 
             <label>Senha</label>
-            <input type="password" name="cSenha" id="cSenha" required>
+            <input type="password" name="cSenha" id="update-empresa-cSenha" required>
 
             <label>CNPJ</label>
-            <input type="text" name="cCnpj" id="cCnpj" readonly>
+            <input type="text" name="cCnpj" id="update-empresa-cCnpj" readonly>
 
             <label>Ativo</label>
-            <select name="cAtivo" id="cAtivo" required>
+            <select name="cAtivo" id="update-empresa-cAtivo" required>
                 <option value="1">Ativo</option>
                 <option value="0">Inativo</option>
             </select>
