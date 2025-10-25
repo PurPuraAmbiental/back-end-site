@@ -141,7 +141,7 @@ public abstract class DAO<T extends Model> {
                 if (rs.next()) {
                     return mapResultSet(rs);
                 } else {
-                    throw new NotFoundException(getNomeTabela(), id);
+                    return null;
                 }
             }
         } catch (SQLException e) {
