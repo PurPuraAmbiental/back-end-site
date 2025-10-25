@@ -9,23 +9,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**Classe DAO para a tabela Empresa
- * @author [Seu nome ou autor do código]*/
-
-/**Classe implementando a interface generica DAO
- * e adicionando a Classe model equivalente: Empresa*/
+/**
+ * DAO responsável pelas operações da entidade Empresa.
+ * Implementa os métodos genéricos da classe DAO.
+ * Veja classe abstrata para documentação detalhada dos métodos.
+ *
+ * @author Kevin de Oliveira
+ */
 public class EmpresaDAO extends DAO<Empresa> {
 
-    /**Metodo para retornar o nome da tabela
-     * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
         return "empresa";
     }
 
-    /**Metodo para instanciar um objeto
-     * @param rs -> ResultSet
-     * @return objeto Empresa*/
     @Override
     protected Empresa mapResultSet(ResultSet rs) throws java.sql.SQLException {
         return new Empresa(
@@ -37,16 +34,11 @@ public class EmpresaDAO extends DAO<Empresa> {
         );
     }
 
-    /**Adicionando Metodo para pegar o nome das colunas
-     * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
         return "cNmEmpresa, cSenha, cCnpj, cAtivo, cEmail";
     }
 
-    /**Adicionando metodo para Inserir conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Empresa entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmEmpresa());
@@ -56,10 +48,6 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(5, entidade.getCEmail());
     }
 
-    /**Adicionando metodo para Atualizar conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
-    @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Empresa entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCNmEmpresa());
         stmt.setString(2, entidade.getCSenha());
@@ -68,6 +56,12 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(5, entidade.getCCnpj());
     }
 
+    /**
+     * Retorna todas as empresas que possuem pelo menos um resíduo cadastrado.
+     *
+     * @return lista de empresas com resíduos
+     * @throws ConnectionFailedException se ocorrer um erro ao conectar ao banco
+     */
     public List<Empresa> buscarEmpresasComResiduos(){
         List<Empresa> lista = new ArrayList<>();
         String sql =
@@ -90,6 +84,12 @@ public class EmpresaDAO extends DAO<Empresa> {
         return lista;
     }
 
+    /**
+     * Retorna todas as empresas que não possuem nenhum resíduo cadastrado.
+     *
+     * @return lista de empresas sem resíduos
+     * @throws ConnectionFailedException se ocorrer um erro ao conectar ao banco
+     */
     public List<Empresa> buscarEmpresasSemResiduos(){
         List<Empresa> lista = new ArrayList<>();
         String sql =
@@ -112,8 +112,6 @@ public class EmpresaDAO extends DAO<Empresa> {
         return lista;
     }
 
-    /**Adcionando Metodo para buscar a primary key da coluna
-     * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
         return "ccnpj";

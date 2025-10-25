@@ -12,23 +12,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**Classe DAO para a tabela Telefone
- * @author [Seu nome ou autor do código]*/
-
-/**Classe implementando a interface generica DAO
- * e adicionando a Classe model equivalente: Telefone*/
+/**
+ * DAO responsável pelas operações da entidade Telefone.
+ * Implementa os métodos genéricos da classe DAO.
+ * Veja classe abstrata para documentação detalhada dos métodos.
+ *
+ * @author Bruna de Jesus
+ */
 public class TelefoneDAO extends DAO<Telefone> {
 
-    /**Metodo para retornar o nome da tabela
-     * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
         return "telefone";
     }
 
-    /**Metodo para instanciar um objeto
-     * @param rs -> ResultSet
-     * @return objeto Telefone*/
     @Override
     protected Telefone mapResultSet(ResultSet rs) throws SQLException {
         return new Telefone(
@@ -39,16 +36,11 @@ public class TelefoneDAO extends DAO<Telefone> {
         );
     }
 
-    /**Adicionando Metodo para pegar o nome das colunas
-     * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
         return "cNrTelefone, cCnpj, cDescricao";
     }
 
-    /**Adicionando metodo para Inserir conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, Telefone entidade) throws SQLException {
         stmt.setString(1, entidade.getCNrTelefone());
@@ -56,30 +48,23 @@ public class TelefoneDAO extends DAO<Telefone> {
         stmt.setString(3, entidade.getCDescricao());
     }
 
-
-    /**Adicionando metodo para Atualizar conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, Telefone entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
         stmt.setInt(4, entidade.getNCdTelefone());
-        System.out.println(
-                "\nERRO: cNrTelefone: " + entidade.getCNrTelefone() + " | " +
-                        "cCnpj: " + entidade.getCCnpj() + " | " +
-                        "cDescricao: " + entidade.getCDescricao() + " | " +
-                        "nCdTelefone: " + entidade.getNCdTelefone()+"\n"
-        );
-
     }
 
-    /**Adcionando Metodo para buscar a primary key da coluna
-     * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
         return "nCdTelefone";
     }
 
+    /**
+     * Lista todos os telefones com informações da empresa associada.
+     *
+     * @return lista de TelefoneView, unindo dados de telefone e empresa
+     * @throws ConnectionFailedException se houver falha na conexão ou execução da query
+     */
     public List<TelefoneView> listarComEmpresa() throws ConnectionFailedException {
         List<TelefoneView> listaView = new ArrayList<>();
 

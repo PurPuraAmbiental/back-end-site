@@ -12,23 +12,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**Classe DAO para a tabela EnderecoEmpresa
- * @author [Seu nome ou autor do código]*/
-
-/**Classe implementando a interface generica DAO
- * e adicionando a Classe model equivalente: EnderecoEmpresa*/
+/**
+ * DAO responsável pelas operações da entidade EnderecoEmpresa.
+ * Implementa os métodos genéricos da classe DAO.
+ * Veja classe abstrata para documentação detalhada dos métodos.
+ *
+ * @author Bruna de Jesus
+ */
 public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
 
-    /**Metodo para retornar o nome da tabela
-     * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
         return "EnderecoEmpresa";
     }
 
-    /**Metodo para instanciar um objeto
-     * @param rs -> ResultSet
-     * @return objeto EnderecoEmpresa*/
     @Override
     protected EnderecoEmpresa mapResultSet(ResultSet rs) throws SQLException {
         return new EnderecoEmpresa(
@@ -44,16 +41,11 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
         );
     }
 
-    /**Adicionando Metodo para pegar o nome das colunas
-     * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
         return "cBairro, cLogradouro, cEstado, cCidade, cComplemento, cCep, iNrEnderecoEmpresa, cCnpj";
     }
 
-    /**Adicionando metodo para Inserir conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, EnderecoEmpresa entidade) throws SQLException {
         stmt.setString(1, entidade.getCBairro());
@@ -66,35 +58,23 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
         stmt.setString(8, entidade.getCCnpj());
     }
 
-    /**Adicionando metodo para Atualizar conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, EnderecoEmpresa entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
         stmt.setInt(9, entidade.getNCdEnderecoEmpresa());
-        System.out.println(
-                "cBairro: " + entidade.getCBairro() + " | " +
-                        "cLogradouro: " + entidade.getCLogradouro() + " | " +
-                        "cEstado: " + entidade.getCEstado() + " | " +
-                        "cCidade: " + entidade.getCCidade() + " | " +
-                        "cComplemento: " + entidade.getCComplemento() + " | " +
-                        "cCep: " + entidade.getCCep() + " | " +
-                        "iNrEnderecoEmpresa: " + entidade.getINrEnderecoEmpresa() + " | " +
-                        "cCnpj: " + entidade.getCCnpj() + " | " +
-                        "nCdEnderecoEmpresa: " + entidade.getNCdEnderecoEmpresa()
-        );
-
-
     }
 
-    /**Adcionando Metodo para buscar a primary key da coluna
-     * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
         return "nCdEnderecoEmpresa";
     }
 
+    /**
+     * Lista todos os endereços com informações da empresa associada.
+     *
+     * @return lista de EnderecoEmpresaView, unindo dados de endereço e empresa
+     * @throws ConnectionFailedException se houver falha na conexão ou execução da query
+     */
     public List<EnderecoEmpresaView> listarComEmpresa() throws ConnectionFailedException {
         List<EnderecoEmpresaView> listaView = new ArrayList<>();
 

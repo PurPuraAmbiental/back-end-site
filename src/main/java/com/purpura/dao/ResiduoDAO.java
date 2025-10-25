@@ -12,23 +12,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**Classe DAO para a tabela Residuo
- * @author [Seu nome ou autor do código]*/
-
-/**Classe implementando a interface generica DAO
- * e adicionando a Classe model equivalente: Residuo*/
+/**
+ * DAO responsável pelas operações da entidade Residuo.
+ * Implementa os métodos genéricos da classe DAO.
+ * Veja classe abstrata para documentação detalhada dos métodos.
+ *
+ * @author Kevin de Oliveira
+ */
 public class ResiduoDAO extends DAO<Residuo> {
 
-    /**Metodo para retornar o nome da tabela
-     * @return uma String com o nome da tabela*/
     @Override
     public String getNomeTabela() {
         return "residuo";
     }
 
-    /**Metodo para instanciar um objeto
-     * @param rs -> ResultSet
-     * @return objeto Residuo*/
     @Override
     protected Residuo mapResultSet(ResultSet rs) throws SQLException {
         return new Residuo(
@@ -43,8 +40,6 @@ public class ResiduoDAO extends DAO<Residuo> {
         );
     }
 
-    /**Adicionando Metodo para pegar o nome das colunas
-     * @return String com os nomes dos atributos da model*/
     @Override
     protected String getNomesColunas() {
         return "cNmResiduo, cTipoUnidade, " +
@@ -52,9 +47,6 @@ public class ResiduoDAO extends DAO<Residuo> {
                 "cDescricao, cCnpj";
     }
 
-    /**Adicionando metodo para Inserir conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForSave(PreparedStatement stmt, Residuo entidade) throws SQLException {
         stmt.setString(1, entidade.getCNmResiduo());
@@ -64,34 +56,25 @@ public class ResiduoDAO extends DAO<Residuo> {
         stmt.setString(5, entidade.getCCategoria());
         stmt.setString(6, entidade.getCDescricao());
         stmt.setString(7, entidade.getCCnpj());
-       // stmt.setInt(8, entidade.getNCdResiduo());
     }
 
-    /**Adicionando metodo para Atualizar conteudo no banco de dados
-     * @param stmt -> String com o comando sql
-     * @param entidade -> nome da tabela*/
     @Override
     protected void prepareStatementForUpdate(PreparedStatement stmt, Residuo entidade) throws SQLException {
         prepareStatementForSave(stmt, entidade);
         stmt.setInt(8, entidade.getNCdResiduo());
-        System.out.println("Entidade:");
-        System.out.println("CNmResiduo: " + entidade.getCNmResiduo());
-        System.out.println("CTipoUnidade: " + entidade.getCTipoUnidade());
-        System.out.println("NPrecoPadrao: " + entidade.getNPrecoPadrao());
-        System.out.println("NVolumePadrao: " + entidade.getNVolumePadrao());
-        System.out.println("CCategoria: " + entidade.getCCategoria());
-        System.out.println("CDescricao: " + entidade.getCDescricao());
-        System.out.println("CCnpj: " + entidade.getCCnpj());
-
     }
 
-    /**Adcionando Metodo para buscar a primary key da coluna
-     * @return chave primaria da coluna*/
     @Override
     protected String getColunaId() {
         return "nCdResiduo";
     }
 
+    /**
+     * Lista todos os resíduos com informações da empresa associada.
+     *
+     * @return lista de ResiduoView, unindo dados de resíduo e empresa
+     * @throws ConnectionFailedException se houver falha na conexão ou execução da query
+     */
     public List<ResiduoView> listarComEmpresa() throws ConnectionFailedException {
         List<ResiduoView> listaView = new ArrayList<>();
 
