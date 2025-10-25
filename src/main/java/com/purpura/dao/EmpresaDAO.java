@@ -1,8 +1,13 @@
 package com.purpura.dao;
 
+import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
+import com.purpura.util.ConnectionFactory;
 
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**Classe DAO para a tabela Empresa
  * @author [Seu nome ou autor do código]*/
@@ -61,6 +66,28 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(3, String.valueOf(entidade.getCAtivo()));
         stmt.setString(4, entidade.getCEmail());
         stmt.setString(5, entidade.getCCnpj());
+    }
+
+    public List<Empresa> buscarEmpresasComResiduos(){
+        List<Empresa> lista = new ArrayList<>();
+        String sql =
+                "SELECT e.* " +
+                "FROM empresa e " +
+                "LEFT JOIN residuo r ON e.ccnpj = r.ccnpj " +
+                "GROUP BY e.ccnpj " +
+                "HAVING COUNT(r.ncdresiduo) > 0";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()){
+                lista.add(mapResultSet(rs));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            throw new ConnectionFailedException();
+        }
+        return lista;
     }
 
     /**Adcionando Metodo para buscar a primary key da coluna

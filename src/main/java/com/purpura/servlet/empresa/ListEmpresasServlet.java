@@ -25,13 +25,10 @@ public class ListEmpresasServlet extends HttpServlet {
         List<Empresa> empresas = null;
 
         try {
-            DAO<Empresa> empresaDAO = new EmpresaDAO();
+            EmpresaDAO empresaDAO = new EmpresaDAO();
             String parametroBusca = request.getParameter("parametroBusca");
-            if ("nome".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
-                empresas = empresaDAO.findAllByAttribute("cNmEmpresa", parametroBusca);
-            }
-            else if ("cnpj".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
-                empresas = empresaDAO.findAllByAttribute("cCnpj", parametroBusca);
+            if("residuo".equals(filtro)){
+                empresas = empresaDAO.buscarEmpresasComResiduos();
             }
             else if ("atividade".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
                 empresas = empresaDAO.findAllByAttribute("cAtivo", parametroBusca);
