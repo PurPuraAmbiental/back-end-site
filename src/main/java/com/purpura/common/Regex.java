@@ -38,11 +38,4 @@ public class Regex {
         Matcher matcher = patternt.matcher(email);
         return matcher.find();
     }
-
-    public static boolean validarSenha(String senha){
-        String regex = Constants.SENHA_REGEX;
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(senha);
-        return matcher.find();
-    }
 }
