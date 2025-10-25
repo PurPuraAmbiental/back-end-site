@@ -19,7 +19,7 @@
         <h1>Lista de Transportadoras</h1>
         <button class="add-btn" onclick="abrirPopupInsertTransportadora()">Adicionar Transportadora</button>
     </div>
-
+    <div class="table-container">
     <table>
         <thead>
         <tr>
@@ -64,6 +64,7 @@
         <% } %>
         </tbody>
     </table>
+    </div>
 </div>
 
 <!-- POPUPS -->

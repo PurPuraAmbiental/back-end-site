@@ -100,12 +100,19 @@ body{
 }
 
 .header {
+    position: sticky;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.table-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .header h1 {

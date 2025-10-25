@@ -17,7 +17,7 @@
         <h1>Lista de Telefones</h1>
         <button class="add-btn" onclick="abrirPopupInsertTelefone()">Adicionar Telefone</button>
     </div>
-
+    <div class="table-container">
     <table>
         <thead>
         <tr>
@@ -60,6 +60,7 @@
         <% } %>
         </tbody>
     </table>
+        </div>
 </div>
 
 <!-- POPUPS -->

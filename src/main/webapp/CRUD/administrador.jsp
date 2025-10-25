@@ -17,7 +17,7 @@
         <h1>Lista de Administradores</h1>
         <button class="add-btn" onclick="abrirPopupInsertAdministrador()">Adicionar Administrador</button>
     </div>
-
+    <div class="table-container">
     <table>
         <thead>
         <tr>
@@ -61,6 +61,7 @@
         %>
         </tbody>
     </table>
+        </div>
 </div>
 
 <jsp:include page="/WEB-INF/popUp's/popUp-administracao.jsp" />

@@ -16,7 +16,7 @@
         <h1>Lista de Endereços</h1>
         <button class="add-btn" onclick="abrirPopupInsert()">Cadastrar Endereço</button>
     </div>
-
+    <div class="table-container">
     <table>
         <thead>
         <tr>
@@ -66,6 +66,7 @@
         <% } %>
         </tbody>
     </table>
+        </div>
 </div>
 
 <jsp:include page="/WEB-INF/popUp's/popUp-endereco.jsp" />

@@ -19,49 +19,51 @@
         <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Adicionar Empresa</button>
     </div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Senha</th>
-            <th>CNPJ</th>
-            <th>Ativo</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%
-            List<Empresa> empresas = (List<Empresa>) request.getAttribute("listaEmpresas");
-            if (empresas != null && !empresas.isEmpty()) {
-                for (Empresa empresa : empresas) {
-        %>
-        <tr>
-            <td><%= empresa.getCNmEmpresa() %></td>
-            <td><%= empresa.getCEmail() %></td>
-            <td class="senha"><%= empresa.getCSenha() %></td>
-            <td><%= empresa.getCCnpj() %></td>
-            <td><%= empresa.getCAtivo() == '1' ? "Ativo" : "Inativo" %></td>
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Senha</th>
+                <th>CNPJ</th>
+                <th>Ativo</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                List<Empresa> empresas = (List<Empresa>) request.getAttribute("listaEmpresas");
+                if (empresas != null && !empresas.isEmpty()) {
+                    for (Empresa empresa : empresas) {
+            %>
+            <tr>
+                <td><%= empresa.getCNmEmpresa() %></td>
+                <td><%= empresa.getCEmail() %></td>
+                <td class="senha"><%= empresa.getCSenha() %></td>
+                <td><%= empresa.getCCnpj() %></td>
+                <td><%= empresa.getCAtivo() == '1' ? "Ativo" : "Inativo" %></td>
 
-            <td class="actions">
-                <!-- BOTÃO EDITAR -->
-                <button class="add-btn"
-                        onclick="UpdateEmpresa('<%= empresa.getCNmEmpresa() %>', '<%= empresa.getCEmail() %>', '<%= empresa.getCSenha() %>', '<%= empresa.getCCnpj() %>', '<%= empresa.getCAtivo() %>')">
-                    Editar
-                </button>
+                <td class="actions">
+                    <!-- BOTÃO EDITAR -->
+                    <button class="add-btn"
+                            onclick="UpdateEmpresa('<%= empresa.getCNmEmpresa() %>', '<%= empresa.getCEmail() %>', '<%= empresa.getCSenha() %>', '<%= empresa.getCCnpj() %>', '<%= empresa.getCAtivo() %>')">
+                        Editar
+                    </button>
 
-                <!-- BOTÃO EXCLUIR -->
-                <form action="${pageContext.request.contextPath}/empresa/delete" method="post" style="display:inline;">
-                    <input type="hidden" name="cCnpj" value="<%= empresa.getCCnpj() %>">
-                    <input class="add-btn" type="submit" value="Excluir">
-                </form>
-            </td>
-        </tr>
-        <%  } } else { %>
-        <tr><td colspan="6">Nenhuma empresa encontrada.</td></tr>
-        <% } %>
-        </tbody>
-    </table>
+                    <!-- BOTÃO EXCLUIR -->
+                    <form action="${pageContext.request.contextPath}/empresa/delete" method="post" style="display:inline;">
+                        <input type="hidden" name="cCnpj" value="<%= empresa.getCCnpj() %>">
+                        <input class="add-btn" type="submit" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+            <%  } } else { %>
+            <tr><td colspan="6">Nenhuma empresa encontrada.</td></tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- POPUPS -->
@@ -78,7 +80,7 @@
         document.getElementById(id).style.display = 'none';
     }
 
-    // FUNÇÃO DE UPDATE — USANDO OS MESMOS NOMES DOS ATRIBUTOS
+    // FUNÇÃO DE UPDATE
     function UpdateEmpresa(cNmEmpresa, cEmail, cSenha, cCnpj, cAtivo) {
         document.getElementById('cNmEmpresa').value = cNmEmpresa;
         document.getElementById('cEmail').value = cEmail;

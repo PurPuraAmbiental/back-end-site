@@ -17,7 +17,7 @@
         <h1>Lista de Resíduos</h1>
         <button class="add-btn" onclick="abrirPopupInsertResiduo()">Adicionar Resíduo</button>
     </div>
-
+    <div class="table-container">
     <table>
         <thead>
         <tr>
@@ -72,6 +72,7 @@
         <% } %>
         </tbody>
     </table>
+    </div>
 </div>
 
 <!-- POPUPS -->
