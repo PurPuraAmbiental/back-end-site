@@ -48,6 +48,21 @@ public class ListEmpresasServlet extends HttpServlet {
                     empresas = empresaDAO.findAll();
                 }
             }
+
+            else if ("nome".equals(filtro)) {
+                String nome = request.getParameter("nome");
+                if (nome != null && !nome.isBlank()) {
+                    empresas = empresaDAO.findAllByAttribute("cNmEmpresa", nome);
+                }
+            }
+
+            else if ("cnpj".equals(filtro)) {
+                String cnpj = request.getParameter("parametroBusca");
+                if (cnpj != null && !cnpj.isBlank()) {
+                    empresas = empresaDAO.findAllByAttribute("cCnpj", cnpj);
+                }
+            }
+
             else {
                 empresas = empresaDAO.findAll();
             }
