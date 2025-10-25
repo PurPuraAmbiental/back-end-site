@@ -93,33 +93,6 @@ body {
     background: linear-gradient(90deg, #9a2bbb 0%, #9124b0 100%);
 }
 
-/* Botão Cancelar */
-.popup .cancel-btn {
-    background: transparent;
-    border: 1px solid #d39fe9;
-    color: #b13cd4;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 14px;
-    width: 100%;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.popup .cancel-btn:hover {
-    background-color: #f7e9fc;
-}
-
-/* Erros */
-.popup p {
-    color: red;
-    font-size: 13px;
-    margin-top: -8px;
-    margin-bottom: 12px;
-}
-
 /* Botão de fechar */
 .close-btn {
     position: absolute;
