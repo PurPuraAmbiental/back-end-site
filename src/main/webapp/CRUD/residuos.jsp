@@ -19,6 +19,31 @@
         <button class="add-btn" onclick="abrirPopupInsertResiduo()">Adicionar Resíduo</button>
         </div>
     </div>
+    <div>
+        <label for="">Preco Minimo</label> <br>
+        <input type="number" step="0.01" min="0" name="valor" placeholder="Digite o preço minino"> <br>
+        <label for="">Preco Maximo</label> <br>
+        <input type="number" step="0.01" min="0" name="valor" placeholder="Digite o preço maximo"> <br>
+        <label for="">Volume Minimo</label> <br>
+        <input type="number" step="0.01" min="0" name="valor" placeholder="Digite o volume minino"> <br>
+        <label for="">Preco Minimo</label> <br>
+        <input type="number" step="0.01" min="0" name="valor" placeholder="Digite o volume maximo"> <br>
+        <label for="">Selecione a unidade de medida</label> <br>
+        <select name="cTipoUnidade" id="cTipoUnidade" required>
+            <option value="kg">Kilograma (kg)</option>
+            <option value="t">Tonelada (t)</option>
+            <option value="kg/m³">Kg/m³</option>
+            <option value="g">Gramas (g)</option>
+        </select>
+        <br>
+        <button type="submit" class="add-btn"> Filtrar </button>
+
+
+
+
+
+    </div>
+
     <br>
     <% String erro = (String) request.getAttribute("erro");
         if (erro != null){ %>
