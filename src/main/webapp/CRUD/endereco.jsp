@@ -15,6 +15,13 @@
     <div class="header">
         <h1>Lista de Endereços</h1>
         <button class="add-btn" onclick="abrirPopupInsert()">Cadastrar Endereço</button>
+
+        <br>
+        <% String erro = (String) request.getAttribute("erro");
+            if (erro != null){ %>
+        <h5> <%= erro%> </h5>
+        <% }%>
+        <br>
     </div>
     <div class="table-container">
     <table>

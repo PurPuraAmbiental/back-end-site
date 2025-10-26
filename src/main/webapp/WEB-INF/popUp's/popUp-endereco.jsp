@@ -14,21 +14,21 @@
                 <h2>Cadastrar Endereço</h2>
                 <form action="${pageContext.request.contextPath}/endereco-empresa/insert" method="post">
                     <label>Bairro</label>
-                    <input type="text" name="cBairro">
+                    <input type="text" name="cBairro" maxlength="40" required>
                     <label>Logradouro</label>
-                    <input type="text" name="cLogradouro">
+                    <input type="text" name="cLogradouro" maxlength="40" required>
                     <label>Estado</label>
-                    <input type="text" name="cEstado">
+                    <input type="text" name="cEstado" maxlength="2" required>
                     <label>Cidade</label>
-                    <input type="text" name="cCidade">
+                    <input type="text" name="cCidade" maxlength="40" required>
                     <label>CEP</label>
-                    <input type="text" name="cCep">
+                    <input type="text" name="cCep" maxlength="8" required>
                     <label>Complemento</label>
-                    <input type="text" name="cComplemento">
+                    <input type="text" name="cComplemento" maxlength="20">
                     <label>Número</label>
-                    <input type="text" name="iNrEnderecoEmpresa">
+                    <input type="number" name="iNrEnderecoEmpresa" minlength="1" required>
                     <label>Empresa</label>
-                    <input type="text" name="cNmEmpresa">
+                    <input type="text" name="cNmEmpresa" required>
                     <button type="submit">Adicionar</button>
                 </form>
             </div>

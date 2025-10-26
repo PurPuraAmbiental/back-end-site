@@ -31,10 +31,21 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
 
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
-            params.put("cCnpj", empresa.getCCnpj());
+
             EnderecoEmpresa model = new EnderecoEmpresa(params);
             EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
-            dao.save(model);
+            if (empresa == null) {
+                List<EnderecoEmpresaView> EnderecoEmpresaView = dao.listarComEmpresa();
+                request.setAttribute("listaEnderecos", EnderecoEmpresaView);
+                request.setAttribute("erro", "Nao foi possivel cadastrar endereco! Insira uma empresa cadastrada anteriormente");
+                request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
+                return;
+            } else {
+                params.put("cCnpj", empresa.getCCnpj());
+                dao.save(model);
+            }
+
+
 
 
             List<EnderecoEmpresaView> EnderecoEmpresaView = dao.listarComEmpresa();
@@ -42,7 +53,7 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
             request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             request.setAttribute("erro", "Erro ao inserir Endereço: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/endereco.jsp");
             rd.forward(request, response);
         }
     }
