@@ -1,5 +1,6 @@
 package com.purpura.servlet.administrador;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
@@ -18,16 +19,14 @@ public class DeleteAdministradorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String cEmail = request.getParameter("cEmail");
+        DAO<?> dao = new AdministradorDAO();
+        String caminho = "/CRUD/administrador.jsp";
+        String lista = "listaAdministradores";
         try {
-            DAO<?> dao = new AdministradorDAO();
             dao.delete(cEmail);
-            List<?> administradores = dao.findAll();
-            request.setAttribute("listaAdministradores", administradores);
-            request.getRequestDispatcher("/CRUD/administrador.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/administrador/list");
         } catch (ConnectionFailedException | NotFoundException e) {
-            request.setAttribute("erro", "Erro ao deletar Administrador: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao, "Erro ao deletar Administrador: " + e.getMessage(), lista, caminho);
         }
     }
 }

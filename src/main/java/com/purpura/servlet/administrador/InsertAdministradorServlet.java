@@ -1,5 +1,6 @@
 package com.purpura.servlet.administrador;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.common.Regex;
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
@@ -24,46 +25,40 @@ import java.util.Map;
 public class InsertAdministradorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        DAO<Administrador> dao = new AdministradorDAO();
+        String caminho = "/CRUD/administrador.jsp";
+        String lista = "listaAdministradores";
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
             Administrador model = new Administrador(params);
-            DAO<Administrador> dao = new AdministradorDAO();
-            List<?> administrador = dao.findAll();
-            Administrador existente = dao.findById(model.getCEmail());
+
             if (!Regex.validarEmail(model.getCEmail())){
-                request.setAttribute("erro", "Não foi possivel cadastrar Administrador. Insira um E-mail valido");
-                request.setAttribute("listaAdministradores", administrador);
-                request.getRequestDispatcher("/CRUD/administrador.jsp").forward(request, response);
+                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Administrador. Insira um E-mail valido", lista, caminho);
                 return;
-            } else if (existente != null) {
-                request.setAttribute("erro", "Não foi possivel cadastrar Administrador. E-mail ja cadastrado anteriormente");
-                request.setAttribute("listaAdministradores", administrador);
-                request.getRequestDispatcher("/CRUD/administrador.jsp").forward(request, response);
+            }
+            else if (dao.findById(model.getCEmail()) != null) {
+                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Administrador. E-mail ja cadastrado anteriormente" , lista, caminho );
                 return;
-            } else if (model.getCSenha().length() < 6) {
-                request.setAttribute("erro", "Não foi possivel cadastrar Administrador. A senha deve possuir no minimo 6 caracteres");
-                request.setAttribute("listaAdministradores", administrador);
-                request.getRequestDispatcher("/CRUD/administrador.jsp").forward(request, response);
+            }
+            else if (model.getCSenha().length() < 6) {
+                ErroServlet.setErro(request, response, dao,
+                        "Não foi possivel cadastrar Administrador. A senha deve possuir no minimo 6 caracteres", lista, caminho);
                 return;
-            } else {
+            }
+            else {
                 if (params.containsKey("cSenha")) {
                     String hash = Criptografia.criptografar(params.get("cSenha"));
                     params.put("cSenha", hash);
+                    model.setCSenha(params.get("cSenha"));
                 }
             }
-            administrador = dao.findAll();
             dao.save(model);
-            request.setAttribute("listaAdministradores", administrador);
-            request.getRequestDispatcher("/CRUD/administrador.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/administrador/list");
         } catch (ConnectionFailedException | NotFoundException e) {
-            request.setAttribute("erro", "Erro ao inserir Administrador: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao,"Erro ao inserir Administrador: " + e.getMessage(), lista, caminho);
         } catch (ParseException e) {
-            request.setAttribute("erro", "Erro ao processar os parâmetros: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage() , lista, caminho);
         }
     }
 }

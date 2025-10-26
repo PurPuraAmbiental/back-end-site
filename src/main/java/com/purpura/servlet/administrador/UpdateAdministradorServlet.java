@@ -1,12 +1,10 @@
 package com.purpura.servlet.administrador;
-
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
-import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;
 import com.purpura.util.Criptografia;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,31 +20,36 @@ import java.util.Map;
 public class UpdateAdministradorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        DAO<Administrador> dao = new AdministradorDAO();
+        String caminho = "/CRUD/administrador.jsp";
+        String lista = "listaAdministradores";
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
-            if (params.containsKey("cSenha")) {
-                String hash = Criptografia.criptografar(params.get("cSenha"));
-                params.put("cSenha", hash);
-            }
             Administrador model = new Administrador(params);
             model.setCSenha(params.get("cSenha"));
             model.setCNmAdministrador(params.get("cNmAdministrador"));
-            DAO<Administrador> dao = new AdministradorDAO();
+            //VALIDAÇÃO DE DADOS
+            if (model.getCSenha().length() < 6){
+                ErroServlet.setErro(request, response, dao, "Não foi possivel atualizar Administrador! Insira uma senha com no minimo 6 caracteres.", lista, caminho);
+                return;
+            }
+            if (params.containsKey("cSenha")) {
+                String hash = Criptografia.criptografar(params.get("cSenha"));
+                params.put("cSenha", hash);
+                model.setCSenha(params.get("cSenha"));
+            }
+
+
+
             dao.update(model);
-            List<Administrador> adm = dao.findAll();
-            request.setAttribute("listaAdministradores", adm);
             response.sendRedirect(request.getContextPath() + "/administrador/list");
         } catch (ConnectionFailedException e) {
-            System.out.println(e.getMessage());
-            request.setAttribute("erro", "Erro ao atualizar Administrador: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response); }
+            ErroServlet.setErro(request, response, dao, "Erro ao atualizar Administrador: " + e.getMessage(), lista, caminho);
+             }
          catch (ParseException e) {
             System.out.println(e.getMessage());
-            request.setAttribute("erro", "Erro ao processar os parâmetros: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+             ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
         }
     }
 }
