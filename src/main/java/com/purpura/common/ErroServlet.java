@@ -7,6 +7,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ErroServlet {
+    /**
+     * Método auxiliar para reduzir repetição de código ao encaminhar mensagem de erro.
+     * Ele atualiza a lista das models na tela e define a mensagem de erro.
+     */
     public static void setErro(HttpServletRequest request, HttpServletResponse response, DAO<?> dao, String mensagem, String lista, String caminho)
             throws jakarta.servlet.ServletException, IOException {
         request.setAttribute(lista, dao.findAll());
