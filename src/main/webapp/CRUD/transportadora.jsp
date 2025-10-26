@@ -27,7 +27,15 @@
         <!-- Botão para abrir o pop-up de inserção de nova transportadora -->
         <button class="add-btn" onclick="abrirPopupInsertTransportadora()">Adicionar Transportadora</button>
     </div>
-
+    <br>
+    <!-- ==================== FILTROS ========================= -->
+    <label for="">Insira o nome da empresa</label>
+    <input type="text" placeholder="digite o nome da empresa">
+    <br>
+    <label for="">Insira a regiao</label>
+    <input type="text" placeholder="Ache transportadora pertinho de voce">
+    <br>
+    <button type="submit" class="add-btn"> Filtrar </button>
     <br>
 
     <!-- ================== MENSAGEM DE ERRO ================== -->
@@ -64,7 +72,7 @@
             %>
             <tr>
                 <!-- Mostra o nome da transportadora -->
-                <td><%= t.getCNmTransporte() %></td>
+                <td><%= t.getCNmTransportadora() %></td>
                 <!-- Mostra o CNPJ -->
                 <td><%= t.getCCnpj() %></td>
                 <!-- Mostra a região atendida -->
@@ -79,7 +87,7 @@
                     <button class="add-btn"
                             onclick="UpdateTransportadora(
                                     '<%= t.getCCnpj() %>',          // CNPJ (identificador)
-                                    '<%= t.getCNmTransporte() %>', // Nome
+                                    '<%= t.getCNmTransportadora() %>', // Nome
                                     '<%= t.getCEmail() %>',        // Email
                                     '<%= t.getCRegiaoAtendida() %>'// Região atendida
                                     )">
