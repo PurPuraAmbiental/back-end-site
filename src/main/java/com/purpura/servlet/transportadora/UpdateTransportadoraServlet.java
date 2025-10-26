@@ -25,9 +25,9 @@ public class UpdateTransportadoraServlet extends HttpServlet {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
             Transportadora model = new Transportadora(params);
-            model.setCNmTransporte(params.get("cNmTransporte"));
-            model.setcRegiaoAtendida(params.get("cRegiaoAtendida"));
-            model.setcEmail(params.get("cEmail"));
+            model.setCNmTransportadora(params.get("cNmTransporte"));
+            model.setCRegiaoAtendida(params.get("cRegiaoAtendida"));
+            model.setCEmail(params.get("cEmail"));
             DAO<Transportadora> dao = new TransportadoraDAO();
             dao.update(model);
             List<Transportadora> transportadoras = dao.findAll();
