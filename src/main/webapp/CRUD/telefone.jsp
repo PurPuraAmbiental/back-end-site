@@ -2,86 +2,143 @@
 <%@ page import="com.purpura.dto.TelefoneView" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
+
+<!-- TELEFONE.JSP
+Página responsável por listar todos os telefones das empresas cadastradas.
+Permite também cadastrar, editar e excluir registros através dos pop-ups.
+
+obs: Assim como em outras telas do CRUD, foi utilizada uma DTO (TelefoneView)
+no lugar da model para facilitar a exibição dos dados.
+
+função principal: CRUD -> READ
+mas também possibilita o usuário realizar ações de: INSERT, UPDATE e DELETE.
+
+autor(a): Bruna Oliveira
+autor(a): Kevin de Oliveira
+-->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Importação dos arquivos CSS -->
+    <!-- O parâmetro ?v=2 pode ser utilizado para forçar atualização de cache, caso necessário -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
-    <title>Telefones - CRUD</title>
+
+    <title>Telefones</title>
 </head>
+
 <body>
 <div class="main">
+
+    <!-- Cabeçalho da página -->
     <div class="header">
         <h1>Lista de Telefones</h1>
+
+        <!-- Botão que abre o pop-up para cadastrar um novo telefone -->
         <button class="add-btn" onclick="abrirPopupInsertTelefone()">Adicionar Telefone</button>
     </div>
+
+    <br>
+
+    <!-- Exibição de mensagens de erro enviadas pelo Servlet -->
+    <%
+        String erro = (String) request.getAttribute("erro");
+        if (erro != null) {
+    %>
+    <h5><%= erro %></h5>
+    <% } %>
+
+    <br>
+
+    <!-- Container da tabela -->
     <div class="table-container">
-    <table>
-        <thead>
-        <tr>
-            <th>Telefone</th>
-            <th>Empresa</th>
-            <th>Descrição</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%
-            List<TelefoneView> telefones = (List<TelefoneView>) request.getAttribute("listaTelefones");
-            if (telefones != null && !telefones.isEmpty()) {
-                for (TelefoneView telefone : telefones) {
-        %>
-        <tr>
-            <td><%= telefone.cNrTelefone() %></td>
-            <td><%= telefone.cNmEmpresa() %></td>
-            <td><%= telefone.cDescricao() %></td>
+        <table>
+            <thead>
+            <!-- Cabeçalho das colunas -->
+            <tr>
+                <th>Telefone</th>
+                <th>Empresa</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
 
-            <td class="actions">
-                <!-- BOTÃO EDITAR -->
-                <button class="add-btn"
-                        onclick="UpdateTelefone('<%= telefone.nCdTelefone() %>',
-                                '<%= telefone.cNmEmpresa() %>',
-                                '<%= telefone.cNrTelefone() %>',
-                                '<%= telefone.cDescricao() %>')">
-                    Editar
-                </button>
+            <tbody>
+            <%
+                // Recupera a lista de telefones enviada pelo servlet
+                List<TelefoneView> telefones = (List<TelefoneView>) request.getAttribute("listaTelefones");
 
-                <!-- BOTÃO EXCLUIR -->
-                <form action="${pageContext.request.contextPath}/telefone/delete" method="post" style="display:inline;">
-                    <input type="hidden" name="nCdTelefone" value="<%= telefone.nCdTelefone() %>">
-                    <input type="submit" class="add-btn" value="Excluir">
-                </form>
-            </td>
-        </tr>
-        <% } } else { %>
-        <tr><td colspan="4">Nenhum telefone encontrado.</td></tr>
-        <% } %>
-        </tbody>
-    </table>
-        </div>
+                // Verifica se há registros
+                if (telefones != null && !telefones.isEmpty()) {
+                    // Percorre todos os telefones e exibe um por linha
+                    for (TelefoneView telefone : telefones) {
+            %>
+            <tr>
+                <!-- Exibição dos dados do telefone -->
+                <td><%= telefone.cNrTelefone() %></td>
+                <td><%= telefone.cNmEmpresa() %></td>
+                <td><%= telefone.cDescricao() %></td>
+
+                <td class="actions">
+                    <!-- Botão de edição: preenche o pop-up com os dados do telefone -->
+                    <button class="add-btn"
+                            onclick="UpdateTelefone(
+                                    '<%= telefone.nCdTelefone() %>',
+                                    '<%= telefone.cNmEmpresa() %>',
+                                    '<%= telefone.cNrTelefone() %>',
+                                    '<%= telefone.cDescricao() %>')">
+                        Editar
+                    </button>
+
+                    <!-- Formulário para exclusão de telefone -->
+                    <form action="${pageContext.request.contextPath}/telefone/delete"
+                          method="post">
+                        <!-- Envia o ID do telefone a ser excluído -->
+                        <input type="hidden" name="nCdTelefone"
+                               value="<%= telefone.nCdTelefone() %>">
+                        <input type="submit" class="add-btn" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+            <%
+                } // fim do for
+            } else {
+                // Caso não existam telefones cadastrados
+            %>
+            <tr><td colspan="4">Nenhum telefone encontrado.</td></tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<!-- POPUPS -->
+<!-- Inclusão do JSP responsável pelos pop-ups -->
 <jsp:include page="/WEB-INF/popUp's/popUp-telefone.jsp" />
 
+<!-- Funções JavaScript para manipulação dos pop-ups -->
 <script>
+    // Exibe o pop-up de inserção de novo telefone
     function abrirPopupInsertTelefone() {
         document.getElementById('popup-insert-telefone').style.display = 'flex';
     }
 
+    // Fecha o pop-up informado pelo ID
     function fecharPopup(id) {
         document.getElementById(id).style.display = 'none';
     }
 
-    // FUNÇÃO UPDATE (com nomes iguais aos atributos)
+    // Preenche o pop-up de atualização com os dados do telefone selecionado
     function UpdateTelefone(nCdTelefone, cNmEmpresa, cNrTelefone, cDescricao) {
-        document.getElementById('nCdTelefone').value = nCdTelefone;
-        document.getElementById('cNmEmpresa').value = cNmEmpresa;
-        document.getElementById('cNrTelefone').value = cNrTelefone;
-        document.getElementById('cDescricao').value = cDescricao;
+        document.getElementById('update-telefone-nCdTelefone').value = nCdTelefone;
+        document.getElementById('update-telefone-cNmEmpresa').value = cNmEmpresa;
+        document.getElementById('update-telefone-cNrTelefone').value = cNrTelefone;
+        document.getElementById('update-telefone-cDescricao').value = cDescricao;
 
+        // Exibe o pop-up de edição
         document.getElementById('popup-update-telefone').style.display = 'flex';
     }
 </script>

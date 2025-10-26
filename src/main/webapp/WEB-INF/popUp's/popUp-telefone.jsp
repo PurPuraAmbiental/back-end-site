@@ -1,20 +1,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<!--
+Por motivos de organização, esta página guarda os formulários dos pop-ups
+Responsável -> CREATE e UPDATE do CRUD de Telefone
+-->
 
-<!-- POPUP INSERT -->
+<!-- ==================== POPUP DE INSERÇÃO ==================== -->
 <div class="popup-overlay" id="popup-insert-telefone" style="display:none;">
     <div class="popup">
+        <!-- botao para cancelar o popUp-->
         <button class="close-btn" onclick="fecharPopup('popup-insert-telefone')">×</button>
         <h2>Cadastrar Telefone</h2>
 
         <form action="${pageContext.request.contextPath}/telefone/insert" method="post">
-            <label>Empresa</label>
+            <!-- Empresa -->
+            <label for="cNmEmpresa">Empresa</label>
             <input type="text" name="cNmEmpresa" id="cNmEmpresa" required>
 
-            <label>Telefone</label>
+            <!-- Telefone -->
+            <label for="cNrTelefone">Telefone</label>
             <input type="text" name="cNrTelefone" id="cNrTelefone" required>
 
-            <label>Descrição</label>
+            <!-- Descrição -->
+            <label for="cDescricao">Descrição</label>
             <input type="text" name="cDescricao" id="cDescricao" required>
 
             <button type="submit">Adicionar</button>
@@ -22,23 +30,27 @@
     </div>
 </div>
 
-<!-- POPUP UPDATE -->
+<!-- ==================== POPUP DE ATUALIZAÇÃO ==================== -->
 <div class="popup-overlay" id="popup-update-telefone" style="display:none;">
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-update-telefone')">×</button>
         <h2>Atualizar Telefone</h2>
 
         <form action="${pageContext.request.contextPath}/telefone/update" method="post">
-            <input type="hidden" name="nCdTelefone" id="nCdTelefone">
+            <!-- Código do Telefone (oculto) -->
+            <input type="hidden" name="nCdTelefone" id="update-telefone-nCdTelefone">
 
-            <label>Empresa</label>
-            <input type="text" name="cNmEmpresa" id="cNmEmpresa" required>
+            <!-- Empresa -->
+            <label for="update-telefone-cNmEmpresa">Empresa</label>
+            <input type="text" name="cNmEmpresa" id="update-telefone-cNmEmpresa" required>
 
-            <label>Telefone</label>
-            <input type="text" name="cNrTelefone" id="cNrTelefone" required>
+            <!-- Telefone -->
+            <label for="update-telefone-cNrTelefone">Telefone</label>
+            <input type="text" name="cNrTelefone" id="update-telefone-cNrTelefone" required>
 
-            <label>Descrição</label>
-            <input type="text" name="cDescricao" id="cDescricao" required>
+            <!-- Descrição -->
+            <label for="update-telefone-cDescricao">Descrição</label>
+            <input type="text" name="cDescricao" id="update-telefone-cDescricao" required>
 
             <button type="submit">Atualizar</button>
         </form>
