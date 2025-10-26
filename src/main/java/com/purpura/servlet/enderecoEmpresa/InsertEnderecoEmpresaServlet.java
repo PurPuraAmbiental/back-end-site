@@ -42,9 +42,9 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
                 return;
             } else {
                 params.put("cCnpj", empresa.getCCnpj());
-                dao.save(model);
-            }
 
+            }
+            dao.save(model);
 
 
 

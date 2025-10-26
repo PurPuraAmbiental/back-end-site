@@ -20,10 +20,10 @@
             </select>
 
             <label>Preço</label>
-            <input type="text" name="nPrecoPadrao" id="nPrecoPadrao" required>
+            <input type="number" name="nPrecoPadrao" id="nPrecoPadrao" minlength="0.1" required>
 
             <label>Volume</label>
-            <input type="text" name="nVolumePadrao" id="nVolumePadrao" required>
+            <input type="number" name="nVolumePadrao" id="nVolumePadrao" minlength="0.1" required>
 
             <label>Categoria</label>
             <input type="text" name="cCategoria" id="cCategoria" required>
