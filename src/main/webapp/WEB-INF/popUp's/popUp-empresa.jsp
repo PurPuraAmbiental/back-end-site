@@ -40,7 +40,7 @@
             <input type="text" name="cNmEmpresa" id="update-empresa-cNmEmpresa" required>
 
             <label>Email</label>
-            <input type="email" name="cEmail" id="update-empresa-cEmail" required>
+            <input type="email" name="cEmail" id="update-empresa-cEmail" readonly>
 
             <label>Senha</label>
             <input type="password" name="cSenha" id="update-empresa-cSenha" required>
