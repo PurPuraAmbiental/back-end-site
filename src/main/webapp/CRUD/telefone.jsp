@@ -41,9 +41,11 @@ autor(a): Kevin de Oliveira
         <!-- Botão que abre o pop-up para cadastrar um novo telefone -->
         <button class="add-btn" onclick="abrirPopupInsertTelefone()">Adicionar Telefone</button>
     </div>
-
     <br>
 
+    <input type="text" placeholder="digite o nome da empresa"> 
+    <button type="submit" class="add-btn"> Filtrar </button>
+    <br>
     <!-- Exibição de mensagens de erro enviadas pelo Servlet -->
     <%
         String erro = (String) request.getAttribute("erro");
