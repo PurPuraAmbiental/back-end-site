@@ -1,4 +1,5 @@
 package com.purpura.servlet.transportadora;
+import com.purpura.common.ErroServlet;
 import com.purpura.common.Regex;
 import com.purpura.dao.DAO;
 import com.purpura.dao.TransportadoraDAO;
@@ -28,6 +29,9 @@ public class InsertTransportadoraServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        String lista = "listaTransportadoras";
+        String caminho = "/CRUD/transportadora.jsp";
+        DAO<Transportadora> dao = new TransportadoraDAO();
         try {
             // Mapeia os parâmetros recebidos do formulário
             Map<String, String> params = new LinkedHashMap<>();
@@ -35,53 +39,40 @@ public class InsertTransportadoraServlet extends HttpServlet {
 
             // Cria modelo e DAO
             Transportadora model = new Transportadora(params);
-            DAO<Transportadora> dao = new TransportadoraDAO();
+
             List<?> listaTransportadoras = dao.findAll();
 
             // VALIDAÇÃO DE DADOS
             // em caso verdadeiro para o servlet
             //valida cnpj a partir do regex
             if (!Regex.validarCnpj(model.getCCnpj())) {
-                setErro(request, response, "Não foi possível cadastrar transportadora. Insira um CNPJ válido.", listaTransportadoras);
+                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar transportadora. Insira um CNPJ válido.", lista, caminho);
                 return;
             }
             //valida se a primary key nao é repetida,
             if (dao.findById(model.getCCnpj()) != null) {
-                setErro(request, response, "Não foi possível cadastrar transportadora. CNPJ já cadastrado anteriormente.", listaTransportadoras);
+                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar transportadora. CNPJ já cadastrado anteriormente.", lista, caminho);
                 return;
             }
             //valida e-mail a partir do regex
             if (!Regex.validarEmail(model.getCEmail())) {
-                setErro(request, response, "Não foi possível cadastrar transportadora. Insira um e-mail válido.", listaTransportadoras);
+                ErroServlet.setErro(request, response, dao,"Não foi possível cadastrar transportadora. Insira um e-mail válido.", lista, caminho);
                 return;
             }
+
 
             // Formata o CNPJ antes de salvar, retirando qualquer caractere que atrapalhe na inserção
             model.setCCnpj(model.getCCnpj().replace("/", "").replace(".", "").replace("-", ""));
 
             // Salva e retorna para a página de listagem
             dao.save(model);
-            listaTransportadoras = dao.findAll();
-            request.setAttribute("listaTransportadoras", listaTransportadoras);
-            request.getRequestDispatcher("/CRUD/transportadora.jsp").forward(request, response);
-
+            response.sendRedirect(request.getContextPath() + "/transportadora/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
             // Captura de erros específicos
-            request.setAttribute("erro", "Erro ao inserir transportadora: " + e.getMessage());
-            request.getRequestDispatcher("/CRUD/transportadora.jsp").forward(request, response);
+            ErroServlet.setErro(request, response, dao,"Erro ao inserir transportadora: " + e.getMessage(), lista, caminho);
         } catch (Exception e) {
             // Captura geral (caso algo inesperado aconteça)
-            request.setAttribute("erro", "Ocorreu um erro inesperado ao cadastrar transportadora.");
-            request.getRequestDispatcher("/CRUD/transportadora.jsp").forward(request, response);
+            ErroServlet.setErro(request, response, dao,"Ocorreu um erro inesperado ao cadastrar transportadora." + e.getMessage(), lista, caminho);
         }
-    }
-
-    // Método auxiliar para evitar repetição,
-    //em caso de alguma das estruturas de repetição acima for igual a true:
-    private void setErro(HttpServletRequest request, HttpServletResponse response, String mensagem, List<?> lista)
-            throws jakarta.servlet.ServletException, IOException {
-        request.setAttribute("erro", mensagem);
-        request.setAttribute("listaTransportadoras", lista);
-        request.getRequestDispatcher("/CRUD/transportadora.jsp").forward(request, response);
     }
 }

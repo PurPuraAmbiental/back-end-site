@@ -1,5 +1,7 @@
 package com.purpura.servlet.transportadora;
 
+import com.purpura.common.ErroServlet;
+import com.purpura.common.Regex;
 import com.purpura.dao.DAO;
 import com.purpura.dao.TransportadoraDAO;
 import com.purpura.exception.ConnectionFailedException;
@@ -21,22 +23,26 @@ import java.util.Map;
 public class UpdateTransportadoraServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        String lista = "listaTransportadoras";
+        String caminho = "/CRUD/transportadora.jsp";
+        DAO<Transportadora> dao = new TransportadoraDAO();
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
             Transportadora model = new Transportadora(params);
-            model.setCNmTransportadora(params.get("cNmTransporte"));
+            model.setCNmTransportadora(params.get("cNmTransportadora"));
             model.setCRegiaoAtendida(params.get("cRegiaoAtendida"));
+            if (!Regex.validarEmail(model.getCEmail())) {
+                ErroServlet.setErro(request, response, dao,"Não foi possível cadastrar transportadora. Insira um e-mail válido.", lista, caminho);
+                return;
+            }
             model.setCEmail(params.get("cEmail"));
-            DAO<Transportadora> dao = new TransportadoraDAO();
+
             dao.update(model);
-            List<Transportadora> transportadoras = dao.findAll();
-            request.setAttribute("listaTransportadoras", transportadoras);
-            request.getRequestDispatcher("/CRUD/transportadora.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/transportadora/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            request.setAttribute("erro", "Erro ao atualizar Transporte: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            request.setAttribute("erro", "Erro ao atualizar Transpordora: " + e.getMessage());
+
         }
     }
 }
