@@ -1,5 +1,6 @@
 package com.purpura.servlet.residuo;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.DAO;
 import com.purpura.dao.ResiduoDAO;
 import com.purpura.dto.ResiduoView;
@@ -22,17 +23,15 @@ public class DeleteResiduoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String idResiduo = request.getParameter("nCdResiduo");
+        ResiduoDAO dao = new ResiduoDAO();
+        String lista = "listaResiduo";
+        String caminho = "/CRUD/residuos.jsp";
         try {
             int id = Integer.parseInt(idResiduo);
-           ResiduoDAO dao = new ResiduoDAO();
             dao.delete(id);
-            List<ResiduoView> residuo = dao.listarComEmpresa();
-            request.setAttribute("listaResiduos",  residuo);
-            request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/residuo/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            request.setAttribute("erro", "Erro ao deletar Residuo: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao,"Erro ao deletar Residuo: " + e.getMessage()  , lista, caminho);
         }
     }
 }

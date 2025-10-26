@@ -1,5 +1,6 @@
 package com.purpura.servlet.residuo;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.ResiduoDAO;
@@ -23,6 +24,9 @@ import java.util.Map;
 public class InsertResiduoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        ResiduoDAO dao = new ResiduoDAO();
+        String lista = "listaResiduo";
+        String caminho = "/CRUD/residuos.jsp";
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
@@ -33,26 +37,17 @@ public class InsertResiduoServlet extends HttpServlet {
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
             System.out.println("erro: "+empresa);
             Residuo model = new Residuo(params);
-            ResiduoDAO dao = new ResiduoDAO();
+            //VALIDAÇÃO DE DADOS
             if (empresa == null) {
-                List<ResiduoView> residuoViews = dao.listarComEmpresa();
-                request.setAttribute("listaResiduos", residuoViews);
-                request.setAttribute("erro", "Nao foi possivel cadastrar Residuo! Insira uma empresa cadastrada anteriormente");
-                request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
+                ErroServlet.setErro(request, response, dao, "Nao foi possivel cadastrar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
                 return;
             } else {
                 model.setCCnpj(empresa.getCCnpj());
-
             }
             dao.save(model);
-
-            List<ResiduoView> residuosView = dao.listarComEmpresa();
-            request.setAttribute("listaResiduo", residuosView);
-            request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/residuo/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            request.setAttribute("erro", "Erro ao inserir Residuo: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao, "Erro ao inserir Residuo: "+ e.getMessage() , lista, caminho);
         }
     }
 }

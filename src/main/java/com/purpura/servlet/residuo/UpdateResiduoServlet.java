@@ -1,5 +1,6 @@
 package com.purpura.servlet.residuo;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.ResiduoDAO;
@@ -23,6 +24,9 @@ import java.util.Map;
 public class UpdateResiduoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        DAO<Residuo> dao = new ResiduoDAO();
+        String lista = "listaResiduo";
+        String caminho = "/CRUD/residuos.jsp";
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
@@ -32,6 +36,8 @@ public class UpdateResiduoServlet extends HttpServlet {
             params.put("cCnpj", empresa.getCCnpj());
             System.out.println(params.get("cNmEmpresa")+" | "+params.get("cCnpj"));
 
+
+
             Residuo model = new Residuo(params);
             model.setCNmResiduo(params.get("cNmResiduo"));
             model.setCCategoria(params.get("cCategoria"));
@@ -39,18 +45,19 @@ public class UpdateResiduoServlet extends HttpServlet {
             model.setCTipoUnidade(params.get("cNmTipoUnidade"));
             model.setNPrecoPadrao(Double.parseDouble(params.get("nPrecoPadrao")));
             model.setNVolumePadrao(Double.parseDouble(params.get("nVolumePadrao")));
-            model.setCCnpj(params.get("cCnpj"));
             model.setCTipoUnidade(params.get("cTipoUnidade"));
-            request.getParameterMap().forEach((key, value) ->
-                    System.out.println("\nWWWCampo recebido: " + key + " = " + value[0])
-            );
-            DAO<Residuo> dao = new ResiduoDAO();
+            //VALIDAÇÃO DE DADOS
+            if (empresa == null) {
+                ErroServlet.setErro(request, response, dao, "Nao foi possivel cadastrar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
+                return;
+            } else {
+                model.setCCnpj(empresa.getCCnpj());
+            }
+
             dao.update(model);
             response.sendRedirect(request.getContextPath() + "/residuo/list");
         } catch (NumberFormatException e) {
-            request.setAttribute("erro", "Erro ao atualizar Residuo: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao, "Erro ao atualizar Residuo: " + e.getMessage() , lista, caminho);
         }
     }
 }
