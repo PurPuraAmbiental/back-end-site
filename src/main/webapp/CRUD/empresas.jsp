@@ -17,28 +17,33 @@
     <div class="header">
         <h1>Lista de Empresas</h1>
         <div class="botoes-principais">
-        <form action="">
-            <select name="filtro">
-                <option value="">Todas</option>
-                <option value="">Apenas Empresas ativas</option>
-                <option value="">Apenas Empresas Inativas</option>
-                <option value="">Apenas empresas com residuos</option>
-                <option value="">Apenas empresas sem residuos</option>
-            </select>
-            <button type="submit" class="add-btn">Filtrar</button>
-        </form>
-        <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Adicionar Empresa</button>
-        </div>
-        <form action="">
-        <label for="">Nome</label>
-        <input type="text" placeholder="Digite o Nome da empresa">
-        <label for="">CNPJ</label>
-        <input type="text" placeholder="Digite o cnpj da empresa">
-        <label for="">EMAIL</label>
-        <input type="text" placeholder="Digite o email da empresa">
-            <button type="submit" class="add-btn"> Pesquisar </button>
-        </form>
-        <br>
+            <form action="<%= request.getContextPath() %>/empresa/list" method="get">
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" placeholder="Digite o nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" name="cnpj" placeholder="Digite o CNPJ" value="<%= request.getParameter("cnpj") != null ? request.getParameter("cnpj") : "" %>">
+
+                <label for="email">Email:</label>
+                <input type="text" name="email" placeholder="Digite o email" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
+
+                <label for="ativo">Status:</label>
+                <select name="ativo">
+                    <option value="" <%= request.getParameter("ativo") == null ? "selected" : "" %>>Todos</option>
+                    <option value="1" <%= "1".equals(request.getParameter("ativo")) ? "selected" : "" %>>Ativas</option>
+                    <option value="0" <%= "0".equals(request.getParameter("ativo")) ? "selected" : "" %>>Inativas</option>
+                </select>
+
+                <label for="temResiduo">Resíduos:</label>
+                <select name="temResiduo">
+                    <option value="" <%= request.getParameter("temResiduo") == null ? "selected" : "" %>>Todos</option>
+                    <option value="1" <%= "1".equals(request.getParameter("temResiduo")) ? "selected" : "" %>>Pelo menos um resíduo</option>
+                </select>
+
+                <button type="submit" class="add-btn">Filtrar</button>
+            </form>
+
+            <br>
         <% String erro = (String) request.getAttribute("erro");
             if (erro != null){ %>
         <h5> <%= erro%> </h5>

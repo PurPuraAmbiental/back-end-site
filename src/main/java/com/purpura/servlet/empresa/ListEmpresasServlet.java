@@ -19,54 +19,28 @@ public class ListEmpresasServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String filtro = request.getParameter("filtro");
-        List<Empresa> empresas = null;
-
         try {
             EmpresaDAO empresaDAO = new EmpresaDAO();
 
-            if ("residuo".equals(filtro)) {
-                String possuiResiduo = request.getParameter("possuiResiduo");
+            // Captura os parâmetros do filtro
+            String nome = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String cnpj = request.getParameter("cnpj");
 
-                if (possuiResiduo != null && !possuiResiduo.isBlank() && "0".equals(possuiResiduo)) {
-                    empresas = empresaDAO.buscarEmpresasSemResiduos();
-                }
-                else if (possuiResiduo != null && !possuiResiduo.isBlank() && "1".equals(possuiResiduo)) {
-                    empresas = empresaDAO.buscarEmpresasComResiduos();
-                }
-                else {
-                    empresas = empresaDAO.findAll();
-                }
-            }
+            String ativoParam = request.getParameter("ativo");
+            Character ativo = (ativoParam != null && !ativoParam.isBlank()) ? ativoParam.charAt(0) : null;
 
-            else if ("atividade".equals(filtro)) {
-                String ativa = request.getParameter("ativa");
-                if (ativa != null && !ativa.isBlank()) {
-                    empresas = empresaDAO.findAllByAttribute("cAtivo", ativa);
-                } else {
-                    empresas = empresaDAO.findAll();
-                }
-            }
+            String temResiduoParam = request.getParameter("temResiduo");
+            Boolean temResiduo = (temResiduoParam != null && !temResiduoParam.isBlank())
+                    ? "1".equals(temResiduoParam)
+                    : null;
 
-            else if ("nome".equals(filtro)) {
-                String nome = request.getParameter("nome");
-                if (nome != null && !nome.isBlank()) {
-                    empresas = empresaDAO.findAllByAttribute("cNmEmpresa", nome);
-                }
-            }
+            // Chama o método do DAO com todos os filtros
+            List<Empresa> empresas = empresaDAO.listarEmpresasFiltradas(
+                    nome, email, cnpj, ativo, temResiduo
+            );
 
-            else if ("cnpj".equals(filtro)) {
-                String cnpj = request.getParameter("parametroBusca");
-                if (cnpj != null && !cnpj.isBlank()) {
-                    empresas = empresaDAO.findAllByAttribute("cCnpj", cnpj);
-                }
-            }
-
-            else {
-                empresas = empresaDAO.findAll();
-            }
-
+            // Passa a lista para a JSP
             request.setAttribute("listaEmpresas", empresas);
             request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException e) {
