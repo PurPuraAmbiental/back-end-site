@@ -108,4 +108,72 @@ public class ResiduoDAO extends DAO<Residuo> {
         }
         return listaView;
     }
+
+    public List<ResiduoView> listarComEmpresaFiltrado(
+            Double precoMin, Double precoMax,
+            Double volumeMin, Double volumeMax,
+            String unidade
+    ) throws ConnectionFailedException {
+
+        String sql = """
+        SELECT 
+            r.ncdresiduo,
+            r.cnmresiduo,
+            r.ctipounidade,
+            r.nprecopadrao,
+            r.nvolumepadrao,
+            r.ccategoria,
+            r.cdescricao,
+            e.nome AS cnmempresa,
+            e.ccnpj
+        FROM residuos r
+        JOIN empresa e ON r.ccnpj = e.ccnpj
+        WHERE
+          (? IS NULL OR r.nprecopadrao >= ?) AND
+          (? IS NULL OR r.nprecopadrao <= ?) AND
+          (? IS NULL OR r.nvolumepadrao >= ?) AND
+          (? IS NULL OR r.nvolumepadrao <= ?) AND
+          (? IS NULL OR r.ctipounidade = ?)
+    """;
+
+        List<ResiduoView> lista = new ArrayList<>();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setObject(1, precoMin);
+            stmt.setObject(2, precoMin);
+            stmt.setObject(3, precoMax);
+            stmt.setObject(4, precoMax);
+            stmt.setObject(5, volumeMin);
+            stmt.setObject(6, volumeMin);
+            stmt.setObject(7, volumeMax);
+            stmt.setObject(8, volumeMax);
+            stmt.setObject(9, unidade);
+            stmt.setObject(10, unidade);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ResiduoView residuo = new ResiduoView(
+                        rs.getInt("nCdResiduo"),
+                        rs.getString("cNmResiduo"),
+                        rs.getString("cTipoUnidade"),
+                        rs.getDouble("nPrecoPadrao"),
+                        rs.getDouble("nVolumePadrao"),
+                        rs.getString("cCategoria"),
+                        rs.getString("cDescricao"),
+                        rs.getString("cNmEmpresa"),
+                        rs.getString("cCnpj")
+                );
+                lista.add(residuo);
+            }
+
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+
+        return lista;
+    }
+
 }

@@ -21,9 +21,26 @@ public class ListResiduosServlet extends HttpServlet {
         try {
             ResiduoDAO residuoDAO = new ResiduoDAO();
 
-            List<ResiduoView> residuos = residuoDAO.listarComEmpresa();
+            String precoMinStr = request.getParameter("precoMin");
+            String precoMaxStr = request.getParameter("precoMax");
+            String volumeMinStr = request.getParameter("volumeMin");
+            String volumeMaxStr = request.getParameter("volumeMax");
+            String unidade = request.getParameter("unidade");
+
+            Double precoMin = (precoMinStr != null && !precoMinStr.isEmpty()) ? Double.parseDouble(precoMinStr) : null;
+            Double precoMax = (precoMaxStr != null && !precoMaxStr.isEmpty()) ? Double.parseDouble(precoMaxStr) : null;
+            Double volumeMin = (volumeMinStr != null && !volumeMinStr.isEmpty()) ? Double.parseDouble(volumeMinStr) : null;
+            Double volumeMax = (volumeMaxStr != null && !volumeMaxStr.isEmpty()) ? Double.parseDouble(volumeMaxStr) : null;
+            if (unidade != null && unidade.isBlank()) unidade = null;
+
+            List<ResiduoView> residuos = residuoDAO.listarComEmpresaFiltrado(precoMin, precoMax, volumeMin, volumeMax, unidade);
 
             request.setAttribute("listaResiduos", residuos);
+            request.setAttribute("precoMin", precoMinStr);
+            request.setAttribute("precoMax", precoMaxStr);
+            request.setAttribute("volumeMin", volumeMinStr);
+            request.setAttribute("volumeMax", volumeMaxStr);
+            request.setAttribute("unidade", unidade);
 
             RequestDispatcher rd = request.getRequestDispatcher("/CRUD/residuos.jsp");
             rd.forward(request, response);
