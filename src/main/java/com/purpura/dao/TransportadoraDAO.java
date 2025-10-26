@@ -34,14 +34,14 @@ public class TransportadoraDAO extends DAO<Transportadora>{
     @Override
     protected void prepareStatementForSave(java.sql.PreparedStatement stmt, Transportadora entidade) throws java.sql.SQLException {
         stmt.setString(1, entidade.getCCnpj());
-        stmt.setString(2, entidade.getCNmTransporte());
+        stmt.setString(2, entidade.getCNmTransportadora());
         stmt.setString(3, entidade.getCRegiaoAtendida());
         stmt.setString(4, entidade.getCEmail());
     }
 
     @Override
     protected void prepareStatementForUpdate(java.sql.PreparedStatement stmt, Transportadora entidade) throws java.sql.SQLException {
-        stmt.setString(1, entidade.getCNmTransporte());
+        stmt.setString(1, entidade.getCNmTransportadora());
         stmt.setString(2, entidade.getCRegiaoAtendida());
         stmt.setString(3, entidade.getCEmail());
         stmt.setString(4, entidade.getCCnpj());
