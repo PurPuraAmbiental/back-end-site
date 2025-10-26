@@ -17,6 +17,11 @@
         <h1>Lista de Administradores</h1>
         <button class="add-btn" onclick="abrirPopupInsertAdministrador()">Adicionar Administrador</button>
     </div>
+    <label for="">Insira o nome do Administrador</label>
+    <input type="text" placeholder="nome adm">
+    <br>
+    <button type="submit" class="add-btn"> Filtrar </button>
+    <br>
     <br>
     <% String erro = (String) request.getAttribute("erro");
         if (erro != null){ %>
