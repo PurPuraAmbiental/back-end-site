@@ -81,7 +81,7 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="number" name="iNrEnderecoEmpresa" id="upd-numero" minlength="1" required>
 
             <label for="upd-empresa">Empresa</label>
-            <input type="text" name="cNmEmpresa" id="upd-empresa">
+            <input type="text" name="cNmEmpresa" id="upd-empresa" required>
 
             <button type="submit">Atualizar</button>
         </form>
