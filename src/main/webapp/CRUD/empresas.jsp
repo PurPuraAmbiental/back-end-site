@@ -29,6 +29,15 @@
         </form>
         <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Adicionar Empresa</button>
         </div>
+        <form action="">
+        <label for="">Nome</label>
+        <input type="text" placeholder="Digite o Nome da empresa">
+        <label for="">CNPJ</label>
+        <input type="text" placeholder="Digite o cnpj da empresa">
+        <label for="">EMAIL</label>
+        <input type="text" placeholder="Digite o email da empresa">
+            <button type="submit" class="add-btn"> Pesquisar </button>
+        </form>
         <br>
         <% String erro = (String) request.getAttribute("erro");
             if (erro != null){ %>
