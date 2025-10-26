@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PurPura | Sustentabilidade e Compromisso com o Futuro</title>
-    <link rel="shortcut icon" href="assets/purpura/icone_purpura.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/purpura/icone_purpura.svg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="texto.css">
 </head>
@@ -13,7 +13,8 @@
 <body class="inter">
     <header class="site-header">
         <div class="container nav-container">
-            <div class="logo" href="index.html"><a href="#home"><img src="assets/purpura/logo_purpura.svg" alt="Logo da PurPura Ambiental"></a>
+            <div class="logo" href="index.html"><a href="index.html"><img src="assets/purpura/logo_purpura.svg"
+                        alt="Logo da PurPura Ambiental"></a>
             </div>
             <nav class="main-nav">
                 <ul>
@@ -53,12 +54,13 @@
 
     <main id="home">
         <section class="hero container">
-            <div class="hero-left" style="color: #692ea8;">
+            <div class="hero-left">
                 <h1>
                     O que sua empresa faz com os resíduos pode mudar o futuro.
                     Você está pronto para isso?
                 </h1>
-                <p class="subtitle" style="color: #694a8a;">Promovemos a conexão inteligente entre indústrias. Juntos, transformamos o excedente em valor, inovação e um futuro mais limpo!</p>
+                <p class="subtitle">Promovemos a conexão inteligente entre indústrias. Juntos, transformamos o excedente
+                    em valor, inovação e um futuro mais limpo!</p>
                 <a class="cta" href="#secao-servicos">Saiba Mais</a>
             </div>
             <div class="hero-right">
@@ -68,49 +70,37 @@
         </section>
     </main>
 
-    <section id="secao-sobre-nos"></section>
-    <div class="sobrenos-cabecalho">
-        <p>— Sobre nós —</p>
-    </div>
-    <div class="conteudo-secao">
-        <div class="container-imagem">
-            <img src="https://blog.esferaenergia.com.br/_next/image?url=http%3A%2F%2Fesferaenergia.com.br%2Fwp-content%2Fuploads%2F2023%2F08%2Fsustentabilidade-ambiente-trabalho.jpg&w=1920&q=75"
-                alt="grupopurpura" class="imagem">
+    <section id="secao-sobre-nos">
+        <div class="sobre-nos-cabecalho">
+            <p>— Sobre nós —</p>
         </div>
-        <div class="texto-secao">
-            <h2>Quem é a <span class="destaque-roxo">PurPura</span>?</h2>
-            <p>Somos uma Startup focada em gerenciar resíduos orgânicos, conectando as indústrias que geram grandes
-                quantidades de desperdício durante sua produção, e as que vêem isso como uma oportunidade de lucro.</p>
-            <input type="checkbox" id="ler-mais-toggle" class="ler-mais-toggle">
-            <p class="texto-oculto">
-                Além de reduzir o impacto ambiental, nossa solução transforma resíduos em oportunidades de negócio,
-                conectando quem descarta a quem reaproveita, com rastreabilidade, eficiência e valor para toda a cadeia.
-            </p>
-            <label for="ler-mais-toggle" class="botao-ler-mais">Ler mais</label>
-        </div>
-    </div>
-    </section>
-
-    <section id="secao-porque-escolher">
-
-        <div class="conteudo-secao reverter-mobile">
+        <div class="conteudo-secao">
             <div class="container-imagem">
-                <img src="https://legadoconsultoriajr.com.br/wp-content/uploads/2020/05/sustentabilidade-empresarial-o-que-e-qual-sua-importancia-e-qual-a-relacao-com-as-profissoes.jpeg"
-                    alt="Sustentabilidade empresarial" class="imagem">
+                <img src="assets/purpura/flor.jpg" alt="grupopurpura" class="imagem">
+            </div>
+            <div class="texto-secao">
+                <h2>Quem é a <span class="destaque-roxo">PurPura</span>?</h2>
+                <p>Somos uma Startup focada em gerenciar resíduos orgânicos, conectando as indústrias que geram grandes
+                    quantidades de desperdício durante sua produção, e as que vêem isso como uma oportunidade de lucro.
+                    Além de reduzir o impacto ambiental, nossa solução transforma resíduos em oportunidades de negócio,
+                    conectando quem descarta a quem reaproveita, com rastreabilidade, eficiência e valor para toda a
+                    cadeia.
+                </p>
+            </div>
+        </div>
+        <div class="conteudo-secao">
+            <div class="container-imagem">
+                <img src="assets/purpura/ecofriendly.jpeg" alt="Sustentabilidade empresarial" class="imagem">
             </div>
             <div class="texto-secao">
                 <h2>Por que escolher a <span class="destaque-roxo">PurPura</span>?</h2>
                 <p>A PurPura garante credibilidade e confiabilidade para ambos os lados do negócio, oferecendo
                     comunicação entre os colaboradores e outras funcionalidades essenciais para uma boa relação entre as
-                    empresas envolvidas.</p>
-                <p>A PurPura simplifica negociações com uma plataforma ágil e transparente, reduzindo custos e
-                    fortalecendo práticas ambientais.</p>
-                <input type="checkbox" id="ler-mais-toggle-2" class="ler-mais-toggle">
-                <p class="texto-oculto">
+                    empresas envolvidas.
+                    A PurPura simplifica negociações com uma plataforma ágil e transparente, reduzindo custos e
+                    fortalecendo práticas ambientais.
                     Também oferece relatórios claros, ajudando empresas a acompanhar resultados e tomar decisões mais
-                    sustentáveis.
-                </p>
-                <label for="ler-mais-toggle-2" class="botao-ler-mais">Ler mais</label>
+                    sustentáveis.</p>
             </div>
         </div>
     </section>
@@ -349,9 +339,8 @@
             <div class="footer-col">
                 <h4>Contato</h4>
                 <div class="social-icons">
-                    <a href="https://instagram.com" target="_blank" title="Instagram"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="mailto:contato@purpura.com" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    <a href=""><img src="assets/icones-gerais/instagram.png" alt="ícone do Instagram"></a>
+                    <a href="mailto:purpuraambiental4@gmail.com" title="E-mail"><img src="" alt="ícone de email"></a>
                 </div>
                 <!-- botão secreto embaixo -->
                 <a href="login.jsp" class="secret" title="Área Privada"><i class="fas fa-lock"></i> acesso restrito</a>
