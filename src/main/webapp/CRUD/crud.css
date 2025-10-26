@@ -76,9 +76,7 @@ body{
     text-decoration: none;
     color: #333;
 }
-.logout img{
-    width: 20px;
-}
+
 /* corpo da pág empresas*/
 .content {
     flex-grow: 1;
@@ -102,11 +100,27 @@ body{
 .header {
     position: sticky;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
     flex-wrap: wrap;
+    margin-bottom: 20px;
     gap: 10px;
+}
+.botoes-principais{
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+}
+
+select{
+    width: 70%;
+    padding: 8px 5px;
+    margin-bottom: 5px;
+    border: 1px solid #d39fe9;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #3c3c3c;
+    background-color: #fff;
 }
 
 .table-container {
@@ -257,14 +271,10 @@ tbody td.actions img:hover {
         gap: 15px;
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding: 8px 0;              /* 🔹 dá respiro vertical */
-        margin: 0 20px;              /* 🔹 dá respiro lateral */
-        scrollbar-width: none;       /* 🔹 esconde a barra de rolagem no Firefox */
+        padding: 8px 0;
+        margin: 0 20px;
+        scrollbar-width: none;
     }
-    .menu::-webkit-scrollbar {
-        display: none;               /* 🔹 esconde a barra no Chrome/Safari */
-    }
-
 
     .menu a {
         padding: 12px;
@@ -299,9 +309,16 @@ tbody td.actions img:hover {
         font-size: 18px;
     }
 
-    .add-btn {
+    .add-btn, select {
         width: 100%;
         text-align: center;
+    }
+
+    .botoes-principais {
+        flex-direction: column;
+        align-items: stretch; /* faz os dois terem a mesma largura */
+        width: 100%;
+        gap: 10px;
     }
 
     table {
@@ -312,5 +329,7 @@ tbody td.actions img:hover {
         padding: 10px;
         font-size: 12px;
     }
+
+
 }
 
