@@ -1,5 +1,6 @@
 package com.purpura.servlet.empresa;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.common.Regex;
 import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
@@ -22,43 +23,33 @@ import java.util.Map;
 public class InsertEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-
+            String caminho = "/CRUD/empresas.jsp";
+            String lista = "listaEmpresas";
+            DAO<Empresa> dao = new EmpresaDAO();
             try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
-
             Empresa model = new Empresa(params);
-            DAO<Empresa> dao = new EmpresaDAO();
             List<?> empresas = dao.findAll();
-                System.out.println("antes do erro: "+model.getCCnpj());
                 //VALIDAÇAO DE DADOS
             request.setAttribute("listaEmpresas",  empresas);
             if (!Regex.validarEmail(model.getCEmail())) {
-                request.setAttribute("erro", "Não foi possivel cadastrar Empresa! \n Digite um e-mail valido");
-                request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response);
-                return;  // Impede que o código continue
+                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! Digite um e-mail valido", lista, caminho);
             }
             if (!Regex.validarCnpj(model.getCCnpj())) {
-                request.setAttribute("erro", "Não foi possivel cadastrar Empresa! \n Digite um cnpj valido");
-                request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response); // Mantém o popup aberto
+                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! \n Digite um cnpj valido", lista, caminho);
                 return;  // Impede que o código continue
-            }  else {
+            }
+            else {
                 model.setcCnpj(model.getCCnpj().replace("/", "").replace(".", "").replace("-", ""));
                 System.out.println(model.getCCnpj());
                     }
-            Empresa existente = dao.findById(model.getCCnpj());
-                System.out.println("o erro: "+existente);
-            if (existente.getCCnpj() != null) {
-                    request.setAttribute("erro", "Esse cnpj ja foi cadastrado! \n Digite um cnpj valido");
-                    request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response); // Mantém o popup aberto
-                    return;
+            if (dao.findById(model.getCCnpj()) != null) {
+                ErroServlet.setErro(request, response, dao, "Esse cnpj ja foi cadastrado! Digite um cnpj valido", lista, caminho);
+                return;
                 }
-
-
             if (model.getCSenha().length() < 6){
-                request.setAttribute("erro", "Não foi possivel cadastrar Empresa! \n Sua senha deve ter 6 ou mais caracteres validos");
-                request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response);
-                System.out.println(model.getCSenha());
+                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! \n Sua senha deve ter 6 ou mais caracteres validos", lista, caminho);
                 return;
             }
 
@@ -66,21 +57,12 @@ public class InsertEmpresaServlet extends HttpServlet {
                     String hash = Criptografia.criptografar(params.get("cSenha"));
                     params.put("cSenha", hash);
                 }
-
-            System.out.println("deu certo sera posto no bancoooo");
             dao.save(model);
-
-            empresas = dao.findAll();
-            request.setAttribute("listaEmpresas",  empresas);
-            request.getRequestDispatcher("/CRUD/empresas.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/empresa/list");
         } catch (ConnectionFailedException | NotFoundException e) {
-            request.setAttribute("erro", "Erro ao inserir Empresa: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+                ErroServlet.setErro(request, response, dao, "Erro ao inserir Empresa: " + e.getMessage(), lista, caminho);
         } catch (ParseException e) {
-            request.setAttribute("erro", "Erro ao processar os parâmetros: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
-        }
+                ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: ", lista, caminho);
+            }
     }
 }
