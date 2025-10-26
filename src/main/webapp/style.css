@@ -400,9 +400,12 @@ main {
   color: #fff;
 }
 
-.servico-card:hover .icone-circulo {
-  background-color: var(--roxoescuro);
+.icone-circulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .servicos-purpura {
   padding: 80px 20px;
   text-align: center;
@@ -449,20 +452,6 @@ main {
   color: #fff;
 }
 
-.icone-circulo {
-  width: 60px;
-  height: 60px;
-  background-color: #f0e6fa;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.servico-card.destaque .icone-circulo {
-  background-color: #7d52cc;
-}
 
 .icone-placeholder {
   font-size: 2rem;
@@ -1026,7 +1015,6 @@ footer {
 .footer-bottom {
   text-align: center;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.2);
   font-size: 0.75rem;
   color: #ddd;
   margin-top: 10px;
