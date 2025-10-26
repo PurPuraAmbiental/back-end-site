@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * Classe utilitária para validação de dados usando expressões regulares.
  * Fornece métodos estáticos para validação de CNPJ, telefone, email e senha.
  *
- * @author Bruna de Jesus
+ * @author Letícia Reis
  */
 public class Regex {
 

@@ -3,6 +3,9 @@ package com.purpura.common;
 /**
  * Classe responsável por armazenar constantes reutilizáveis em todo o sistema.
  * Inclui expressões regulares e outros padrões comuns.
+ *
+ * @author Bruna de Jesus
+ * @author Kevin de Oliveira
  */
 public class Constants {
 
