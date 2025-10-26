@@ -1,5 +1,6 @@
 package com.purpura.servlet.enderecoEmpresa;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
@@ -21,6 +22,9 @@ import java.util.Map;
 public class UpdateEnderecoEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        DAO<EnderecoEmpresa> dao = new EnderecoEmpresaDAO();
+        String lista = "listaEnderecos";
+        String caminho = "/CRUD/endereco.jsp";
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
@@ -32,7 +36,11 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             System.out.println(params.get("cNmEmpresa")+" | "+params.get("cCnpj"));
 
             EnderecoEmpresa model = new EnderecoEmpresa(params);
-
+            //VALIDAÇÃO DE DADOS
+            if (empresa == null) {
+                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar o endereço! Insira uma empresa cadastrada anteriormente.", lista, caminho);
+                return;
+            }
             model.setCBairro(params.get("cBairro"));
             model.setCLogradouro(params.get("cLogradouro"));
             model.setCEstado(params.get("cEstado"));
@@ -43,7 +51,7 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             model.setCCnpj(params.get("cCnpj"));
             model.setNCdEnderecoEmpresa(Integer.parseInt(params.get("nCdEnderecoEmpresa")));
 
-            DAO<EnderecoEmpresa> dao = new EnderecoEmpresaDAO();
+
             dao.update(model);
             response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
         } catch (ConnectionFailedException e) {

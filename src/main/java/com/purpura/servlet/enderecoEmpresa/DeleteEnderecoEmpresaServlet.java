@@ -1,5 +1,6 @@
 package com.purpura.servlet.enderecoEmpresa;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
@@ -22,17 +23,15 @@ public class DeleteEnderecoEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String idEndereco = request.getParameter("nCdEnderecoEmpresa");
+        EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
+        String lista = "listaEnderecos";
+        String caminho = "/CRUD/endereco.jsp";
         try {
             int id = Integer.parseInt(idEndereco);
-            EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
             dao.delete(id);
-            List<EnderecoEmpresaView> endereco = dao.listarComEmpresa();
-            request.setAttribute("listaEnderecos", endereco);
-            request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            request.setAttribute("erro", "Erro ao deletar EnderecoEmpresa: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao, "Erro ao deletar EnderecoEmpresa: " + e.getMessage(), lista, caminho);
         }
     }
 }

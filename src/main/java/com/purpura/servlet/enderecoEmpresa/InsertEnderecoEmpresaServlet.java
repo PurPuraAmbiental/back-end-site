@@ -1,4 +1,5 @@
 package com.purpura.servlet.enderecoEmpresa;
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
 import com.purpura.dto.EnderecoEmpresaView;
@@ -29,6 +30,9 @@ import java.util.Map;
 public class InsertEnderecoEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        String lista = "listaEnderecos";
+        String caminho = "/CRUD/endereco.jsp";
+        EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
         try {
             // Pega os parâmetros dados pelo usuário
             Map<String, String> params = new LinkedHashMap<>();
@@ -41,7 +45,6 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
 
             // Cria um objeto da entidade a partir dos parâmetros do formulário
             EnderecoEmpresa model = new EnderecoEmpresa(params);
-            EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
 
             // Cria um objeto da view que guarda as informações que serão dadas à interface
             List<EnderecoEmpresaView> listaEnderecos = dao.listarComEmpresa();
@@ -50,9 +53,7 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
             // Caso a empresa seja nula, significa que ela não foi cadastrada com antecedência.
             // Então o servlet para e exibe uma mensagem de erro ao usuário.
             if (empresa == null) {
-                request.setAttribute("listaEnderecos", listaEnderecos);
-                request.setAttribute("erro", "Não foi possível cadastrar o endereço! Insira uma empresa cadastrada anteriormente.");
-                request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
+                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar o endereço! Insira uma empresa cadastrada anteriormente.", lista, caminho);
                 return;
             }
 
@@ -63,25 +64,17 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
             dao.save(model);
 
             // Direciona de forma atualizada após a inserção
-            listaEnderecos = dao.listarComEmpresa();
-            request.setAttribute("listaEnderecos", listaEnderecos);
-            request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
+            //Em caso de exito um response
+            response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
 
         } catch (ConnectionFailedException e) {
-            request.setAttribute("erro", "Falha de conexão com o banco de dados: " + e.getMessage());
-            request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
-
+            ErroServlet.setErro(request, response, dao, "Falha de conexão com o banco de dados: " + e.getMessage(), lista, caminho);
         } catch (NotFoundException e) {
-            request.setAttribute("erro", "Registro não encontrado: " + e.getMessage());
-            request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
-
+            ErroServlet.setErro(request, response, dao, "Registro não encontrado: " + e.getMessage(), lista, caminho);
         } catch (NumberFormatException e) {
-            request.setAttribute("erro", "Erro de formatação numérica nos dados inseridos: " + e.getMessage());
-            request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
-
+            ErroServlet.setErro(request, response, dao, "Erro de formatação numérica nos dados inseridos: " + e.getMessage(), lista, caminho);
         } catch (Exception e) {
-            request.setAttribute("erro", "Erro inesperado ao inserir endereço: " + e.getMessage());
-            request.getRequestDispatcher("/CRUD/endereco.jsp").forward(request, response);
+            ErroServlet.setErro(request, response, dao, "Erro inesperado ao inserir endereço: " + e.getMessage(), lista, caminho);
         }
     }
 }
