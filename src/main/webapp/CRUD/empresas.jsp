@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css?v=3">
+    
     <title>Empresas - CRUD</title>
 </head>
 <body>
@@ -16,40 +17,42 @@
 <div class="main">
     <div class="header">
         <h1>Lista de Empresas</h1>
-        <div class="botoes-principais">
-            <form action="<%= request.getContextPath() %>/empresa/list" method="get">
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" placeholder="Digite o nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
-
-                <label for="cnpj">CNPJ:</label>
-                <input type="text" name="cnpj" placeholder="Digite o CNPJ" value="<%= request.getParameter("cnpj") != null ? request.getParameter("cnpj") : "" %>">
-
-                <label for="email">Email:</label>
-                <input type="text" name="email" placeholder="Digite o email" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
-
-                <label for="ativo">Status:</label>
-                <select name="ativo">
-                    <option value="" <%= request.getParameter("ativo") == null ? "selected" : "" %>>Todos</option>
-                    <option value="1" <%= "1".equals(request.getParameter("ativo")) ? "selected" : "" %>>Ativas</option>
-                    <option value="0" <%= "0".equals(request.getParameter("ativo")) ? "selected" : "" %>>Inativas</option>
-                </select>
-
-                <label for="temResiduo">Resíduos:</label>
-                <select name="temResiduo">
-                    <option value="" <%= request.getParameter("temResiduo") == null ? "selected" : "" %>>Todos</option>
-                    <option value="1" <%= "1".equals(request.getParameter("temResiduo")) ? "selected" : "" %>>Pelo menos um resíduo</option>
-                </select>
-
-                <button type="submit" class="add-btn">Filtrar</button>
-            </form>
-
-            <br>
-        <% String erro = (String) request.getAttribute("erro");
-            if (erro != null){ %>
-        <h5> <%= erro%> </h5>
-        <% }%>
+        <button class="add-btn" onclick="abrirPopupInsert()">Cadastrar Empresa</button>
         <br>
     </div>
+    <div class="filtro">
+        <form action="<%= request.getContextPath() %>/empresa/list" method="get">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" class="input-filtro" placeholder="Digite o nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" name="cnpj" class="input-filtro" placeholder="Digite o CNPJ" value="<%= request.getParameter("cnpj") != null ? request.getParameter("cnpj") : "" %>">
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="input-filtro" placeholder="Digite o email" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
+            <br>
+            <label for="ativo">Status:</label>
+            <select name="ativo">
+                <option value="" <%= request.getParameter("ativo") == null ? "selected" : "" %>>Todos</option>
+                <option value="1" <%= "1".equals(request.getParameter("ativo")) ? "selected" : "" %>>Ativas</option>
+                <option value="0" <%= "0".equals(request.getParameter("ativo")) ? "selected" : "" %>>Inativas</option>
+            </select>
+            <br>
+            <label for="temResiduo">Resíduos:</label>
+            <select name="temResiduo">
+                <option value="" <%= request.getParameter("temResiduo") == null ? "selected" : "" %>>Todos</option>
+                <option value="1" <%= "1".equals(request.getParameter("temResiduo")) ? "selected" : "" %>>Pelo menos um resíduo</option>
+            </select>
+
+            <button type="submit" class="add-btn">Filtrar</button>
+        </form>
+    </div>
+    <br>
+    <% String erro = (String) request.getAttribute("erro");
+        if (erro != null){ %>
+    <h5> <%= erro%> </h5>
+    <% }%>
+    <br>
 
     <div class="table-container">
         <table>
