@@ -1,5 +1,6 @@
 package com.purpura.servlet.telefone;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.common.Regex;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.TelefoneDAO;
@@ -33,7 +34,9 @@ public class InsertTelefoneServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-
+        String lista = "listaTelefones";
+        String caminho = "/CRUD/telefone.jsp";
+        TelefoneDAO dao = new TelefoneDAO();
         try {
             // Captura todos os parâmetros enviados pelo formulário e armazena em um mapa
             Map<String, String> params = new LinkedHashMap<>();
@@ -48,7 +51,7 @@ public class InsertTelefoneServlet extends HttpServlet {
 
             // Cria o objeto Telefone a partir dos parâmetros do formulário
             Telefone model = new Telefone(params);
-            TelefoneDAO dao = new TelefoneDAO();
+
 
             // Recupera a lista atual de telefones para exibir na página, caso haja erro
             List<TelefoneView> telefoneViews = dao.listarComEmpresa();
@@ -56,8 +59,8 @@ public class InsertTelefoneServlet extends HttpServlet {
 
             // Se a empresa não existir, envia mensagem de erro e mantém a lista de telefones na tela
             if (empresa == null) {
-                setErro(request, response, dao,
-                        "Não foi possível cadastrar Telefone! Insira uma empresa cadastrada anteriormente");
+                ErroServlet.setErro(request, response, dao,
+                        "Não foi possível cadastrar Telefone! Insira uma empresa cadastrada anteriormente", lista, caminho);
                 return;
             }
 
@@ -66,8 +69,8 @@ public class InsertTelefoneServlet extends HttpServlet {
 
             // Valida se o telefone tem formato correto usando Regex
             if (!Regex.validarTelefone(model.getCNrTelefone())) {
-                setErro(request, response, dao,
-                        "Não foi possível cadastrar Telefone! Insira um Telefone válido");
+                ErroServlet.setErro(request, response, dao,
+                        "Não foi possível cadastrar Telefone! Insira um Telefone válido", lista, caminho);
                 return;
             }
 
@@ -86,22 +89,9 @@ public class InsertTelefoneServlet extends HttpServlet {
 
         } catch (NumberFormatException | ConnectionFailedException | NotFoundException e) {
             // Se ocorrer qualquer erro de processamento, envia para a página de erro
-            request.setAttribute("erro", "Erro ao inserir Telefone: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, dao,
+                    "Erro ao inserir Telefone: " + e.getMessage(), lista, caminho);
+
         }
-    }
-
-    /**
-     * Método auxiliar para reduzir repetição de código ao encaminhar mensagem de erro.
-     * Ele atualiza a lista de telefones na tela e define a mensagem de erro.
-     */
-    private void setErro(HttpServletRequest request, HttpServletResponse response, TelefoneDAO dao, String mensagem)
-            throws jakarta.servlet.ServletException, IOException {
-
-        List<TelefoneView> telefoneViews = dao.listarComEmpresa();
-        request.setAttribute("listaTelefones", telefoneViews);
-        request.setAttribute("erro", mensagem);
-        request.getRequestDispatcher("/CRUD/telefone.jsp").forward(request, response);
     }
 }
