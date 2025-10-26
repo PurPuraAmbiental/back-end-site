@@ -41,7 +41,7 @@ public class InsertResiduoServlet extends HttpServlet {
                 request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
                 return;
             } else {
-                params.put("cCnpj", empresa.getCCnpj());
+                model.setCCnpj(empresa.getCCnpj());
 
             }
             dao.save(model);
