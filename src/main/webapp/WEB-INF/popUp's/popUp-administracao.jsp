@@ -31,7 +31,7 @@
             <input type="text" name="cNmAdministrador" id="update-administrador-cNmAdministrador" maxlength="20" required>
 
             <label>Email</label>
-            <input type="text" name="cEmail" id="update-administrador-cEmail" maxlength="70" required>
+            <input type="text" name="cEmail" id="update-administrador-cEmail" maxlength="70" readonly>
             <input type="hidden" name="cEmail" >
 
             <label>Senha</label>
