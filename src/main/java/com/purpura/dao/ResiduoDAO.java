@@ -110,70 +110,77 @@ public class ResiduoDAO extends DAO<Residuo> {
     }
 
     public List<ResiduoView> listarComEmpresaFiltrado(
-            Double precoMin, Double precoMax,
-            Double volumeMin, Double volumeMax,
+            Double precoMin,
+            Double precoMax,
+            Double volumeMin,
+            Double volumeMax,
             String unidade
     ) throws ConnectionFailedException {
 
-        String sql = """
-        SELECT 
-            r.ncdresiduo,
-            r.cnmresiduo,
-            r.ctipounidade,
-            r.nprecopadrao,
-            r.nvolumepadrao,
-            r.ccategoria,
-            r.cdescricao,
-            e.nome AS cnmempresa,
-            e.ccnpj
-        FROM residuos r
-        JOIN empresa e ON r.ccnpj = e.ccnpj
-        WHERE
-          (? IS NULL OR r.nprecopadrao >= ?) AND
-          (? IS NULL OR r.nprecopadrao <= ?) AND
-          (? IS NULL OR r.nvolumepadrao >= ?) AND
-          (? IS NULL OR r.nvolumepadrao <= ?) AND
-          (? IS NULL OR r.ctipounidade = ?)
-    """;
-
         List<ResiduoView> lista = new ArrayList<>();
 
+        StringBuilder sql = new StringBuilder(
+                "SELECT r.nCdResiduo, r.cNmResiduo, r.cTipoUnidade, r.nPrecoPadrao, " +
+                        "r.nVolumePadrao, r.cCategoria, r.cDescricao, e.cNmEmpresa, e.cCnpj " +
+                        "FROM residuo r " +
+                        "JOIN empresa e ON r.cCnpj = e.cCnpj " +
+                        "WHERE 1=1"
+        );
+
+        List<Object> params = new ArrayList<>();
+
+        // Monta a query conforme os filtros
+        if (precoMin != null) {
+            sql.append(" AND r.nPrecoPadrao >= ?");
+            params.add(precoMin);
+        }
+        if (precoMax != null) {
+            sql.append(" AND r.nPrecoPadrao <= ?");
+            params.add(precoMax);
+        }
+        if (volumeMin != null) {
+            sql.append(" AND r.nVolumePadrao >= ?");
+            params.add(volumeMin);
+        }
+        if (volumeMax != null) {
+            sql.append(" AND r.nVolumePadrao <= ?");
+            params.add(volumeMax);
+        }
+        if (unidade != null && !unidade.isBlank()) {
+            sql.append(" AND r.cTipoUnidade = ?");
+            params.add(unidade);
+        }
+
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
 
-            stmt.setObject(1, precoMin);
-            stmt.setObject(2, precoMin);
-            stmt.setObject(3, precoMax);
-            stmt.setObject(4, precoMax);
-            stmt.setObject(5, volumeMin);
-            stmt.setObject(6, volumeMin);
-            stmt.setObject(7, volumeMax);
-            stmt.setObject(8, volumeMax);
-            stmt.setObject(9, unidade);
-            stmt.setObject(10, unidade);
+            // Atribui os parâmetros dinamicamente
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setObject(i + 1, params.get(i));
+            }
 
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                ResiduoView residuo = new ResiduoView(
-                        rs.getInt("nCdResiduo"),
-                        rs.getString("cNmResiduo"),
-                        rs.getString("cTipoUnidade"),
-                        rs.getDouble("nPrecoPadrao"),
-                        rs.getDouble("nVolumePadrao"),
-                        rs.getString("cCategoria"),
-                        rs.getString("cDescricao"),
-                        rs.getString("cNmEmpresa"),
-                        rs.getString("cCnpj")
-                );
-                lista.add(residuo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    ResiduoView view = new ResiduoView(
+                            rs.getInt("nCdResiduo"),
+                            rs.getString("cNmResiduo"),
+                            rs.getString("cTipoUnidade"),
+                            rs.getDouble("nPrecoPadrao"),
+                            rs.getDouble("nVolumePadrao"),
+                            rs.getString("cCategoria"),
+                            rs.getString("cDescricao"),
+                            rs.getString("cNmEmpresa"),
+                            rs.getString("cCnpj")
+                    );
+                    lista.add(view);
+                }
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new ConnectionFailedException();
         }
 
         return lista;
     }
-
 }
