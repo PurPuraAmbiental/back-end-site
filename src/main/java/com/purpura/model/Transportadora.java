@@ -64,6 +64,12 @@ public class Transportadora implements Model{
 
     public void setcEmail(String cEmail) {this.cEmail = cEmail;}
 
+    public void setCCnpj(String cCnpj) {
+        this.cCnpj = cCnpj;
+    }
+
+
+
     /**Metodo toString
      *@return informação dos campos da tabela*/
     @Override

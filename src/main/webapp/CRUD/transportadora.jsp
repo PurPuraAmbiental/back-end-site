@@ -19,6 +19,12 @@
         <h1>Lista de Transportadoras</h1>
         <button class="add-btn" onclick="abrirPopupInsertTransportadora()">Adicionar Transportadora</button>
     </div>
+    <br>
+    <% String erro = (String) request.getAttribute("erro");
+        if (erro != null){ %>
+    <h5> <%= erro%> </h5>
+    <% }%>
+    <br>
     <div class="table-container">
     <table>
         <thead>
@@ -80,10 +86,10 @@
     }
 
     function UpdateTransportadora(cCnpj, cNmTransportadora, cEmail, cRegiaoAtendida) {
-        document.getElementById('upd-cCnpj').value = cCnpj;
-        document.getElementById('upd-cNmTransportadora').value = cNmTransportadora;
-        document.getElementById('upd-cEmail').value = cEmail;
-        document.getElementById('upd-cRegiaoAtendida').value = cRegiaoAtendida;
+        document.getElementById('update-transportadora-cCnpj').value = cCnpj;
+        document.getElementById('update-transportadora-cNmTransportadora').value = cNmTransportadora;
+        document.getElementById('update-transportadora-cEmail').value = cEmail;
+        document.getElementById('update-transportadora-cRegiaoAtendida').value = cRegiaoAtendida;
 
         document.getElementById('popup-update-transportadora').style.display = 'flex';
     }

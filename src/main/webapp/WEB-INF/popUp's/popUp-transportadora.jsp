@@ -33,16 +33,16 @@
 
         <form action="${pageContext.request.contextPath}/transportadora/update" method="post">
             <label for="upd-cNmTransportadora">Nome da Transportadora</label>
-            <input type="text" name="cNmTransportadora" id="upd-cNmTransportadora" required>
+            <input type="text" name="cNmTransportadora" id="update-transportadora-cNmTransportadora" required>
 
             <label for="upd-cCnpj">CNPJ</label>
-            <input type="text" name="cCnpj" id="upd-cCnpj" readonly>
+            <input type="text" name="cCnpj" id="update-transportadora-cCnpj" readonly>
 
             <label for="upd-cEmail">Email</label>
-            <input type="text" name="cEmail" id="upd-cEmail" required>
+            <input type="text" name="cEmail" id="update-transportadora-cEmail" required>
 
             <label for="upd-cRegiaoAtendida">Região Atendida</label>
-            <input type="text" name="cRegiaoAtendida" id="upd-cRegiaoAtendida" required>
+            <input type="text" name="cRegiaoAtendida" id="update-transportadora-cRegiaoAtendida" required>
 
             <button type="submit">Atualizar</button>
         </form>
