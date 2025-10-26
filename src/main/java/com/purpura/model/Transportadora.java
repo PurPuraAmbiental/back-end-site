@@ -2,24 +2,28 @@ package com.purpura.model;
 
 import java.util.Map;
 
-/** Classe Modelo para a tabela Transporte
+/**
+ * Classe Modelo para a tabela Transportadora.
  * Representa os transportes cadastrados no sistema,
  * vinculados a pedidos e contendo informações sobre retirada.
- * */
-public class Transportadora implements Model{
-    /**Adicionando os atributos da tabela como atributos da classe
-     * atributos dados com prefixos da tabela de banco de dado*/
+ */
+public class Transportadora implements Model {
+
+    // ================== ATRIBUTOS ==================
     private String cCnpj;
     private String cNmTransportadora;
     private String cEmail;
     private String cRegiaoAtendida;
 
-    /**Adicionando um metodo Construtor
-     * @param cCnpj - CNPJ da empresa
-     * @param cNmTransportadora - nome do transporte
-     * @param cEmail - data de retirada do transporte
-     * @param cRegiaoAtendida - chave estrangeira da tabela Pedido
-     * */
+    // ================== CONSTRUTORES ==================
+
+    /**
+     * Construtor principal.
+     * @param cCnpj - CNPJ da transportadora
+     * @param cNmTransportadora - Nome da transportadora
+     * @param cEmail - Email de contato
+     * @param cRegiaoAtendida - Região atendida
+     */
     public Transportadora(String cCnpj, String cNmTransportadora, String cEmail, String cRegiaoAtendida) {
         this.cCnpj = cCnpj;
         this.cNmTransportadora = cNmTransportadora;
@@ -27,10 +31,12 @@ public class Transportadora implements Model{
         this.cRegiaoAtendida = cRegiaoAtendida;
     }
 
-    /**Construtor que inicializa objetos
-     *@param params -> um map*/
+    /**
+     * Construtor que inicializa a partir de um Map (usado em formulários ou servlets)
+     * @param params - Mapa com os atributos da transportadora
+     */
     public Transportadora(Map<String, String> params) {
-        if(params.containsKey("cCnpj")) {
+        if (params.containsKey("cCnpj")) {
             this.cCnpj = params.get("cCnpj");
         }
         this.cNmTransportadora = params.get("cNmTransportadora");
@@ -38,42 +44,36 @@ public class Transportadora implements Model{
         this.cEmail = params.get("cEmail");
     }
 
-    /**Metodo getCCnpj
-     * @return Primary key */
-    public String getCCnpj(){return cCnpj;}
+    // ================== GETTERS ==================
+    public String getCCnpj() { return cCnpj; }
+    public String getCNmTransportadora() { return cNmTransportadora; }
+    public String getCRegiaoAtendida() { return cRegiaoAtendida; }
+    public String getCEmail() { return cEmail; }
 
-    /**Metodo getCNmTransporte
-     * @return nome do transporte*/
-    public String getCNmTransporte(){return cNmTransportadora;}
+    // ================== SETTERS ==================
+    public void setCCnpj(String cCnpj) { this.cCnpj = cCnpj; }
+    public void setCNmTransportadora(String cNmTransportadora) { this.cNmTransportadora = cNmTransportadora; }
+    public void setCRegiaoAtendida(String cRegiaoAtendida) { this.cRegiaoAtendida = cRegiaoAtendida; }
+    public void setCEmail(String cEmail) { this.cEmail = cEmail; }
 
-    /**Metodo getCRegiaoAtendimento
-     * @return região de atendimento da transportadora*/
-    public String getCRegiaoAtendida(){return cRegiaoAtendida;}
+    // ================== MÉTODOS AUXILIARES ==================
 
-    /**Metodo getCEmail
-     * @return email de contato da transportadora*/
-    public String getCEmail(){return cEmail;}
-
-    /**Metodo setCNmTransporte
-     * @param cNmTransportadora*/
-    public void setCNmTransporte(String cNmTransportadora) {this.cNmTransportadora = cNmTransportadora;}
-
-    /**Metodo setDRetirada
-     * @param cRegiaoAtendida*/
-    public void setcRegiaoAtendida(String cRegiaoAtendida) {this.cRegiaoAtendida = cRegiaoAtendida;}
-
-    public void setcEmail(String cEmail) {this.cEmail = cEmail;}
-
-    /**Metodo toString
-     *@return informação dos campos da tabela*/
+    /**
+     * Retorna uma string com os dados da transportadora
+     */
     @Override
-    public String toString(){
-        return "CNPJ: " + cCnpj + "\nNome: " + cNmTransportadora +
-                "\nRegião Atendida: " +cRegiaoAtendida + "\nEmail: " + cEmail;
+    public String toString() {
+        return "CNPJ: " + cCnpj +
+                "\nNome: " + cNmTransportadora +
+                "\nRegião Atendida: " + cRegiaoAtendida +
+                "\nEmail: " + cEmail;
     }
 
-    /**Metodo para retornar a tabela
-     * @return nome da tabela*/
+    /**
+     * Retorna o ID da entidade (CNPJ)
+     */
     @Override
-    public Object getId(){return cCnpj;}
+    public Object getId() {
+        return cCnpj;
+    }
 }

@@ -17,6 +17,12 @@
         <h1>Lista de Administradores</h1>
         <button class="add-btn" onclick="abrirPopupInsertAdministrador()">Adicionar Administrador</button>
     </div>
+    <br>
+    <% String erro = (String) request.getAttribute("erro");
+        if (erro != null){ %>
+    <h5> <%= erro%> </h5>
+    <% }%>
+    <br>
     <div class="table-container">
     <table>
         <thead>
@@ -79,9 +85,9 @@
 
     // ABRIR POPUP DE UPDATE E PREENCHER OS CAMPOS
     function UpdateAdministrador(cNmAministrador, cEmail, cSenha) {
-        document.getElementById('upd-cNmAdministrador').value = cNmAministrador;
-        document.getElementById('upd-cEmail').value = cEmail;
-        document.getElementById('upd-cSenha').value = cSenha;
+        document.getElementById('update-administrador-cNmAdministrador').value = cNmAministrador;
+        document.getElementById('update-administrador-cEmail').value = cEmail;
+        document.getElementById('update-administrador-cSenha').value = cSenha;
         document.getElementById('popup-update-administrador').style.display = 'flex';
     }
 </script>

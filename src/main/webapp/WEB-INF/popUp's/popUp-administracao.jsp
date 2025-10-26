@@ -8,10 +8,10 @@
         <h2>Cadastrar Administrador</h2>
         <form action="${pageContext.request.contextPath}/administrador/insert" method="post">
             <label>Nome do Administrador</label>
-            <input type="text" name="cNmAdministrador" required>
+            <input type="text" name="cNmAdministrador" maxlength="" required>
 
             <label>Email</label>
-            <input type="email" name="cEmail" required>
+            <input type="text" name="cEmail" required>
 
             <label>Senha</label>
             <input type="password" name="cSenha" required>
@@ -28,14 +28,14 @@
         <h2>Atualizar Administrador</h2>
         <form action="${pageContext.request.contextPath}/administrador/update" method="post">
             <label>Nome do Administrador</label>
-            <input type="text" name="cNmAdministrador" id="upd-cNmAdministrador" required>
+            <input type="text" name="cNmAdministrador" id="update-administrador-cNmAdministrador" maxlength="20" required>
 
             <label>Email</label>
-            <input type="text" name="cEmail" id="upd-cEmail">
-            <input type="hidden" name="cEmail" id="upd-cEmail">
+            <input type="text" name="cEmail" id="update-administrador-cEmail" maxlength="70" required>
+            <input type="hidden" name="cEmail" >
 
             <label>Senha</label>
-            <input type="text" name="cSenha" id="upd-cSenha" required>
+            <input type="text" name="cSenha" id="update-administrador-cSenha" required>
 
             <button type="submit">Atualizar</button>
         </form>

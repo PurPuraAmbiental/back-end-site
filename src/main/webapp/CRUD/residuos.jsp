@@ -15,8 +15,16 @@
 <div class="main">
     <div class="header">
         <h1>Lista de Resíduos</h1>
+        <div class="botoes-principais">
         <button class="add-btn" onclick="abrirPopupInsertResiduo()">Adicionar Resíduo</button>
+        </div>
     </div>
+    <br>
+    <% String erro = (String) request.getAttribute("erro");
+        if (erro != null){ %>
+    <h5> <%= erro%> </h5>
+    <% }%>
+    <br>
     <div class="table-container">
     <table>
         <thead>

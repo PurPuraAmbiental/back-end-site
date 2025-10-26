@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css?v=3">
     <title>Empresas - CRUD</title>
 </head>
 <body>
@@ -16,14 +16,27 @@
 <div class="main">
     <div class="header">
         <h1>Lista de Empresas</h1>
+        <div class="botoes-principais">
+        <form action="">
+            <select name="filtro">
+                <option value="">Todas</option>
+                <option value="">Apenas Empresas ativas</option>
+                <option value="">Apenas Empresas Inativas</option>
+                <option value="">Apenas empresas com residuos</option>
+                <option value="">Apenas empresas sem residuos</option>
+            </select>
+            <button type="submit" class="add-btn">Filtrar</button>
+        </form>
         <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Adicionar Empresa</button>
+        </div>
+        <br>
+        <% String erro = (String) request.getAttribute("erro");
+            if (erro != null){ %>
+        <h5> <%= erro%> </h5>
+        <% }%>
+        <br>
     </div>
-    <br>
-    <% String erro = (String) request.getAttribute("erro");
-        if (erro != null){ %>
-            <h5> <%= erro%> </h5>
-       <% }%>
-    <br>
+
     <div class="table-container">
         <table>
             <thead>

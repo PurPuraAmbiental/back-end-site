@@ -31,9 +31,19 @@ public class InsertResiduoServlet extends HttpServlet {
 
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
-            params.put("cCnpj", empresa.getCCnpj());
+            System.out.println("erro: "+empresa);
             Residuo model = new Residuo(params);
             ResiduoDAO dao = new ResiduoDAO();
+            if (empresa == null) {
+                List<ResiduoView> residuoViews = dao.listarComEmpresa();
+                request.setAttribute("listaResiduos", residuoViews);
+                request.setAttribute("erro", "Nao foi possivel cadastrar Residuo! Insira uma empresa cadastrada anteriormente");
+                request.getRequestDispatcher("/CRUD/residuos.jsp").forward(request, response);
+                return;
+            } else {
+                model.setCCnpj(empresa.getCCnpj());
+
+            }
             dao.save(model);
 
             List<ResiduoView> residuosView = dao.listarComEmpresa();

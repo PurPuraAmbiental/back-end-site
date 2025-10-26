@@ -45,6 +45,7 @@ public abstract class DAO<T extends Model> {
             }
 
         } catch (SQLException e)  {
+            System.out.println("achou");
             e.printStackTrace();
             throw new ConnectionFailedException();
         }
@@ -210,11 +211,12 @@ public abstract class DAO<T extends Model> {
                 if (rs.next()) {
                     return mapResultSet(rs);
                 } else {
-                    throw new NotFoundException(getNomeTabela(), coluna);
+                   return null;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("eita");
             throw new ConnectionFailedException();
         }
     }

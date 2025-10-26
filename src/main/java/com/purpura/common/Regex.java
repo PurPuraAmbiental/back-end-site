@@ -25,7 +25,7 @@ public class Regex {
         return matcher.find();
     }
 
-    public boolean validarTelefone(String telefone){
+    public static boolean validarTelefone(String telefone){
         String regex = Constants.TELEFONE_REGEX;
         Pattern patternt = Pattern.compile(regex);
         Matcher matcher = patternt.matcher(telefone);

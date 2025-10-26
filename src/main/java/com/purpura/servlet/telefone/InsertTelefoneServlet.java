@@ -1,9 +1,8 @@
 package com.purpura.servlet.telefone;
 
-import com.purpura.dao.DAO;
+import com.purpura.common.Regex;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.TelefoneDAO;
-import com.purpura.dto.ResiduoView;
 import com.purpura.dto.TelefoneView;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
@@ -16,36 +15,93 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+/** SERVLET INSERT TELEFONE
+ * Tem o objetivo de validar os dados que podem comprometer a inserção
+ * no banco de dados e, uma vez validados, adiciona o endereço na lista
+ * de TELEFONE do banco.
+ *
+ * CRUD -> CREATE
+ *
+ * @author Kevin de Oliveira
+ * @author Bruna Oliveira
+ **/
 @WebServlet(name = "InsertTelefoneServlet", value = "/telefone/insert")
 public class InsertTelefoneServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+
         try {
+            // Captura todos os parâmetros enviados pelo formulário e armazena em um mapa
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
 
+            // Recupera o nome da empresa do formulário
             String nomeEmpresa = params.get("cNmEmpresa");
 
+            // Busca a empresa no banco usando o nome para obter o CNPJ
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
-            params.put("cCnpj", empresa.getCCnpj());
 
+            // Cria o objeto Telefone a partir dos parâmetros do formulário
             Telefone model = new Telefone(params);
             TelefoneDAO dao = new TelefoneDAO();
+
+            // Recupera a lista atual de telefones para exibir na página, caso haja erro
+            List<TelefoneView> telefoneViews = dao.listarComEmpresa();
+            request.setAttribute("listaTelefones", telefoneViews);
+
+            // Se a empresa não existir, envia mensagem de erro e mantém a lista de telefones na tela
+            if (empresa == null) {
+                setErro(request, response, dao,
+                        "Não foi possível cadastrar Telefone! Insira uma empresa cadastrada anteriormente");
+                return;
+            }
+
+            // Define o CNPJ da empresa no telefone para manter a referência correta
+            model.setCCnpj(empresa.getCCnpj());
+
+            // Valida se o telefone tem formato correto usando Regex
+            if (!Regex.validarTelefone(model.getCNrTelefone())) {
+                setErro(request, response, dao,
+                        "Não foi possível cadastrar Telefone! Insira um Telefone válido");
+                return;
+            }
+
+            // Formata o telefone removendo caracteres não numéricos para salvar apenas os dígitos
+            model.setCNrTelefone(model.getCNrTelefone()
+                    .replace("(", "")
+                    .replace(")", "")
+                    .replace("-", "")
+                    .replace(" ", ""));
+
+            // Salva o telefone no banco
             dao.save(model);
 
-            List<TelefoneView> telefoneView = dao.listarComEmpresa();
-            request.setAttribute("listaResiduo", telefoneView);
+            // Após salvar, redireciona para a lista de telefones para evitar reenvio do formulário
             response.sendRedirect(request.getContextPath() + "/telefone/list");
-        } catch (NumberFormatException e) {
+
+        } catch (NumberFormatException | ConnectionFailedException | NotFoundException e) {
+            // Se ocorrer qualquer erro de processamento, envia para a página de erro
             request.setAttribute("erro", "Erro ao inserir Telefone: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
         }
+    }
+
+    /**
+     * Método auxiliar para reduzir repetição de código ao encaminhar mensagem de erro.
+     * Ele atualiza a lista de telefones na tela e define a mensagem de erro.
+     */
+    private void setErro(HttpServletRequest request, HttpServletResponse response, TelefoneDAO dao, String mensagem)
+            throws jakarta.servlet.ServletException, IOException {
+
+        List<TelefoneView> telefoneViews = dao.listarComEmpresa();
+        request.setAttribute("listaTelefones", telefoneViews);
+        request.setAttribute("erro", mensagem);
+        request.getRequestDispatcher("/CRUD/telefone.jsp").forward(request, response);
     }
 }
