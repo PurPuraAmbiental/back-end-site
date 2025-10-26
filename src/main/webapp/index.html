@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="texto.css">
 </head>
-
+<!-- Colocando a classe inter no body para padronizar a fonte do site. -->
 <body class="inter">
     <header class="site-header">
+        <!-- Classe container que armazena a navbar e autenticação. -->
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="assets/purpura/logo_purpura.svg" alt="Logo da PurPura Ambiental">
@@ -27,24 +28,26 @@
                 </ul>
             </nav>
 
-            <div class="auth">
+            <div class="autenticacao">
                 <a class="login" href="login.jsp">Login</a>
-                <a class="signup" href="cadastro.html">Cadastro</a>
+                <a class="cadastro" href="cadastro.html">Cadastro</a>
             </div>
         </div>
     </header>
 
     <main id="home">
         <section class="hero container">
+            <!-- Hero: área de destaque da página -->
             <div class="hero-left">
                 <h1>
                     O que sua empresa faz com os resíduos pode mudar o futuro.
                     Você está pronto para isso?
                 </h1>
-                <p class="subtitle">
+                <p class="subtítulo">
                     Promovemos a conexão inteligente entre indústrias. Juntos, transformamos o excedente
                     em valor, inovação e um futuro mais limpo!
                 </p>
+                <!-- CTA: Call To Action, botão que o usuário aperta -->
                 <a class="cta" href="#secao-servicos">Saiba Mais</a>
             </div>
 
@@ -62,7 +65,7 @@
 
         <div class="conteudo-secao">
             <div class="container-imagem">
-                <img src="assets/purpura/flor.jpg" alt="Equipe PurPura" class="imagem">
+                <img src="assets/purpura/flor.jpg" alt="Imagem de uma flor roxa" class="imagem">
             </div>
             <div class="texto-secao">
                 <h2>Quem é a <span class="destaque-roxo">PurPura</span>?</h2>
@@ -78,7 +81,7 @@
 
         <div class="conteudo-secao">
             <div class="container-imagem">
-                <img src="assets/purpura/ecofriendly.jpeg" alt="Sustentabilidade empresarial" class="imagem">
+                <img src="assets/purpura/ecofriendly.jpeg" alt="Sustentabilidade Industrial" class="imagem">
             </div>
             <div class="texto-secao">
                 <h2>Por que escolher a <span class="destaque-roxo">PurPura</span>?</h2>
@@ -95,7 +98,7 @@
     <section id="secao-servicos" class="servicos-purpura">
         <header class="servicos-cabecalho">
             <p>— Nossos Serviços —</p>
-            <h2>Explore Nossos <span class="destaque-roxo">Serviços</span></h2>
+            <h2>Explore Nossos Serviços</h2>
         </header>
 
         <div class="servicos-grid">
@@ -225,6 +228,7 @@
             <h2>Perguntas Frequentes</h2>
         </header>
 
+        <!-- FAQ: Frequently Asked Question, seção para responder perguntas frequentes -->
         <div class="faq-container">
             <div class="faq-item">
                 <input type="checkbox" id="faq1" class="faq-toggle">
