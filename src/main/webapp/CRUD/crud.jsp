@@ -11,16 +11,25 @@
     <title>CRUD</title>
 </head>
 <body>
-<!-- aba lateral -->
-<div class="sidebar">
-    <h2>CRUD OPERATIONS</h2>
+<!-- Botão hambúrguer -->
+<a href="#sidebar" class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+</a>
+
+
+<!-- Sidebar com ID (para o target funcionar) -->
+<div class="sidebar" id="sidebar">
+    <a href="#" class="close">×</a> <!-- Botão de fechar -->
+    <h2>Área de Controle</h2>
     <div class="profile">
         <img src="https://png.pngtree.com/png-vector/20190704/ourmid/pngtree-administration-icon-in-trendy-style-isolated-background-png-image_1538647.jpg" alt="foto do admin">
         <h3><%= ((Administrador) session.getAttribute("usuario")).getCNmAdministrador() %></h3>
         <p>Admin</p>
     </div>
     <div class="menu">
-        <a href= "<%= request.getContextPath() %>/empresa/list" target="conteudo-principal" class="active"> Empresas</a>
+        <a href= "<%= request.getContextPath() %>/empresa/list" target="conteudo-principal" class="active">Empresas</a>
         <a href="<%=request.getContextPath() %>/residuo/list" target="conteudo-principal">Resíduos</a>
         <a href="<%=request.getContextPath() %>/endereco-empresa/list" target="conteudo-principal">Endereço</a>
         <a href="<%=request.getContextPath() %>/telefone/list" target="conteudo-principal">Telefone</a>
@@ -33,6 +42,5 @@
 <main class="content">
     <iframe name="conteudo-principal"></iframe>
 </main>
-
 </body>
 </html>
