@@ -1,0 +1,129 @@
+/* Laptops e tablets grandes */
+@media (max-width: 1024px) {
+  .planos-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .plano-card {
+    width: 100%;
+    max-width: 400px;
+  }
+  .plano-destaque,
+  .plano-destaque:hover {
+    transform: none;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    gap: 30px;
+    padding: 30px 20px;
+  }
+  .hero-right {
+    margin: 0 auto 40px auto;
+  }
+  .hero-left h1 { font-size: 2.4rem; }
+  .hero-left .muted { font-size: 1.5rem; }
+  .subtitle { font-size: 1.1rem; }
+}
+
+/* Tablets e celulares grandes */
+@media (max-width: 768px) {
+  .conteudo-secao,
+  .reverter-mobile,
+  .beneficios-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .conteudo-secao > * {
+    max-width: 100%;
+  }
+
+  .servicos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficios-left h2 { font-size: 2.2rem; }
+
+  .lista-beneficios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .servicos-cabecalho h2,
+  .faq-cabecalho h2 {
+    font-size: 2rem;
+  }
+
+  .hero-left h1 { font-size: 2rem; }
+  .hero-right .decor { width: 280px; max-width: 100%; }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+
+  .main-nav {
+    display: none !important;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-left h1 {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+  .hero-left .muted {
+    font-size: 1.2rem;
+  }
+  .hero-right .decor {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .plano-card,
+  .plano-destaque {
+    width: 100% !important;
+  }
+
+  .plano-destaque-label {
+    top: 15px;
+    right: 15px;
+    font-size: 0.7rem;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .footer-col {
+    margin: 10px 0;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  /* garante que imagens grandes não estourem no mobile */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Telas grandes */
+@media (min-width: 1440px) {
+  .container { max-width: 1400px; }
+  .hero-left h1 { font-size: 3.8rem; }
+  .hero-left .muted { font-size: 2rem; }
+}

@@ -1,0 +1,44 @@
+.plano-destaque {
+  background-color: #231d4f;
+  color: #fff;
+  transform: scale(1.05);
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.plano-destaque:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+.plano-destaque .plano-nome,
+.plano-destaque .plano-preco,
+.plano-destaque .plano-preco span,
+.plano-destaque .plano-descricao,
+.plano-destaque .plano-lista li {
+  color: #fff;
+}
+
+.plano-destaque .plano-check {
+  color: #b025f3;
+}
+
+.plano-destaque .botao-escolher {
+  background-color: #b025f3;
+  color: #fff;
+}
+
+.plano-destaque .botao-escolher:hover {
+  background-color: #BB6BD9;
+}
+
+.plano-destaque-label {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #231d4f;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}

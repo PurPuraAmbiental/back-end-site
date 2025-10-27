@@ -1,0 +1,143 @@
+.servico-card  {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  text-align: left;
+  background-image: url('c:\Users\irisrodrigues-ieg\Downloads\img.png');
+}
+
+/* efeito de passar o mouse nas caixinhas */
+.servico-card:hover {
+  background-color: var(--roxoclaro); 
+  transform: translateY(-10px);
+  color: #fff; 
+}
+
+.servico-card:hover h3,
+.servico-card:hover p,
+.servico-card:hover .icone-placeholder {
+  color: #fff;
+}
+
+.servico-card:hover .icone-circulo {
+  background-color: var(--roxoescuro);
+}
+.servicos-purpura {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.servicos-cabecalho p {
+  color: #9370db;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.servicos-cabecalho h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servico-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+
+.servico-card:hover {
+  transform: translateY(-10px);
+}
+
+.servico-card.destaque h3,
+.servico-card.destaque p {
+  color: #fff;
+}
+
+.icone-circulo {
+  width: 60px;
+  height: 60px;
+  background-color: #f0e6fa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.servico-card.destaque .icone-circulo {
+  background-color: #7d52cc;
+}
+
+.icone-placeholder {
+  font-size: 2rem;
+  color: #9370db;
+}
+
+.servico-card.destaque .icone-placeholder {
+  color: #fff;
+}
+
+.servico-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.servico-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.servico-card.destaque p {
+  color: #fff;
+}
+
+.servicos-cta {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.servicos-cta p {
+  max-width: 700px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.botao-cta-roxo {
+  background-color: #9370db;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.botao-cta-roxo:hover {
+  background-color: #7d52cc;
+}
