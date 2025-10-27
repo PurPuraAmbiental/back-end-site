@@ -24,7 +24,7 @@ public class DeleteResiduoServlet extends HttpServlet {
             throws jakarta.servlet.ServletException, IOException {
         String idResiduo = request.getParameter("nCdResiduo");
         ResiduoDAO dao = new ResiduoDAO();
-        String lista = "listaResiduo";
+        String lista = "listaResiduos";
         String caminho = "/CRUD/residuos.jsp";
         try {
             int id = Integer.parseInt(idResiduo);
