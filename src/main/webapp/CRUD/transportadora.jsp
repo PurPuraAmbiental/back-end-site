@@ -30,14 +30,15 @@
     <br>
     <!-- ==================== FILTROS ========================= -->
     <label for="">Insira o nome da empresa</label>
-    <input type="text" placeholder="digite o nome da empresa">
-    <br>
-    <label for="">Insira a regiao</label>
-    <input type="text" placeholder="Ache transportadora pertinho de voce">
-    <br>
-    <button type="submit" class="add-btn"> Filtrar </button>
-    <br>
-
+    <form action="<%=request.getContextPath()%>/transportadora/list" method="get">
+        <label for="nomeTransportadora">Insira o nome da transportadora</label>
+        <input type="text" id="nomeTransportadora" name="nomeTransportadora" placeholder="Digite o nome da transportadora">
+        <br>
+        <label for="regiao">Insira a região</label>
+        <input type="text" id="regiao" name="regiao" placeholder="Ache transportadora pertinho de você">
+        <br>
+        <button type="submit" class="add-btn">Filtrar</button>
+    </form>
     <!-- ================== MENSAGEM DE ERRO ================== -->
     <%
         // Recupera a mensagem de erro enviada pelo servlet, se houver

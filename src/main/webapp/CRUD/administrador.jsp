@@ -17,10 +17,18 @@
         <h1>Lista de Administradores</h1>
         <button class="add-btn" onclick="abrirPopupInsertAdministrador()">Adicionar Administrador</button>
     </div>
-    <label for="">Insira o nome do Administrador</label>
-    <input type="text" placeholder="nome adm">
-    <br>
-    <button type="submit" class="add-btn"> Filtrar </button>
+    <form action="<%=request.getContextPath()%>/administrador/list" method="get">
+        <label for="nomeAdministrador">Insira o nome do Administrador</label>
+        <input
+            type="text"
+            name="nomeAdministrador"
+            id="nomeAdministrador"
+            placeholder="nome adm"
+            required
+        >
+        <br>
+        <button type="submit" class="add-btn">Filtrar</button>
+    </form>
     <br>
     <br>
     <% String erro = (String) request.getAttribute("erro");

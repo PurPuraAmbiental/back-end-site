@@ -54,7 +54,17 @@ public class InsertAdministradorServlet extends HttpServlet {
                 }
             }
             dao.save(model);
-            response.sendRedirect(request.getContextPath() + "/administrador/list");
+
+            String origem = null;
+            origem = request.getParameter("origem");
+
+            if(origem != null){
+                response.sendRedirect(request.getContextPath());
+            }
+            else{
+                response.sendRedirect(request.getContextPath() + "/administrador/list");
+            }
+
         } catch (ConnectionFailedException | NotFoundException e) {
             ErroServlet.setErro(request, response, dao,"Erro ao inserir Administrador: " + e.getMessage(), lista, caminho);
         } catch (ParseException e) {

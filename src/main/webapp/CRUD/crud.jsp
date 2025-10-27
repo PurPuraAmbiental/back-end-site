@@ -36,7 +36,7 @@
         <a href="<%=request.getContextPath()%>/transportadora/list" target="conteudo-principal">Transportadora</a>
         <a href="<%=request.getContextPath()%>/administrador/list" target="conteudo-principal">Administrador</a>
     </div>
-    <a href="/index.html" class="logout">Logout</a>
+    <a href="<%=request.getContextPath()%>/logout" class="logout">Logout</a>
 </div>
 
 <main class="content">

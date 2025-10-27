@@ -358,4 +358,6 @@ public abstract class DAO<T extends Model> {
      * @return Nome da coluna ID
      */
     protected abstract String getColunaId(); // retorna nome da coluna com id (primary key)
+
+
 }
