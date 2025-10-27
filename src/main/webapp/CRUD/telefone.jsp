@@ -43,8 +43,11 @@ autor(a): Kevin de Oliveira
     </div>
     <br>
 
-    <input type="text" placeholder="digite o nome da empresa"> 
-    <button type="submit" class="add-btn"> Filtrar </button>
+    <form action="<%=request.getContextPath()%>/telefone/list" method="get">
+        <input type="text" name="nomeEmpresa" placeholder="Digite o nome da empresa">
+        <button type="submit" class="add-btn">Filtrar</button>
+    </form>
+
     <br>
     <!-- Exibição de mensagens de erro enviadas pelo Servlet -->
     <%
@@ -145,4 +148,4 @@ autor(a): Kevin de Oliveira
     }
 </script>
 </body>
-</html>
+</html>,

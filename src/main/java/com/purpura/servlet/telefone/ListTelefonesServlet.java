@@ -21,9 +21,13 @@ public class ListTelefonesServlet extends HttpServlet {
 
         try {
             TelefoneDAO telefoneDAO = new TelefoneDAO();
-            List<TelefoneView> telefones = telefoneDAO.listarComEmpresa();
+
+            String nomeEmpresa = request.getParameter("nomeEmpresa");
+
+            List<TelefoneView> telefones = telefoneDAO.listarTelefonesFiltrados(nomeEmpresa);
 
             request.setAttribute("listaTelefones", telefones);
+            request.setAttribute("nomeEmpresa", nomeEmpresa);
 
             RequestDispatcher rd = request.getRequestDispatcher("/CRUD/telefone.jsp");
             rd.forward(request, response);
