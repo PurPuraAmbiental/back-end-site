@@ -129,14 +129,14 @@
 
     // FUNÇÃO DE UPDATE (mesmo nome dos atributos)
     function UpdateResiduo(nCdResiduo, cNmResiduo, cTipoUnidade, nPrecoPadrao, nVolumePadrao, cCategoria, cNmEmpresa, cDescricao) {
-        document.getElementById('nCdResiduo').value = nCdResiduo;
-        document.getElementById('cNmResiduo').value = cNmResiduo;
-        document.getElementById('cTipoUnidade').value = cTipoUnidade;
-        document.getElementById('nPrecoPadrao').value = nPrecoPadrao;
-        document.getElementById('nVolumePadrao').value = nVolumePadrao;
-        document.getElementById('cCategoria').value = cCategoria;
-        document.getElementById('cNmEmpresa').value = cNmEmpresa;
-        document.getElementById('cDescricao').value = cDescricao;
+        document.getElementById('update-residuo-nCdResiduo').value = nCdResiduo;
+        document.getElementById('update-residuo-cNmResiduo').value = cNmResiduo;
+        document.getElementById('update-residuo-cTipoUnidade').value = cTipoUnidade;
+        document.getElementById('update-residuo-nPrecoPadrao').value = nPrecoPadrao;
+        document.getElementById('update-residuo-nVolumePadrao').value = nVolumePadrao;
+        document.getElementById('update-residuo-cCategoria').value = cCategoria;
+        document.getElementById('update-residuo-cNmEmpresa').value = cNmEmpresa;
+        document.getElementById('update-residuo-cDescricao').value = cDescricao;
 
         document.getElementById('popup-update-residuo').style.display = 'flex';
     }

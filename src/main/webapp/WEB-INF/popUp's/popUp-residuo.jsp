@@ -46,13 +46,13 @@
         <h2>Atualizar Resíduo</h2>
 
         <form action="${pageContext.request.contextPath}/residuo/update" method="post">
-            <input type="hidden" name="nCdResiduo" id="nCdResiduo">
+            <input type="hidden" name="nCdResiduo" id="update-residuo-nCdResiduo">
 
             <label>Tipo do Resíduo</label>
-            <input type="text" name="cNmResiduo" id="cNmResiduo" required>
+            <input type="text" name="cNmResiduo" id="update-residuo-cNmResiduo" required>
 
             <label>Unidade de Medida</label>
-            <select name="cTipoUnidade" id="cTipoUnidade" required>
+            <select name="cTipoUnidade" id="update-residuo-cTipoUnidade" required>
                 <option value="kg">Kilograma (kg)</option>
                 <option value="t">Tonelada (t)</option>
                 <option value="kg/m³">Kg/m³</option>
@@ -60,19 +60,19 @@
             </select>
 
             <label>Preço</label>
-            <input type="text" name="nPrecoPadrao" id="nPrecoPadrao" required>
+            <input type="text" name="nPrecoPadrao" id="update-residuo-nPrecoPadrao" required>
 
             <label>Volume</label>
-            <input type="text" name="nVolumePadrao" id="nVolumePadrao" required>
+            <input type="text" name="nVolumePadrao" id="update-residuo-nVolumePadrao" required>
 
             <label>Categoria</label>
-            <input type="text" name="cCategoria" id="cCategoria" required>
+            <input type="text" name="cCategoria" id="update-residuo-cCategoria" required>
 
             <label>Empresa</label>
-            <input type="text" name="cNmEmpresa" id="cNmEmpresa" required>
+            <input type="text" name="cNmEmpresa" id="update-residuo-cNmEmpresa" required>
 
             <label>Descrição</label>
-            <input type="text" name="cDescricao" id="cDescricao" required>
+            <input type="text" name="cDescricao" id="update-residuo-cDescricao" required>
 
             <button type="submit">Atualizar</button>
         </form>
