@@ -5,6 +5,7 @@ import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;
+import com.purpura.model.Transportadora;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,22 +22,14 @@ public class ListAdministradoresServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String filtro = request.getParameter("filtro");
-        List<Administrador> administradores = null;
         try {
-            DAO<Administrador> administradorDAO = new AdministradorDAO();
-            String parametroBusca = request.getParameter("parametroBusca");
-            if ("nome".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
-                administradores = administradorDAO.findAllByAttribute("cNmAdministrador", parametroBusca);
-            }
-            else if ("email".equals(filtro) && parametroBusca != null && !parametroBusca.isBlank()) {
-                administradores = administradorDAO.findAllByAttribute("cEmail", parametroBusca);
-            }
-            else {
-                administradores = administradorDAO.findAll();
-            }
+            AdministradorDAO administradorDAO = new AdministradorDAO();
+
+            String nome = request.getParameter("nomeAdministrador");
+            List<Administrador> administradores = administradorDAO.listarAdministradoresFiltrados(nome);
 
             request.setAttribute("listaAdministradores", administradores);
+            request.setAttribute("nome", nome);
 
             RequestDispatcher rd = request.getRequestDispatcher("/CRUD/administrador.jsp");
             rd.forward(request, response);
