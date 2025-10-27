@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css?v=3">
-    
+
     <title>Empresas - CRUD</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
 <div class="main">
     <div class="header">
         <h1>Lista de Empresas</h1>
-        <button class="add-btn" onclick="abrirPopupInsert()">Cadastrar Empresa</button>
+        <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Cadastrar Empresa</button>
         <br>
     </div>
     <div class="filtro">
