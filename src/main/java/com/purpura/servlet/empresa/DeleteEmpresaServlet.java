@@ -19,20 +19,20 @@ import java.util.List;
 public class DeleteEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-        String ccnpj = request.getParameter("ccnpj");
+        String ccnpj = request.getParameter("cCnpj");
         DAO<Empresa> dao = new EmpresaDAO();
         String caminho = "/CRUD/empresas.jsp";
         String lista = "listaEmpresas";
         try {
             //apaga os registro das tabelas fracas que dependem da sua primary key
             DAO<EnderecoEmpresa> enderecoEmpresaDAO = new EnderecoEmpresaDAO();
-            enderecoEmpresaDAO.deleteByAttribute("ccnpj", ccnpj);
+            enderecoEmpresaDAO.deleteByAttribute("cCnpj", ccnpj);
 
             DAO< Residuo> residuoDAO = new ResiduoDAO();
-            residuoDAO.deleteByAttribute("ccnpj", ccnpj);
+            residuoDAO.deleteByAttribute("cCnpj", ccnpj);
 
             DAO<Telefone> telefoneDAO = new TelefoneDAO();
-            telefoneDAO.deleteByAttribute("ccnpj", ccnpj);
+            telefoneDAO.deleteByAttribute("cCnpj", ccnpj);
 
             //apaga o registro agora sem interferencia das suas dependentes
 
