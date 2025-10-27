@@ -109,4 +109,79 @@ public class EnderecoEmpresaDAO extends DAO<EnderecoEmpresa> {
         }
         return listaView;
     }
+
+    /**
+     * Lista endereços de empresas com filtros opcionais por estado e nome da empresa.
+     *
+     * @param estado filtro opcional para o estado (UF)
+     * @param nomeEmpresa filtro opcional para o nome da empresa
+     * @return lista de EnderecoEmpresaView correspondentes aos filtros
+     * @throws ConnectionFailedException se a conexão com o banco falhar
+     */
+    public List<EnderecoEmpresaView> listarEnderecosFiltrados(String estado, String nomeEmpresa)
+            throws ConnectionFailedException {
+
+        List<EnderecoEmpresaView> enderecos = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("""
+            SELECT 
+                e.nCdEnderecoEmpresa,
+                e.cBairro,
+                e.cLogradouro,
+                e.cEstado,
+                e.cCidade,
+                e.cCep,
+                e.cComplemento,
+                e.iNrEnderecoEmpresa,
+                emp.cNmEmpresa,
+                emp.cCnpj
+            FROM EnderecoEmpresa e
+            INNER JOIN Empresa emp ON e.cCnpj = emp.cCnpj
+            WHERE 1=1
+        """);
+
+        List<Object> params = new ArrayList<>();
+
+        if (estado != null && !estado.isBlank()) {
+            sql.append(" AND e.cEstado ILIKE ?");
+            params.add("%" + estado + "%");
+        }
+
+        if (nomeEmpresa != null && !nomeEmpresa.isBlank()) {
+            sql.append(" AND emp.cNmEmpresa ILIKE ?");
+            params.add("%" + nomeEmpresa + "%");
+        }
+
+        sql.append(" ORDER BY emp.cNmEmpresa ASC");
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setObject(i + 1, params.get(i));
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    EnderecoEmpresaView view = new EnderecoEmpresaView(
+                            rs.getInt("nCdEnderecoEmpresa"),
+                            rs.getString("cBairro"),
+                            rs.getString("cLogradouro"),
+                            rs.getString("cEstado"),
+                            rs.getString("cCidade"),
+                            rs.getString("cCep"),
+                            rs.getString("cComplemento"),
+                            rs.getInt("iNrEnderecoEmpresa"),
+                            rs.getString("cNmEmpresa"),
+                            rs.getString("cCnpj")
+                    );
+                    enderecos.add(view);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new ConnectionFailedException();
+        }
+
+        return enderecos;
+    }
 }

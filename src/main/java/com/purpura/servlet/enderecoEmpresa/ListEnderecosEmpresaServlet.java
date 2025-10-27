@@ -21,9 +21,15 @@ public class ListEnderecosEmpresaServlet extends HttpServlet {
 
         try {
             EnderecoEmpresaDAO enderecoDAO = new EnderecoEmpresaDAO();
-            List<EnderecoEmpresaView> enderecos = enderecoDAO.listarComEmpresa();
+
+            String estado = request.getParameter("estado");
+            String nomeEmpresa = request.getParameter("nomeEmpresa");
+
+            List<EnderecoEmpresaView> enderecos = enderecoDAO.listarEnderecosFiltrados(estado, nomeEmpresa);
 
             request.setAttribute("listaEnderecos", enderecos);
+            request.setAttribute("estado", estado);
+            request.setAttribute("nomeEmpresa", nomeEmpresa);
 
             RequestDispatcher rd = request.getRequestDispatcher("/CRUD/endereco.jsp");
             rd.forward(request, response);
