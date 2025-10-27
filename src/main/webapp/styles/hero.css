@@ -1,0 +1,61 @@
+main {
+  padding-top: 100px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 0;
+}
+
+.hero-left, .hero-right {
+  flex: 1;
+}
+
+.hero-right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-left: 60px;
+ margin-bottom: 60px;
+}
+
+.hero-left h1 {
+  font-size: 3.2rem;
+  line-height: 1.2; 
+}
+
+.hero-left .muted {
+  display: block;
+  color: #7b6f9a;
+  font-weight: 400;
+  font-size: 1.8rem; 
+  margin-top: 12px; 
+}
+
+.subtitle {
+  color: var(--cinza);
+  max-width: 520px;
+  margin-top: 30px; 
+  line-height: 1.8; 
+  font-size: 1.2rem; 
+}
+
+
+.cta {
+  display: inline-block;
+  margin-top: 30px;
+  background: var(--roxoclaro);
+  color: #fff;
+  padding: 14px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero-right .decor {
+  width: 420px;
+  border-radius: 14px;
+  object-fit: cover;
+}
