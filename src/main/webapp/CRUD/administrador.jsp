@@ -24,7 +24,6 @@
             name="nomeAdministrador"
             id="nomeAdministrador"
             placeholder="nome adm"
-            required
         >
         <br>
         <button type="submit" class="add-btn">Filtrar</button>
