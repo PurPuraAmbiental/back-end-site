@@ -40,3 +40,12 @@ build/
 .idea
 src/main/webapp/WEB-INF/classes/.env
 .env
+/.smarttomcat/back-end-site/conf/catalina.properties
+/.smarttomcat/back-end-site/conf/context.xml
+/.smarttomcat/back-end-site/conf/jaspic-providers.xml
+/.smarttomcat/back-end-site/conf/jaspic-providers.xsd
+/.smarttomcat/back-end-site/conf/logging.properties
+/.smarttomcat/back-end-site/conf/server.xml
+/.smarttomcat/back-end-site/conf/tomcat-users.xml
+/.smarttomcat/back-end-site/conf/tomcat-users.xsd
+/.smarttomcat/back-end-site/conf/web.xml
