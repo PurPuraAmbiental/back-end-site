@@ -56,6 +56,7 @@ public class InsertEmpresaServlet extends HttpServlet {
             if (params.containsKey("cSenha")) {
                     String hash = Criptografia.criptografar(params.get("cSenha"));
                     params.put("cSenha", hash);
+                    model.setCSenha(params.get("cSenha"));
                 }
             dao.save(model);
             response.sendRedirect(request.getContextPath() + "/empresa/list");
