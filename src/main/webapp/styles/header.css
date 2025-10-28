@@ -1,0 +1,81 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 26px 0;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #9b9b9b;
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.main-nav {
+  color: #222;
+}
+
+.menu-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--pretoText);
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover .menu-line,
+.main-nav a:active .menu-line {
+  width: 100%;
+  color: var(--pretoText);
+}
+
+.auth {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+.auth .login {
+  color: #000000;
+  text-decoration: none;
+}
+
+.auth .cadastro{
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--roxoclaro);
+  color: #fff;
+  text-decoration: none;
+}
+
+.auth .signup {
+  background: var(--roxoclaro);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
