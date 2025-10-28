@@ -55,7 +55,7 @@
 
 .auth {
   display: flex;
-  gap: 15px;
+  gap: 25px;
   align-items: center;
 }
 .auth .login {
