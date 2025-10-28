@@ -1,3 +1,15 @@
+<%--
+/**
+ * Exibir e gerenciar empresas cadastradas no sistema PurPura.
+ *
+ * - Exibe lista de empresas
+ * - Permite filtro por nome da empresa, CNPJ, email, status e empresa com ou sem resíduo(s)
+ * - Suporte a inserção, edição e exclusão via pop-ups
+ *
+ * Autora: Bruna de Jesus
+ */
+--%>
+
 <%@ page import="java.util.List" %>
 <%@ page import="com.purpura.model.Empresa" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -10,7 +22,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css?v=3">
     
-    <title>Empresas - CRUD</title>
+    <title>Empresas</title>
 </head>
 <body>
 
@@ -23,10 +35,10 @@
     <div class="filtro">
         <form action="<%= request.getContextPath() %>/empresa/list" method="get">
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" class="input-filtro" placeholder="Digite o nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+            <input type="text" name="nome" class="input-filtro" placeholder="Nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
 
             <label for="cnpj">CNPJ:</label>
-            <input type="text" name="cnpj" class="input-filtro" placeholder="Digite o CNPJ" value="<%= request.getParameter("cnpj") != null ? request.getParameter("cnpj") : "" %>">
+            <input type="text" name="cnpj" class="input-filtro" placeholder="CNPJ" value="<%= request.getParameter("cnpj") != null ? request.getParameter("cnpj") : "" %>">
 
             <label for="email">Email:</label>
             <input type="text" name="email" class="input-filtro" placeholder="Digite o email" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
