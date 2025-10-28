@@ -1,12 +1,9 @@
-main {
-  padding-top: 100px;
-}
 
 .hero {
   display: flex;
   align-items: center;
   gap: 40px;
-  padding: 40px 0;
+  padding: 130px 0;
 }
 
 .hero-left, .hero-right {
@@ -20,6 +17,7 @@ main {
   margin-left: 60px;
   margin-bottom: 60px;
 }
+
 
 .hero-left h1 {
   font-size: 3.2rem;
