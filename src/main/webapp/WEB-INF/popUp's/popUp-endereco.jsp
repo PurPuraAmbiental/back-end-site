@@ -23,7 +23,36 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="text" name="cLogradouro" id="cLogradouro" maxlength="40" required>
 
             <label for="cEstado">Estado</label>
-            <input type="text" name="cEstado" id="cEstado" maxlength="2" required>
+            <select name="cEstado" id="cEstado">
+                <option value="">Selecione um estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
 
             <label for="cCidade">Cidade</label>
             <input type="text" name="cCidade" id="cCidade" maxlength="40" required>
@@ -66,7 +95,36 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="text" name="cLogradouro" id="upd-logradouro" maxlength="40" required>
 
             <label for="upd-estado">Estado</label>
-            <input type="text" name="cEstado" id="upd-estado" maxlength="2" required>
+            <select name="cEstado" id="upd-estado">
+                <option value="">Selecione um estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
 
             <label for="upd-cidade">Cidade</label>
             <input type="text" name="cCidade" id="upd-cidade" maxlength="40" required>
@@ -75,7 +133,7 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="text" name="cCep" id="upd-cep" maxlength="8" required>
 
             <label for="upd-complemento">Complemento</label>
-            <input type="text" name="cComplemento" id="upd-complemento" maxlength="20" required>
+            <input type="text" name="cComplemento" id="upd-complemento" maxlength="20" >
 
             <label for="upd-numero">Número</label>
             <input type="number" name="iNrEnderecoEmpresa" id="upd-numero" minlength="1" required>
