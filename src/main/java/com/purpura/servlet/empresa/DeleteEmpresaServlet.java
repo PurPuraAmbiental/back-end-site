@@ -21,7 +21,7 @@ public class DeleteEmpresaServlet extends HttpServlet {
             throws jakarta.servlet.ServletException, IOException {
         String ccnpj = request.getParameter("cCnpj");
         DAO<Empresa> dao = new EmpresaDAO();
-        String caminho = "/CRUD/empresas.jsp";
+        String caminho = "/CRUD/empresa.jsp";
         String lista = "listaEmpresas";
         try {
             //apaga os registro das tabelas fracas que dependem da sua primary key

@@ -29,7 +29,7 @@
 <div class="main">
     <div class="header">
         <h1>Lista de Empresas</h1>
-        <button class="add-btn" onclick="abrirPopupInsert()">Cadastrar Empresa</button>
+        <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Cadastrar Empresa</button>
         <br>
     </div>
     <div class="filtro">
@@ -60,6 +60,7 @@
         </form>
     </div>
     <br>
+    <%-- Verifica erro, se há, exibe-o --%>
     <% String erro = (String) request.getAttribute("erro");
         if (erro != null){ %>
     <h5> <%= erro%> </h5>
@@ -113,7 +114,7 @@
     </div>
 </div>
 
-<!-- POPUPS -->
+<!-- POP-UPS -->
 <jsp:include page="/WEB-INF/popUp's/popUp-empresa.jsp" />
 
 <script>

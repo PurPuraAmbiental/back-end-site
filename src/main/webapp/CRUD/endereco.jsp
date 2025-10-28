@@ -1,19 +1,20 @@
+<%--
+/**
+ * Exibir e gerenciar empresas endereços no sistema PurPura.
+ *
+ * - Exibe lista de endereços
+ * - Permite filtro por estado e nome da empresa dona do endereço
+ * - Suporte a inserção, edição e exclusão via pop-ups
+ *
+ * Autora: Bruna de Jesus
+ * Autor: Kevin de Oliveira
+ */
+--%>
+
 <%@ page import="com.purpura.dto.EnderecoEmpresaView" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-<!-- ENDERECO.JSP
-Página responsável por listar todos os endereços das empresas cadastradas.
-Permite também editar e excluir registros através dos pop-ups.
-
-obs: Por questao de conforto do usuario foram usadas dto da model inves da propria model
-
-função principal: CRUD -> READ
-porem permite o usuario a fazer modificações no banco: UPDATE, DELETE e INSERT
-
-autor(a): Bruna Oliveira
-autor(a): Kevin de Oliveira
--->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -147,7 +148,7 @@ autor(a): Kevin de Oliveira
                                     '<%= empresa.cComplemento() != null ? empresa.cComplemento() : "" %>',
                                     '<%= empresa.iNrEnderecoEmpresa() %>',
                                     '<%= empresa.cNmEmpresa() %>')">
-                        Editar
+                      ar
                     </button>
 
                     <!-- Formulário de exclusão com envio via POST -->
