@@ -9,21 +9,19 @@
 }
 
 /* efeito de passar o mouse nas caixinhas */
-.servico-card:hover {
+/* .servico-card:hover {
   background-color: var(--roxoclaro); 
   transform: translateY(-10px);
   color: #fff; 
-}
+} */
 
-.servico-card:hover h3,
+/* .servico-card:hover h3,
 .servico-card:hover p,
 .servico-card:hover .icone-placeholder {
   color: #fff;
-}
+} */
 
-.servico-card:hover .icone-circulo {
-  background-color: var(--roxoescuro);
-}
+
 .servicos-purpura {
   padding: 80px 20px;
   text-align: center;
@@ -31,25 +29,28 @@
 }
 
 .servicos-cabecalho p {
-  color: #9370db;
+  color: var(--cinza);
   font-weight: 600;
   font-size: 1rem;
   margin-bottom: 5px;
 }
 
 .servicos-cabecalho h2 {
+  color: var(--pretoText);
   font-size: 2.5rem;
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 50px;
 }
-
 .servicos-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
+}
+.servicos-grid h3{
+  color:var(--pretoText)
 }
 
 .servico-card {
@@ -81,9 +82,7 @@
   margin-bottom: 20px;
 }
 
-.servico-card.destaque .icone-circulo {
-  background-color: #7d52cc;
-}
+
 
 .icone-placeholder {
   font-size: 2rem;
@@ -108,6 +107,10 @@
 
 .servico-card.destaque p {
   color: #fff;
+}
+
+.botao-cta-roxo:hover {
+  background-color: #7d52cc;
 }
 
 .servicos-cta {

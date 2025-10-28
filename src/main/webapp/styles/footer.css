@@ -56,7 +56,7 @@ footer {
 }
 .social-icons a:hover {
   background: #FDFFE5;
-  color: #6A1B9A;
+  color: var(--roxoclaro);
 }
 .secret {
   font-size: 0.7rem;

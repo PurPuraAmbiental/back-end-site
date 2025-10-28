@@ -5,7 +5,7 @@
 }
 
 .faq-cabecalho p {
-  color: #9370db;
+  color: var(--cinza);
   font-weight: 600;
   font-size: 1rem;
   margin-bottom: 5px;
@@ -16,6 +16,8 @@
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 50px;
+  color: var(--roxoclaro);
+
 }
 
 .faq-container {
@@ -43,7 +45,7 @@
   align-items: center;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
+  color: var(--pretoText);
   cursor: pointer;
 }
 

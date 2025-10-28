@@ -8,6 +8,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 10px;
+  color: var(--pretoText);
 }
 
 .planos-cabecalho p {
@@ -38,7 +39,7 @@
 }
 
 .plano-botao.active {
-  background-color: #9370db;
+  background-color: var(--roxoclaro);
   color: #fff;
 }
 
@@ -49,6 +50,9 @@
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
+}
+.planos-container h3{
+  color:var(--roxoclaro)
 }
 
 .plano-card {
