@@ -230,78 +230,102 @@ tbody td.actions img:hover {
         font-size: 14px;
     }
 }
-
+.close{
+    display: none;
+}
 @media (max-width: 768px) {
     body {
         flex-direction: column;
     }
 
+    /* ===== Sidebar ===== */
     .sidebar {
         position: fixed;
         top: 0;
-        left: 0;
-        width: 100%;
-        height: 90px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 20px;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        background: white;
+        left: -260px;
+        width: 250px;
+        height: 800px;
+        background: #fff;
+        border-right: 1px solid #eee;
+        transition: left 0.3s ease;
         z-index: 1000;
-        transform: none !important;
+        padding: 20px;
     }
 
-    .sidebar h2 {
-        font-size: 16px;
-        margin-bottom: 0;
-        margin-left: 10px;
+    /* Mostra o menu ao clicar */
+    #sidebar:target {
+        left: 0;
     }
 
-    .profile {
-        display: none; /* oculta o perfil pra economizar espaço */
-    }
-
-    .menu {
+    /* ===== Botão Hamburguer ===== */
+    .hamburger {
+        position: fixed;
+        margin-top: 15px;
+        margin-left: 15px;
+        top: 10px;
+        left: 15px;
+        width: 24px;
+        height: 20px;
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding: 8px 0;
-        margin: 0 20px;
-        scrollbar-width: none;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        z-index: 900; /* abaixo do menu quando aberto */
+        text-decoration: none;
     }
 
-    .menu a {
-        padding: 12px;
-        font-size: 14px;
-        margin: 0;
-        white-space: nowrap;
+    .hamburger div {
+        width: 100%;
+        height: 4px;
+        background-color: #9c27b0;
+        border-radius: 2px;
     }
 
-    .logout {
+    /* Quando o menu abre, o menu cobre o hambúrguer */
+    #sidebar:target ~ .hamburger {
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    /* ===== Botão de Fechar (X) ===== */
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 28px;
+        text-decoration: none;
+        color: #9c27b0;
+        background-color: #ffffff;
         display: flex;
         align-items: center;
-
-        font-size: 14px;
+        justify-content: center;
+        font-weight: bold;
     }
 
+    .close:hover {
+        background-color: #7b1fa2;
+    }
 
-    /* conteúdo agora vem abaixo do menu */
+    /* ===== Conteúdo ===== */
     .content {
-        margin-top: 90px; /* espaço para o menu fixo no topo */
-        height: calc(100vh - 90px);
+        margin: 0;
         padding: 15px;
+        height: 100vh;
     }
 
-    .content iframe {
-        height: 100%;
+    .header {
+        margin-top: 30px;
     }
+
+    .sidebar h2{
+        text-align: center;
+        width: 100%;
+    }
+
 }
+
+
+
 
 
 @media (max-width: 480px) {
