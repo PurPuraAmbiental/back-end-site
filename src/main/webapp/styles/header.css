@@ -55,19 +55,20 @@
 
 .auth {
   display: flex;
-  gap: 12px;
+  gap: 15px;
   align-items: center;
 }
 .auth .login {
-  color: #9b9b9b;
+  color: #000000;
   text-decoration: none;
 }
 
 .auth .cadastro{
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--roxoclaro);
-  color: #fff
+  color: #fff;
+  text-decoration: none;
 }
 
 .auth .signup {

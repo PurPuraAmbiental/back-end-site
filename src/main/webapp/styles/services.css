@@ -1,31 +1,14 @@
 .servico-card  {
-  background-color: #fff;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-  text-align: left;
-  background-image: url('c:\Users\irisrodrigues-ieg\Downloads\img.png');
 }
-
-/* efeito de passar o mouse nas caixinhas */
-/* .servico-card:hover {
-  background-color: var(--roxoclaro); 
-  transform: translateY(-10px);
-  color: #fff; 
-} */
-
-/* .servico-card:hover h3,
-.servico-card:hover p,
-.servico-card:hover .icone-placeholder {
-  color: #fff;
-} */
-
 
 .servicos-purpura {
   padding: 80px 20px;
-  text-align: center;
   background-color: #f8f8f8;
+  text-align: center;
 }
 
 .servicos-cabecalho p {
@@ -59,7 +42,7 @@
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
-  text-align: left;
+  text-align: center;
 }
 
 .servico-card:hover {
@@ -76,9 +59,6 @@
   height: 60px;
   background-color: #ffffff;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 20px;
 }
 
