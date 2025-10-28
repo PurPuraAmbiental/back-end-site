@@ -60,7 +60,7 @@
 .faq-icone::after {
   content: '';
   position: absolute;
-  background-color: #9370db;
+  background-color: var(--roxoclaro);
   transition: transform 0.3s ease;
 }
 

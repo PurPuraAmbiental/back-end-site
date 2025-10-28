@@ -33,7 +33,7 @@
   transition: color 0.3s ease;
 }
 
-.main-nav a.active {
+.main-nav {
   color: #222;
 }
 
@@ -43,13 +43,14 @@
   left: 0;
   width: 0;
   height: 3px;
-  background-color: #000;
+  background-color: var(--pretoText);
   transition: width 0.3s ease;
 }
 
 .main-nav a:hover .menu-line,
-.main-nav a.active .menu-line {
+.main-nav a:active .menu-line {
   width: 100%;
+  color: var(--pretoText);
 }
 
 .auth {
@@ -57,10 +58,16 @@
   gap: 12px;
   align-items: center;
 }
-
 .auth .login {
   color: #9b9b9b;
   text-decoration: none;
+}
+
+.auth .cadastro{
+  padding: 10px;
+  border-radius: 20px;
+  background-color: var(--roxoclaro);
+  color: #fff
 }
 
 .auth .signup {

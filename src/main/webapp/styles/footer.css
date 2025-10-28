@@ -79,3 +79,33 @@ footer {
   margin-top: 10px;
   width: 100%;
 }
+
+.sociais {
+  display: flex; 
+  gap: 12px;              
+  align-items: center;    
+}
+
+.sociais a img {
+  width: 15px;            
+  transition: transform 0.3s ease;
+  filter: brightness(0) invert(1); 
+}
+
+.sociais a img:hover {
+  transform: scale(1.1);  
+}
+
+.crud:hover {
+  transform: scale(1.1);  
+}
+.crud{
+  display: flex; 
+  gap: 5px;              
+  align-items: center;    
+  transition: transform 0.3s ease;
+}
+.crud img{
+  width: 13px;            
+}
+
