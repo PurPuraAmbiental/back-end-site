@@ -86,22 +86,22 @@
             <form action="<%=request.getContextPath()%>/residuo/list" method="get">
                 <label for="precoMin">Preço Mínimo</label><br>
                 <input type="number" step="0.01" min="0" name="precoMin" id="precoMin"
-                       placeholder="Digite o preço mínimo"><br>
+                       placeholder="Digite o preço mínimo" value="<%= request.getParameter("precoMin") != null ? request.getParameter("precoMin") : "" %>"><br>
 
                 <label for="precoMax">Preço Máximo</label><br>
                 <input type="number" step="0.01" min="0" name="precoMax" id="precoMax"
-                       placeholder="Digite o preço máximo"><br>
+                       placeholder="Digite o preço máximo" value="<%= request.getParameter("precoMax") != null ? request.getParameter("precoMax") : "" %>"><br>
 
                 <label for="volumeMin">Volume Mínimo</label><br>
                 <input type="number" step="0.01" min="0" name="volumeMin" id="volumeMin"
-                       placeholder="Digite o volume mínimo"><br>
+                       placeholder="Digite o volume mínimo" value="<%= request.getParameter("volumeMin") != null ? request.getParameter("volumeMin") : "" %>"><br>
 
                 <label for="volumeMax">Volume Máximo</label><br>
                 <input type="number" step="0.01" min="0" name="volumeMax" id="volumeMax"
-                       placeholder="Digite o volume máximo"><br>
+                       placeholder="Digite o volume máximo" value="<%= request.getParameter("volumeMax") != null ? request.getParameter("volumeMax") : "" %>"><br>
 
                 <label for="cTipoUnidade">Selecione a unidade de medida</label><br>
-                <select name="unidade" id="cTipoUnidade">
+                <select name="unidade" id="cTipoUnidade value="<%= request.getParameter("unidade") != null ? request.getParameter("unidade") : "" %>"">
                     <option value="">-- Todas --</option>
                     <option value="kg">Kilograma (kg)</option>
                     <option value="t">Tonelada (t)</option>

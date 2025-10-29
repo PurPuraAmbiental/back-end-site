@@ -62,7 +62,7 @@ Responsável -> CREATE e UPDATE do CRUD de Telefone
         <button class="close-btn" onclick="fecharPopup('filtroTelefone')">×</button>
         <h2>Atualizar Telefone</h2>
         <form action="<%=request.getContextPath()%>/telefone/list" method="get">
-            <input type="text" name="nomeEmpresa" placeholder="Digite o nome da empresa">
+            <input type="text" name="nomeEmpresa" placeholder="Digite o nome da empresa"value="<%= request.getParameter("nomeEmpresa") != null ? request.getParameter("nomeEmpresa") : "" %>">
             <button type="submit" class="add-btn">Filtrar</button>
         </form>
     </div>
