@@ -24,9 +24,10 @@ import java.util.Map;
 public class InsertResiduoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-        ResiduoDAO dao = new ResiduoDAO();
-        String lista = "listaResiduo";
+        ResiduoDAO residuoDAO = new ResiduoDAO();
+        String lista = "listaResiduos";
         String caminho = "/CRUD/residuos.jsp";
+        List<ResiduoView> residuoViews = residuoDAO.listarComEmpresa();
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
@@ -37,17 +38,25 @@ public class InsertResiduoServlet extends HttpServlet {
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
             System.out.println("erro: "+empresa);
             Residuo model = new Residuo(params);
+            List<ResiduoView> listaResiduos = residuoDAO.listarComEmpresa();
             //VALIDAÇÃO DE DADOS
             if (empresa == null) {
-                ErroServlet.setErro(request, response, dao, "Nao foi possivel cadastrar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
+                residuoViewSetErro(request, response, residuoDAO, residuoViews,"Nao foi possivel cadastrar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
                 return;
             } else {
                 model.setCCnpj(empresa.getCCnpj());
             }
-            dao.save(model);
+            residuoDAO.save(model);
             response.sendRedirect(request.getContextPath() + "/residuo/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            ErroServlet.setErro(request, response, dao, "Erro ao inserir Residuo: "+ e.getMessage() , lista, caminho);
+            residuoViewSetErro(request, response, residuoDAO, residuoViews,"Erro ao inserir Residuo: "+ e.getMessage() , lista, caminho);
         }
+    }
+    public void residuoViewSetErro(HttpServletRequest request, HttpServletResponse response, ResiduoDAO residuoDAO, List<ResiduoView> residuoView, String mensagem, String lista, String caminho)
+            throws jakarta.servlet.ServletException, IOException {
+        residuoView = residuoDAO.listarComEmpresa();
+        request.setAttribute(lista, residuoView);
+        request.setAttribute("erro", mensagem);
+        request.getRequestDispatcher(caminho).forward(request, response);
     }
 }
