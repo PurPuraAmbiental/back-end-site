@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-
-<!-- INSERT -->
+<!--
+Por motivos de organização, esta página guarda os formulários dos pop-ups
+Responsável -> CREATE e UPDATE do CRUD
+-->
+<!-- ==================== POPUP DE INSERÇÃO ==================== -->
 <div class="popup-overlay" id="popup-insert-empresa" style="display:none;">
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-insert-empresa')">×</button>
@@ -30,7 +33,7 @@
     </div>
 </div>
 
-<!-- UPDATE -->
+<!-- ==================== POPUP DE ATUALIZAÇÃO ==================== -->
 <div class="popup-overlay" id="popup-update-empresa" style="display:none;">
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-update-empresa')">×</button>
@@ -58,7 +61,7 @@
         </form>
     </div>
 </div>
-
+<!-- ==================== FILTROS ========================= -->
 <div class="filtroPopup-overlay" id="filtroEmpresa" style="display:none;">
     <div class="popup" id="filtroPopup">
             <h2>Filtrar Empresa</h2>

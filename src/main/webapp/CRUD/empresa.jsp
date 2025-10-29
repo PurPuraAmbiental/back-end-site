@@ -27,22 +27,26 @@
 <body>
 
 <div class="main">
+    <!-- ================== CABEÇALHO ================== -->
     <div class="header">
         <h1>Lista de Empresas</h1>
         <div class="botoes-principais">
-        <button class="add-btn" onclick="filtroEmpresa()">Filtros </button>
-        <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Cadastrar Empresa</button>
+            <!-- Botão para abrir o pop-up de filtragem de transportadora -->
+            <button class="add-btn" onclick="filtroEmpresa()">Filtros </button>
+            <!-- Botão para abrir o pop-up de inserção de nova transportadora -->
+            <button class="add-btn" onclick="abrirPopupInsertEmpresa()">Cadastrar Empresa</button>
         </div>
         <br>
     </div>
     <br>
+    <!-- ================== MENSAGEM DE ERRO ================== -->
     <%-- Verifica erro, se há, exibe-o --%>
     <% String erro = (String) request.getAttribute("erro");
         if (erro != null){ %>
     <h5> <%= erro%> </h5>
     <% }%>
     <br>
-
+    <!-- ================== TABELA DE EMPRESAS ================== -->
     <div class="table-container">
         <table>
             <thead>
@@ -57,32 +61,47 @@
             </thead>
             <tbody>
             <%
+                // Recupera a lista de transportadoras enviada pelo servlet
                 List<Empresa> empresas = (List<Empresa>) request.getAttribute("listaEmpresas");
+                // Verifica se a lista não está vazia
                 if (empresas != null && !empresas.isEmpty()) {
+                    // Percorre cada transportadora da lista e gera uma linha na tabela
                     for (Empresa empresa : empresas) {
             %>
             <tr>
+                <!-- Mostra o nome da empresa -->
                 <td><%= empresa.getCNmEmpresa() %></td>
+                <!-- Mostra o e-mail da empresa -->
                 <td><%= empresa.getCEmail() %></td>
+                <!-- Mostra a senha criptografada da empresa -->
                 <td class="senha"><%= empresa.getCSenha() %></td>
+                <!-- Mostra o CNPJ -->
                 <td><%= empresa.getCCnpj() %></td>
+                <!-- Mostra o status da empresa -->
                 <td><%= empresa.getCAtivo() == '1' ? "Ativo" : "Inativo" %></td>
-
+                <!-- Coluna de ações (editar e excluir) -->
                 <td class="actions">
-                    <!-- BOTÃO EDITAR -->
+                    <!-- ================== BOTÃO EDITAR ================== -->
+                    <!-- Ao clicar, preenche o pop-up de atualização com os dados da empresa -->
                     <button class="add-btn"
-                            onclick="UpdateEmpresa('<%= empresa.getCNmEmpresa() %>', '<%= empresa.getCEmail() %>', '<%= empresa.getCSenha() %>', '<%= empresa.getCCnpj() %>', '<%= empresa.getCAtivo() %>')">
+                            onclick="UpdateEmpresa('<%= empresa.getCNmEmpresa() %>',
+                                    '<%= empresa.getCEmail() %>',
+                                    '<%= empresa.getCSenha() %>',
+                                    '<%= empresa.getCCnpj() %>',
+                                    '<%= empresa.getCAtivo() %>')">
                         Editar
                     </button>
 
-                    <!-- BOTÃO EXCLUIR -->
+                    <!-- ================== BOTÃO EXCLUIR ================== -->
+                    <!-- Formulário para deletar uma empresa -->
                     <form action="${pageContext.request.contextPath}/empresa/delete" method="post" style="display:inline;">
                         <input type="hidden" name="cCnpj" value="<%= empresa.getCCnpj() %>">
                         <input class="add-btn" type="submit" value="Excluir">
                     </form>
                 </td>
             </tr>
-            <%  } } else { %>
+            <%  } // fim do for
+             } else { //caso não existam empresas cadastradas %>
             <tr><td colspan="6">Nenhuma empresa encontrada.</td></tr>
             <% } %>
             </tbody>
@@ -90,31 +109,33 @@
     </div>
 </div>
 
-<!-- POP-UPS -->
+<!-- ================== POPUPS ================== -->
+<!-- Inclui os formulários de inserção e atualização e filtro -->
 <jsp:include page="/WEB-INF/popUp's/popUp-empresa.jsp" />
 
 <script>
-    // ABRIR POPUP DE INSERÇÃO
+    // ================== FUNÇÃO PARA ABRIR POPUP DE INSERÇÃO ==================
     function abrirPopupInsertEmpresa() {
         document.getElementById('popup-insert-empresa').style.display = 'flex';
     }
 
-    // FECHAR POPUP
+    // ================== FUNÇÃO PARA FECHAR POPUPS (generico)==================
     function fecharPopup(id) {
         document.getElementById(id).style.display = 'none';
     }
 
-    // FUNÇÃO DE UPDATE
+    // ================== FUNÇÃO PARA ABRIR POPUP DE ATUALIZAÇÃO ==================
     function UpdateEmpresa(cNmEmpresa, cEmail, cSenha, cCnpj, cAtivo) {
         document.getElementById('update-empresa-cNmEmpresa').value = cNmEmpresa;
         document.getElementById('update-empresa-cEmail').value = cEmail;
         document.getElementById('update-empresa-cSenha').value = cSenha;
         document.getElementById('update-empresa-cCnpj').value = cCnpj;
         document.getElementById('update-empresa-cAtivo').value = cAtivo;
+        // Exibe o pop-up de atualização
         document.getElementById('popup-update-empresa').style.display = 'flex';
     }
 
-    //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS
+    //==================== FUNÇÃO PARA ABRIR O POP UP DOS FILTROS =======================
     function filtroEmpresa(){
         document.getElementById('filtroEmpresa').style.display = 'flex';
     }
