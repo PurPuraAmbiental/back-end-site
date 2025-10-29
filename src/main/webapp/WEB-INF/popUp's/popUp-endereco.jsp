@@ -145,3 +145,53 @@ Responsável -> CREATE e UPDATE do CRUD
         </form>
     </div>
 </div>
+
+<div class="filtroPopup-overlay" id="filtroEnderecoEmpresa" style="display:none;">
+    <div class="popup" id="filtroPopup">
+        <div class="filtro">
+            <h2>Filtrar Endereco</h2>
+            <button class="close-btn" onclick="fecharPopup('filtroEnderecoEmpresa')">×</button>
+            <form method="get" action="<%=request.getContextPath()%>/endereco-empresa/list">
+                <label for="estado">Selecione o estado desejado</label><br>
+                <select name="estado" id="estado">
+                    <option value="">Selecione um estado</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+
+                <label for="nomeEmpresa">Insira o nome da empresa</label><br>
+                <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Digite o nome da empresa">
+
+
+                <button type="submit" class="add-btn">Filtrar</button>
+            </form>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
