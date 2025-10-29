@@ -1,4 +1,8 @@
 /* Laptops e tablets grandes */
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 @media (max-width: 1024px) {
   .planos-container {
     flex-direction: column;
