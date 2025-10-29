@@ -12,8 +12,12 @@
     <div class="container-cadastro">
         <h1 class="logo">PurPura</h1>
         <h3>Antes de continuar!</h3>
+        <form action="">
         <label for="">insira a senha do Administrador</label> <br>
-        <input type="text">
+           <input type="text"> <br>
+        <button type="submit">Verificar</button>
+
+        </form>
     </div>
 </head>
 <body>
