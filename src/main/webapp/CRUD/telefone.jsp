@@ -37,16 +37,12 @@ autor(a): Kevin de Oliveira
     <!-- Cabeçalho da página -->
     <div class="header">
         <h1>Lista de Telefones</h1>
-
+        <div class="botoes-principais">
         <!-- Botão que abre o pop-up para cadastrar um novo telefone -->
+        <button class="add-btn" onclick="filtroTelefone()">Filtros </button>
         <button class="add-btn" onclick="abrirPopupInsertTelefone()">Adicionar Telefone</button>
+        </div>
     </div>
-    <br>
-
-    <form action="<%=request.getContextPath()%>/telefone/list" method="get">
-        <input type="text" name="nomeEmpresa" placeholder="Digite o nome da empresa">
-        <button type="submit" class="add-btn">Filtrar</button>
-    </form>
 
     <br>
     <!-- Exibição de mensagens de erro enviadas pelo Servlet -->
@@ -145,6 +141,10 @@ autor(a): Kevin de Oliveira
 
         // Exibe o pop-up de edição
         document.getElementById('popup-update-telefone').style.display = 'flex';
+    }
+    //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS
+    function filtroTelefone(){
+        document.getElementById('filtroTelefone').style.display = 'flex';
     }
 </script>
 </body>

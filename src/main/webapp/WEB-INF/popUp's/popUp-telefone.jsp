@@ -56,3 +56,14 @@ Responsável -> CREATE e UPDATE do CRUD de Telefone
         </form>
     </div>
 </div>
+
+<div class="filtroPopup-overlay" id="filtroTelefone" style="display:none;">
+    <div class="popup">
+        <button class="close-btn" onclick="fecharPopup('filtroTelefone')">×</button>
+        <h2>Atualizar Telefone</h2>
+        <form action="<%=request.getContextPath()%>/telefone/list" method="get">
+            <input type="text" name="nomeEmpresa" placeholder="Digite o nome da empresa">
+            <button type="submit" class="add-btn">Filtrar</button>
+        </form>
+    </div>
+</div>
