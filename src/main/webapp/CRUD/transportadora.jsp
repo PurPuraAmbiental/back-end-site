@@ -21,24 +21,16 @@
 <div class="main">
     <!-- ================== CABEÇALHO ================== -->
     <div class="header">
-        <!-- Título da página -->
         <h1>Lista de Transportadoras</h1>
 
+        <div class="botoes-principais">
+        <!-- Botão para abrir o pop-up de filtragem de transportadora -->
+        <button class="add-btn" onclick="filtroTransportadora()"> Filtros </button>
         <!-- Botão para abrir o pop-up de inserção de nova transportadora -->
-        <button class="add-btn" onclick="abrirPopupInsertTransportadora()">Adicionar Transportadora</button>
+        <button class="add-btn" onclick="abrirPopupInsertTransportadora()">Cadastrar Transportadora</button>
+        </div>
     </div>
     <br>
-    <!-- ==================== FILTROS ========================= -->
-    <label for="">Insira o nome da empresa</label>
-    <form action="<%=request.getContextPath()%>/transportadora/list" method="get">
-        <label for="nomeTransportadora">Insira o nome da transportadora</label>
-        <input type="text" id="nomeTransportadora" name="nomeTransportadora" placeholder="Digite o nome da transportadora">
-        <br>
-        <label for="regiao">Insira a região</label>
-        <input type="text" id="regiao" name="regiao" placeholder="Ache transportadora pertinho de você">
-        <br>
-        <button type="submit" class="add-btn">Filtrar</button>
-    </form>
     <!-- ================== MENSAGEM DE ERRO ================== -->
     <%
         // Recupera a mensagem de erro enviada pelo servlet, se houver
@@ -143,6 +135,11 @@
 
         // Exibe o pop-up de atualização
         document.getElementById('popup-update-transportadora').style.display = 'flex';
+    }
+
+    //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS
+    function filtroTransportadora(){
+        document.getElementById('filtroTransportadora').style.display = 'flex';
     }
 </script>
 

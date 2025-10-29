@@ -60,3 +60,20 @@
         </form>
     </div>
 </div>
+    <!-- ==================== FILTROS ========================= -->
+<div class="filtroPopup-overlay" id="filtroEmpresa" style="display:none;">
+    <div class="popup" id="filtroPopup">
+        <h2>Filtrar Transportadora</h2>
+        <button class="close-btn" onclick="fecharPopup('filtroEmpresa')">×</button>
+        <label for="">Insira o nome da empresa</label>
+        <form action="<%=request.getContextPath()%>/transportadora/list" method="get">
+            <label for="nomeTransportadora">Insira o nome da transportadora</label>
+            <input type="text" id="nomeTransportadora" name="nomeTransportadora" placeholder="Digite o nome da transportadora">
+            <br>
+            <label for="regiao">Insira a região</label>
+            <input type="text" id="regiao" name="regiao" placeholder="Ache transportadora pertinho de você">
+            <br>
+            <button type="submit" class="add-btn"> Filtrar </button>
+        </form>
+    </div>
+</div>
