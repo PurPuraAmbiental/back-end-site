@@ -38,4 +38,11 @@ public class Regex {
         Matcher matcher = patternt.matcher(email);
         return matcher.find();
     }
+
+    public static boolean validarCEP(String cep){
+        String regex = Constants.CEP_REGEX;
+        Pattern patternt = Pattern.compile(regex);
+        Matcher matcher = patternt.matcher(cep);
+        return matcher.find();
+    }
 }

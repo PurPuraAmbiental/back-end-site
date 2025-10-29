@@ -1,8 +1,11 @@
 package com.purpura.servlet.enderecoEmpresa;
 import com.purpura.common.ErroServlet;
+import com.purpura.common.Regex;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
+import com.purpura.dao.TelefoneDAO;
 import com.purpura.dto.EnderecoEmpresaView;
+import com.purpura.dto.TelefoneView;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
@@ -53,12 +56,18 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
             // Caso a empresa seja nula, significa que ela não foi cadastrada com antecedência.
             // Então o servlet para e exibe uma mensagem de erro ao usuário.
             if (empresa == null) {
-                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar o endereço! Insira uma empresa cadastrada anteriormente.", lista, caminho);
+                EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos,"Não foi possível cadastrar o endereço! Insira uma empresa cadastrada anteriormente.", lista, caminho);
                 return;
             }
-
             // Caso contrário, a model pega a FK correspondente
             model.setCCnpj(empresa.getCCnpj());
+
+            if (!Regex.validarCEP(model.getCCep())){
+                EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos,"Não foi possível cadastrar o endereço! Insira uma cep valido.", lista, caminho);
+                return;
+            }
+            model.setCCep(model.getCCep().replace("-",""));
+            System.out.println(model.getCCep());
 
             // Uma vez certo, insere no banco de dados
             dao.save(model);
@@ -76,5 +85,12 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
         } catch (Exception e) {
             ErroServlet.setErro(request, response, dao, "Erro inesperado ao inserir endereço: " + e.getMessage(), lista, caminho);
         }
+    }
+    public void EnderecoEmpresaViewSetErro(HttpServletRequest request, HttpServletResponse response, EnderecoEmpresaDAO enderecoEmpresaDAO, List<EnderecoEmpresaView> enderecoEmpresaView, String mensagem, String lista, String caminho)
+            throws jakarta.servlet.ServletException, IOException {
+        enderecoEmpresaView = enderecoEmpresaDAO.listarComEmpresa();
+        request.setAttribute(lista, enderecoEmpresaView);
+        request.setAttribute("erro", mensagem);
+        request.getRequestDispatcher(caminho).forward(request, response);
     }
 }

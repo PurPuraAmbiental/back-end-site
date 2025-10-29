@@ -37,16 +37,6 @@
 
         <!-- Botão que abre o pop-up de cadastro de novo endereço -->
         <button class="add-btn" onclick="abrirPopupInsert()">Cadastrar Endereço</button>
-        <br>
-        <br>
-
-        <!-- Exibição de mensagem de erro, caso o Servlet tenha enviado alguma -->
-        <%
-            String erro = (String) request.getAttribute("erro");
-            if (erro != null) {
-        %>
-        <h5><%= erro %></h5>
-        <% } %>
 
         <br>
     </div>
@@ -93,8 +83,16 @@
 
             <button type="submit" class="add-btn">Filtrar</button>
         </form>
+        <br>
+        <br>
     </div>
-
+    <!-- Exibição de mensagem de erro, caso o Servlet tenha enviado alguma -->
+    <%
+        String erro = (String) request.getAttribute("erro");
+        if (erro != null) {
+    %>
+    <h5><%= erro %></h5>
+    <% } %>
     <!-- Container da tabela -->
     <div class="table-container">
         <table>
@@ -148,7 +146,7 @@
                                     '<%= empresa.cComplemento() != null ? empresa.cComplemento() : "" %>',
                                     '<%= empresa.iNrEnderecoEmpresa() %>',
                                     '<%= empresa.cNmEmpresa() %>')">
-                      ar
+                      Editar
                     </button>
 
                     <!-- Formulário de exclusão com envio via POST -->

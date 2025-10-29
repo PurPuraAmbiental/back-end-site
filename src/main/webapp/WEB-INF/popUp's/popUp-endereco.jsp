@@ -58,7 +58,7 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="text" name="cCidade" id="cCidade" maxlength="40" required>
 
             <label for="cCep">CEP</label>
-            <input type="text" name="cCep" id="cCep" maxlength="8" required>
+            <input type="text" name="cCep" id="cCep" maxlength="9" required>
 
             <label for="cComplemento">Complemento</label>
             <input type="text" name="cComplemento" id="cComplemento" maxlength="20">
@@ -130,7 +130,7 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="text" name="cCidade" id="upd-cidade" maxlength="40" required>
 
             <label for="upd-cep">CEP</label>
-            <input type="text" name="cCep" id="upd-cep" maxlength="8" required>
+            <input type="text" name="cCep" id="upd-cep" maxlength="9" required>
 
             <label for="upd-complemento">Complemento</label>
             <input type="text" name="cComplemento" id="upd-complemento" maxlength="20" >
