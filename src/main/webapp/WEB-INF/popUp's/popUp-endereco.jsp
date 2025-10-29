@@ -149,43 +149,44 @@ Responsável -> CREATE e UPDATE do CRUD
 <div class="filtroPopup-overlay" id="filtroEnderecoEmpresa" style="display:none;">
     <div class="popup" id="filtroPopup">
         <div class="filtro">
-            <h2>Filtrar Endereco</h2>
+            <h2>Filtrar Endereço</h2>
             <button class="close-btn" onclick="fecharPopup('filtroEnderecoEmpresa')">×</button>
             <form method="get" action="<%=request.getContextPath()%>/endereco-empresa/list">
                 <label for="estado">Selecione o estado desejado</label><br>
                 <select name="estado" id="estado">
-                    <option value="">Selecione um estado</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
+                    <option value="" <%= request.getParameter("estado") == null || request.getParameter("estado").isEmpty() ? "selected" : "" %>>Selecione um estado</option>
+                    <option value="AC" <%= "AC".equals(request.getParameter("estado")) ? "selected" : "" %>>Acre</option>
+                    <option value="AL" <%= "AL".equals(request.getParameter("estado")) ? "selected" : "" %>>Alagoas</option>
+                    <option value="AP" <%= "AP".equals(request.getParameter("estado")) ? "selected" : "" %>>Amapá</option>
+                    <option value="AM" <%= "AM".equals(request.getParameter("estado")) ? "selected" : "" %>>Amazonas</option>
+                    <option value="BA" <%= "BA".equals(request.getParameter("estado")) ? "selected" : "" %>>Bahia</option>
+                    <option value="CE" <%= "CE".equals(request.getParameter("estado")) ? "selected" : "" %>>Ceará</option>
+                    <option value="DF" <%= "DF".equals(request.getParameter("estado")) ? "selected" : "" %>>Distrito Federal</option>
+                    <option value="ES" <%= "ES".equals(request.getParameter("estado")) ? "selected" : "" %>>Espírito Santo</option>
+                    <option value="GO" <%= "GO".equals(request.getParameter("estado")) ? "selected" : "" %>>Goiás</option>
+                    <option value="MA" <%= "MA".equals(request.getParameter("estado")) ? "selected" : "" %>>Maranhão</option>
+                    <option value="MT" <%= "MT".equals(request.getParameter("estado")) ? "selected" : "" %>>Mato Grosso</option>
+                    <option value="MS" <%= "MS".equals(request.getParameter("estado")) ? "selected" : "" %>>Mato Grosso do Sul</option>
+                    <option value="MG" <%= "MG".equals(request.getParameter("estado")) ? "selected" : "" %>>Minas Gerais</option>
+                    <option value="PA" <%= "PA".equals(request.getParameter("estado")) ? "selected" : "" %>>Pará</option>
+                    <option value="PB" <%= "PB".equals(request.getParameter("estado")) ? "selected" : "" %>>Paraíba</option>
+                    <option value="PR" <%= "PR".equals(request.getParameter("estado")) ? "selected" : "" %>>Paraná</option>
+                    <option value="PE" <%= "PE".equals(request.getParameter("estado")) ? "selected" : "" %>>Pernambuco</option>
+                    <option value="PI" <%= "PI".equals(request.getParameter("estado")) ? "selected" : "" %>>Piauí</option>
+                    <option value="RJ" <%= "RJ".equals(request.getParameter("estado")) ? "selected" : "" %>>Rio de Janeiro</option>
+                    <option value="RN" <%= "RN".equals(request.getParameter("estado")) ? "selected" : "" %>>Rio Grande do Norte</option>
+                    <option value="RS" <%= "RS".equals(request.getParameter("estado")) ? "selected" : "" %>>Rio Grande do Sul</option>
+                    <option value="RO" <%= "RO".equals(request.getParameter("estado")) ? "selected" : "" %>>Rondônia</option>
+                    <option value="RR" <%= "RR".equals(request.getParameter("estado")) ? "selected" : "" %>>Roraima</option>
+                    <option value="SC" <%= "SC".equals(request.getParameter("estado")) ? "selected" : "" %>>Santa Catarina</option>
+                    <option value="SP" <%= "SP".equals(request.getParameter("estado")) ? "selected" : "" %>>São Paulo</option>
+                    <option value="SE" <%= "SE".equals(request.getParameter("estado")) ? "selected" : "" %>>Sergipe</option>
+                    <option value="TO" <%= "TO".equals(request.getParameter("estado")) ? "selected" : "" %>>Tocantins</option>
                 </select>
 
+
                 <label for="nomeEmpresa">Insira o nome da empresa</label><br>
-                <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Digite o nome da empresa">
+                <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Digite o nome da empresa" value="<%= request.getParameter("nomeEmpresa") != null ? request.getParameter("nomeEmpresa") : "" %>">
 
 
                 <button type="submit" class="add-btn">Filtrar</button>
