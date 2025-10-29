@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 
-<!-- INSERT -->
+<!-- ==================== POPUP DE INSERÇÃO ==================== -->
 <div class="popup-overlay" id="popup-insert-administrador" style="display:none;">
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-insert-administrador')">×</button>
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<!-- UPDATE -->
+<!-- ==================== POPUP DE ATUALIZAÇÃO ==================== -->
 <div class="popup-overlay" id="popup-update-administrador" style="display:none;">
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-update-administrador')">×</button>
@@ -39,5 +39,13 @@
 
             <button type="submit">Atualizar</button>
         </form>
+    </div>
+</div>
+<!-- ==================== FILTROS ========================= -->
+<div class="filtroPopup-overlay" id="filtroEmpresa" style="display:none;">
+    <div class="popup" id="filtroPopup">
+        <h2>Filtrar Administrador</h2>
+        <button class="close-btn" onclick="fecharPopup('filtroEmpresa')">×</button>
+
     </div>
 </div>
