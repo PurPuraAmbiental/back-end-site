@@ -19,7 +19,6 @@
 </a>
 
 
-<!-- Sidebar com ID (para o target funcionar) -->
 <div class="sidebar" id="sidebar">
     <a href="#" class="close">×</a> <!-- Botão de fechar -->
     <h2>Área de Controle</h2>
