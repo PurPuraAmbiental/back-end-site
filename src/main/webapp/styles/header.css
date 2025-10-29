@@ -65,7 +65,7 @@
 }
 
 .auth .login {
-  color: #000000;
+  color: var(--pretoText);
   text-decoration: none;
 }
 
