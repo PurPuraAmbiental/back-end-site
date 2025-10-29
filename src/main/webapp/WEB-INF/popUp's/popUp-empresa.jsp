@@ -8,16 +8,16 @@
         <h2>Cadastrar Empresa</h2>
         <form action="${pageContext.request.contextPath}/empresa/insert" method="post">
             <label>Nome da Empresa</label>
-            <input type="text" name="cNmEmpresa" id="cNmEmpresa" required>
+            <input type="text" name="cNmEmpresa" id="cNmEmpresa" maxlength="30" required>
 
             <label>Email</label>
-            <input type="text" name="cEmail" id="cEmail" required>
+            <input type="text" name="cEmail" id="cEmail" maxlength="70" required>
 
             <label>Senha</label>
-            <input type="password" name="cSenha" id="cSenha" required>
+            <input type="password" name="cSenha" id="cSenha" maxlength="70" required>
 
             <label>CNPJ</label>
-            <input type="text" name="cCnpj" id="cCnpj" required>
+            <input type="text" name="cCnpj" id="cCnpj" maxlength="18" required>
 
             <label>Ativo</label>
             <select name="cAtivo" id="cAtivo" required>
