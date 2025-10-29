@@ -64,9 +64,7 @@ body{
     background: #e2c8f5;
     color: #9c27b0;
 }
-.menu a img{
-    width: 20px;
-}
+
 .logout{
     margin-top: auto;
     display: flex;

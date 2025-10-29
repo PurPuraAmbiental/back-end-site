@@ -16,38 +16,9 @@
     <div class="header">
         <h1>Lista de Resíduos</h1>
         <div class="botoes-principais">
-        <button class="add-btn" onclick="abrirPopupInsertResiduo()">Adicionar Resíduo</button>
+            <button class="add-btn" onclick="filtroResiduo()">Filtros </button>
+            <button class="add-btn" onclick="abrirPopupInsertResiduo()">Adicionar Resíduo</button>
         </div>
-    </div>
-    <div>
-        <form action="<%=request.getContextPath()%>/residuo/list" method="get">
-            <label for="precoMin">Preço Mínimo</label><br>
-            <input type="number" step="0.01" min="0" name="precoMin" id="precoMin"
-                   placeholder="Digite o preço mínimo"><br>
-
-            <label for="precoMax">Preço Máximo</label><br>
-            <input type="number" step="0.01" min="0" name="precoMax" id="precoMax"
-                   placeholder="Digite o preço máximo"><br>
-
-            <label for="volumeMin">Volume Mínimo</label><br>
-            <input type="number" step="0.01" min="0" name="volumeMin" id="volumeMin"
-                   placeholder="Digite o volume mínimo"><br>
-
-            <label for="volumeMax">Volume Máximo</label><br>
-            <input type="number" step="0.01" min="0" name="volumeMax" id="volumeMax"
-                   placeholder="Digite o volume máximo"><br>
-
-            <label for="cTipoUnidade">Selecione a unidade de medida</label><br>
-            <select name="unidade" id="cTipoUnidade">
-                <option value="">-- Todas --</option>
-                <option value="kg">Kilograma (kg)</option>
-                <option value="t">Tonelada (t)</option>
-                <option value="kg/m³">Kg/m³</option>
-                <option value="g">Gramas (g)</option>
-            </select><br>
-
-            <button type="submit" class="add-btn">Filtrar</button>
-        </form>
     </div>
 
 
@@ -140,6 +111,11 @@
 
         document.getElementById('popup-update-residuo').style.display = 'flex';
     }
+    //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS
+    function filtroResiduo() {
+        document.getElementById('filtroResiduo').style.display = 'flex';
+    }
+
 </script>
 </body>
 </html>
