@@ -13,6 +13,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo img {
+  height: 25px;
+  width: auto;
 }
 
 .main-nav ul {
@@ -31,10 +40,6 @@
   display: inline-block;
   padding-bottom: 6px;
   transition: color 0.3s ease;
-}
-
-.main-nav {
-  color: #222;
 }
 
 .menu-line {
@@ -58,12 +63,13 @@
   gap: 25px;
   align-items: center;
 }
+
 .auth .login {
   color: #000000;
   text-decoration: none;
 }
 
-.auth .cadastro{
+.auth .cadastro {
   padding: 10px;
   border-radius: 10px;
   background-color: var(--roxoclaro);
@@ -71,11 +77,82 @@
   text-decoration: none;
 }
 
-.auth .signup {
-  background: var(--roxoclaro);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 12px;
+.menu-hamb {
+  display: none;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.menu-hamb input[type="checkbox"] {
+  display: none;
+}
+
+.btn-hamb {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  background: none;
+  border: none;
+}
+
+.btn-hamb img {
+  width: 20px;
+  height: auto;
+}
+
+.hamb-links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: min(92vw, 360px);
+  background-color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 10px 12px;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1190;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.36s ease, opacity 0.28s ease;
+}
+
+.hamb-links a {
   text-decoration: none;
-  font-weight: 600;
+  color: #222;
+  font-weight: 500;
+  padding: 10px 8px;
+  width: 100%;
+}
+
+.hamb-links .hamb-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 6px;
+  width: 100%;
+}
+
+#hamb-toggle:checked~.hamb-links {
+  display: flex;
+  max-height: 520px;
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+
+  .main-nav,
+  .auth {
+    display: none !important;
+  }
+
+  .menu-hamb {
+    display: flex;
+  }
 }
