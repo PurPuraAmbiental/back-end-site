@@ -37,7 +37,7 @@ public class InsertEmpresaServlet extends HttpServlet {
                 ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! Digite um e-mail valido", lista, caminho);
             }
             if (!Regex.validarCnpj(model.getCCnpj())) {
-                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! \n Digite um cnpj valido", lista, caminho);
+                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! Digite um cnpj valido", lista, caminho);
                 return;  // Impede que o código continue
             }
             else {
