@@ -133,10 +133,14 @@
 
 .hamb-links .hamb-auth {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 8px;
   padding-top: 6px;
   width: 100%;
+}
+
+.hamb-auth .cadastro {
+  color: var(--roxoclaro);
 }
 
 #hamb-toggle:checked~.hamb-links {
