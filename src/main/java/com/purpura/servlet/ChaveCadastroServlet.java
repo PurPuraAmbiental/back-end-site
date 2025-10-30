@@ -16,7 +16,7 @@ public class ChaveCadastroServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String chaveDigitada = request.getParameter("chave"); // ✅ Corrigido
+        String chaveDigitada = request.getParameter("chave");
 
         ChaveAcessoDAO chaveAcessoDAO = new ChaveAcessoDAO();
         List<ChaveAcesso> chaves = chaveAcessoDAO.findAll();
@@ -34,6 +34,8 @@ public class ChaveCadastroServlet extends HttpServlet {
 
         if (chaveValida) {
             response.sendRedirect(request.getContextPath() + "/cadastro/cadastro.jsp");
+        } else  {
+            response.sendRedirect(request.getContextPath() + "/cadastro/verificacaoAdministrador.jsp");
         }
     }
 }

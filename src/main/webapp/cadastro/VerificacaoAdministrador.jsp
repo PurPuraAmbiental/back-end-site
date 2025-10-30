@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="../styles/login.css">
+<link rel="stylesheet" href="/CRUD/popUp.css">
 <html>
 <head>
     <div class="container-cadastro">
@@ -14,8 +15,8 @@
         <h3>Antes de continuar!</h3>
         <form action="<%=request.getContextPath()%>/autenticar-cadastro" method="post">
         <label for="chave">Insira uma senha de administrador</label> <br>
-           <input name = "chave" type="text"> <br>
-        <button type="submit">Verificar</button>
+           <input name = "chave" type="text" required> <br>
+        <button class="add-btn" type="submit">Verificar</button>
         </form>
     </div>
 </head>
