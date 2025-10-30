@@ -42,10 +42,15 @@
     </div>
 </div>
 <!-- ==================== FILTROS ========================= -->
-<div class="filtroPopup-overlay" id="filtroEmpresa" style="display:none;">
-    <div class="popup" id="filtroPopup">
+<div class="filtroPopup-overlay" id="filtroAdministrador" style="display:none;">
+    <div class="popup" id="filtroPopup" style="height: 240px">
         <h2>Filtrar Administrador</h2>
-        <button class="close-btn" onclick="fecharPopup('filtroEmpresa')">×</button>
+        <label for="nomeAdministrador">Insira o nome do Administrador</label>
+        <input type="text" name="nomeAdministrador" id="nomeAdministrador" placeholder="Nome do Administrador"
+               value="<%= request.getParameter("nomeAdministrador") != null ? request.getParameter("nomeAdministrador") : "" %>">
+        <br>
+        <button type="submit" class="add-btn">Filtrar</button>
+        <button class="close-btn" onclick="fecharPopup('filtroAdministrador')">×</button>
 
     </div>
 </div>

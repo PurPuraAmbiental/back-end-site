@@ -185,7 +185,7 @@ tbody td img.profile-pic {
 
 tbody td.actions {
     display: flex;
-    gap: 15px;
+    gap: 5px;
     align-items: center;
 }
 

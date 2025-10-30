@@ -29,10 +29,12 @@
     <!-- ================== CABEÇALHO ================== -->
     <div class="header">
         <h1>Lista de Administradores</h1>
+        <div class="botoes-principais">
         <!-- Botão para abrir o pop-up de filtragem de administrador -->
         <button class="add-btn" onclick="filtroAdministrador()"> Filtros </button>
         <!-- Botão para abrir o pop-up de inserção de novo administrador -->
         <button class="add-btn" onclick="abrirPopupInsertAdministrador()">Cadastrar Administrador</button>
+        </div>
     </div>
 
     <br>
