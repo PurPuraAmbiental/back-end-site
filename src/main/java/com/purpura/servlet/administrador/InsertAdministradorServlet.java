@@ -34,16 +34,16 @@ public class InsertAdministradorServlet extends HttpServlet {
             Administrador model = new Administrador(params);
 
             if (!Regex.validarEmail(model.getCEmail())){
-                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Administrador. Insira um E-mail valido", lista, caminho);
+                ErroServlet.setErro(request, response, dao, "Insira um E-mail valido", lista, caminho);
                 return;
             }
             else if (dao.findById(model.getCEmail()) != null) {
-                ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Administrador. E-mail ja cadastrado anteriormente" , lista, caminho );
+                ErroServlet.setErro(request, response, dao, "E-mail ja cadastrado anteriormente" , lista, caminho );
                 return;
             }
             else if (model.getCSenha().length() < 6) {
                 ErroServlet.setErro(request, response, dao,
-                        "Não foi possivel cadastrar Administrador. A senha deve possuir no minimo 6 caracteres", lista, caminho);
+                        "A senha deve possuir no minimo 6 caracteres", lista, caminho);
                 return;
             }
             else {
