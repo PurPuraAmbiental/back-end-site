@@ -89,7 +89,7 @@
                 <td><%= empresa.cCep() %></td>
                 <td><%= empresa.cNmEmpresa() %></td>
 
-                <td>
+                <td class="actions">
                     <!-- Botão de edição que preenche o pop-up com os dados -->
                     <button class="add-btn"
                             onclick="UpdateEndereco(
@@ -104,7 +104,7 @@
                                     '<%= empresa.cNmEmpresa() %>')">
                       Editar
                     </button>
-
+                    <br>
                     <!-- Formulário de exclusão com envio via POST -->
                     <form action="${pageContext.request.contextPath}/endereco-empresa/delete"
                           method="post"
