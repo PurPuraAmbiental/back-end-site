@@ -1,4 +1,6 @@
 <%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,7 +9,7 @@
     <title>PurPura - Cadastro</title>
     <link rel="stylesheet" href="../styles/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
+    <link rel="shortcut-icon" href="../assets/icone_purpura.svg">
 </head>
 <body>
     <div class="container-cadastro">
