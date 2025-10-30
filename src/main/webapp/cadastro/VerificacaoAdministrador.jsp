@@ -12,11 +12,10 @@
     <div class="container-cadastro">
         <h1 class="logo">PurPura</h1>
         <h3>Antes de continuar!</h3>
-        <form action="">
-        <label for="">insira a senha do Administrador</label> <br>
-           <input type="text"> <br>
+        <form action="<%=request.getContextPath()%>/autenticar-cadastro" method="post">
+        <label for="chave">Insira uma senha de administrador</label> <br>
+           <input name = "chave" type="text"> <br>
         <button type="submit">Verificar</button>
-
         </form>
     </div>
 </head>
