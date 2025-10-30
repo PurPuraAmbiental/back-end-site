@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS da tabela e layout principal -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/crud.css">
     <!-- CSS específico dos pop-ups -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/popUp.css">
 
     <title>Transportadoras - CRUD</title>
 </head>
