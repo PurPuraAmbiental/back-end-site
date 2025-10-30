@@ -19,8 +19,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/crud.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/popUp.css?v=3">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/crud.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/popUp.css?v=3">
     
     <title>Empresas</title>
 </head>

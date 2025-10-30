@@ -40,16 +40,16 @@ Responsável -> CREATE e UPDATE do CRUD
         <h2>Atualizar Empresa</h2>
         <form action="${pageContext.request.contextPath}/empresa/update" method="post">
             <label>Nome da Empresa</label>
-            <input type="text" name="cNmEmpresa" id="update-empresa-cNmEmpresa" required>
+            <input type="text" name="cNmEmpresa" id="update-empresa-cNmEmpresa" maxlength="30" required>
 
             <label>Email</label>
             <input type="email" name="cEmail" id="update-empresa-cEmail" readonly>
 
             <label>Senha</label>
-            <input type="password" name="cSenha" id="update-empresa-cSenha" required>
+            <input type="password" name="cSenha" id="update-empresa-cSenha" maxlength="70" required>
 
             <label>CNPJ</label>
-            <input type="text" name="cCnpj" id="update-empresa-cCnpj" readonly>
+            <input type="text" name="cCnpj" id="update-empresa-cCnpj" maxlength="18" readonly>
 
             <label>Ativo</label>
             <select name="cAtivo" id="update-empresa-cAtivo" required>

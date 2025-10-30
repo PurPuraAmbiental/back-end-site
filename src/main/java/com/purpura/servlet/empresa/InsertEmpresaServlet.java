@@ -23,7 +23,7 @@ import java.util.Map;
 public class InsertEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-            String caminho = "/CRUD/empresa.jsp";
+            String caminho = "WEB-INF/CRUD/empresa.jsp";
             String lista = "listaEmpresas";
             DAO<Empresa> dao = new EmpresaDAO();
             try {
