@@ -26,7 +26,7 @@ public class InsertAdministradorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         DAO<Administrador> dao = new AdministradorDAO();
-        String caminho = "/CRUD/administrador.jsp";
+        String caminho = "WEB-INF/CRUD/administrador.jsp";
         String lista = "listaAdministradores";
         try {
             Map<String, String> params = new LinkedHashMap<>();

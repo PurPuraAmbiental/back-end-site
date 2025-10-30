@@ -6,6 +6,7 @@ import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;
 import com.purpura.model.Transportadora;
+import com.sun.net.httpserver.Request;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,8 +32,7 @@ public class ListAdministradoresServlet extends HttpServlet {
             request.setAttribute("listaAdministradores", administradores);
             request.setAttribute("nome", nome);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/administrador.jsp");
-            rd.forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/CRUD/administrador.jsp").forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {
             request.setAttribute("erro", "Erro ao carregar lista de Administradores: " + e.getMessage());

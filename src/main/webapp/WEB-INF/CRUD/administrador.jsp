@@ -20,8 +20,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/crud.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CRUD/popUp.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/crud.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/popUp.css">
     <title>Administrador</title>
 </head>
 <body>
