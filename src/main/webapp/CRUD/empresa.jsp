@@ -128,7 +128,7 @@
     function UpdateEmpresa(cNmEmpresa, cEmail, cSenha, cCnpj, cAtivo) {
         document.getElementById('update-empresa-cNmEmpresa').value = cNmEmpresa;
         document.getElementById('update-empresa-cEmail').value = cEmail;
-        document.getElementById('update-empresa-cSenha').value = cSenha;
+        document.getElementById('update-empresa-cSenha').value = "";
         document.getElementById('update-empresa-cCnpj').value = cCnpj;
         document.getElementById('update-empresa-cAtivo').value = cAtivo;
         // Exibe o pop-up de atualização

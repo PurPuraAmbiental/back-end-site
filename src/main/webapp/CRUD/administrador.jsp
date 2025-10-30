@@ -116,7 +116,7 @@
     function UpdateAdministrador(cNmAministrador, cEmail, cSenha) {
         document.getElementById('update-administrador-cNmAdministrador').value = cNmAministrador;
         document.getElementById('update-administrador-cEmail').value = cEmail;
-        document.getElementById('update-administrador-cSenha').value = cSenha;
+        document.getElementById('update-administrador-cSenha').value = "";
         document.getElementById('popup-update-administrador').style.display = 'flex';
     }
 
