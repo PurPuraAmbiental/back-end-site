@@ -58,6 +58,14 @@
   color: var(--pretoText);
 }
 
+.main-nav a:active {
+  color: var(--pretoText);
+}
+
+.main-nav a:active .menu-line {
+  width: 100%;
+}
+
 .auth {
   display: flex;
   gap: 25px;
