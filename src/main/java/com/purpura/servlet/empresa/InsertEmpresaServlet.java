@@ -30,9 +30,7 @@ public class InsertEmpresaServlet extends HttpServlet {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
             Empresa model = new Empresa(params);
-            List<?> empresas = dao.findAll();
                 //VALIDAÇAO DE DADOS
-            request.setAttribute("listaEmpresas",  empresas);
             if (!Regex.validarEmail(model.getCEmail())) {
                 ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! Digite um e-mail valido", lista, caminho);
             }

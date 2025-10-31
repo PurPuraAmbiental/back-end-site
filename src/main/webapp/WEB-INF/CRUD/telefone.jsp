@@ -118,7 +118,7 @@ autor(a): Kevin de Oliveira
 </div>
 
 <!-- Inclusão do JSP responsável pelos pop-ups -->
-<jsp:include page="/WEB-INF/popUp's/popUp-telefone.jsp" />
+<jsp:include page="/WEB-INF/popUp/popUp-telefone.jsp" />
 
 <!-- Funções JavaScript para manipulação dos pop-ups -->
 <script>
@@ -148,4 +148,4 @@ autor(a): Kevin de Oliveira
     }
 </script>
 </body>
-</html>,
+</html>
