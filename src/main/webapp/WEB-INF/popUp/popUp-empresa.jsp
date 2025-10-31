@@ -61,18 +61,7 @@ Responsável -> CREATE e UPDATE do CRUD
         </form>
     </div>
 </div>
-<!--====================== DELETE ============================-->
-<div class="popup-overlay" id="deleteEmpresa" style="display:none;">
-    <div class="popup">
-    <button class="close-btn" onclick="fecharPopup('deleteEmpresa')">×</button>
-        <h2>Esse registro sera apagado permanentemente!</h2>
-        <h3>Voce tem certeza que deseja apaga-lo?</h3>
-        <form action="${pageContext.request.contextPath}/empresa/delete" method="post">
-            <button type="submit" class="add-btn">Excluir</button>
-        </form>
-        <botton class="add-btn" onclick="fecharPopup('deleteEmpresa')"> Cancelar </botton>
-    </div>
-</div>
+
 <!-- ==================== FILTROS ========================= -->
 <div class="filtroPopup-overlay" id="filtroEmpresa" style="display:none;">
     <div class="popup" id="filtroPopup">
