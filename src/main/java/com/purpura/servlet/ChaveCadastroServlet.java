@@ -15,27 +15,30 @@ import java.util.List;
 public class ChaveCadastroServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String chaveDigitada = request.getParameter("chave");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, jakarta.servlet.ServletException{
+        try {
+            String chaveDigitada = request.getParameter("chave");
 
-        ChaveAcessoDAO chaveAcessoDAO = new ChaveAcessoDAO();
-        List<ChaveAcesso> chaves = chaveAcessoDAO.findAll();
+            ChaveAcessoDAO chaveAcessoDAO = new ChaveAcessoDAO();
+            List<ChaveAcesso> chaves = chaveAcessoDAO.findAll();
 
-        boolean chaveValida = false;
+            boolean chaveValida = false;
 
-        for (ChaveAcesso chaveAcesso : chaves) {
-            String chaveBanco = chaveAcesso.getCHash();
+            for (ChaveAcesso chaveAcesso : chaves) {
+                String chaveBanco = chaveAcesso.getCHash();
 
-            if (BCrypt.checkpw(chaveDigitada, chaveBanco)) {
-                chaveValida = true;
-                break;
+                if (BCrypt.checkpw(chaveDigitada, chaveBanco)) {
+                    chaveValida = true;
+                }
             }
-        }
 
-        if (chaveValida) {
-            response.sendRedirect(request.getContextPath() + "/cadastro/cadastro.jsp");
-        } else  {
-            response.sendRedirect(request.getContextPath() + "/cadastro/verificacaoAdministrador.jsp");
-        }
+
+            if (chaveValida) {
+                response.sendRedirect(request.getContextPath() + "/cadastro/cadastro.jsp");
+            } else {
+                request.setAttribute("erro", "Senha Invalida");
+                request.getRequestDispatcher("/cadastro/VerificacaoAdministrador.jsp").forward(request, response);
+            }
+        }catch (Exception e){}
     }
 }
