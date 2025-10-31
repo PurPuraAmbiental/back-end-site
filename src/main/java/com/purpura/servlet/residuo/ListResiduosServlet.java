@@ -42,7 +42,7 @@ public class ListResiduosServlet extends HttpServlet {
             request.setAttribute("volumeMax", volumeMaxStr);
             request.setAttribute("unidade", unidade);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/residuos.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/CRUD/residuos.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {

@@ -26,7 +26,7 @@ public class InsertResiduoServlet extends HttpServlet {
             throws jakarta.servlet.ServletException, IOException {
         ResiduoDAO residuoDAO = new ResiduoDAO();
         String lista = "listaResiduos";
-        String caminho = "/CRUD/residuos.jsp";
+        String caminho = "/WEB-INF/CRUD/residuos.jsp";
         List<ResiduoView> residuoViews = residuoDAO.listarComEmpresa();
         try {
             Map<String, String> params = new LinkedHashMap<>();
