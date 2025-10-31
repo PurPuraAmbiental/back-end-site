@@ -30,7 +30,7 @@ public class InsertTransportadoraServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String lista = "listaTransportadoras";
-        String caminho = "/CRUD/transportadora.jsp";
+        String caminho = "/WEB-INF/CRUD/transportadora.jsp";
         DAO<Transportadora> dao = new TransportadoraDAO();
         try {
             // Mapeia os parâmetros recebidos do formulário

@@ -36,7 +36,7 @@ public class ListTransportadoraServlet extends HttpServlet {
 
             request.setAttribute("listaTransportadoras", transportadoras);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/transportadora.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/CRUD/transportadora.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {

@@ -20,11 +20,12 @@ public class DeleteTransportadoraServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String lista = "listaTransportadoras";
-        String caminho = "/CRUD/transportadora.jsp";
+        String caminho = "/WEB-INF/CRUD/transportadora.jsp";
         DAO<Transportadora> dao = new TransportadoraDAO();
         String idParam = request.getParameter("nCdTransporte");
         try {
             int id = Integer.parseInt(idParam);
+            System.out.println(idParam);
             dao.delete(id);
             response.sendRedirect(request.getContextPath() + "/transportadora/list");
         } catch (NumberFormatException e) {
