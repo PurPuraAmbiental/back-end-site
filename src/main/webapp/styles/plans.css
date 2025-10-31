@@ -50,9 +50,12 @@
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
-.planos-container h3{
-  color:var(--roxoclaro)
+
+.planos-container h3 {
+  color: var(--roxoclaro);
 }
 
 .plano-card {
@@ -111,23 +114,6 @@
 }
 
 .plano-check {
-  color: #9370db;
+  color: var(--roxoclaro);
   font-weight: bold;
-}
-
-.botao-escolher {
-  width: 100%;
-  background-color: #f0e6fa;
-  color: #9370db;
-  border: none;
-  padding: 12px;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.botao-escolher:hover {
-  background-color: #e2d1f4;
 }
