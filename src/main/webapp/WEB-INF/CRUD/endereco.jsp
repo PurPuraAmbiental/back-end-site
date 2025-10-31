@@ -22,8 +22,8 @@
 
     <!-- Importação dos arquivos CSS -->
     <!-- O parâmetro ?v=2 serve apenas para forçar atualização do cache no navegador -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/crud.css?v=2">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/popUp.css?v=2">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/crud.css?v=2">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/popUp.css?v=2">
 
     <title>Endereços</title>
 </head>

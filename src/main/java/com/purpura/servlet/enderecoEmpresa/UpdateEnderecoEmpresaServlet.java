@@ -24,7 +24,7 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             throws jakarta.servlet.ServletException, IOException {
         DAO<EnderecoEmpresa> dao = new EnderecoEmpresaDAO();
         String lista = "listaEnderecos";
-        String caminho = "/CRUD/endereco.jsp";
+        String caminho = "/WEB-INF/CRUD/endereco.jsp";
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));

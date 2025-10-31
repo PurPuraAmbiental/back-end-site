@@ -34,7 +34,7 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String lista = "listaEnderecos";
-        String caminho = "/CRUD/endereco.jsp";
+        String caminho = "WEB-INF/CRUD/endereco.jsp";
         EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
         try {
             // Pega os parâmetros dados pelo usuário

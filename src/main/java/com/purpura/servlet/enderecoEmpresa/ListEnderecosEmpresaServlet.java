@@ -31,7 +31,7 @@ public class ListEnderecosEmpresaServlet extends HttpServlet {
             request.setAttribute("estado", estado);
             request.setAttribute("nomeEmpresa", nomeEmpresa);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/CRUD/endereco.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/CRUD/endereco.jsp");
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {
