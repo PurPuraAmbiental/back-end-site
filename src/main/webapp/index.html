@@ -20,15 +20,13 @@
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/header.css">
 </head>
-<!-- Colocando a classe inter no body para padronizar a fonte do site. -->
+
 <body class="inter">
     <header class="site-header">
-        <!-- Classe container que armazena a navbar e autenticação. -->
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="assets/purpura/logo_purpuraV2.svg" alt="Logo da PurPura Ambiental">
             </a>
-
             <nav class="main-nav">
                 <ul>
                     <li><a class="active" href="#home">Home <span class="menu-line"></span></a></li>
@@ -38,17 +36,31 @@
                     <li><a href="#secao-faq">FAQ <span class="menu-line"></span></a></li>
                 </ul>
             </nav>
-
             <div class="auth">
                 <a class="login" href="login.jsp">Login</a>
                 <a class="cadastro" href="cadastro/VerificacaoAdministrador.jsp">Cadastro</a>
             </div>
+            <div class="menu-hamb">
+                <input type="checkbox" id="hamb-toggle">
+                <label for="hamb-toggle" class="btn-hamb">
+                    <img src="assets/purpura/menu_linhas_roxo.svg" alt="Menu Lateral">
+                </label>
+                <div class="hamb-links">
+                    <a href="#home">Home</a>
+                    <a href="#secao-sobre-nos">Sobre Nós</a>
+                    <a href="#secao-servicos">Serviços</a>
+                    <a href="#secao-planos">Planos</a>
+                    <a href="#secao-faq">FAQ</a>
+                    <div class="hamb-auth">
+                        <a class="login" href="login.jsp">Login</a>
+                        <a class="cadastro" href="cadastro/VerificacaoAdministrador.jsp">Cadastro</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
-
     <main id="home">
         <section class="hero container">
-            <!-- Hero: área de destaque da página -->
             <div class="hero-left">
                 <h1 id="titulo-home">
                     O que sua empresa faz com os resíduos pode mudar o futuro.
@@ -58,37 +70,32 @@
                     Promovemos a conexão inteligente entre indústrias. Juntos, transformamos o excedente
                     em valor, inovação e um futuro mais limpo!
                 </p>
-                <!-- CTA: Call To Action, botão que o usuário aperta -->
                 <a class="cta" href="#secao-servicos">Saiba Mais</a>
             </div>
-
             <div class="hero-right">
                 <img class="decor" src="assets/purpura/decoracao_purpura.png" alt="Imagem ilustrativa do aplicativo">
             </div>
         </section>
     </main>
-
     <section id="secao-sobre-nos">
         <header class="sobre-nos-cabecalho">
             <p><strong>— Sobre nós —</strong></p>
         </header>
-
         <div class="conteudo-secao">
             <div class="container-imagem">
-                <img src="assets/purpura/flor.jpg" alt="Imagem de uma flor roxa" class="imagem">
+                <img src="assets/purpura/grupo_purpura.jpeg" alt="Foto do grupo PurPura em conjunto" class="imagem">
             </div>
             <div class="texto-secao">
                 <h2>Quem é a <span class="destaque-roxo">PurPura</span>?</h2>
                 <p>
                     Somos uma startup focada em gerenciar resíduos orgânicos, conectando indústrias que geram
-                    desperdício
-                    às que veem nisso uma oportunidade de lucro. Além de reduzir o impacto ambiental, nossa solução
-                    transforma resíduos em oportunidades de negócio, com rastreabilidade, eficiência e valor para toda a
+                    desperdício às que veem nisso uma oportunidade de lucro. Além de reduzir o impacto ambiental, nossa
+                    solução transforma resíduos em oportunidades de negócio, com rastreabilidade, eficiência e valor
+                    para toda a
                     cadeia.
                 </p>
             </div>
         </div>
-
         <div class="conteudo-secao">
             <div class="container-imagem">
                 <img src="assets/purpura/ecofriendly.jpeg" alt="Sustentabilidade Industrial" class="imagem">
@@ -104,13 +111,11 @@
             </div>
         </div>
     </section>
-
     <section id="secao-servicos" class="servicos-purpura">
         <header class="servicos-cabecalho">
             <p>— Nossos Serviços —</p>
             <h2>Explore Nossos <span>Serviços</span></h2>
         </header>
-
         <div class="servicos-grid">
             <div class="servico-card">
                 <span class="icone-circulo cadastro">
@@ -119,7 +124,6 @@
                 <h3>Cadastro Unificado</h3>
                 <p>Cadastre-se como Gerador ou Aproveitador com interface simples e intuitiva.</p>
             </div>
-
             <div class="servico-card">
                 <span class="icone-circulo chat">
                     <img src="assets/servicos/servicos-roxo/chat_integrado_roxo.svg" alt="">
@@ -127,7 +131,6 @@
                 <h3>Chat Integrado</h3>
                 <p>Comunique-se de forma rápida e segura com indústrias e coletores pelo chat do app.</p>
             </div>
-
             <div class="servico-card indicadores">
                 <span class="icone-circulo">
                     <img src="assets/servicos/servicos-roxo/indicadores_impacto_roxo.svg" alt="">
@@ -135,7 +138,6 @@
                 <h3>Indicadores de Impacto</h3>
                 <p>Acompanhe seu impacto ambiental e ganhos financeiros em tempo real.</p>
             </div>
-
             <div class="servico-card">
                 <span class="icone-circulo negociacao">
                     <img src="assets/servicos/servicos-roxo/negociacao_direta_roxo.svg" alt="">
@@ -143,7 +145,6 @@
                 <h3>Negociação Direta</h3>
                 <p>Negocie valores e condições diretamente com empresas interessadas na coleta.</p>
             </div>
-
             <div class="servico-card">
                 <span class="icone-circulo relatorios">
                     <img src="assets/servicos/servicos-roxo/relatorios_automaticos_roxo.svg" alt="">
@@ -151,7 +152,6 @@
                 <h3>Relatórios Automáticos</h3>
                 <p>Receba relatórios compatíveis com o PGRS, atendendo exigências legais.</p>
             </div>
-
             <div class="servico-card">
                 <span class="icone-circulo gestao">
                     <img src="assets/servicos/servicos-roxo/gestao_demanda_roxo.svg" alt="">
@@ -160,85 +160,125 @@
                 <p>Gerencie sua demanda e encontre fornecedores confiáveis de matéria-prima.</p>
             </div>
         </div>
-
         <div class="servicos-cta">
             <p>Descubra funcionalidades incríveis que aumentam sua produtividade e simplificam a gestão de resíduos.</p>
         </div>
     </section>
-
-    <section id="secao-beneficios" class="beneficios-section">
-        <div class="beneficios-left">
-            <h2>Quais benefícios você obterá?</h2>
-            <ul class="lista-beneficios">
-                <li><span class="check-icon">✔</span> Conformidade Regulatória</li>
-                <li><span class="check-icon">✔</span> Otimização Financeira</li>
-                <li><span class="check-icon">✔</span> Eficiência Operacional</li>
-                <li><span class="check-icon">✔</span> Inteligência de Dados</li>
-                <li><span class="check-icon">✔</span> Acesso Confiável a Matéria-Prima</li>
-            </ul>
-        </div>
-        <div class="beneficios-right">
-            <img src="assets/purpura/decoracao_beneficios.svg" alt="">
-        </div>
-    </section>
-
-    <section id="secao-planos" class="planos-section">
-        <header class="planos-cabecalho">
-            <h2>Escolha o Plano <br> Ideal para Você</h2>
-            <p>Escolha o plano que melhor se adapta a você e entre em contato conosco!</p>
-        </header>
-
-        <div class="planos-seletor">
-            <button class="plano-botao active">Mensal</button>
-            <button class="plano-botao">Anual</button>
-        </div>
-
-        <div class="planos-container">
-            <div class="plano-card">
-                <h3 class="plano-nome">Free</h3>
-                <p class="plano-preco"><span>R$ 0</span> /Mês</p>
-                <p class="plano-descricao">Gerencie o impacto da sua empresa sem custos.</p>
-                <ul class="plano-lista">
-                    <li><span class="plano-check">✔</span> 1 conta por empresa</li>
-                    <li><span class="plano-check">✔</span> Gerenciamento essencial unificado</li>
-                    <li><span class="plano-check">✔</span> Cadastro e negociação de resíduos</li>
-                    <li><span class="plano-check">✔</span> Relatórios financeiros essenciais</li>
-                </ul>
+        <section id="secao-planos" class="planos-section">
+            <header class="planos-cabecalho">
+                <h2>Escolha o Plano <br> Ideal para Você</h2>
+                <p>Escolha o plano que melhor se adapta a você e entre em contato conosco!</p>
+            </header>
+    
+            <div class="planos-seletor">
+                <button class="plano-botao active" onclick="mostrarPlano('mensal')">Mensal</button>
+                <button class="plano-botao" onclick="mostrarPlano('anual')">Anual</button>
             </div>
-
-            <div class="plano-card">
-                <h3 class="plano-nome">Profissional</h3>
-                <p class="plano-preco"><span>R$ 150</span> /Mês</p>
-                <p class="plano-descricao">Controle projetos e gerencie o impacto ambiental da sua empresa.</p>
-                <ul class="plano-lista">
-                    <li><span class="plano-check">✔</span> 5 contas por empresa</li>
-                    <li><span class="plano-check">✔</span> Tudo do Free, e mais</li>
-                    <li><span class="plano-check">✔</span> Documentos legais e certificados</li>
-                </ul>
+    
+            <div class="planos-container" id="plano-mensal">
+                <div class="plano-card">
+                    <h3 class="plano-nome">Free</h3>
+                    <p class="plano-preco"><span>R$ 0</span> /Mês</p>
+                    <p class="plano-descricao">Gerencie o impacto da sua empresa sem custos.</p>
+                    <ul class="plano-lista">
+                        <li><span class="plano-check">✔</span> 1 conta por empresa</li>
+                        <li><span class="plano-check">✔</span> Gerenciamento essencial unificado</li>
+                        <li><span class="plano-check">✔</span> Cadastro e negociação de resíduos</li>
+                        <li><span class="plano-check">✔</span> Relatórios financeiros essenciais</li>
+                    </ul>
+                </div>
+                <div class="plano-card">
+                    <h3 class="plano-nome">Profissional</h3>
+                    <p class="plano-preco"><span>R$ 150</span> /Mês</p>
+                    <p class="plano-descricao">Controle projetos e gerencie o impacto ambiental da sua empresa.</p>
+                    <ul class="plano-lista">
+                        <li><span class="plano-check">✔</span> 5 contas por empresa</li>
+                        <li><span class="plano-check">✔</span> Tudo do Free, e mais</li>
+                        <li><span class="plano-check">✔</span> Documentos legais e certificados</li>
+                    </ul>
+                </div>
+                <div class="plano-card plano-destaque">
+                    <div class="plano-destaque-label">Mais Popular</div>
+                    <h3 class="plano-nome">Company</h3>
+                    <p class="plano-preco"><span>R$ 250</span> /Mês</p>
+                    <p class="plano-descricao">Ferramentas avançadas para elevar seu padrão de impacto ambiental e ESG.</p>
+                    <ul class="plano-lista">
+                        <li><span class="plano-check">✔</span> Contas ilimitadas</li>
+                        <li><span class="plano-check">✔</span> Apoio na monetização de resíduos</li>
+                        <li><span class="plano-check">✔</span> Atendimento exclusivo</li>
+                        <li><span class="plano-check">✔</span> Relatórios sob medida</li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="plano-card plano-destaque">
-                <div class="plano-destaque-label">Mais Popular</div>
-                <h3 class="plano-nome">Company</h3>
-                <p class="plano-preco"><span>R$ 250</span> /Mês</p>
-                <p class="plano-descricao">Ferramentas avançadas para elevar seu padrão de impacto ambiental e ESG.</p>
-                <ul class="plano-lista">
-                    <li><span class="plano-check">✔</span> Contas ilimitadas</li>
-                    <li><span class="plano-check">✔</span> Apoio na monetização de resíduos</li>
-                    <li><span class="plano-check">✔</span> Atendimento exclusivo</li>
-                    <li><span class="plano-check">✔</span> Relatórios sob medida</li>
-                </ul>
+    
+            <div class="planos-container" id="plano-anual" style="display: none;">
+                <div class="plano-card">
+                    <h3 class="plano-nome">Free</h3>
+                    <p class="plano-preco"><span>R$ 0</span> /Ano</p>
+                    <p class="plano-descricao">Gerencie o impacto da sua empresa sem custos.</p>
+                    <ul class="plano-lista">
+                        <li><span class="plano-check">✔</span> 1 conta por empresa</li>
+                        <li><span class="plano-check">✔</span> Gerenciamento essencial unificado</li>
+                        <li><span class="plano-check">✔</span> Cadastro e negociação de resíduos</li>
+                        <li><span class="plano-check">✔</span> Relatórios financeiros essenciais</li>
+                    </ul>
+                </div>
+                <div class="plano-card">
+                    <h3 class="plano-nome">Profissional</h3>
+                    <p class="plano-preco"><span>R$ 1.500</span> /Ano</p>
+                    <p class="plano-descricao">Controle projetos e gerencie o impacto ambiental da sua empresa.</p>
+                    <ul class="plano-lista">
+                        <li><span class="plano-check">✔</span> 5 contas por empresa</li>
+                        <li><span class="plano-check">✔</span> Tudo do Free, e mais</li>
+                        <li><span class="plano-check">✔</span> Documentos legais e certificados</li>
+                    </ul>
+                </div>
+                <div class="plano-card plano-destaque">
+                    <div class="plano-destaque-label">Mais Popular</div>
+                    <h3 class="plano-nome">Company</h3>
+                    <p class="plano-preco"><span>R$ 2.400</span> /Ano</p>
+                    <p class="plano-descricao">Ferramentas avançadas para elevar seu padrão de impacto ambiental e ESG.</p>
+                    <ul class="plano-lista">
+                        <li><span class="plano-check">✔</span> Contas ilimitadas</li>
+                        <li><span class="plano-check">✔</span> Apoio na monetização de resíduos</li>
+                        <li><span class="plano-check">✔</span> Atendimento exclusivo</li>
+                        <li><span class="plano-check">✔</span> Relatórios sob medida</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    
+        <script>
+            function mostrarPlano(tipo) {
+                const botoes = document.querySelectorAll(".plano-botao");
+                const mensal = document.getElementById("plano-mensal");
+                const anual = document.getElementById("plano-anual");
+    
+                botoes.forEach(btn => btn.classList.remove("active"));
+                event.target.classList.add("active");
+    
+                if (tipo === "mensal") {
+                    anual.style.opacity = 0;
+                    setTimeout(() => {
+                        anual.style.display = "none";
+                        mensal.style.display = "flex";
+                        setTimeout(() => (mensal.style.opacity = 1), 50);
+                    }, 200);
+                } else {
+                    mensal.style.opacity = 0;
+                    setTimeout(() => {
+                        mensal.style.display = "none";
+                        anual.style.display = "flex";
+                        setTimeout(() => (anual.style.opacity = 1), 50);
+                    }, 200);
+                }
+            }
+        </script>
     <section id="secao-faq" class="faq-section">
         <header class="faq-cabecalho">
             <p>— FAQ —</p>
             <h2>Perguntas Frequentes</h2>
         </header>
-
-        <!-- FAQ: Frequently Asked Question, seção para responder perguntas frequentes -->
         <div class="faq-container">
             <div class="faq-item">
                 <input type="checkbox" id="faq1" class="faq-toggle">
@@ -248,12 +288,11 @@
                 </label>
                 <div class="faq-resposta">
                     <p>
-                        A PurPura conecta empresas geradoras de resíduos com empresas aproveitadoras,
+                        A PurPura conecta empresas geradoras de resíduos com empresas reaproveitadoras,
                         transformando o que seria lixo em matéria-prima e promovendo sustentabilidade.
                     </p>
                 </div>
             </div>
-
             <div class="faq-item">
                 <input type="checkbox" id="faq2" class="faq-toggle">
                 <label for="faq2" class="faq-pergunta">
@@ -262,12 +301,13 @@
                 </label>
                 <div class="faq-resposta">
                     <p>
-                        Geradores cadastram seus resíduos e aproveitadores buscam materiais de interesse.
-                        O chat e relatórios automáticos garantem comunicação e rastreabilidade.
+                        Geradores cadastram seus resíduos e reaproveitadores buscam resíduos orgânicos de interesse.
+                        O chat promove comunicação mais direta e a possibilidade de negociação interna em relação a
+                        entrega. <br>
+                        <strong>Não trabalhamos com transporte.</strong>
                     </p>
                 </div>
             </div>
-
             <div class="faq-item">
                 <input type="checkbox" id="faq3" class="faq-toggle">
                 <label for="faq3" class="faq-pergunta">
@@ -276,11 +316,11 @@
                 </label>
                 <div class="faq-resposta">
                     <p>
-                        Trabalhamos com resíduos plásticos, vidros, papéis, metais, orgânicos e até da construção civil.
+                        Gerenciamos apenas resíduos orgânicos e suas categorias <br> (restos de comida, borra de café,
+                        folhas).
                     </p>
                 </div>
             </div>
-
             <div class="faq-item">
                 <input type="checkbox" id="faq4" class="faq-toggle">
                 <label for="faq4" class="faq-pergunta">
@@ -296,13 +336,11 @@
             </div>
         </div>
     </section>
-
     <footer>
         <div class="footer-col">
             <h4>PurPura</h4>
             <p>Gestão de resíduos orgânicos com impacto social e sustentável.</p>
         </div>
-
         <div class="footer-col">
             <h4>Contato</h4>
             <div class="sociais">
@@ -312,7 +350,6 @@
                 </a>
             </div>
         </div>
-
         <div class="footer-col">
             <h4>Acesso Restrito</h4>
             <a href="login.jsp" class="crud">
@@ -320,7 +357,6 @@
                 <p>Área do Administrador</p>
             </a>
         </div>
-
         <p class="footer-bottom">© 2025 PurPura - Todos os direitos reservados</p>
     </footer>
 </body>

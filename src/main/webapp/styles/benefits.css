@@ -61,4 +61,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}  
+.beneficios-right img{ 
+  width: 400px;
 }
