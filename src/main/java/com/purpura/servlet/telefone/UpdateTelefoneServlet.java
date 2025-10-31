@@ -26,7 +26,7 @@ public class UpdateTelefoneServlet extends HttpServlet {
             throws jakarta.servlet.ServletException, IOException {
         DAO<Telefone> dao = new TelefoneDAO();
         String lista = "listaTelefones";
-        String caminho = "/CRUD/telefone.jsp";
+        String caminho = "WEB-INF/CRUD/telefone.jsp";
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));

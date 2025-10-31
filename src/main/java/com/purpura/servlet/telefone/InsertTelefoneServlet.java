@@ -36,7 +36,7 @@ public class InsertTelefoneServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String lista = "listaTelefones";
-        String caminho = "/CRUD/telefone.jsp";
+        String caminho = "/WEB-INF/CRUD/telefone.jsp";
         TelefoneDAO dao = new TelefoneDAO();
         List<TelefoneView> telefoneViews = dao.listarComEmpresa();
         try {

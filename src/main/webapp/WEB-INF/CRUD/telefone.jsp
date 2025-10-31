@@ -25,8 +25,8 @@ autor(a): Kevin de Oliveira
 
     <!-- Importação dos arquivos CSS -->
     <!-- O parâmetro ?v=2 pode ser utilizado para forçar atualização de cache, caso necessário -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/crud.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/WEB-INF/CRUD/popUp.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/crud.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/popUp.css">
 
     <title>Telefones</title>
 </head>
