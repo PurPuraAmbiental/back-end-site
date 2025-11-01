@@ -94,10 +94,12 @@
 
                     <!-- ================== BOTÃO EXCLUIR ================== -->
                     <!-- Formulário para deletar uma empresa -->
-                    <form action="${pageContext.request.contextPath}/empresa/delete" method="post" style="display:inline;">
-                        <input type="hidden" name="cCnpj" value="<%= empresa.getCCnpj() %>">
-                        <input class="add-btn" type="submit" value="Excluir">
-                    </form>
+                    <button class="add-btn"
+                            onclick="DeleteEmpresa('<%= empresa.getCCnpj() %>', '<%= empresa.getCNmEmpresa() %>')">
+                        Excluir
+                    </button>
+
+                    </button>
                 </td>
             </tr>
             <%  } // fim do for
@@ -133,6 +135,12 @@
         document.getElementById('update-empresa-cAtivo').value = cAtivo;
         // Exibe o pop-up de atualização
         document.getElementById('popup-update-empresa').style.display = 'flex';
+    }
+    // ================== FUNÇÃO PARA ABRIR POPUP DE DELETE ==================
+    function DeleteEmpresa(cCnpj, cNmEmpresa) {
+        document.getElementById('delete-empresa-cCnpj').value = cCnpj;
+        document.getElementById('delete-empresa-nome').innerText = cNmEmpresa;
+        document.getElementById('popup-delete-empresa').style.display = 'flex';
     }
 
     //==================== FUNÇÃO PARA ABRIR O POP UP DOS FILTROS =======================

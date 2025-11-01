@@ -8,7 +8,6 @@ import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
 import com.purpura.util.Criptografia;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,14 +15,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "InsertEmpresaServlet", value = "/empresa/insert")
 public class InsertEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-            String caminho = "WEB-INF/CRUD/empresa.jsp";
+            String caminho = "/WEB-INF/CRUD/empresa.jsp";
             String lista = "listaEmpresas";
             DAO<Empresa> dao = new EmpresaDAO();
             try {
@@ -46,6 +44,11 @@ public class InsertEmpresaServlet extends HttpServlet {
                 ErroServlet.setErro(request, response, dao, "Esse cnpj ja foi cadastrado! Digite um cnpj valido", lista, caminho);
                 return;
                 }
+            if (dao.findByAttribute("cEmail", model.getCEmail()) != null) {
+                ErroServlet.setErro(request, response, dao, "Esse email ja foi cadastrado! Digite um e-mail valido", lista, caminho);
+                return;
+            }
+
             if (model.getCSenha().length() < 6){
                 ErroServlet.setErro(request, response, dao, "Não foi possivel cadastrar Empresa! \n Sua senha deve ter 6 ou mais caracteres validos", lista, caminho);
                 return;
