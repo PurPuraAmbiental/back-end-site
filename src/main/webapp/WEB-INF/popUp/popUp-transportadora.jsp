@@ -11,10 +11,13 @@
         <button class="close-btn" onclick="fecharPopup('popup-insert-transportadora')">×</button>
         <h2>Cadastrar Transportadora</h2>
 
-        <form action="${pageContext.request.contextPath}/transportadora/insert" method="post">
+        <form action="${pageContext.request.contextPath}/transportadora/insert"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Adicionando...';">
+
             <!-- Nome -->
             <label for="cNmTransportadora">Nome da Transportadora</label>
-            <input type="text" name="cNmTransportadora" id="cNmTransportadora" required>
+            <input type="text" name="cNmTransportadora" id="cNmTransportadora" maxlength="50" required>
 
             <!-- CNPJ -->
             <label for="cCnpj">CNPJ</label>
@@ -22,14 +25,15 @@
 
             <!-- E-mail -->
             <label for="cEmail">E-mail</label>
-            <input type="email" name="cEmail" id="cEmail" required>
+            <input type="email" name="cEmail" id="cEmail" maxlength="50" required>
 
             <!-- Região Atendida -->
             <label for="cRegiaoAtendida">Região Atendida</label>
-            <input type="text" name="cRegiaoAtendida" id="cRegiaoAtendida" required>
+            <input type="text" name="cRegiaoAtendida" id="cRegiaoAtendida" maxlength="50" required>
 
             <button type="submit">Adicionar</button>
         </form>
+
     </div>
 </div>
 
@@ -39,22 +43,25 @@
         <button class="close-btn" onclick="fecharPopup('popup-update-transportadora')">×</button>
         <h2>Atualizar Transportadora</h2>
 
-        <form action="${pageContext.request.contextPath}/transportadora/update" method="post">
+        <form action="${pageContext.request.contextPath}/transportadora/update"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
+
             <!-- Nome -->
             <label for="update-transportadora-cNmTransportadora">Nome da Transportadora</label>
-            <input type="text" name="cNmTransportadora" id="update-transportadora-cNmTransportadora" required>
+            <input type="text" name="cNmTransportadora" id="update-transportadora-cNmTransportadora" maxlength="50" required>
 
             <!-- CNPJ -->
             <label for="update-transportadora-cCnpj">CNPJ</label>
-            <input type="text" name="cCnpj" id="update-transportadora-cCnpj" readonly>
+            <input type="text" name="cCnpj" id="update-transportadora-cCnpj" style="color: gray" readonly>
 
             <!-- E-mail -->
             <label for="update-transportadora-cEmail">E-mail</label>
-            <input type="email" name="cEmail" id="update-transportadora-cEmail" required>
+            <input type="email" name="cEmail" id="update-transportadora-cEmail" maxlength="50" required>
 
             <!-- Região Atendida -->
             <label for="update-transportadora-cRegiaoAtendida">Região Atendida</label>
-            <input type="text" name="cRegiaoAtendida" id="update-transportadora-cRegiaoAtendida" required>
+            <input type="text" name="cRegiaoAtendida" id="update-transportadora-cRegiaoAtendida" maxlength="50" required>
 
             <button type="submit">Atualizar</button>
         </form>
