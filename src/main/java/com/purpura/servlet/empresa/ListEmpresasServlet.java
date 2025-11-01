@@ -22,6 +22,11 @@ public class ListEmpresasServlet extends HttpServlet {
         try {
             EmpresaDAO empresaDAO = new EmpresaDAO();
 
+            if (request.getAttribute("popup-alterar") != null) {
+                request.setAttribute( "empresa", empresaDAO.findByAttribute("cCnpj", request.getParameter("cCnpj")));
+                request.setAttribute("popup-alterar", true);
+            }
+
             // Captura os parâmetros do filtro
             String nome = request.getParameter("nome");
             String email = request.getParameter("email");
@@ -54,5 +59,9 @@ public class ListEmpresasServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
         }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+            doGet(request, response);
     }
 }

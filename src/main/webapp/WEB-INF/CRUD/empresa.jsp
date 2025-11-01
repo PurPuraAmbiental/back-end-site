@@ -83,14 +83,19 @@
                 <td class="actions">
                     <!-- ================== BOTÃO EDITAR ================== -->
                     <!-- Ao clicar, preenche o pop-up de atualização com os dados da empresa -->
-                    <button class="add-btn"
-                            onclick="UpdateEmpresa('<%= empresa.getCNmEmpresa() %>',
-                                    '<%= empresa.getCEmail() %>',
-                                    '<%= empresa.getCSenha() %>',
-                                    '<%= empresa.getCCnpj() %>',
-                                    '<%= empresa.getCAtivo() %>')">
-                        Editar
-                    </button>
+<%--                    <button class="add-btn"--%>
+<%--                            onclick="UpdateEmpresa('<%= empresa.getCNmEmpresa() %>',--%>
+<%--                                    '<%= empresa.getCEmail() %>',--%>
+<%--                                    '<%= empresa.getCSenha() %>',--%>
+<%--                                    '<%= empresa.getCCnpj() %>',--%>
+<%--                                    '<%= empresa.getCAtivo() %>')">--%>
+<%--                        Editar--%>
+<%--                    </button>--%>
+                    <form action="<%= request.getContextPath()%>/empresa/update" method="post">
+                        <input type="hidden" name="cCnpj" value="<%= empresa.getCCnpj() %>">
+                        <input type="hidden" name="method" value="1">
+                        <button class="add-btn" TYPE="submit" >editar</button>
+                    </form>
 
                     <!-- ================== BOTÃO EXCLUIR ================== -->
                     <!-- Formulário para deletar uma empresa -->
@@ -108,7 +113,29 @@
         </table>
     </div>
 </div>
+<% if (request.getAttribute("popup-alterar") != null) { %>
+<div class="popup">
+    <form method="post">
+        <label for="a">AAA</label>
+        <input id="a" name="cNmEmpresa" type="text" value="${empresa.CNmEmpresa}">
 
+        <label for="b">BBB</label>
+        <input id="b" name="cEmail" type="text" value="${empresa.CEmail}">
+
+        <label for="c">CCC</label>
+        <input id="c" name="cSenha" type="text" value="${empresa.CSenha}">
+
+        <label for="d">DDD</label>
+        <input id="d" name="cCnpj" type="text" value="${empresa.CCnpj}">
+
+        <label for="e">EEE</label>
+        <input id="e" name="cAtivo" type="text" value="${empresa.CAtivo}">
+
+        <button type="submit">Editar</button>
+    </form>
+</div>
+
+<% } %>
 <!-- ================== POPUPS ================== -->
 <!-- Inclui os formulários de inserção e atualização e filtro -->
 <jsp:include page="/WEB-INF/popUp/popUp-empresa.jsp" />
