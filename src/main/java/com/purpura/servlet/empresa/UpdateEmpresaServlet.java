@@ -23,37 +23,28 @@ public class UpdateEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         DAO<Empresa> dao = new EmpresaDAO();
+        String caminho = "/CRUD/administrador.jsp";
+        String lista = "listaAdministradores";
+        try {
+            Map<String, String> params = new LinkedHashMap<>();
+            request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
 
-        if ("1".equals(request.getParameter("method"))) {
-            request.setAttribute("cCnpj", request.getParameter("cCnpj"));
-            request.setAttribute("popup-alterar", true);
-            request.getRequestDispatcher("/empresa/list").forward(request, response);
-        } else {
-            String caminho = "WEB-INF/CRUD/administrador.jsp";
-            String lista = "listaAdministradores";
-
-
-            try {
-                Map<String, String> params = new LinkedHashMap<>();
-                request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
-
-                Empresa model = new Empresa(params);
-                if (model.getCSenha().length() < 6) {
-                    ErroServlet.setErro(request, response, dao, "Não foi possivel atualizar Empresa! \n Sua senha deve ter 6 ou mais caracteres validos", lista, caminho);
-                    return;
-                }
-                if (params.containsKey("cSenha")) {
-                    String hash = Criptografia.criptografar(params.get("cSenha"));
-                    params.put("cSenha", hash);
-                    model.setCSenha(params.get("cSenha"));
-                }
-                dao.update(model);
-                response.sendRedirect(request.getContextPath() + "/empresa/list");
-            } catch (ConnectionFailedException | NotFoundException e) {
-                ErroServlet.setErro(request, response, dao, "Erro ao atualizar Empresa: " + e.getMessage(), lista, caminho);
-            } catch (ParseException e) {
-                ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
+            Empresa model = new Empresa(params);
+            if (model.getCSenha().length() < 6){
+                ErroServlet.setErro(request, response, dao, "Não foi possivel atualizar Empresa! \n Sua senha deve ter 6 ou mais caracteres validos", lista, caminho);
+                return;
             }
+            if (params.containsKey("cSenha")) {
+                String hash = Criptografia.criptografar(params.get("cSenha"));
+                params.put("cSenha", hash);
+                model.setCSenha(params.get("cSenha"));
+            }
+            dao.update(model);
+            response.sendRedirect(request.getContextPath() + "/empresa/list");
+        } catch (ConnectionFailedException | NotFoundException e) {
+            ErroServlet.setErro(request, response, dao, "Erro ao atualizar Empresa: " + e.getMessage(), lista, caminho);
+        } catch (ParseException e) {
+            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
         }
     }
 }
