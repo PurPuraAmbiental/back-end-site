@@ -74,7 +74,8 @@
             <label>Descrição</label>
             <input type="text" name="cDescricao" id="update-residuo-cDescricao" required>
 
-            <button type="submit">Atualizar</button>
+            <button type="submit" onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Atualizando...';">
+                Atualizar</button>
         </form>
     </div>
 </div>

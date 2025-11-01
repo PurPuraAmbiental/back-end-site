@@ -87,7 +87,7 @@
 </div>
 
 <!-- POPUPS -->
-<jsp:include page="/WEB-INF/popUp's/popUp-residuo.jsp" />
+<jsp:include page="/WEB-INF/popUp/popUp-residuo.jsp" />
 
 <script>
     function abrirPopupInsertResiduo() {

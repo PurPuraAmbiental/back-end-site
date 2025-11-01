@@ -128,7 +128,7 @@
 </div>
 
 <!-- Inclui o JSP responsável pelos pop-ups -->
-<jsp:include page="/WEB-INF/popUp's/popUp-endereco.jsp" />
+<jsp:include page="/WEB-INF/popUp/popUp-endereco.jsp" />
 
 <!-- Funções JavaScript usadas para controlar os pop-ups -->
 <script>
