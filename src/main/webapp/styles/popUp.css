@@ -73,13 +73,12 @@ body {
 }
 
 /* Botões */
-.popup form button,
 .popup button[type="submit"] {
     background: linear-gradient(90deg, #b13cd4 0%, #a442c2 100%);
     color: white;
-    border: none;
     padding: 12px 20px;
     border-radius: 10px;
+    border: none;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
@@ -132,4 +131,18 @@ body {
     align-items: flex-start;
     z-index: 999;
     pointer-events: auto;
+}
+
+.popup button[type="button"], .btn-cancelar {
+    background-color: #ffffff;
+    color: #b13cd4;
+    border: 2px solid #b13cd4;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background 0.3s ease;
 }
