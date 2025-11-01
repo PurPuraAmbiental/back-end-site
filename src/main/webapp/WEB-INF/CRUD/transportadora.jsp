@@ -110,7 +110,7 @@
 
 <!-- ================== POPUPS ================== -->
 <!-- Inclui os formulários de inserção e atualização -->
-<jsp:include page="/WEB-INF/popUp's/popUp-transportadora.jsp" />
+<jsp:include page="/WEB-INF/popUp/popUp-transportadora.jsp" />
 
 <script>
     // ================== FUNÇÃO PARA ABRIR POPUP DE INSERÇÃO ==================
