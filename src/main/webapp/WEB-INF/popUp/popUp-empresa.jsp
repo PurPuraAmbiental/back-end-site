@@ -43,13 +43,13 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="text" name="cNmEmpresa" id="update-empresa-cNmEmpresa" maxlength="30" required>
 
             <label>Email</label>
-            <input type="email" name="cEmail" id="update-empresa-cEmail" readonly>
+            <input type="email" name="cEmail" id="update-empresa-cEmail" style="color: gray" readonly>
 
             <label>Senha</label>
             <input type="password" name="cSenha" id="update-empresa-cSenha" maxlength="70" required>
 
             <label>CNPJ</label>
-            <input type="text" name="cCnpj" id="update-empresa-cCnpj" maxlength="18" readonly>
+            <input type="text" name="cCnpj" id="update-empresa-cCnpj" style="color: gray" maxlength="18" readonly>
 
             <label>Ativo</label>
             <select name="cAtivo" id="update-empresa-cAtivo" required>
@@ -61,6 +61,28 @@ Responsável -> CREATE e UPDATE do CRUD
         </form>
     </div>
 </div>
+<!-- ==================== POPUP DE EXCLUSÃO ==================== -->
+<div class="popup-overlay" id="popup-delete-empresa" style="display:none;">
+    <div class="popup">
+        <button class="close-btn" onclick="fecharPopup('popup-delete-empresa')">×</button>
+        <h2>Excluir Empresa</h2>
+
+        <form action="${pageContext.request.contextPath}/empresa/delete" method="post">
+            <p>Tem certeza que deseja excluir a empresa <strong id="delete-empresa-nome"></strong>?</p>
+
+            <input type="hidden" name="cCnpj" id="delete-empresa-cCnpj">
+
+            <div class="botoes-principais">
+                <button type="submit"  onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';" >Excluir</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-empresa')">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 
 <!-- ==================== FILTROS ========================= -->
 <div class="filtroPopup-overlay" id="filtroEmpresa" style="display:none;">
