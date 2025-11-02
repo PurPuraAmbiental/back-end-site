@@ -83,7 +83,7 @@ public class ListEmpresasServlet extends HttpServlet {
         } catch (Exception e) {
             // Define mensagem genérica para erros não previstos
             e.printStackTrace();
-            ErroServlet.setErro(request, response, empresaDAO, e, lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, empresaDAO, "Erro interno, tente de novo mais tarde.", lista, ERROR_PAGE);
         }
     }
 }

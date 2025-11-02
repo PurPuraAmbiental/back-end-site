@@ -124,7 +124,6 @@ public class InsertAdministradorServlet extends HttpServlet {
 
                 // Encaminha o usuário para o painel principal (crud.jsp) sem perder o estado da requisição.
                 request.getRequestDispatcher("/WEB-INF/CRUD/crud.jsp").forward(request, response);
-                return;
             } else {
                 // Caso não exista "origem", o cadastro foi feito a partir do CRUD de administradores.
                 // Então redireciona o navegador para a lista de administradores.
@@ -142,7 +141,7 @@ public class InsertAdministradorServlet extends HttpServlet {
             // Captura erros ao converter ou processar parâmetros (ex: formato de data incorreto)
 
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros.", lista, ERROR_PAGE);
         }
     }
 }

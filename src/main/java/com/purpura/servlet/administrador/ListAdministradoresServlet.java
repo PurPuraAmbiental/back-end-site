@@ -65,9 +65,13 @@ public class ListAdministradoresServlet extends HttpServlet {
             // Encaminha a requisição e a resposta para a página de exibição.
             request.getRequestDispatcher("/WEB-INF/CRUD/administrador.jsp").forward(request, response);
 
-        } catch (Exception e) {
+        } catch (ConnectionFailedException | NotFoundException e) {
+            // Define uma mensagem de erro na requisição, será exibida na página de erro
             e.printStackTrace();
             ErroServlet.setErro(request, response, administradorDAO, e, lista, ERROR_PAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, administradorDAO, "Erro interno, tente de novo mais tarde." , lista, ERROR_PAGE);
         }
     }
 }

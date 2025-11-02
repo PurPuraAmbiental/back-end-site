@@ -136,7 +136,7 @@ public class InsertEmpresaServlet extends HttpServlet {
 
         } catch (ParseException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros.", lista, ERROR_PAGE);
         }
     }
 }

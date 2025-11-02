@@ -79,11 +79,6 @@ public class DeleteEmpresaServlet extends HttpServlet {
             // Redireciona para a página de listagem de empresas após exclusão bem-sucedida
             response.sendRedirect(request.getContextPath() + "/empresa/list");
 
-        } catch (NumberFormatException e) {
-            // Captura erros de formatação numérica (ex: CNPJ inválido)
-            // e retorna mensagem personalizada na JSP correspondente
-            e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
             ErroServlet.setErro(request, response, dao, e, "listaNome", ERROR_PAGE);
