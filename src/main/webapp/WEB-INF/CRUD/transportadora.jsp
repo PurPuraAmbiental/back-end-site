@@ -61,17 +61,17 @@
                 // Verifica se a lista não está vazia
                 if (transportadoras != null && !transportadoras.isEmpty()) {
                     // Percorre cada transportadora da lista e gera uma linha na tabela
-                    for (Transportadora t : transportadoras) {
+                    for (Transportadora transportadora : transportadoras) {
             %>
             <tr>
                 <!-- Mostra o nome da transportadora -->
-                <td><%= t.getCNmTransportadora() %></td>
+                <td><%= transportadora.getCNmTransportadora() %></td>
                 <!-- Mostra o CNPJ -->
-                <td><%= t.getCCnpj() %></td>
+                <td><%= transportadora.getCCnpj() %></td>
                 <!-- Mostra a região atendida -->
-                <td><%= t.getCRegiaoAtendida() %></td>
+                <td><%= transportadora.getCRegiaoAtendida() %></td>
                 <!-- Mostra o email -->
-                <td><%= t.getCEmail() %></td>
+                <td><%= transportadora.getCEmail() %></td>
                 <!-- Coluna de ações (editar e excluir) -->
                 <td class="actions">
 
@@ -79,21 +79,20 @@
                     <!-- Ao clicar, preenche o pop-up de atualização com os dados da transportadora -->
                     <button class="add-btn"
                             onclick="UpdateTransportadora(
-                                    '<%= t.getCCnpj() %>',          // CNPJ (identificador)
-                                    '<%= t.getCNmTransportadora() %>', // Nome
-                                    '<%= t.getCEmail() %>',        // Email
-                                    '<%= t.getCRegiaoAtendida() %>'// Região atendida
+                                    '<%= transportadora.getCCnpj() %>',          // CNPJ (identificador)
+                                    '<%= transportadora.getCNmTransportadora() %>', // Nome
+                                    '<%= transportadora.getCEmail() %>',        // Email
+                                    '<%= transportadora.getCRegiaoAtendida() %>'// Região atendida
                                     )">
                         Editar
                     </button>
 
                     <!-- ================== BOTÃO EXCLUIR ================== -->
                     <!-- Formulário para deletar a transportadora -->
-                    <form action="${pageContext.request.contextPath}/transportadora/delete" method="post" style="display:inline;">
-                        <!-- CNPJ é enviado como hidden para identificar o registro -->
-                        <input type="hidden" name="cCnpj" value="<%= t.getCCnpj() %>">
-                        <input type="submit" class="add-btn" value="Excluir">
-                    </form>
+                    <<button class="add-btn"
+                             onclick="DeleteTransportadora('<%= transportadora.getCCnpj() %>', '<%= transportadora.getCNmTransportadora() %>')">
+                    Excluir
+                </button>
                 </td>
             </tr>
             <%      } // fim do for
@@ -136,7 +135,12 @@
         // Exibe o pop-up de atualização
         document.getElementById('popup-update-transportadora').style.display = 'flex';
     }
-
+    // ================== FUNÇÃO PARA ABRIR POPUP DE DELETE ==================
+    function DeleteTransportadora(cCnpj, cNmTransportadora) {
+        document.getElementById('delete-transportadora-cCnpj').value = cCnpj;
+        document.getElementById('delete-transportadora-nome').innerText = cNmTransportadora;
+        document.getElementById('popup-delete-transportadora').style.display = 'flex';
+    }
     //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS
     function filtroTransportadora(){
         document.getElementById('filtroTransportadora').style.display = 'flex';

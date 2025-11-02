@@ -22,11 +22,9 @@ public class DeleteTransportadoraServlet extends HttpServlet {
         String lista = "listaTransportadoras";
         String caminho = "/WEB-INF/CRUD/transportadora.jsp";
         DAO<Transportadora> dao = new TransportadoraDAO();
-        String idParam = request.getParameter("nCdTransporte");
+        String idParam = request.getParameter("cCnpj");
         try {
-            int id = Integer.parseInt(idParam);
-            System.out.println(idParam);
-            dao.delete(id);
+            dao.delete(idParam);
             response.sendRedirect(request.getContextPath() + "/transportadora/list");
         } catch (NumberFormatException e) {
             ErroServlet.setErro(request, response, dao,
