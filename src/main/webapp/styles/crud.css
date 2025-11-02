@@ -360,3 +360,15 @@ tbody td.actions img:hover {
 
 }
 
+.container-cadastro input[name="chave"] {
+    width: 220px;
+    padding: 8px 10px;
+    margin: 10px 0 15px 0;
+    border: 1.5px solid #cda3e8;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
