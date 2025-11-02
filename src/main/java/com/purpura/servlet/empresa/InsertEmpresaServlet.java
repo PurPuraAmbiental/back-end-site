@@ -17,6 +17,8 @@ import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por inserir uma nova Empresa no sistema.
  *
@@ -130,12 +132,11 @@ public class InsertEmpresaServlet extends HttpServlet {
 
         } catch (ConnectionFailedException | NotFoundException e) {
             // Trata erros relacionados ao banco de dados (conexão ou busca de dados)
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao inserir Empresa: " + e.getMessage(),
-                    lista, caminho);
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
 
         } catch (ParseException e) {
-            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         }
     }
 }

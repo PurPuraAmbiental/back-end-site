@@ -17,6 +17,8 @@ import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por atualizar os dados de uma Empresa existente.
  *
@@ -78,13 +80,13 @@ public class UpdateEmpresaServlet extends HttpServlet {
 
         } catch (ConnectionFailedException | NotFoundException e) {
             // Trata erros de conexão com o banco e mostra mensagem personalizada
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao atualizar Empresa: " + e.getMessage(), lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
 
         } catch (ParseException e) {
             // Trata erros de conversão ou parsing de parâmetros
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         }
     }
 }

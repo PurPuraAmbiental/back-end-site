@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por listar as empresas cadastradas no sistema.
  *
@@ -76,12 +78,12 @@ public class ListEmpresasServlet extends HttpServlet {
         } catch (ConnectionFailedException | NotFoundException e) {
             // Define uma mensagem de erro na requisição, que será exibida na página de erro
             e.printStackTrace();
-            ErroServlet.setErro(request, response, empresaDAO, "Erro interno. Tente de novo mais tarde: " + e.getMessage(), lista, caminho);
+            ErroServlet.setErro(request, response, empresaDAO, e, lista, ERROR_PAGE);
 
         } catch (Exception e) {
             // Define mensagem genérica para erros não previstos
             e.printStackTrace();
-            ErroServlet.setErro(request, response, empresaDAO, "Erro interno. Tente de novo mais tarde." + e.getMessage(), lista, caminho);
+            ErroServlet.setErro(request, response, empresaDAO, e, lista, ERROR_PAGE);
         }
     }
 }

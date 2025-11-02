@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  *      Servlet responsável por realizar a exclusão de um administrador
  *      do sistema, com base no e-mail informado no formulário.
@@ -55,7 +57,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/administrador/list");
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, "Erro ao deletar Administrador: " + e.getMessage(), lista, caminho);
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         }
     }
 }
