@@ -38,7 +38,7 @@
             </nav>
             <div class="auth">
                 <a class="login" href="login.jsp">Login</a>
-                <a class="cadastro" href="cadastro/VerificacaoAdministrador.jsp">Cadastro</a>
+                <a class="cadastro" href="cadastro.html">Cadastro</a>
             </div>
             <div class="menu-hamb">
                 <input type="checkbox" id="hamb-toggle">
@@ -53,7 +53,7 @@
                     <a href="#secao-faq">FAQ</a>
                     <div class="hamb-auth">
                         <a class="login" href="login.jsp">Login</a>
-                        <a class="cadastro" href="cadastro/VerificacaoAdministrador.jsp">Cadastro</a>
+                        <a class="cadastro" href="cadastro.html">Cadastro</a>
                     </div>
                 </div>
             </div>
@@ -116,6 +116,7 @@
             <p>— Nossos Serviços —</p>
             <h2>Explore Nossos <span>Serviços</span></h2>
         </header>
+        
         <div class="servicos-grid">
             <div class="servico-card">
                 <span class="icone-circulo cadastro">
@@ -145,135 +146,123 @@
                 <h3>Negociação Direta</h3>
                 <p>Negocie valores e condições diretamente com empresas interessadas na coleta.</p>
             </div>
-            <div class="servico-card">
-                <span class="icone-circulo relatorios">
-                    <img src="assets/servicos/servicos-roxo/relatorios_automaticos_roxo.svg" alt="">
-                </span>
-                <h3>Relatórios Automáticos</h3>
-                <p>Receba relatórios compatíveis com o PGRS, atendendo exigências legais.</p>
-            </div>
-            <div class="servico-card">
-                <span class="icone-circulo gestao">
-                    <img src="assets/servicos/servicos-roxo/gestao_demanda_roxo.svg" alt="">
-                </span>
-                <h3>Gestão de Demanda</h3>
-                <p>Gerencie sua demanda e encontre fornecedores confiáveis de matéria-prima.</p>
-            </div>
         </div>
         <div class="servicos-cta">
-            <p>Descubra funcionalidades incríveis que aumentam sua produtividade e simplificam a gestão de resíduos.</p>
+            <p>Descubra funcionalidades incríveis que aumentam sua produtividade e simplificam a gestão de resíduos.
+            </p>
         </div>
     </section>
-        <section id="secao-planos" class="planos-section">
-            <header class="planos-cabecalho">
-                <h2>Escolha o Plano <br> Ideal para Você</h2>
-                <p>Escolha o plano que melhor se adapta a você e entre em contato conosco!</p>
-            </header>
-    
-            <div class="planos-seletor">
-                <button class="plano-botao active" onclick="mostrarPlano('mensal')">Mensal</button>
-                <button class="plano-botao" onclick="mostrarPlano('anual')">Anual</button>
+    <section id="secao-planos" class="planos-section">
+        <header class="planos-cabecalho">
+            <h2>Escolha o Plano <br> Ideal para Você</h2>
+            <p>Escolha o plano que melhor se adapta a você e entre em contato conosco!</p>
+        </header>
+
+        <div class="planos-seletor">
+            <button class="plano-botao active" onclick="mostrarPlano('mensal')">Mensal</button>
+            <button class="plano-botao" onclick="mostrarPlano('anual')">Anual</button>
+        </div>
+
+        <div class="planos-container" id="plano-mensal">
+            <div class="plano-card">
+                <h3 class="plano-nome">Free</h3>
+                <p class="plano-preco"><span>R$ 0</span> /Mês</p>
+                <p class="plano-descricao">Gerencie o impacto da sua empresa sem custos.</p>
+                <ul class="plano-lista">
+                    <li><span class="plano-check">✔</span> 1 conta por empresa</li>
+                    <li><span class="plano-check">✔</span> Gerenciamento essencial unificado</li>
+                    <li><span class="plano-check">✔</span> Cadastro e negociação de resíduos</li>
+                    <li><span class="plano-check">✔</span> Relatórios financeiros essenciais</li>
+                </ul>
             </div>
-    
-            <div class="planos-container" id="plano-mensal">
-                <div class="plano-card">
-                    <h3 class="plano-nome">Free</h3>
-                    <p class="plano-preco"><span>R$ 0</span> /Mês</p>
-                    <p class="plano-descricao">Gerencie o impacto da sua empresa sem custos.</p>
-                    <ul class="plano-lista">
-                        <li><span class="plano-check">✔</span> 1 conta por empresa</li>
-                        <li><span class="plano-check">✔</span> Gerenciamento essencial unificado</li>
-                        <li><span class="plano-check">✔</span> Cadastro e negociação de resíduos</li>
-                        <li><span class="plano-check">✔</span> Relatórios financeiros essenciais</li>
-                    </ul>
-                </div>
-                <div class="plano-card">
-                    <h3 class="plano-nome">Profissional</h3>
-                    <p class="plano-preco"><span>R$ 150</span> /Mês</p>
-                    <p class="plano-descricao">Controle projetos e gerencie o impacto ambiental da sua empresa.</p>
-                    <ul class="plano-lista">
-                        <li><span class="plano-check">✔</span> 5 contas por empresa</li>
-                        <li><span class="plano-check">✔</span> Tudo do Free, e mais</li>
-                        <li><span class="plano-check">✔</span> Documentos legais e certificados</li>
-                    </ul>
-                </div>
-                <div class="plano-card plano-destaque">
-                    <div class="plano-destaque-label">Mais Popular</div>
-                    <h3 class="plano-nome">Company</h3>
-                    <p class="plano-preco"><span>R$ 250</span> /Mês</p>
-                    <p class="plano-descricao">Ferramentas avançadas para elevar seu padrão de impacto ambiental e ESG.</p>
-                    <ul class="plano-lista">
-                        <li><span class="plano-check">✔</span> Contas ilimitadas</li>
-                        <li><span class="plano-check">✔</span> Apoio na monetização de resíduos</li>
-                        <li><span class="plano-check">✔</span> Atendimento exclusivo</li>
-                        <li><span class="plano-check">✔</span> Relatórios sob medida</li>
-                    </ul>
-                </div>
+            <div class="plano-card">
+                <h3 class="plano-nome">Profissional</h3>
+                <p class="plano-preco"><span>R$ 150</span> /Mês</p>
+                <p class="plano-descricao">Controle projetos e gerencie o impacto ambiental da sua empresa.</p>
+                <ul class="plano-lista">
+                    <li><span class="plano-check">✔</span> 5 contas por empresa</li>
+                    <li><span class="plano-check">✔</span> Tudo do Free, e mais</li>
+                    <li><span class="plano-check">✔</span> Documentos legais e certificados</li>
+                </ul>
             </div>
-    
-            <div class="planos-container" id="plano-anual" style="display: none;">
-                <div class="plano-card">
-                    <h3 class="plano-nome">Free</h3>
-                    <p class="plano-preco"><span>R$ 0</span> /Ano</p>
-                    <p class="plano-descricao">Gerencie o impacto da sua empresa sem custos.</p>
-                    <ul class="plano-lista">
-                        <li><span class="plano-check">✔</span> 1 conta por empresa</li>
-                        <li><span class="plano-check">✔</span> Gerenciamento essencial unificado</li>
-                        <li><span class="plano-check">✔</span> Cadastro e negociação de resíduos</li>
-                        <li><span class="plano-check">✔</span> Relatórios financeiros essenciais</li>
-                    </ul>
-                </div>
-                <div class="plano-card">
-                    <h3 class="plano-nome">Profissional</h3>
-                    <p class="plano-preco"><span>R$ 1.500</span> /Ano</p>
-                    <p class="plano-descricao">Controle projetos e gerencie o impacto ambiental da sua empresa.</p>
-                    <ul class="plano-lista">
-                        <li><span class="plano-check">✔</span> 5 contas por empresa</li>
-                        <li><span class="plano-check">✔</span> Tudo do Free, e mais</li>
-                        <li><span class="plano-check">✔</span> Documentos legais e certificados</li>
-                    </ul>
-                </div>
-                <div class="plano-card plano-destaque">
-                    <div class="plano-destaque-label">Mais Popular</div>
-                    <h3 class="plano-nome">Company</h3>
-                    <p class="plano-preco"><span>R$ 2.400</span> /Ano</p>
-                    <p class="plano-descricao">Ferramentas avançadas para elevar seu padrão de impacto ambiental e ESG.</p>
-                    <ul class="plano-lista">
-                        <li><span class="plano-check">✔</span> Contas ilimitadas</li>
-                        <li><span class="plano-check">✔</span> Apoio na monetização de resíduos</li>
-                        <li><span class="plano-check">✔</span> Atendimento exclusivo</li>
-                        <li><span class="plano-check">✔</span> Relatórios sob medida</li>
-                    </ul>
-                </div>
+            <div class="plano-card plano-destaque">
+                <div class="plano-destaque-label">Mais Popular</div>
+                <h3 class="plano-nome">Company</h3>
+                <p class="plano-preco"><span>R$ 250</span> /Mês</p>
+                <p class="plano-descricao">Ferramentas avançadas para elevar seu padrão de impacto ambiental e ESG.</p>
+                <ul class="plano-lista">
+                    <li><span class="plano-check">✔</span> Contas ilimitadas</li>
+                    <li><span class="plano-check">✔</span> Apoio na monetização de resíduos</li>
+                    <li><span class="plano-check">✔</span> Atendimento exclusivo</li>
+                    <li><span class="plano-check">✔</span> Relatórios sob medida</li>
+                </ul>
             </div>
-        </section>
-    
-        <script>
-            function mostrarPlano(tipo) {
-                const botoes = document.querySelectorAll(".plano-botao");
-                const mensal = document.getElementById("plano-mensal");
-                const anual = document.getElementById("plano-anual");
-    
-                botoes.forEach(btn => btn.classList.remove("active"));
-                event.target.classList.add("active");
-    
-                if (tipo === "mensal") {
-                    anual.style.opacity = 0;
-                    setTimeout(() => {
-                        anual.style.display = "none";
-                        mensal.style.display = "flex";
-                        setTimeout(() => (mensal.style.opacity = 1), 50);
-                    }, 200);
-                } else {
-                    mensal.style.opacity = 0;
-                    setTimeout(() => {
-                        mensal.style.display = "none";
-                        anual.style.display = "flex";
-                        setTimeout(() => (anual.style.opacity = 1), 50);
-                    }, 200);
-                }
+        </div>
+
+        <div class="planos-container" id="plano-anual" style="display: none;">
+            <div class="plano-card">
+                <h3 class="plano-nome">Free</h3>
+                <p class="plano-preco"><span>R$ 0</span> /Ano</p>
+                <p class="plano-descricao">Gerencie o impacto da sua empresa sem custos.</p>
+                <ul class="plano-lista">
+                    <li><span class="plano-check">✔</span> 1 conta por empresa</li>
+                    <li><span class="plano-check">✔</span> Gerenciamento essencial unificado</li>
+                    <li><span class="plano-check">✔</span> Cadastro e negociação de resíduos</li>
+                    <li><span class="plano-check">✔</span> Relatórios financeiros essenciais</li>
+                </ul>
+            </div>
+            <div class="plano-card">
+                <h3 class="plano-nome">Profissional</h3>
+                <p class="plano-preco"><span>R$ 1.500</span> /Ano</p>
+                <p class="plano-descricao">Controle projetos e gerencie o impacto ambiental da sua empresa.</p>
+                <ul class="plano-lista">
+                    <li><span class="plano-check">✔</span> 5 contas por empresa</li>
+                    <li><span class="plano-check">✔</span> Tudo do Free, e mais</li>
+                    <li><span class="plano-check">✔</span> Documentos legais e certificados</li>
+                </ul>
+            </div>
+            <div class="plano-card plano-destaque">
+                <div class="plano-destaque-label">Mais Popular</div>
+                <h3 class="plano-nome">Company</h3>
+                <p class="plano-preco"><span>R$ 2.400</span> /Ano</p>
+                <p class="plano-descricao">Ferramentas avançadas para elevar seu padrão de impacto ambiental e ESG.</p>
+                <ul class="plano-lista">
+                    <li><span class="plano-check">✔</span> Contas ilimitadas</li>
+                    <li><span class="plano-check">✔</span> Apoio na monetização de resíduos</li>
+                    <li><span class="plano-check">✔</span> Atendimento exclusivo</li>
+                    <li><span class="plano-check">✔</span> Relatórios sob medida</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function mostrarPlano(tipo) {
+            const botoes = document.querySelectorAll(".plano-botao");
+            const mensal = document.getElementById("plano-mensal");
+            const anual = document.getElementById("plano-anual");
+
+            botoes.forEach(btn => btn.classList.remove("active"));
+            event.target.classList.add("active");
+
+            if (tipo === "mensal") {
+                anual.style.opacity = 0;
+                setTimeout(() => {
+                    anual.style.display = "none";
+                    mensal.style.display = "flex";
+                    setTimeout(() => (mensal.style.opacity = 1), 50);
+                }, 200);
+            } else {
+                mensal.style.opacity = 0;
+                setTimeout(() => {
+                    mensal.style.display = "none";
+                    anual.style.display = "flex";
+                    setTimeout(() => (anual.style.opacity = 1), 50);
+                }, 200);
             }
-        </script>
+        }
+    </script>
+
     <section id="secao-faq" class="faq-section">
         <header class="faq-cabecalho">
             <p>— FAQ —</p>
@@ -316,7 +305,7 @@
                 </label>
                 <div class="faq-resposta">
                     <p>
-                        Gerenciamos apenas resíduos orgânicos e suas categorias <br> (restos de comida, borra de café,
+                        Gerenciamos todas as categorias de resíduos orgânicos. <br> (restos de comida, borra de café,
                         folhas).
                     </p>
                 </div>
@@ -344,7 +333,7 @@
         <div class="footer-col">
             <h4>Contato</h4>
             <div class="sociais">
-                <a href=""><img src="assets/purpura/instagram_purpura.svg" alt="Instagram"></a>
+                <a href="https://www.instagram.com/purpuratec/" target="_blank"><img src="assets/purpura/instagram_purpura.svg" alt="Instagram"></a>
                 <a href="mailto:purpuraambiental4@gmail.com">
                     <img src="assets/purpura/contato_purpura.svg" alt="E-mail">
                 </a>

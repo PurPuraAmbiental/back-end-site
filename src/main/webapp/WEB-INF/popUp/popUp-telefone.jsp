@@ -12,20 +12,19 @@ Responsável -> CREATE e UPDATE do CRUD de Telefone
         <button class="close-btn" onclick="fecharPopup('popup-insert-telefone')">×</button>
         <h2>Cadastrar Telefone</h2>
 
-        <form action="${pageContext.request.contextPath}/telefone/insert" method="post">
-            <!-- Empresa -->
+        <form action="${pageContext.request.contextPath}/telefone/insert"
+              method="post"
+              onsubmit="this.querySelector('button').disabled = true; this.querySelector('button').innerText = 'Adicionando...';">
             <label for="cNmEmpresa">Empresa</label>
             <input type="text" name="cNmEmpresa" id="cNmEmpresa" required>
 
-            <!-- Telefone -->
             <label for="cNrTelefone">Telefone</label>
             <input type="text" name="cNrTelefone" id="cNrTelefone" required>
 
-            <!-- Descrição -->
             <label for="cDescricao">Descrição</label>
             <input type="text" name="cDescricao" id="cDescricao" maxlength="30" required>
 
-            <button type="submit" onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Adicionando...';">Adicionar</button>
+            <button type="submit">Adicionar</button>
         </form>
     </div>
 </div>
@@ -36,7 +35,10 @@ Responsável -> CREATE e UPDATE do CRUD de Telefone
         <button class="close-btn" onclick="fecharPopup('popup-update-telefone')">×</button>
         <h2>Atualizar Telefone</h2>
 
-        <form action="${pageContext.request.contextPath}/telefone/update" method="post">
+        <form action="${pageContext.request.contextPath}/telefone/update"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
+
             <!-- Código do Telefone (oculto) -->
             <input type="hidden" name="nCdTelefone" id="update-telefone-nCdTelefone">
 
@@ -52,7 +54,7 @@ Responsável -> CREATE e UPDATE do CRUD de Telefone
             <label for="update-telefone-cDescricao">Descrição</label>
             <input type="text" name="cDescricao" id="update-telefone-cDescricao" maxlength="30" required>
 
-            <button type="submit" onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Atualizando...';">Atualizar</button>
+            <button type="submit">Atualizar</button>
         </form>
     </div>
 </div>

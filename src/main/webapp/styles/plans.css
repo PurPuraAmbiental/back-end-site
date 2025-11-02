@@ -63,14 +63,9 @@
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
   width: 320px;
   text-align: left;
   position: relative;
-}
-
-.plano-card:hover {
-  transform: translateY(-10px);
 }
 
 .plano-nome {

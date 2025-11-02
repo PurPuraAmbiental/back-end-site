@@ -1,3 +1,6 @@
+html{
+  scroll-behavior: smooth;
+}
 .site-header {
   position: fixed;
   top: 0;
@@ -141,14 +144,17 @@
 
 .hamb-links .hamb-auth {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 8px;
   padding-top: 6px;
   width: 100%;
 }
 
 .hamb-auth .cadastro {
-  color: var(--roxoclaro);
+  width: 120px;
+  border-radius: 15px;
+  color: #fff;
+  background-color: var(--roxoclaro);
 }
 
 #hamb-toggle:checked~.hamb-links {
