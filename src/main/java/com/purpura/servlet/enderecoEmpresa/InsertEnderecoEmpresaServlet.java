@@ -18,6 +18,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por inserir um novo Endereço de Empresa no sistema.
  *
@@ -114,23 +116,12 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
             // Redireciona para a lista de endereços após a inserção bem-sucedida
             response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
 
-        } catch (ConnectionFailedException e) {
+        } catch (ConnectionFailedException | NotFoundException e) {
             // Trata erros relacionados à conexão com o banco
-            ErroServlet.setErro(request, response, dao,
-                    "Falha de conexão com o banco de dados: " + e.getMessage(),
-                    lista, caminho);
-
-        } catch (NotFoundException e) {
-            // Trata casos em que registros relacionados não foram encontrados
-            ErroServlet.setErro(request, response, dao,
-                    "Registro não encontrado: " + e.getMessage(),
-                    lista, caminho);
-
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         } catch (NumberFormatException e) {
             // Trata erros de conversão numérica (por exemplo, campos incorretos)
-            ErroServlet.setErro(request, response, dao,
-                    "Erro de formatação numérica nos dados inseridos: " + e.getMessage(),
-                    lista, caminho);
+            ErroServlet.setErro(request, response, dao , "Erro ao processar parâmetros.", lista, caminho);
 
         } catch (Exception e) {
             // Captura qualquer outro erro inesperado que possa ocorrer

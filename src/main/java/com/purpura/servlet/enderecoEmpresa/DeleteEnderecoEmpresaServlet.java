@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  *  Servlet responsável por realizar a exclusão de um endereço de empresa
  *  do sistema, com base no identificador (ID) informado no formulário JSP.
@@ -59,34 +61,26 @@ public class DeleteEnderecoEmpresaServlet extends HttpServlet {
             // Redireciona o usuário para a listagem de endereços após exclusão bem-sucedida
             response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
 
-        } catch (ConnectionFailedException e) {
+        } catch (ConnectionFailedException | NotFoundException e) {
             //Erro de conexão com o banco de dados
             // Ocorre quando há falha ao estabelecer comunicação com o banco (por exemplo, servidor fora do ar)
-            ErroServlet.setErro(request, response, dao,
-                    "Falha na conexão com o banco de dados. Tente novamente mais tarde.",
-                    lista, caminho);
-
-        } catch (NotFoundException e) {
-            //Endereço não encontrado
-            // Lançado quando o ID informado não corresponde a nenhum registro existente no banco
-            ErroServlet.setErro(request, response, dao,
-                    "Endereço não encontrado. Verifique o código informado.",
-                    lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
 
         } catch (NumberFormatException e) {
             //Erro de formatação numérica
             // Indica que o valor recebido do formulário não pôde ser convertido para inteiro
             // (por exemplo, campo vazio ou caracteres inválidos)
             ErroServlet.setErro(request, response, dao,
-                    "Código de endereço inválido. Informe um número válido.",
-                    lista, caminho);
+                    "Erro ao processar parâmetros.",
+                    lista, ERROR_PAGE);
 
         } catch (Exception e) {
             //Erro genérico (não previsto)
             // Captura qualquer outra exceção inesperada que possa ocorrer no fluxo
             ErroServlet.setErro(request, response, dao,
-                    "Ocorreu um erro inesperado: " + e.getMessage(),
-                    lista, caminho);
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 }

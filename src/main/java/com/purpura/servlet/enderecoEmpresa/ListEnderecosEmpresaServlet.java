@@ -1,5 +1,6 @@
 package com.purpura.servlet.enderecoEmpresa;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.EnderecoEmpresaDAO;
 import com.purpura.dto.EnderecoEmpresaView;
 import com.purpura.exception.ConnectionFailedException;
@@ -12,6 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por listar os endereços das empresas cadastradas no sistema.
@@ -43,10 +46,10 @@ public class ListEnderecosEmpresaServlet extends HttpServlet {
         String lista = "listaEnderecos";
         String caminho = "/WEB-INF/CRUD/endereco.jsp";
 
-        try {
-            // Cria o DAO responsável pelas operações com a entidade EnderecoEmpresa
-            EnderecoEmpresaDAO enderecoDAO = new EnderecoEmpresaDAO();
+        // Cria o DAO responsável pelas operações com a entidade EnderecoEmpresa
+        EnderecoEmpresaDAO enderecoDAO = new EnderecoEmpresaDAO();
 
+        try {
             // Captura os parâmetros do filtro enviados pela página (usados para filtragem)
             String estado = request.getParameter("estado");
             String nomeEmpresa = request.getParameter("nomeEmpresa");
@@ -67,18 +70,14 @@ public class ListEnderecosEmpresaServlet extends HttpServlet {
             rd.forward(request, response);
 
         } catch (ConnectionFailedException e) {
-            // Define uma mensagem de erro na requisição, que será exibida na página de erro
-            request.setAttribute("erro", "Erro ao carregar lista de endereços: " + e.getMessage());
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, enderecoDAO, e, lista, ERROR_PAGE);
 
         } catch (Exception e) {
-            // Define mensagem genérica para erros não previstos
-            request.setAttribute("erro", "Erro inesperado ao buscar Endereços: " + e.getMessage());
-            e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            // Captura qualquer outro erro inesperado que possa ocorrer
+            ErroServlet.setErro(request, response, enderecoDAO,
+                    "Erro inesperado ao inserir endereço: " + e.getMessage(),
+                    lista, caminho);
         }
     }
 }

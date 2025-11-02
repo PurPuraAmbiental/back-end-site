@@ -1,9 +1,11 @@
 package com.purpura.servlet.enderecoEmpresa;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
 import com.purpura.dto.EnderecoEmpresaView;
 import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
 import com.purpura.model.EnderecoEmpresa;
 import jakarta.servlet.RequestDispatcher;
@@ -16,6 +18,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por atualizar os dados de um Endereço de Empresa existente.
@@ -96,11 +100,14 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             // Após atualização bem-sucedida, redireciona para a listagem de endereços de empresa
             response.sendRedirect(request.getContextPath() + "/endereco-empresa/list");
 
-        } catch (ConnectionFailedException e) {
+        } catch (ConnectionFailedException | NotFoundException e) {
             // Trata erros de conexão com o banco e mostra mensagem personalizada
-            request.setAttribute("erro", "Erro ao atualizar EnderecoEmpresa: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
+        } catch (Exception e) {
+            ErroServlet.setErro(request, response, dao,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 
