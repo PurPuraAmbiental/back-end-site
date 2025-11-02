@@ -1,7 +1,9 @@
+/* Espaço para o conteúdo não ficar atrás do header fixo */
 main {
   padding-top: 200px;
 }
 
+/* Container principal da seção hero: conteúdo lado a lado */
 .hero {
   display: flex;
   align-items: center;
@@ -10,10 +12,12 @@ main {
   margin-top: 50px;
 }
 
+/* Divide hero em duas partes iguais (texto e imagem) */
 .hero-left, .hero-right {
   flex: 1;
 }
 
+/* Área direita com imagem centralizada e ajuste de posição */
 .hero-right {
   position: relative;
   display: flex;
@@ -22,12 +26,13 @@ main {
   margin-bottom: 60px;
 }
 
-
+/* Título principal maior e com espaçamento entre linhas */
 .hero-left h1 {
   font-size: 3.2rem;
   line-height: 1.2; 
 }
 
+/* Segunda linha do título com cor mais suave */
 .hero-left .muted {
   display: block;
   color: #7b6f9a;
@@ -36,6 +41,7 @@ main {
   margin-top: 12px; 
 }
 
+/* Texto de apoio abaixo do título */
 .subtitle {
   color: var(--cinza);
   max-width: 520px;
@@ -44,7 +50,7 @@ main {
   font-size: 1.2rem; 
 }
 
-
+/* Botão de call to action */
 .cta {
   display: inline-block;
   margin-top: 30px;
@@ -56,12 +62,14 @@ main {
   font-weight: 600;
 }
 
+/* Imagem decorativa da seção */
 .hero-right .decor {
   width: 600px;
   border-radius: 14px;
   object-fit: cover;
 }
 
-#titulo-home{
-  color: var(--roxoescuro)
+/* Cor personalizada para a palavra destacada no título */
+#titulo-home {
+  color: var(--roxoescuro);
 }
