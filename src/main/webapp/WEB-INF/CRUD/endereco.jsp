@@ -1,14 +1,15 @@
 <%--
 /**
- * Exibir e gerenciar empresas endereços no sistema PurPura.
- *
- * - Exibe lista de endereços
- * - Permite filtro por estado e nome da empresa dona do endereço
- * - Suporte a inserção, edição e exclusão via pop-ups
- *
- * Autora: Bruna de Jesus
- * Autor: Kevin de Oliveira
- */
+     * Exibir e gerenciar empresas endereços no sistema PurPura.
+     *
+     *Página responsável por listar todos os endereco das empresas cadastradas.
+     *Permite também cadastrar, editar e excluir registros através dos pop-ups.
+
+     *obs: Assim como em outras telas do CRUD, foi utilizada uma DTO (enderecoEmpresaView)
+     *no lugar da model para facilitar a exibição dos dados.
+     * Autora: Bruna de Jesus
+     * Autor: Kevin de Oliveira
+     */
 --%>
 
 <%@ page import="com.purpura.dto.EnderecoEmpresaView" %>

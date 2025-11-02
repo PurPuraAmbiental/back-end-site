@@ -16,6 +16,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por inserir uma nova Transportadora no sistema.
  *
@@ -105,17 +107,16 @@ public class InsertTransportadoraServlet extends HttpServlet {
             // Redireciona para a lista de transportadoras após o sucesso da inserção
             response.sendRedirect(request.getContextPath() + "/transportadora/list");
 
-        } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            // Captura erros esperados relacionados à conexão ou formato dos dados
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao inserir transportadora: " + e.getMessage(),
-                    lista, caminho);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            // Captura erros relacionados ao banco de dados (ex: falha na conexão ou registro não encontrado)
+            // e mostra mensagem de erro personalizada.
 
+            e.printStackTrace();
+
+            ErroServlet.setErro(request, response, dao, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
         } catch (Exception e) {
             // Captura qualquer outro erro inesperado que possa ocorrer durante o processo
-            ErroServlet.setErro(request, response, dao,
-                    "Ocorreu um erro inesperado ao cadastrar transportadora. " + e.getMessage(),
-                    lista, caminho);
+            ErroServlet.setErro(request, response, dao, "Ocorreu um erro inesperado", lista, ERROR_PAGE);
         }
     }
 }

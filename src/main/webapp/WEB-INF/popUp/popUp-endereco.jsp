@@ -1,10 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-<!--
-Por motivos de organização, esta página guarda os formulários dos pop-ups
-Responsável -> CREATE e UPDATE do CRUD
+    <!--
+    Esta página contém os formulários usados nos pop-ups para CRUD de empresas:
+    - Inserção
+    - Atualização
+    - Exclusão
+    Também inclui o filtro para busca de empresas.
+    O JavaScript utilizado nos botões serve para abrir/fechar pop-ups e alterar o texto dos botões durante o envio do formulário.
 -->
-
 <!-- ========================== POP-UP DE INSERÇÃO ========================== -->
 <div class="popup-overlay" id="popup-insert" style="display:none;">
     <div class="popup">

@@ -1,5 +1,6 @@
 package com.purpura.servlet.transportadora;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.TransportadoraDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
@@ -13,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por listar as transportadoras cadastradas no sistema.
@@ -44,9 +47,9 @@ public class ListTransportadoraServlet extends HttpServlet {
         String lista = "listaTransportadoras";
         String caminho = "/WEB-INF/CRUD/transportadora.jsp";
 
+// Cria o DAO responsável pelas operações com a entidade Transportadora
+        TransportadoraDAO transportadoraDAO = new TransportadoraDAO();
         try {
-            // Cria o DAO responsável pelas operações com a entidade Transportadora
-            TransportadoraDAO transportadoraDAO = new TransportadoraDAO();
 
             // Captura os parâmetros do filtro enviados pela página (usados para filtragem)
             String nomeTransportadora = request.getParameter("nomeTransportadora");
@@ -66,18 +69,14 @@ public class ListTransportadoraServlet extends HttpServlet {
             rd.forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {
-            // Define uma mensagem de erro na requisição, que será exibida na página de erro
-            request.setAttribute("erro", "Erro ao carregar lista de Transportes: " + e.getMessage());
+            // Define uma mensagem de erro na requisição, será exibida na página de erro
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, transportadoraDAO, "Falha ao conectar no banco de dados", lista, ERROR_PAGE);
 
         } catch (Exception e) {
             // Define mensagem genérica para erros não previstos
-            request.setAttribute("erro", "Erro inesperado ao buscar Transportes: " + e.getMessage());
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, transportadoraDAO, "Ocorreu um erro inesperado.", lista, ERROR_PAGE);
         }
     }
 }

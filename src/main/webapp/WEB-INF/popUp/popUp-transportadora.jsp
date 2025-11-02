@@ -1,16 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <!--
-    Por motivos de organização, esta página guarda os formulários dos pop-ups
-    Responsável -> CREATE e UPDATE do CRUD
+    Esta página contém os formulários usados nos pop-ups para CRUD de transportadora:
+    - Inserção
+    - Atualização
+    - Exclusão
+    Também inclui o filtro para busca de empresas.
+    O JavaScript utilizado nos botões serve para abrir/fechar pop-ups e alterar o texto dos botões durante o envio do formulário.
 -->
 
 <!-- ==================== POPUP DE INSERÇÃO ==================== -->
 <div class="popup-overlay" id="popup-insert-transportadora" style="display:none;">
     <div class="popup">
+        <!-- Botao para fechar pop up-->
         <button class="close-btn" onclick="fecharPopup('popup-insert-transportadora')">×</button>
         <h2>Cadastrar Transportadora</h2>
 
+        <!-- retrição no botao para que o usuario nao consiga chamar o servlet varias vezes -->
         <form action="${pageContext.request.contextPath}/transportadora/insert"
               method="post"
               onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Adicionando...';">
@@ -40,9 +46,11 @@
 <!-- ==================== POPUP DE ATUALIZAÇÃO ==================== -->
 <div class="popup-overlay" id="popup-update-transportadora" style="display:none;">
     <div class="popup">
+        <!-- Botao para fechar pop up-->
         <button class="close-btn" onclick="fecharPopup('popup-update-transportadora')">×</button>
         <h2>Atualizar Transportadora</h2>
 
+        <!-- retrição no botao para que o usuario nao consiga chamar o servlet varias vezes -->
         <form action="${pageContext.request.contextPath}/transportadora/update"
               method="post"
               onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
@@ -70,9 +78,11 @@
 <!-- ==================== POPUP DE EXCLUSÃO ==================== -->
 <div class="popup-overlay" id="popup-delete-transportadora" style="display:none;">
     <div class="popup">
+        <!-- Botao para fechar pop up-->
         <button class="close-btn" onclick="fecharPopup('popup-delete-transportadora')">×</button>
         <h2>Excluir Transportadora</h2>
 
+        <!-- retrição no botao para que o usuario nao consiga chamar o servlet varias vezes -->
         <form action="${pageContext.request.contextPath}/transportadora/delete" method="post">
             <p>Tem certeza que deseja excluir a Transportadora <strong id="delete-transportadora-nome"></strong>?</p>
 
@@ -91,14 +101,23 @@
 <div class="filtroPopup-overlay" id="filtroTransportadora" style="display:none;">
     <div class="popup" id="filtroPopup">
         <h2>Filtrar Transportadora</h2>
+        <!-- Botao para fechar pop up-->
         <button class="close-btn" onclick="fecharPopup('filtroTransportadora')">×</button>
+
+        <!-- retrição no botao para que o usuario nao consiga chamar o servlet varias vezes -->
         <form action="<%=request.getContextPath()%>/transportadora/list" method="get">
+
+            <!filtro por nome>
             <label for="nomeTransportadora">Insira o nome da transportadora</label>
             <input type="text" id="nomeTransportadora" name="nomeTransportadora" placeholder="Digite o nome da transportadora">
+
             <br>
+            <!--Filtro por regiao-->
             <label for="regiao">Insira a região</label>
             <input type="text" id="regiao" name="regiao" placeholder="Ache transportadora pertinho de você">
+
             <br>
+
             <button type="submit" class="add-btn"> Filtrar </button>
         </form>
     </div>

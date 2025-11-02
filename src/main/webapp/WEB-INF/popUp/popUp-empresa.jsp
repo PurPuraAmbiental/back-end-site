@@ -1,17 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <!--
-Por motivos de organização, esta página guarda os formulários dos pop-ups
-Responsável -> CREATE e UPDATE do CRUD
+    Esta página contém os formulários usados nos pop-ups para CRUD de empresas:
+    - Inserção
+    - Atualização
+    - Exclusão
+    Também inclui o filtro para busca de empresas.
+    O JavaScript utilizado nos botões serve para abrir/fechar pop-ups e alterar o texto dos botões durante o envio do formulário.
 -->
+
 <!-- ==================== POPUP DE INSERÇÃO ==================== -->
 <div class="popup-overlay" id="popup-insert-empresa" style="display:none;">
     <div class="popup">
+        <!-- Botão para fechar o pop-up -->
         <button class="close-btn" onclick="fecharPopup('popup-insert-empresa')">×</button>
         <h2>Cadastrar Empresa</h2>
+
+        <!-- Formulário de inserção de empresa -->
         <form action="${pageContext.request.contextPath}/empresa/insert"
               method="post"
-              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Adicionando...';">
+              onsubmit="const btn = this.querySelector('button[type=submit]');
+                        btn.disabled = true;
+                        btn.innerText = 'Adicionando...';">
+            <!-- Ao enviar, o botão é desabilitado e o texto muda para indicar que o envio está em andamento -->
+
             <label>Nome da Empresa</label>
             <input type="text" name="cNmEmpresa" id="cNmEmpresa" maxlength="30" placeholder="Insira o nome da empresa" required>
 
@@ -40,11 +52,16 @@ Responsável -> CREATE e UPDATE do CRUD
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-update-empresa')">×</button>
         <h2>Atualizar Empresa</h2>
+
+        <!-- Formulário de atualização de empresa -->
         <form action="${pageContext.request.contextPath}/empresa/update"
               method="post"
-              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
+              onsubmit="const btn = this.querySelector('button[type=submit]');
+                        btn.disabled = true;
+                        btn.innerText = 'Atualizando...';">
+            <!-- Ao enviar, o botão muda de estado para indicar progresso -->
 
-        <label>Nome da Empresa</label>
+            <label>Nome da Empresa</label>
             <input type="text" name="cNmEmpresa" id="update-empresa-cNmEmpresa" maxlength="30" required>
 
             <label>Email</label>
@@ -66,57 +83,36 @@ Responsável -> CREATE e UPDATE do CRUD
         </form>
     </div>
 </div>
+
 <!-- ==================== POPUP DE EXCLUSÃO ==================== -->
 <div class="popup-overlay" id="popup-delete-empresa" style="display:none;">
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-delete-empresa')">×</button>
         <h2>Excluir Empresa</h2>
 
+        <!-- Formulário de exclusão -->
         <form action="${pageContext.request.contextPath}/empresa/delete" method="post">
             <p>Tem certeza que deseja excluir a empresa <strong id="delete-empresa-nome"></strong>?</p>
 
+            <!-- CNPJ enviado como hidden para identificar a empresa -->
             <input type="hidden" name="cCnpj" id="delete-empresa-cCnpj">
 
             <div class="botoes-principais">
-                <button type="submit"  onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';" >Excluir</button>
-                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-empresa')">
-                    Cancelar
-                </button>
+                <!-- Botão de exclusão desabilita automaticamente e muda o texto para indicar ação -->
+                <button type="submit" onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';">Excluir</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-empresa')">Cancelar</button>
             </div>
         </form>
     </div>
 </div>
 
-
-
 <!-- ==================== FILTROS ========================= -->
 <div class="filtroPopup-overlay" id="filtroEmpresa" style="display:none;">
     <div class="popup" id="filtroPopup">
-            <h2>Filtrar Empresa</h2>
-            <button class="close-btn" onclick="fecharPopup('filtroEmpresa')">×</button>
-            <form action="${pageContext.request.contextPath}/empresa/list" method="get">
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" class="input-filtro" placeholder="Nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+        <h2>Filtrar Empresa</h2>
+        <button class="close-btn" onclick="fecharPopup('filtroEmpresa')">×</button>
 
-                <label for="cnpj">CNPJ:</label>
-                <input type="text" name="cnpj" class="input-filtro" placeholder="CNPJ" value="<%= request.getParameter("cnpj") != null ? request.getParameter("cnpj") : "" %>">
-
-                <label for="email">Email:</label>
-                <input type="text" name="email" class="input-filtro" placeholder="Digite o email" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
-                <br>
-                <label for="ativo">Status:</label>
-                <select name="ativo">
-                    <option value="" <%= request.getParameter("ativo") == null ? "selected" : "" %>>Todos</option>
-                    <option value="1" <%= "1".equals(request.getParameter("ativo")) ? "selected" : "" %>>Ativas</option>
-                    <option value="0" <%= "0".equals(request.getParameter("ativo")) ? "selected" : "" %>>Inativas</option>
-                </select>
-                <br>
-                <label for="temResiduo">Resíduos:</label>
-                <select name="temResiduo">
-                    <option value="" <%= request.getParameter("temResiduo") == null ? "selected" : "" %>>Todos</option>
-                    <option value="1" <%= "1".equals(request.getParameter("temResiduo")) ? "selected" : "" %>>Pelo menos um resíduo</option>
-                </select>
-                <button type="submit" class="add-btn">Filtrar</button>
-            </form>
-    </div>
-</div>
+        <!-- Formulário para filtrar empresas com base em múltiplos campos -->
+        <form action="${pageContext.request.contextPath}/empresa/list" method="get">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" class="input-filtro" placeholder="Nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
