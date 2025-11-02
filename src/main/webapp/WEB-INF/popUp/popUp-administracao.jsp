@@ -6,18 +6,22 @@
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-insert-administrador')">×</button>
         <h2>Cadastrar Administrador</h2>
-        <form action="${pageContext.request.contextPath}/administrador/insert" method="post">
-            <label>Nome do Administrador</label>
-            <input type="text" name="cNmAdministrador" maxlength="" required>
+        <form action="${pageContext.request.contextPath}/administrador/insert"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Adicionando...';">
 
-            <label>Email</label>
-            <input type="text" name="cEmail" required>
+            <label for="cNmAdministrador">Nome do Administrador</label>
+            <input type="text" name="cNmAdministrador" id="cNmAdministrador" maxlength="100" required>
 
-            <label>Senha</label>
-            <input type="password" name="cSenha" required>
+            <label for="cEmail">Email</label>
+            <input type="email" name="cEmail" id="cEmail" maxlength="70" required>
+
+            <label for="cSenha">Senha</label>
+            <input type="password" name="cSenha" id="cSenha" required>
 
             <button type="submit">Adicionar</button>
         </form>
+
     </div>
 </div>
 
@@ -26,15 +30,17 @@
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-update-administrador')">×</button>
         <h2>Atualizar Administrador</h2>
-        <form action="${pageContext.request.contextPath}/administrador/update" method="post">
-            <label>Nome do Administrador</label>
-            <input type="text" name="cNmAdministrador" id="update-administrador-cNmAdministrador" maxlength="20" required>
+        <form action="${pageContext.request.contextPath}/administrador/update"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
 
-            <label>Email</label>
-            <input type="text" name="cEmail" id="update-administrador-cEmail" maxlength="70" readonly>
-            <input type="hidden" name="cEmail" >
+            <label for="update-administrador-cNmAdministrador">Nome do Administrador</label>
+            <input type="text" name="cNmAdministrador" id="update-administrador-cNmAdministrador" maxlength="100" required>
 
-            <label>Senha</label>
+            <label for="update-administrador-cEmail">Email</label>
+            <input type="text" name="cEmail" id="update-administrador-cEmail" style="color: gray;" maxlength="70" readonly>
+
+            <label for="update-administrador-cSenha">Senha</label>
             <input type="text" name="cSenha" id="update-administrador-cSenha" required>
 
             <button type="submit">Atualizar</button>

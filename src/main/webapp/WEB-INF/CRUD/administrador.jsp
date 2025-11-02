@@ -99,7 +99,7 @@
 
 <!-- ================== POPUPS ================== -->
 <!-- Inclui os formulários de inserção, atualização e filtro -->
-<jsp:include page="/WEB-INF/popUp's/popUp-administracao.jsp" />
+<jsp:include page="/WEB-INF/popUp/popUp-administracao.jsp" />
 
 <script>
     // ================== FUNÇÃO PARA ABRIR POPUP DE INSERÇÃO ==================

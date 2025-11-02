@@ -2,7 +2,6 @@ package com.purpura.dao;
 
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.model.Administrador;
-import com.purpura.model.Transportadora;
 import com.purpura.util.ConnectionFactory;
 
 import java.sql.Connection;

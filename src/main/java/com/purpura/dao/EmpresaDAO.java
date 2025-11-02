@@ -56,67 +56,22 @@ public class EmpresaDAO extends DAO<Empresa> {
         stmt.setString(5, entidade.getCCnpj());
     }
 
-    /**
-     * Retorna todas as empresas que possuem pelo menos um resíduo cadastrado.
-     *
-     * @return lista de empresas com resíduos
-     * @throws ConnectionFailedException se ocorrer um erro ao conectar ao banco
-     */
-    public List<Empresa> buscarEmpresasComResiduos(){
-        List<Empresa> lista = new ArrayList<>();
-        String sql =
-                "SELECT e.* " +
-                "FROM empresa e " +
-                "LEFT JOIN residuo r ON e.ccnpj = r.ccnpj " +
-                "GROUP BY e.ccnpj " +
-                "HAVING COUNT(r.ncdresiduo) > 0";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()){
-                lista.add(mapResultSet(rs));
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-            throw new ConnectionFailedException();
-        }
-        return lista;
-    }
-
-    /**
-     * Retorna todas as empresas que não possuem nenhum resíduo cadastrado.
-     *
-     * @return lista de empresas sem resíduos
-     * @throws ConnectionFailedException se ocorrer um erro ao conectar ao banco
-     */
-    public List<Empresa> buscarEmpresasSemResiduos(){
-        List<Empresa> lista = new ArrayList<>();
-        String sql =
-                "SELECT e.* " +
-                        "FROM empresa e " +
-                        "LEFT JOIN residuo r ON e.ccnpj = r.ccnpj " +
-                        "GROUP BY e.ccnpj " +
-                        "HAVING COUNT(r.ncdresiduo) = 0";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()){
-                lista.add(mapResultSet(rs));
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-            throw new ConnectionFailedException();
-        }
-        return lista;
-    }
-
     @Override
     protected String getColunaId() {
         return "cCnpj";
     }
 
+    /**
+     * Lista empresas com filtro opcional pelo nome do administrador.
+     *
+     * @param nome filtro opcional para o nome da empresa
+     * @param email filtro opcional para o email da empresa
+     * @param cnpj filtro opcional para o cnpj da empresa
+     * @param ativo filtro opcional pela atividade da empresa
+     * @param temResiduo filtro opcional por posse ou falta de resíduo
+     * @return lista de Empresa correspondentes aos filtros
+     * @throws ConnectionFailedException se a conexão com o banco falhar
+     */
     public List<Empresa> listarEmpresasFiltradas(
             String nome,
             String email,
@@ -157,7 +112,7 @@ public class EmpresaDAO extends DAO<Empresa> {
         // Agrupa todas as colunas da empresa
         sql.append(" GROUP BY e.cNmEmpresa, e.cSenha, e.cCnpj, e.cAtivo, e.cEmail");
 
-        // Filtro de resíduos: COUNT de apenas os resíduos não nulos
+        // Filtro de resíduos, COUNT de apenas os resíduos não nulos
         if (Boolean.TRUE.equals(temResiduo)) {
             sql.append(" HAVING COUNT(r.nCdResiduo) > 0");
         } else if (Boolean.FALSE.equals(temResiduo)) {
@@ -191,6 +146,4 @@ public class EmpresaDAO extends DAO<Empresa> {
 
         return lista;
     }
-
-
 }

@@ -1,17 +1,14 @@
 package com.purpura.dao;
 
-import com.purpura.exception.ConnectionFailedException;
 import com.purpura.model.ChaveAcesso;
-import com.purpura.model.Transportadora;
-import com.purpura.util.ConnectionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * DAO responsável pelas operações da entidade ChaveAcesso.
+ * Implementa os métodos genéricos da classe DAO.
+ * Veja classe abstrata para documentação detalhada dos métodos.
+ *
+ * @author Kevin de Oliveira
+ */
 public class ChaveAcessoDAO extends DAO<ChaveAcesso>{
 
     @Override

@@ -30,10 +30,10 @@
     <div class="menu">
         <a href= "<%= request.getContextPath() %>/empresa/list" target="conteudo-principal" class="active">Empresas</a>
         <a href="<%=request.getContextPath() %>/residuo/list" target="conteudo-principal">Resíduos</a>
-        <a href="<%=request.getContextPath() %>/endereco-empresa/list" target="conteudo-principal">Endereço</a>
-        <a href="<%=request.getContextPath() %>/telefone/list" target="conteudo-principal">Telefone</a>
-        <a href="<%=request.getContextPath()%>/transportadora/list" target="conteudo-principal">Transportadora</a>
-        <a href="<%=request.getContextPath()%>/administrador/list" target="conteudo-principal">Administrador</a>
+        <a href="<%=request.getContextPath() %>/endereco-empresa/list" target="conteudo-principal">Endereços</a>
+        <a href="<%=request.getContextPath() %>/telefone/list" target="conteudo-principal">Telefones</a>
+        <a href="<%=request.getContextPath()%>/transportadora/list" target="conteudo-principal">Transportadoras</a>
+        <a href="<%=request.getContextPath()%>/administrador/list" target="conteudo-principal">Administradores</a>
     </div>
     <a href="<%=request.getContextPath()%>/logout" class="logout">Logout</a>
 </div>
