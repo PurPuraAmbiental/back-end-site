@@ -47,6 +47,26 @@
         </form>
     </div>
 </div>
+<!-- ==================== POPUP DE EXCLUSÃO ==================== -->
+<div class="popup-overlay" id="popup-delete-administrador" style="display:none;">
+    <div class="popup">
+        <button class="close-btn" onclick="fecharPopup('popup-delete-administrador')">×</button>
+        <h2>Excluir administrador</h2>
+
+        <form action="${pageContext.request.contextPath}/administrador/delete" method="post">
+            <p>Tem certeza que deseja excluir a administrador <strong id="delete-administrador-nome"></strong>?</p>
+
+            <input type="hidden" name="cEmail" id="delete-administrador-cEmail">
+
+            <div class="botoes-principais">
+                <button type="submit"  onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';" >Excluir</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-administrador')">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 <!-- ==================== FILTROS ========================= -->
 <div class="filtroPopup-overlay" id="filtroAdministrador" style="display:none;">
     <div class="popup" id="filtroPopup" style="height: 240px">
