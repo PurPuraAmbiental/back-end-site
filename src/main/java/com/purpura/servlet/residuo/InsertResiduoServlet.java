@@ -46,7 +46,7 @@ public class InsertResiduoServlet extends HttpServlet {
             } else {
                 model.setCCnpj(empresa.getCCnpj());
             }
-            if (empresa.getCAtivo() != 1){
+            if (empresa.getCAtivo() != '1'){
                 residuoViewSetErro(request, response, residuoDAO, residuoViews,"Nao foi possivel cadastrar Residuo! Insira uma empresa ativa" , lista, caminho);
                 return;
             }
