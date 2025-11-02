@@ -69,8 +69,10 @@ public class InsertAdministradorServlet extends HttpServlet {
             }
 
         } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
             ErroServlet.setErro(request, response, dao,"Erro ao inserir Administrador: " + e.getMessage(), lista, caminho);
         } catch (ParseException e) {
+            e.printStackTrace();
             ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage() , lista, caminho);
         }
     }

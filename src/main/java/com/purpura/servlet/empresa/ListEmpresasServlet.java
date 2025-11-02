@@ -43,11 +43,9 @@ public class ListEmpresasServlet extends HttpServlet {
             // Passa a lista para a JSP
             request.setAttribute("listaEmpresas", empresas);
             request.getRequestDispatcher("/WEB-INF/CRUD/empresa.jsp").forward(request, response);
-        } catch (ConnectionFailedException | NotFoundException e) {
-            e.printStackTrace();
-            ErroServlet.setErro(request, response, empresaDAO, "Erro interno. Tente de novo mais tarde: " + e.getMessage(), "listaEmpresa", "/WEB-INF/CRUD/empresa.jsp");
         } catch (Exception e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, empresaDAO, "Erro interno. Tente de novo mais tarde." + e.getMessage(), "listaEmpresa", "/WEB-INF/CRUD/empresa.jsp");        }
+            ErroServlet.setErro(request, response, empresaDAO, "Erro interno. Tente de novo mais tarde." + e.getMessage(), "listaEmpresa", "/WEB-INF/CRUD/empresa.jsp");
+        }
     }
 }

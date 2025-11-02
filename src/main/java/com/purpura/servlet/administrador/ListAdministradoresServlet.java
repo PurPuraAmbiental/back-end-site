@@ -1,5 +1,6 @@
 package com.purpura.servlet.administrador;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
@@ -22,9 +23,8 @@ public class ListAdministradoresServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        AdministradorDAO administradorDAO = new AdministradorDAO();
         try {
-            AdministradorDAO administradorDAO = new AdministradorDAO();
 
             String nome = request.getParameter("nomeAdministrador");
             List<Administrador> administradores = administradorDAO.listarAdministradoresFiltrados(nome);
@@ -34,16 +34,9 @@ public class ListAdministradoresServlet extends HttpServlet {
 
             request.getRequestDispatcher("/WEB-INF/CRUD/administrador.jsp").forward(request, response);
 
-        } catch (ConnectionFailedException | NotFoundException e) {
-            request.setAttribute("erro", "Erro ao carregar lista de Administradores: " + e.getMessage());
-            e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
         } catch (Exception e) {
-            request.setAttribute("erro", "Erro inesperado ao buscar Administradores: " + e.getMessage());
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, administradorDAO, "Erro interno. Tente de novo mais tarde: " + e.getMessage(), "listaEmpresa", "/WEB-INF/CRUD/empresa.jsp");
         }
     }
 }

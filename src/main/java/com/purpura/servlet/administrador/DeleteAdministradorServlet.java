@@ -26,6 +26,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
             dao.delete(cEmail);
             response.sendRedirect(request.getContextPath() + "/administrador/list");
         } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
             ErroServlet.setErro(request, response, dao, "Erro ao deletar Administrador: " + e.getMessage(), lista, caminho);
         }
     }
