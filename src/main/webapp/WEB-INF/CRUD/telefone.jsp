@@ -96,13 +96,10 @@ autor(a): Kevin de Oliveira
                     </button>
 
                     <!-- Formulário para exclusão de telefone -->
-                    <form action="${pageContext.request.contextPath}/telefone/delete"
-                          method="post">
-                        <!-- Envia o ID do telefone a ser excluído -->
-                        <input type="hidden" name="nCdTelefone"
-                               value="<%= telefone.nCdTelefone() %>">
-                        <input type="submit" class="add-btn" value="Excluir">
-                    </form>
+                    <button class="add-btn"
+                            onclick="DeleteTelefone('<%= telefone.nCdTelefone() %>', '<%= telefone.cNrTelefone() %>')">
+                        Excluir
+                    </button>
                 </td>
             </tr>
             <%
@@ -141,6 +138,12 @@ autor(a): Kevin de Oliveira
 
         // Exibe o pop-up de edição
         document.getElementById('popup-update-telefone').style.display = 'flex';
+    }
+    // ================== FUNÇÃO PARA ABRIR POPUP DE DELETE ==================
+    function DeleteTelefone(nCdTelefone, cNrTelefone) {
+        document.getElementById('delete-telefone-nCdTelefone').value = nCdTelefone;
+        document.getElementById('delete-telefone-nome').innerText = cNrTelefone;
+        document.getElementById('popup-delete-telefone').style.display = 'flex';
     }
     //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS
     function filtroTelefone(){

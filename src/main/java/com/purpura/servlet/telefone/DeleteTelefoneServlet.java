@@ -22,18 +22,25 @@ public class DeleteTelefoneServlet extends HttpServlet {
             throws jakarta.servlet.ServletException, IOException {
         String idStr = request.getParameter("nCdTelefone");
         String lista = "listaTelefones";
-        String caminho = "/CRUD/telefone.jsp";
+        String caminho = "/WEB-INF/CRUD/telefone.jsp";
         TelefoneDAO dao = new TelefoneDAO();
+        List<TelefoneView> telefoneView = dao.listarComEmpresa();
         try {
             int id = Integer.parseInt(idStr);
 
             dao.delete(id);
             response.sendRedirect(request.getContextPath() + "/telefone/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            request.setAttribute("erro", "Erro ao deletar Telefone: " + e.getMessage());
-            ErroServlet.setErro(request, response, dao,
-                    "Não foi possível cadastrar Telefone! Insira um Telefone válido", lista, caminho);
+            telefoneViewSetErro(request, response, dao, telefoneView,
+                    "Erro ao deletar Telefone: " + e.getMessage(), lista, caminho);
 
         }
+    }
+    public void telefoneViewSetErro(HttpServletRequest request, HttpServletResponse response, TelefoneDAO telefoneDAO, List<TelefoneView> telefoneView, String mensagem, String lista, String caminho)
+            throws jakarta.servlet.ServletException, IOException {
+        telefoneView = telefoneDAO.listarComEmpresa();
+        request.setAttribute(lista, telefoneView);
+        request.setAttribute("erro", mensagem);
+        request.getRequestDispatcher(caminho).forward(request, response);
     }
 }
