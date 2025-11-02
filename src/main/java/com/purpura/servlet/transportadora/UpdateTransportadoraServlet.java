@@ -22,6 +22,8 @@ import java.util.Map;
  *
  * Recebe os dados via POST, valida o e-mail e atualiza o registro no banco de dados.
  *
+ * ================== CLASSE FAZ USO DE REGEX ============================
+ *
  * @author
  *     Bruna de Jesus e Kevin de Oliveira
  */

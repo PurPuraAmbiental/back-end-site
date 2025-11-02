@@ -25,6 +25,8 @@ import java.util.Map;
  * Recebe os dados via POST, valida o número de telefone e a empresa associada,
  * e atualiza o registro no banco de dados.
  *
+ * ============================= ESSA CLASSE FAZ USO DE REGEX ==========================================
+ *
  * @author
  *     Bruna de Jesus e Kevin de Oliveira
  */

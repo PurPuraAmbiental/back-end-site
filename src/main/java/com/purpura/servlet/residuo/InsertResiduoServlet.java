@@ -76,7 +76,7 @@ public class InsertResiduoServlet extends HttpServlet {
             // Lista de resíduos para visualização (em caso de erro)
             List<ResiduoView> listaResiduos = residuoDAO.listarComEmpresa();
 
-            // ==================== VALIDAÇÕES DE NEGÓCIO ====================
+            // ==================== VALIDAÇÕES DE DADOS ====================
 
             // Verifica se a empresa informada está cadastrada
             if (empresa == null) {
