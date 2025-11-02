@@ -3,23 +3,30 @@ package com.purpura.model;
 import java.text.ParseException;
 import java.util.Map;
 
-/**Classe modelo para a tabela Empresa
- *@author Kevin Oliveira*/
-public class Empresa implements Model{
-    /**Adicionando os atributos da tabela como atributos da classe
-     * atributos dados com prefixo da tabela de banco de dados*/
+/**
+ * Modelo que representa a entidade Empresa.
+ * Cada instância corresponde a um registro na tabela "Empresa".
+ *
+ * Autor: Kevin Oliveira
+ */
+public class Empresa implements Model {
+    /**Adicionando os atributos da tabela como atributos da classe.
+     * atributos dados com prefixos da tabela de banco de dado*/
+
     private String cNmEmpresa;
     private String cSenha;
     private String cCnpj;
     private char cAtivo;
     private String cEmail;
 
-    /**Adicionando metodo Construtor
-     * @param cCnpj - atributo identificador da tabela
-     * @param cAtivo - status da empresa
-     * @param cEmail - email da empresa
-     * @param cNmEmpresa - nome da empresa
-     * @param cSenha - senha do email da empresa
+    /**
+     * Construtor padrão.
+     *
+     * @param cNmEmpresa nome da empresa
+     * @param cSenha senha da conta da empresa
+     * @param cCnpj CNPJ da empresa (chave primária)
+     * @param cAtivo indica se a empresa está ativa ('S' ou 'N')
+     * @param cEmail email da empresa
      */
     public Empresa(String cNmEmpresa, String cSenha, String cCnpj,
                    char cAtivo, String cEmail) {
@@ -29,10 +36,16 @@ public class Empresa implements Model{
         this.cAtivo = cAtivo;
         this.cEmail = cEmail;
     }
-    /**contrutor que inicializa objetos
-     * @param params -> um map*/
+
+    /**
+     * Construtor alternativo que inicializa o objeto a partir de um mapa de parâmetros,
+     * permitindo capturar dados de formulários ou requisições HTTP.
+     *
+     * @param params mapa contendo os campos da empresa
+     * @throws ParseException se algum valor não puder ser processado corretamente
+     */
     public Empresa(Map<String, String> params) throws ParseException {
-        if(params.containsKey("cCnpj")) {
+        if (params.containsKey("cCnpj")) {
             this.cCnpj = params.get("cCnpj");
         }
         this.cNmEmpresa = params.get("cNmEmpresa");
@@ -42,50 +55,42 @@ public class Empresa implements Model{
         }
         this.cEmail = params.get("cEmail");
     }
-    /**Metodo getCNmEmpresa
-     * @return primary key da tabela*/
-    public String getCNmEmpresa() {return cNmEmpresa;}
-    /**Metodo getCSenha
-     * @return senha da conta da empresa*/
-    public String getCSenha() {return cSenha;}
-    /**Metodo getCCnpj
-     * @return cnpj da empresa*/
-    public String getCCnpj() {return cCnpj;}
-    /**Metodo getCAtivo
-     * @return se a empresa esta ativa ou nao*/
-    public char getCAtivo() {return cAtivo;}
-    /**Metodo getCEmail
-     * @return o email da empresa*/
-    public String getCEmail() {return cEmail;}
 
-    /**Metodo setCNmEmpresa
-     * @param cNmEmpresa */
-    public void setCNmEmpresa(String cNmEmpresa) {this.cNmEmpresa = cNmEmpresa;}
-    /**Metodo setCSenha
-     * @param cSenha */
-    public void setCSenha(String cSenha) {this.cSenha = cSenha;}
-    /**Metodo setCAtivo
-     * @param cAtivo */
-    public void setCAtivo(char cAtivo) {this.cAtivo = cAtivo;}
-    /**Metodo setCEmail
-     * @param cEmail */
-    public void setCEmail(String cEmail) {this.cEmail = cEmail;}
+    // Getters e Setters
+    public String getCNmEmpresa() { return cNmEmpresa; }
+    public void setCNmEmpresa(String cNmEmpresa) { this.cNmEmpresa = cNmEmpresa; }
 
-    public void setcCnpj(String cCnpj) {
-        this.cCnpj = cCnpj;
-    }
+    public String getCSenha() { return cSenha; }
+    public void setCSenha(String cSenha) { this.cSenha = cSenha; }
 
-    /**Adicionando o metodo toString
-     * @return informações sobre os campos das tabelas*/
+    public String getCCnpj() { return cCnpj; }
+    public void setCCnpj(String cCnpj) { this.cCnpj = cCnpj; }
+
+    public char getCAtivo() { return cAtivo; }
+    public void setCAtivo(char cAtivo) { this.cAtivo = cAtivo; }
+
+    public String getCEmail() { return cEmail; }
+    public void setCEmail(String cEmail) { this.cEmail = cEmail; }
+
+
+    /**
+     * Retorna uma representação textual da entidade.
+     *
+     * @return string contendo os valores dos atributos da empresa
+     */
     @Override
-    public String toString(){
+    public String toString() {
         return "CNPJ: " + cCnpj + "\nNome: " + cNmEmpresa +
                 "\nSenha: " + cSenha + "\nAtivo: " + cAtivo +
-                "\nEmail: " + cEmail ;
+                "\nEmail: " + cEmail;
     }
 
-    /**Metodo getID
-     * @return retorna o codigo da tabela*/
+    /**
+     * Retorna o identificador único da entidade.
+     * Esse valor é utilizado pela DAO genérica para operações de persistência.
+     *
+     * @return CNPJ da empresa
+     */
     @Override
-    public Object getId(){return cCnpj;}
+    public Object getId() { return cCnpj; }
 }
