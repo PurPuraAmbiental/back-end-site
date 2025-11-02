@@ -1,16 +1,19 @@
-.servico-card  {
+/* Card de cada serviço: estilização básica */
+.servico-card {
   padding: 30px;
   border-radius: 20px;
   background-color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave para destacar o card */
 }
 
+/* Seção dos serviços: espaçamento e cor de fundo neutra */
 .servicos-purpura {
   padding: 80px 20px;
-  background-color: #f8f8f8;
-  text-align: center;
+  background-color: #f8f8f8; /* Fundo cinza bem claro */
+  text-align: center; /* Centraliza textos dentro da seção */
 }
 
+/* Subtítulo acima do título principal da seção */
 .servicos-cabecalho p {
   color: var(--cinza);
   font-weight: 600;
@@ -18,48 +21,55 @@
   margin-bottom: 5px;
 }
 
+/* Título principal da seção de serviços */
 .servicos-cabecalho h2 {
   color: var(--pretoText);
   font-size: 2.5rem;
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: 50px;
+  margin-bottom: 50px; /* Espaço para separar dos cards */
 }
+
+/* Grid dos serviços: organiza em duas colunas */
 .servicos-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* Duas colunas iguais */
+  gap: 20px; /* Espaço entre os cards */
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; /* Centraliza a grade */
 }
 
-.servicos-grid h3{
-  color:var(--pretoText)
+/* Cor do texto dos títulos dos cards */
+.servicos-grid h3 {
+  color: var(--pretoText);
 }
 
+/* Título de cada card */
 .servico-card h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 10px;
 }
 
+/* Parágrafo de cada card */
 .servico-card p {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.6; /* Deixa o texto mais confortável de ler */
   color: #555;
 }
 
-
+/* Área do CTA abaixo dos serviços */
 .servicos-cta {
-  margin-top: 65px;
+  margin-top: 65px; /* Distância entre os cards e o CTA */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Centraliza tudo */
   gap: 20px;
 }
 
+/* Texto explicativo antes do botão do CTA */
 .servicos-cta p {
-  max-width: 700px;
+  max-width: 700px; /* Mantém o texto com largura ideal de leitura */
   font-size: 1.1rem;
   line-height: 1.6;
   color: #555;

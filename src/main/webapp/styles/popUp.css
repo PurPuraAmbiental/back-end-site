@@ -1,3 +1,4 @@
+/* Configurações gerais da página */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -5,6 +6,7 @@ body {
     background-color: #F6E9FA;
 }
 
+/* Fundo escuro semi-transparente por trás do popup */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -12,12 +14,13 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    display: none;
+    display: none; /* Começa escondido */
     justify-content: center;
     align-items: center;
     z-index: 999;
 }
 
+/* Janela do popup */
 .popup {
     position: relative;
     background: #ffffff;
@@ -25,12 +28,13 @@ body {
     border-radius: 16px;
     width: 100%;
     max-width: 400px;
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: 90vh; /* Evita que passe da tela */
+    overflow-y: auto; /* Rola internamente se ultrapassar a altura */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     text-align: left;
 }
 
+/* Título dentro do popup */
 .popup h2 {
     margin: 0 0 24px;
     font-size: 22px;
@@ -39,7 +43,7 @@ body {
     text-align: left;
 }
 
-/* Labels */
+/* Labels dos inputs */
 .popup label {
     display: block;
     margin-bottom: 6px;
@@ -48,7 +52,7 @@ body {
     font-size: 14px;
 }
 
-/* Inputs */
+/* Inputs e selects do formulário */
 .popup input,
 .popup select {
     width: 100%;
@@ -63,16 +67,18 @@ body {
     background-color: #fff;
 }
 
+/* Placeholder com roxo mais claro */
 .popup input::placeholder {
     color: #d39fe9;
     font-size: 13px;
 }
 
+/* Contorno roxo quando selecionado */
 .popup input:focus {
     border-color: #a442c2;
 }
 
-/* Botões */
+/* Botão principal (Salvar/Enviar) */
 .popup button[type="submit"] {
     background: linear-gradient(90deg, #b13cd4 0%, #a442c2 100%);
     color: white;
@@ -87,12 +93,13 @@ body {
     transition: background 0.3s ease;
 }
 
+/* Hover no botão principal */
 .popup form button:hover,
 .popup button[type="submit"]:hover {
     background: linear-gradient(90deg, #9a2bbb 0%, #9124b0 100%);
 }
 
-/* Botão de fechar */
+/* Botão de fechar (X no canto superior) */
 .close-btn {
     position: absolute;
     top: 15px;
@@ -105,10 +112,12 @@ body {
     cursor: pointer;
 }
 
+/* Hover do X */
 .close-btn:hover {
     color: #333;
 }
 
+/* Popup do filtro — posição fixa diferente */
 #filtroPopup {
     position: absolute;
     top: 60px;
@@ -117,8 +126,10 @@ body {
     height: 300px;
     padding: 15px;
     border-radius: 10px;
-    max-height: none;
+    max-height: none; /* Sem limite de altura */
 }
+
+/* Overlay específica do Filtro — clicável porém sem escurecer */
 .filtroPopup-overlay {
     position: fixed;
     top: 0;
@@ -133,6 +144,7 @@ body {
     pointer-events: auto;
 }
 
+/* Botão de cancelar e botões secundários */
 .popup button[type="button"], .btn-cancelar {
     background-color: #ffffff;
     color: #b13cd4;
