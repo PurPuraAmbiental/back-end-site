@@ -6,6 +6,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * Classe responsável por conter método utilitário para definição de erro
+ *
+ * @author Bruna de Jesus
+ */
 public class ErroServlet {
     /**
      * Método auxiliar para reduzir repetição de código ao encaminhar mensagem de erro.
