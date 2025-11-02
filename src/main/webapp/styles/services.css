@@ -45,10 +45,6 @@
   text-align: center;
 }
 
-.servico-card:hover {
-  transform: translateY(-10px);
-}
-
 .servico-card.destaque h3,
 .servico-card.destaque p {
   color: #fff;

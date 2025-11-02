@@ -141,7 +141,7 @@
 
 .hamb-links .hamb-auth {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 8px;
   padding-top: 6px;
   width: 100%;
