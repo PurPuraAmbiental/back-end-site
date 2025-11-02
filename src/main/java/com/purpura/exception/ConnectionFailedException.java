@@ -1,7 +1,16 @@
 package com.purpura.exception;
 
-public class ConnectionFailedException extends RuntimeException {
+public class ConnectionFailedException extends PurpuraException {
+    public ConnectionFailedException(Throwable cause) {
+        super(
+            "Falha de conexão com a base de dados.",
+            "Não foi possível conectar ao serviço. Tente novamente mais tarde.",
+            "DB_CONNECTION_FAILED",
+            cause
+        );
+    }
+
     public ConnectionFailedException() {
-        super("Erro de conexão com a Internet/Banco de Dados.");
+        this(null);
     }
 }
