@@ -16,6 +16,8 @@ import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por atualizar os dados de um Administrador existente.
  *
@@ -88,7 +90,7 @@ public class UpdateAdministradorServlet extends HttpServlet {
             // Trata erros de conversão ou parsing de parâmetros
             System.out.println(e.getMessage());
             ErroServlet.setErro(request, response, dao,
-                    "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
+                    "Erro ao processar os parâmetros: " + e, lista, ERROR_PAGE);
         }
     }
 }

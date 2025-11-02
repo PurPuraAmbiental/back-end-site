@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por listar os administradores cadastrados no sistema.
  *
@@ -41,6 +43,8 @@ public class ListAdministradoresServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AdministradorDAO administradorDAO = new AdministradorDAO();
+        String caminho = "/WEB-INF/CRUD/administrador.jsp";
+        String lista = "listaAdministradores";
         try {
 
             // Obtém o parâmetro "nomeAdministrador" enviado pela página (usado para filtragem).
@@ -63,7 +67,7 @@ public class ListAdministradoresServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, administradorDAO, "Erro interno. Tente de novo mais tarde: " + e.getMessage(), "listaEmpresa", "/WEB-INF/CRUD/empresa.jsp");
+            ErroServlet.setErro(request, response, administradorDAO, e, lista, ERROR_PAGE);
         }
     }
 }

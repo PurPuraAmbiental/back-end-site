@@ -22,6 +22,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por inserir um novo Administrador no sistema.
  *
@@ -130,19 +132,17 @@ public class InsertAdministradorServlet extends HttpServlet {
             }
 
         } catch (ConnectionFailedException | NotFoundException e) {
-            e.printStackTrace();
-            ErroServlet.setErro(request, response, dao,"Erro ao inserir Administrador: " + e.getMessage(), lista, caminho);
             // Captura erros relacionados ao banco de dados (ex: falha na conexão ou registro não encontrado)
             // e mostra mensagem de erro personalizada.
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao inserir Administrador: " + e.getMessage(), lista, caminho);
 
-        } catch (ParseException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage() , lista, caminho);
+
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
+        } catch (ParseException e) {
             // Captura erros ao converter ou processar parâmetros (ex: formato de data incorreto)
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
+
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         }
     }
 }
