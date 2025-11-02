@@ -112,3 +112,11 @@
   color: var(--roxoclaro);
   font-weight: bold;
 }
+
+.plano-destaque {
+  background-color: #231d4f;
+  color: #fff;
+  transform: scale(1.05);
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
