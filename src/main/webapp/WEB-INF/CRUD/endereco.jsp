@@ -43,12 +43,17 @@
     </div>
 
     <!-- Exibição de mensagem de erro, caso o Servlet tenha enviado alguma -->
+    <br>
     <%
         String erro = (String) request.getAttribute("erro");
         if (erro != null) {
     %>
     <h5><%= erro %></h5>
-    <% } %>
+    <%
+            request.removeAttribute("erro");
+        }
+    %>
+    <br>
     <!-- Container da tabela -->
     <div class="table-container">
         <table>

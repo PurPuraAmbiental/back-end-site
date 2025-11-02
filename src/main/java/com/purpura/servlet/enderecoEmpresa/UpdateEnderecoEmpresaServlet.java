@@ -4,6 +4,7 @@ import com.purpura.common.ErroServlet;
 import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.EnderecoEmpresaDAO;
+import com.purpura.dto.EnderecoEmpresaView;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
@@ -16,15 +17,17 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "UpdateEnderecoEmpresaServlet", value = "/endereco-empresa/update")
 public class UpdateEnderecoEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
-        DAO<EnderecoEmpresa> dao = new EnderecoEmpresaDAO();
+        EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
         String lista = "listaEnderecos";
         String caminho = "/WEB-INF/CRUD/endereco.jsp";
+
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
@@ -36,9 +39,15 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             System.out.println(params.get("cNmEmpresa")+" | "+params.get("cCnpj"));
 
             EnderecoEmpresa model = new EnderecoEmpresa(params);
+            List<EnderecoEmpresaView> listaEnderecos = dao.listarComEmpresa();
+
             //VALIDAÇÃO DE DADOS
             if (empresa == null) {
-                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar o endereço! Insira uma empresa cadastrada anteriormente.", lista, caminho);
+                EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos , "Não foi possível atualizar o endereço! Insira uma empresa cadastrada anteriormente.", lista, caminho);
+                return;
+            }
+            if (empresa.getCAtivo() != '1'){
+                EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos,"Nao foi possivel atualizar endereco! Insira uma empresa ativa" , lista, caminho);
                 return;
             }
             model.setCBairro(params.get("cBairro"));
@@ -59,5 +68,12 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             rd.forward(request, response);
         }
+    }
+    public void EnderecoEmpresaViewSetErro(HttpServletRequest request, HttpServletResponse response, EnderecoEmpresaDAO enderecoEmpresaDAO, List<EnderecoEmpresaView> enderecoEmpresaView, String mensagem, String lista, String caminho)
+            throws jakarta.servlet.ServletException, IOException {
+        enderecoEmpresaView = enderecoEmpresaDAO.listarComEmpresa();
+        request.setAttribute(lista, enderecoEmpresaView);
+        request.setAttribute("erro", mensagem);
+        request.getRequestDispatcher(caminho).forward(request, response);
     }
 }
