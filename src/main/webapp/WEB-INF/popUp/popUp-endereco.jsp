@@ -86,7 +86,7 @@ Responsável -> CREATE e UPDATE do CRUD
         <form id="updateForm" action="${pageContext.request.contextPath}/endereco-empresa/update" method="post">
 
             <!-- ID oculto do endereço, usado para identificar o registro -->
-            <input type="hidden" name="nCdEnderecoEmpresa" id="upd-id">
+            <input type="hidden" name="nCdEnderecoEmpresa" id="upd-nCdEnderecoEmpresa">
 
             <label for="upd-bairro">Bairro</label>
             <input type="text" name="cBairro" id="upd-bairro" maxlength="40" required>
@@ -142,6 +142,26 @@ Responsável -> CREATE e UPDATE do CRUD
             <input type="text" name="cNmEmpresa" id="upd-empresa" required>
 
             <button type="submit">Atualizar</button>
+        </form>
+    </div>
+</div>
+<!-- ==================== POPUP DE EXCLUSÃO ==================== -->
+<div class="popup-overlay" id="popup-delete-endereco-empresa" style="display:none;">
+    <div class="popup">
+        <button class="close-btn" onclick="fecharPopup('popup-delete-endereco-empresa')">×</button>
+        <h2>Excluir Endereco</h2>
+
+        <form action="${pageContext.request.contextPath}/endereco-empresa/delete" method="post">
+            <p>Tem certeza que deseja excluir o endereco <strong id="delete-endereco-empresa-nome"></strong>?</p>
+
+            <input type="hidden" name="nCdEnderecoEmpresa" id="delete-endereco-empresa-nCdEndereco">
+
+            <div class="botoes-principais">
+                <button type="submit"  onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';" >Excluir</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-endereco-empresa')">
+                    Cancelar
+                </button>
+            </div>
         </form>
     </div>
 </div>
