@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,7 +27,7 @@ public class InsertAdministradorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         DAO<Administrador> dao = new AdministradorDAO();
-        String caminho = "WEB-INF/CRUD/administrador.jsp";
+        String caminho = "/WEB-INF/CRUD/administrador.jsp";
         String lista = "listaAdministradores";
         try {
             Map<String, String> params = new LinkedHashMap<>();
@@ -59,7 +60,9 @@ public class InsertAdministradorServlet extends HttpServlet {
             origem = request.getParameter("origem");
 
             if(origem != null){
-                response.sendRedirect(request.getContextPath());
+                HttpSession session = request.getSession();
+                session.setAttribute("usuario", model);
+                request.getRequestDispatcher("/WEB-INF/CRUD/crud.jsp").forward(request, response);                    return;
             }
             else{
                 response.sendRedirect(request.getContextPath() + "/administrador/list");

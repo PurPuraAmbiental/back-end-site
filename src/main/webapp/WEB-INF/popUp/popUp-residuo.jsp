@@ -7,8 +7,11 @@
         <button class="close-btn" onclick="fecharPopup('popup-insert-residuo')">×</button>
         <h2>Cadastrar Resíduo</h2>
 
-        <form action="${pageContext.request.contextPath}/residuo/insert" method="post">
-            <label>Tipo do Resíduo</label>
+        <form action="${pageContext.request.contextPath}/residuo/insert"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Adicionando...';">
+
+        <label>Tipo do Resíduo</label>
             <input type="text" name="cNmResiduo" id="cNmResiduo" maxlength="30" required>
 
             <label>Unidade de Medida</label>
@@ -45,8 +48,11 @@
         <button class="close-btn" onclick="fecharPopup('popup-update-residuo')">×</button>
         <h2>Atualizar Resíduo</h2>
 
-        <form action="${pageContext.request.contextPath}/residuo/update" method="post">
-            <input type="hidden" name="nCdResiduo" id="update-residuo-nCdResiduo">
+        <form action="${pageContext.request.contextPath}/residuo/update"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
+
+        <input type="hidden" name="nCdResiduo" id="update-residuo-nCdResiduo">
 
             <label>Tipo do Resíduo</label>
             <input type="text" name="cNmResiduo" id="update-residuo-cNmResiduo" maxlength="30" required>

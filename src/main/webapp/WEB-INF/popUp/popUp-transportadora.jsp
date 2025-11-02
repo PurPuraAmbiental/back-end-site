@@ -67,6 +67,26 @@
         </form>
     </div>
 </div>
+<!-- ==================== POPUP DE EXCLUSÃO ==================== -->
+<div class="popup-overlay" id="popup-delete-transportadora" style="display:none;">
+    <div class="popup">
+        <button class="close-btn" onclick="fecharPopup('popup-delete-transportadora')">×</button>
+        <h2>Excluir Transportadora</h2>
+
+        <form action="${pageContext.request.contextPath}/transportadora/delete" method="post">
+            <p>Tem certeza que deseja excluir a Transportadora <strong id="delete-transportadora-nome"></strong>?</p>
+
+            <input type="hidden" name="cCnpj" id="delete-transportadora-cCnpj">
+
+            <div class="botoes-principais">
+                <button type="submit"  onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';" >Excluir</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-transportadora')">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
     <!-- ==================== FILTROS ========================= -->
 <div class="filtroPopup-overlay" id="filtroTransportadora" style="display:none;">
     <div class="popup" id="filtroPopup">

@@ -9,7 +9,9 @@ Responsável -> CREATE e UPDATE do CRUD
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-insert-empresa')">×</button>
         <h2>Cadastrar Empresa</h2>
-        <form action="${pageContext.request.contextPath}/empresa/insert" method="post">
+        <form action="${pageContext.request.contextPath}/empresa/insert"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Adicionando...';">
             <label>Nome da Empresa</label>
             <input type="text" name="cNmEmpresa" id="cNmEmpresa" maxlength="30" placeholder="Insira o nome da empresa" required>
 
@@ -38,8 +40,11 @@ Responsável -> CREATE e UPDATE do CRUD
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('popup-update-empresa')">×</button>
         <h2>Atualizar Empresa</h2>
-        <form action="${pageContext.request.contextPath}/empresa/update" method="post">
-            <label>Nome da Empresa</label>
+        <form action="${pageContext.request.contextPath}/empresa/update"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
+
+        <label>Nome da Empresa</label>
             <input type="text" name="cNmEmpresa" id="update-empresa-cNmEmpresa" maxlength="30" required>
 
             <label>Email</label>

@@ -98,8 +98,6 @@
                             onclick="DeleteEmpresa('<%= empresa.getCCnpj() %>', '<%= empresa.getCNmEmpresa() %>')">
                         Excluir
                     </button>
-
-                    </button>
                 </td>
             </tr>
             <%  } // fim do for

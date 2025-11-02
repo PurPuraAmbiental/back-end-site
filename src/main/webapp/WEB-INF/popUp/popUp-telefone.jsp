@@ -58,7 +58,26 @@ Responsável -> CREATE e UPDATE do CRUD de Telefone
         </form>
     </div>
 </div>
+<!-- ==================== POPUP DE EXCLUSÃO ==================== -->
+<div class="popup-overlay" id="popup-delete-telefone" style="display:none;">
+    <div class="popup">
+        <button class="close-btn" onclick="fecharPopup('popup-delete-telefone')">×</button>
+        <h2>Excluir Telefone</h2>
 
+        <form action="${pageContext.request.contextPath}/telefone/delete" method="post">
+            <p>Tem certeza que deseja excluir a telefone <strong id="delete-telefone-nome"></strong>?</p>
+
+            <input type="hidden" name="nCdTelefone" id="delete-telefone-nCdTelefone">
+
+            <div class="botoes-principais">
+                <button type="submit"  onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';" >Excluir</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-telefone')">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 <div class="filtroPopup-overlay" id="filtroTelefone" style="display:none;">
     <div class="popup">
         <button class="close-btn" onclick="fecharPopup('filtroTelefone')">×</button>

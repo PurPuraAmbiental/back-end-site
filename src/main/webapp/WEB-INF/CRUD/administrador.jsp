@@ -78,10 +78,10 @@
 
                 <!-- ================== BOTÃO EXCLUIR ================== -->
                 <!-- Formulário para deletar uma empresa -->
-                <form action="<%=request.getContextPath()%>/administrador/delete" method="post" style="display:inline;">
-                    <input type="hidden" name="cEmail" value="<%= administrador.getCEmail() %>">
-                    <input type="submit" class="add-btn" value="Excluir">
-                </form>
+                <button class="add-btn"
+                        onclick="DeleteAdministrador('<%= administrador.getCEmail() %>', '<%= administrador.getCNmAdministrador() %>')">
+                    Excluir
+                </button>
             </td>
         </tr>
         <%
@@ -119,7 +119,12 @@
         document.getElementById('update-administrador-cSenha').value = "";
         document.getElementById('popup-update-administrador').style.display = 'flex';
     }
-
+    // ================== FUNÇÃO PARA ABRIR POPUP DE DELETE ==================
+    function DeleteAdministrador(cEmail, cNmAdministrador) {
+        document.getElementById('delete-administrador-cEmail').value = cEmail;
+        document.getElementById('delete-administrador-nome').innerText = cNmAdministrador;
+        document.getElementById('popup-delete-administrador').style.display = 'flex';
+    }
     //==================== FUNÇÃO PARA ABRIR O POP UP DOS FILTROS =======================
     function filtroAdministrador(){
         document.getElementById('filtroAdministrador').style.display = 'flex';

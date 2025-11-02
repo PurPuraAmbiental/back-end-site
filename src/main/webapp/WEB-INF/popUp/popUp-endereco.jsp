@@ -14,9 +14,11 @@ Responsável -> CREATE e UPDATE do CRUD
         <h2>Cadastrar Endereço</h2>
 
         <!-- Formulário de inserção de novo endereço -->
-        <form action="${pageContext.request.contextPath}/endereco-empresa/insert" method="post">
+        <form action="${pageContext.request.contextPath}/endereco-empresa/insert"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Adicionando...';">
 
-            <label for="cBairro">Bairro</label>
+        <label for="cBairro">Bairro</label>
             <input type="text" name="cBairro" id="cBairro" maxlength="40" required>
 
             <label for="cLogradouro">Logradouro</label>
@@ -83,9 +85,12 @@ Responsável -> CREATE e UPDATE do CRUD
         <h2>Atualizar Endereço</h2>
 
         <!-- Formulário de atualização -->
-        <form id="updateForm" action="${pageContext.request.contextPath}/endereco-empresa/update" method="post">
+        <form id="updateForm" action="${pageContext.request.contextPath}/endereco-empresa/update"
+              method="post"
+              onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerText = 'Atualizando...';">
 
-            <!-- ID oculto do endereço, usado para identificar o registro -->
+
+        <!-- ID oculto do endereço, usado para identificar o registro -->
             <input type="hidden" name="nCdEnderecoEmpresa" id="upd-nCdEnderecoEmpresa">
 
             <label for="upd-bairro">Bairro</label>

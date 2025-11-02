@@ -3,66 +3,65 @@ package com.purpura.model;
 import java.text.ParseException;
 import java.util.Map;
 
-/**Classe Modelo para a tabela Administrador
- * @author Kevin Oliveira*/
-public class Administrador implements Model{
-    /**Adicionando os atributos da tabela como atributos da classe
-     * atributos dados com prefixos da tabela de banco de dados*/
+/**
+ * Modelo que representa a entidade Administrador.
+ * Cada instância corresponde a um registro na tabela "Administrador".
+ *
+ * @author Kevin Oliveira
+ */
+public class Administrador implements Model {
+
     private String cEmail;
     private String cSenha;
     private String cNmAdministrador;
 
-    /**Adicionando um método Construtor
-     * @param cEmail - email do administrador
-     * @param cSenha - senha do administrador
-     * @param cNmAdministrador - nome do administrador */
+    /**
+     * Construtor padrão.
+     *
+     * @param cEmail email do administrador (chave primária)
+     * @param cSenha senha do administrador
+     * @param cNmAdministrador nome do administrador
+     */
     public Administrador(String cEmail, String cSenha, String cNmAdministrador) {
         this.cEmail = cEmail;
         this.cSenha = cSenha;
         this.cNmAdministrador = cNmAdministrador;
     }
 
-    /**Adicionando um método construtor que inicializa objetos
-     * @param params -> um map com os parâmetros do administrador*/
+    /**
+     * Construtor alternativo que inicializa o objeto a partir de um mapa de parâmetros, captura
+     * dados de formularios, por exemplo.
+     *
+     * @param params mapa contendo os campos do administrador
+     * @throws ParseException se algum valor não puder ser processado corretamente
+     */
     public Administrador(Map<String, String> params) throws ParseException {
-        if(params.containsKey("cEmail")) {
-            this.cEmail = params.get("cEmail");
-        }
+        this.cEmail = params.get("cEmail");
         this.cSenha = params.get("cSenha");
         this.cNmAdministrador = params.get("cNmAdministrador");
     }
 
-    /**Método getCEmail
-     * @return email do administrador*/
-    public String getCEmail() {return cEmail;}
-    /**Método getCSenha
-     * @return senha do administrador*/
-    public String getCSenha() {return cSenha;}
-    /**Método getCNmAdministrador
-     * @return nome do administrador*/
-    public String getCNmAdministrador() {return cNmAdministrador;}
+    // Getters e Setters
+    public String getCEmail() { return cEmail; }
+    public void setCEmail(String cEmail) { this.cEmail = cEmail; }
 
-    /**Método setCEmail
-     * @param cEmail -> altera o email do administrador*/
-    public void setCEmail(String cEmail) {this.cEmail = cEmail;}
-    /**Método setCSenha
-     * @param cSenha -> altera a senha do administrador*/
-    public void setCSenha(String cSenha) {this.cSenha = cSenha;}
-    /**Método setCNmAdministrador
-     * @param cNmAdministrador-> altera o nome do administrador*/
-    public void setCNmAdministrador(String cNmAdministrador) {this.cNmAdministrador = cNmAdministrador;}
+    public String getCSenha() { return cSenha; }
+    public void setCSenha(String cSenha) { this.cSenha = cSenha; }
 
-    /**Método toString
-     * @return informações sobre os campos da tabela Administrador*/
+    public String getCNmAdministrador() { return cNmAdministrador; }
+    public void setCNmAdministrador(String cNmAdministrador) { this.cNmAdministrador = cNmAdministrador; }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Email: " + cEmail + "\nSenha: " + cSenha + "\nNome: " + cNmAdministrador;
     }
 
-    /**Método getId
-     * @return retorna o email como identificador da tabela*/
+    /**
+     * Retorna o identificador único da entidade.
+     * Esse valor é utilizado pela DAO genérica para operações de persistência.
+     */
     @Override
-    public Object getId(){
+    public Object getId() {
         return cEmail;
     }
 }

@@ -7,7 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/login.css">
-<link rel="stylesheet" href="/CRUD/popUp.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/crud.css">
+
 <html>
 <head>
 
