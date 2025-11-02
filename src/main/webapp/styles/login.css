@@ -1,3 +1,4 @@
+/* ============ GERAL ============ */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(90deg, #f7eefe 0%, #eafdf5 100%);
@@ -6,9 +7,11 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    color: #6a0dad;
+    color: #9c27b0;
 }
 
+/* ============ CONTAINERS ============ */
+.login-container,
 .container-cadastro {
     background-color: #fff;
     padding: 40px;
@@ -19,6 +22,7 @@ body {
     text-align: center;
 }
 
+/* ============ CABEÇALHO ============ */
 .logo {
     font-size: 2.5rem;
     font-weight: 700;
@@ -33,6 +37,7 @@ body {
     font-weight: 500;
 }
 
+/* ============ FORMULÁRIOS ============ */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -60,6 +65,7 @@ body {
     border-color: #9c27b0;
 }
 
+/* Campos combinados (ex: CPF + seletor) */
 .input-group {
     display: flex;
     gap: 10px;
@@ -79,10 +85,12 @@ body {
     flex-grow: 1;
 }
 
+/* ============ BOTÕES ============ */
 .form-footer {
     margin-top: 30px;
 }
 
+.btn-login,
 .btn-cadastro {
     width: 100%;
     padding: 15px;
@@ -96,22 +104,29 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.btn-login:hover,
 .btn-cadastro:hover {
-    background-color: #9c27b0;
+    background-color: #7d52cc;
 }
 
-.link-login {
+/* ============ LINKS ============ */
+.link-cadastro,
+.link-login,
+.link-senha {
     display: block;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #9c27b0;
     font-weight: 500;
     text-decoration: none;
 }
 
+.link-cadastro { margin-top: 20px; }
+.link-senha { font-size: 0.9rem; }
+
+/* ============ MENSAGEM DE ERRO ============ */
 .error-message {
     color: red;
     font-size: 0.8rem;
     margin-top: 5px;
     display: none;
-    /* Inicia oculto */
 }
