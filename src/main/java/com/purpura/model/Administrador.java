@@ -10,6 +10,8 @@ import java.util.Map;
  * @author Kevin Oliveira
  */
 public class Administrador implements Model {
+    /**Adicionando os atributos da tabela como atributos da classe.
+     * atributos dados com prefixos da tabela de banco de dado*/
 
     private String cEmail;
     private String cSenha;

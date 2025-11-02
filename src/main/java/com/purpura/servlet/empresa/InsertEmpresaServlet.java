@@ -37,7 +37,7 @@ public class InsertEmpresaServlet extends HttpServlet {
                 return;  // Impede que o código continue
             }
             else {
-                model.setcCnpj(model.getCCnpj().replace("/", "").replace(".", "").replace("-", ""));
+                model.setCCnpj(model.getCCnpj().replace("/", "").replace(".", "").replace("-", ""));
                 System.out.println(model.getCCnpj());
                     }
             if (dao.findById(model.getCCnpj()) != null) {

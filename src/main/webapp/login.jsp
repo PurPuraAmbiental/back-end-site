@@ -6,6 +6,7 @@
     <title>Login - PurPura</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/login.css">
 </head>
 <body>
     <div class="login-container">
@@ -32,115 +33,5 @@
             </div>
         </form>
     </div>
-       <style>
-        /* /*css */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(90deg, #f7eefe 0%, #eafdf5 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: #6a0dad;
-        }
-
-        .login-container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #6a0dad;
-            margin-bottom: 10px;
-        }
-
-        .subtitulo {
-            font-size: 1.2rem;
-            color: #9370db;
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            color: #555;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #9370db;
-        }
-
-        .form-footer {
-            margin-top: 30px;
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 15px;
-            background-color: #9370db;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-login:hover {
-            background-color: #7d52cc;
-        }
-
-        .link-cadastro {
-            display: block;
-            margin-top: 20px;
-            color: #6a0dad;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .link-senha {
-            display: block;
-            margin-top: 10px;
-            color: #6a0dad;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        /* mensagem de erro */
-        .error-message {
-            color: red;
-            font-size: 0.8rem;
-            margin-top: 5px;
-            display: none;
-        }
-    </style>
 </body>
 </html>

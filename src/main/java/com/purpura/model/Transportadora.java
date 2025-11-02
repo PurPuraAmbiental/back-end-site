@@ -3,26 +3,27 @@ package com.purpura.model;
 import java.util.Map;
 
 /**
- * Classe Modelo para a tabela Transportadora.
- * Representa os transportes cadastrados no sistema,
- * vinculados a pedidos e contendo informações sobre retirada.
+ * Modelo que representa a entidade Transportadora.
+ * Cada instância corresponde a um registro na tabela "Transportadora".
+ * Contém informações de identificação, contato e região atendida.
+ *
+ * Autor: Bruna de Jesus
  */
 public class Transportadora implements Model {
 
-    // ================== ATRIBUTOS ==================
+    // Atributos que representam as colunas da tabela "Transportadora"
     private String cCnpj;
     private String cNmTransportadora;
     private String cEmail;
     private String cRegiaoAtendida;
 
-    // ================== CONSTRUTORES ==================
-
     /**
      * Construtor principal.
-     * @param cCnpj - CNPJ da transportadora
-     * @param cNmTransportadora - Nome da transportadora
-     * @param cEmail - Email de contato
-     * @param cRegiaoAtendida - Região atendida
+     *
+     * @param cCnpj CNPJ da transportadora
+     * @param cNmTransportadora nome da transportadora
+     * @param cEmail email de contato
+     * @param cRegiaoAtendida região atendida
      */
     public Transportadora(String cCnpj, String cNmTransportadora, String cEmail, String cRegiaoAtendida) {
         this.cCnpj = cCnpj;
@@ -32,8 +33,10 @@ public class Transportadora implements Model {
     }
 
     /**
-     * Construtor que inicializa a partir de um Map (usado em formulários ou servlets)
-     * @param params - Mapa com os atributos da transportadora
+     * Construtor que inicializa o objeto a partir de um mapa de parâmetros,
+     * permitindo capturar dados de formulários ou requisições HTTP.
+     *
+     * @param params mapa contendo os campos da transportadora
      */
     public Transportadora(Map<String, String> params) {
         if (params.containsKey("cCnpj")) {
@@ -44,22 +47,23 @@ public class Transportadora implements Model {
         this.cEmail = params.get("cEmail");
     }
 
-    // ================== GETTERS ==================
+    // Getters e Setters
     public String getCCnpj() { return cCnpj; }
-    public String getCNmTransportadora() { return cNmTransportadora; }
-    public String getCRegiaoAtendida() { return cRegiaoAtendida; }
-    public String getCEmail() { return cEmail; }
-
-    // ================== SETTERS ==================
     public void setCCnpj(String cCnpj) { this.cCnpj = cCnpj; }
+
+    public String getCNmTransportadora() { return cNmTransportadora; }
     public void setCNmTransportadora(String cNmTransportadora) { this.cNmTransportadora = cNmTransportadora; }
+
+    public String getCRegiaoAtendida() { return cRegiaoAtendida; }
     public void setCRegiaoAtendida(String cRegiaoAtendida) { this.cRegiaoAtendida = cRegiaoAtendida; }
+
+    public String getCEmail() { return cEmail; }
     public void setCEmail(String cEmail) { this.cEmail = cEmail; }
 
-    // ================== MÉTODOS AUXILIARES ==================
-
     /**
-     * Retorna uma string com os dados da transportadora
+     * Retorna uma representação textual da entidade.
+     *
+     * @return string contendo os valores dos atributos da transportadora
      */
     @Override
     public String toString() {
@@ -70,7 +74,9 @@ public class Transportadora implements Model {
     }
 
     /**
-     * Retorna o ID da entidade (CNPJ)
+     * Retorna o identificador único da entidade.
+     *
+     * @return CNPJ da transportadora
      */
     @Override
     public Object getId() {

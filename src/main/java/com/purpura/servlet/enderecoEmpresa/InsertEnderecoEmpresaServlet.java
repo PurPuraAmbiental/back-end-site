@@ -34,7 +34,7 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         String lista = "listaEnderecos";
-        String caminho = "WEB-INF/CRUD/endereco.jsp";
+        String caminho = "/WEB-INF/CRUD/endereco.jsp";
         EnderecoEmpresaDAO dao = new EnderecoEmpresaDAO();
         try {
             // Pega os parâmetros dados pelo usuário
@@ -59,6 +59,12 @@ public class InsertEnderecoEmpresaServlet extends HttpServlet {
                 EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos,"Não foi possível cadastrar o endereço! Insira uma empresa cadastrada anteriormente.", lista, caminho);
                 return;
             }
+            if (empresa.getCAtivo() != '1'){
+                EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos,"Nao foi possivel cadastrar endereco! Insira uma empresa ativa" , lista, caminho);
+                return;
+            }
+
+
             // Caso contrário, a model pega a FK correspondente
             model.setCCnpj(empresa.getCCnpj());
 

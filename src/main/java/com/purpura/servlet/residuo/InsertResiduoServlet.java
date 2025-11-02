@@ -46,6 +46,11 @@ public class InsertResiduoServlet extends HttpServlet {
             } else {
                 model.setCCnpj(empresa.getCCnpj());
             }
+            if (empresa.getCAtivo() != '1'){
+                residuoViewSetErro(request, response, residuoDAO, residuoViews,"Nao foi possivel cadastrar Residuo! Insira uma empresa ativa" , lista, caminho);
+                return;
+            }
+
             residuoDAO.save(model);
             response.sendRedirect(request.getContextPath() + "/residuo/list");
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {

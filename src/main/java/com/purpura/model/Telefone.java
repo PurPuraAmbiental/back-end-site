@@ -2,30 +2,42 @@ package com.purpura.model;
 
 import java.util.Map;
 
-/** Classe modelo para a tabela Telefone */
+/**
+ * Modelo que representa a entidade Telefone.
+ * Cada instância corresponde a um registro na tabela "Telefone".
+ * Contém informações do número, descrição e empresa associada.
+ *
+ * Autor: Bruna de Jesus
+ */
 public class Telefone implements Model {
 
-    // ==== Atributos ====
-    // Código identificador do telefone
+    // Atributos que representam as colunas da tabela "Telefone"
     private int nCdTelefone;
-    // Número do telefone
     private String cNrTelefone;
-    // Descrição do telefone
     private String cdescricao;
-    // Código identificador da empresa associada
     private String ccnpj;
 
-    // ==== Construtores ====
-    // Construtor principal que recebe todos os atributos diretamente
-    public Telefone(String ccnpj, int nCdTelefone, String fone, String descricao){
+    /**
+     * Construtor principal.
+     *
+     * @param ccnpj CNPJ da empresa associada
+     * @param nCdTelefone código identificador do telefone
+     * @param fone número do telefone
+     * @param descricao descrição do telefone
+     */
+    public Telefone(String ccnpj, int nCdTelefone, String fone, String descricao) {
         this.ccnpj = ccnpj;
         this.nCdTelefone = nCdTelefone;
         this.cNrTelefone = fone;
         this.cdescricao = descricao;
     }
 
-    // Construtor que inicializa o objeto a partir de um Map de parâmetros
-    // Verifica se cada valor existe e não está vazio antes de atribuir
+    /**
+     * Construtor que inicializa o objeto a partir de um mapa de parâmetros,
+     * permitindo capturar dados de formulários ou requisições HTTP.
+     *
+     * @param params mapa contendo os campos do telefone
+     */
     public Telefone(Map<String, String> params) {
         String telefone = params.get("cNrTelefone");
         this.cNrTelefone = (telefone != null && !telefone.trim().isEmpty()) ? telefone.trim() : null;
@@ -37,30 +49,36 @@ public class Telefone implements Model {
         this.ccnpj = (cnpj != null && !cnpj.trim().isEmpty()) ? cnpj.trim() : null;
     }
 
-    // ==== Getters ====
-    // Métodos para acessar os atributos da classe
-    public String getCCnpj() { return ccnpj; }
+    // Getters e Setters
     public int getNCdTelefone() { return nCdTelefone; }
-    public String getCDescricao() { return cdescricao; }
-    public String getCNrTelefone() { return cNrTelefone; }
-
-    // ==== Setters ====
-    // Métodos para modificar os atributos da classe
-    public void setCCnpj(String ccnpj) { this.ccnpj = ccnpj; }
     public void setNCdTelefone(int nCdTelefone) { this.nCdTelefone = nCdTelefone; }
-    public void setCDescricao(String descricao) { this.cdescricao = descricao; }
+
+    public String getCNrTelefone() { return cNrTelefone; }
     public void setCNrTelefone(String cNrTelefone) { this.cNrTelefone = cNrTelefone; }
 
-    // ==== Outros métodos ====
-    // Retorna o ID único do telefone, usado como identificador
+    public String getCDescricao() { return cdescricao; }
+    public void setCDescricao(String cdescricao) { this.cdescricao = cdescricao; }
+
+    public String getCCnpj() { return ccnpj; }
+    public void setCCnpj(String ccnpj) { this.ccnpj = ccnpj; }
+
+    /**
+     * Retorna o identificador único da entidade.
+     *
+     * @return código do telefone
+     */
     @Override
     public Object getId() {
         return nCdTelefone;
     }
 
-    // Retorna uma representação legível do objeto, mostrando número e descrição do telefone
+    /**
+     * Retorna uma representação textual da entidade.
+     *
+     * @return número e descrição do telefone
+     */
     @Override
-    public String toString(){
-        return "Telefone: " + this.getCNrTelefone() + "\nDescricao: " + this.cdescricao;
+    public String toString() {
+        return "Telefone: " + this.getCNrTelefone() + "\nDescrição: " + this.cdescricao;
     }
 }

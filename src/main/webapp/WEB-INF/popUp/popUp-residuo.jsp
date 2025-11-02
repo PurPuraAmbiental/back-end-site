@@ -80,6 +80,7 @@
             <label>Descrição</label>
             <input type="text" name="cDescricao" id="update-residuo-cDescricao" required>
 
+            <button type="submit">Atualizar</button>
         </form>
     </div>
 </div>
