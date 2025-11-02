@@ -2,6 +2,14 @@ package com.purpura.util;
 
 import java.sql.*;
 
+/**
+ * TestConnection: classe utilitária para testar a conexão com o banco de dados.
+ *
+ * Esta classe serve apenas para fins de manutenção e verificação da conexão.
+ * Não é utilizada em produção ou lógica de negócio da aplicação.
+ *
+ * @author Kevin de Oliveira
+ */
 public class TestConnection {
     public boolean testar() {
         try (Connection conn = ConnectionFactory.getConnection()) {
@@ -9,7 +17,7 @@ public class TestConnection {
                 System.out.println("Conexão com o banco estabelecida com sucesso!");
                 return true;
             } else {
-                System.out.println(" Não foi possível estabelecer a conexão.");
+                System.out.println("Não foi possível estabelecer a conexão.");
             }
             return false;
         } catch (SQLException e) {
