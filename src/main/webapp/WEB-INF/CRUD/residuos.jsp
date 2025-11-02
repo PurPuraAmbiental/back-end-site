@@ -23,10 +23,16 @@
 
 
     <br>
-    <% String erro = (String) request.getAttribute("erro");
-        if (erro != null){ %>
-    <h5> <%= erro%> </h5>
-    <% }%>
+    <%
+        String erro = (String) request.getAttribute("erro");
+        if (erro != null) {
+    %>
+    <h5><%= erro %></h5>
+    <%
+            request.removeAttribute("erro");
+        }
+    %>
+
     <br>
     <div class="table-container">
     <table>

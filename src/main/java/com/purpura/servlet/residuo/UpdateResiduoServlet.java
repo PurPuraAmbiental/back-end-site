@@ -4,6 +4,7 @@ import com.purpura.common.ErroServlet;
 import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.ResiduoDAO;
+import com.purpura.dto.ResiduoView;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
@@ -25,8 +26,9 @@ public class UpdateResiduoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
         DAO<Residuo> dao = new ResiduoDAO();
-        String lista = "listaResiduo";
-        String caminho = "/CRUD/residuos.jsp";
+        String lista = "listaResiduos";
+        String caminho = "/WEB-INF/CRUD/residuos.jsp";
+
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
@@ -47,11 +49,17 @@ public class UpdateResiduoServlet extends HttpServlet {
             model.setNVolumePadrao(Double.parseDouble(params.get("nVolumePadrao")));
             model.setCTipoUnidade(params.get("cTipoUnidade"));
             //VALIDAÇÃO DE DADOS
+            ResiduoDAO residuoDAO = new ResiduoDAO();
+            List<ResiduoView> listaResiduos = residuoDAO.listarComEmpresa();
             if (empresa == null) {
-                ErroServlet.setErro(request, response, dao, "Nao foi possivel cadastrar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
+                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
                 return;
             } else {
                 model.setCCnpj(empresa.getCCnpj());
+            }
+            if (empresa.getCAtivo() != '1') {
+                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa ativa" , lista, caminho);
+                return;
             }
 
             dao.update(model);
@@ -59,5 +67,12 @@ public class UpdateResiduoServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             ErroServlet.setErro(request, response, dao, "Erro ao atualizar Residuo: " + e.getMessage() , lista, caminho);
         }
+    }
+    public void residuoViewSetErro(HttpServletRequest request, HttpServletResponse response, ResiduoDAO residuoDAO, List<ResiduoView> residuoView, String mensagem, String lista, String caminho)
+            throws jakarta.servlet.ServletException, IOException {
+        residuoView = residuoDAO.listarComEmpresa();
+        request.setAttribute(lista, residuoView);
+        request.setAttribute("erro", mensagem);
+        request.getRequestDispatcher(caminho).forward(request, response);
     }
 }
