@@ -39,7 +39,6 @@
 
             <label for="update-administrador-cEmail">Email</label>
             <input type="text" name="cEmail" id="update-administrador-cEmail" style="color: gray;" maxlength="70" readonly>
-            <input type="hidden" name="cEmail">
 
             <label for="update-administrador-cSenha">Senha</label>
             <input type="text" name="cSenha" id="update-administrador-cSenha" required>
