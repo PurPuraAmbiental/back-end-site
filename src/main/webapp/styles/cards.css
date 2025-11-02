@@ -1,15 +1,18 @@
+/* Estilo do card destaque */
 .plano-destaque {
-  background-color: #231d4f;
-  color: #fff;
-  transform: scale(1.05);
-  position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background-color: #231d4f; /* Fundo roxo escuro */
+  color: #fff; /* Texto branco */
+  transform: scale(1.05); /* Card maior que os outros */
+  position: relative; /* Necessário para posicionar o label "Mais Popular" */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Sombra */
 }
 
+/* Efeito ao passar o mouse: levanta o card */
 .plano-destaque:hover {
   transform: translateY(-10px) scale(1.05);
 }
 
+/* Mantém o texto branco em todos os elementos do card */
 .plano-destaque .plano-nome,
 .plano-destaque .plano-preco,
 .plano-destaque .plano-preco span,
@@ -18,19 +21,21 @@
   color: #fff;
 }
 
+/* Ícone de check com cor roxa clara */
 .plano-destaque .plano-check {
   color: #b025f3;
 }
 
+/* Botão de escolher plano com fundo roxo e hover */
 .plano-destaque .botao-escolher {
   background-color: #b025f3;
   color: #fff;
 }
-
 .plano-destaque .botao-escolher:hover {
-  background-color: #BB6BD9;
+  background-color: #BB6BD9; /* Tom mais claro ao passar o mouse */
 }
 
+/* Label "Mais Popular" no canto superior */
 .plano-destaque-label {
   position: absolute;
   top: 20px;
