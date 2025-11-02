@@ -137,6 +137,12 @@ public class InsertEmpresaServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
             ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros.", lista, ERROR_PAGE);
+        } catch (Exception e) {
+            //Erro genérico (não previsto)
+            // Captura qualquer outra exceção inesperada que possa ocorrer no fluxo
+            ErroServlet.setErro(request, response, dao,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 }

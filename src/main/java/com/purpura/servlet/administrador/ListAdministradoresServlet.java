@@ -70,8 +70,11 @@ public class ListAdministradoresServlet extends HttpServlet {
             e.printStackTrace();
             ErroServlet.setErro(request, response, administradorDAO, e, lista, ERROR_PAGE);
         } catch (Exception e) {
-            e.printStackTrace();
-            ErroServlet.setErro(request, response, administradorDAO, "Erro interno, tente de novo mais tarde." , lista, ERROR_PAGE);
+            //Erro genérico (não previsto)
+            // Captura qualquer outra exceção inesperada que possa ocorrer no fluxo
+            ErroServlet.setErro(request, response, administradorDAO,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 }
