@@ -47,7 +47,7 @@ public abstract class DAO<T extends Model> {
         } catch (SQLException e)  {
             System.out.println("achou");
             e.printStackTrace();
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -70,7 +70,7 @@ public abstract class DAO<T extends Model> {
                 throw new NotFoundException(getNomeTabela(), entidade.getId());
             }
         } catch (SQLException e) {
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -93,7 +93,7 @@ public abstract class DAO<T extends Model> {
                 throw new NotFoundException(getNomeTabela(), id);
             }
         } catch (SQLException e){
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -116,7 +116,7 @@ public abstract class DAO<T extends Model> {
                 throw new NotFoundException(getNomeTabela(), id);
             }
         } catch (SQLException e){
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -136,7 +136,7 @@ public abstract class DAO<T extends Model> {
             stmt.setObject(1, valor);
             int linhasDeletadas = stmt.executeUpdate();
         } catch (SQLException e){
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -162,7 +162,7 @@ public abstract class DAO<T extends Model> {
                 }
             }
         } catch (SQLException e) {
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -188,7 +188,7 @@ public abstract class DAO<T extends Model> {
                 }
             }
         } catch (SQLException e) {
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -217,7 +217,7 @@ public abstract class DAO<T extends Model> {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("eita");
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -248,7 +248,7 @@ public abstract class DAO<T extends Model> {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
     }
 
@@ -271,7 +271,7 @@ public abstract class DAO<T extends Model> {
             }
         } catch (SQLException e){
             e.printStackTrace();
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
 
         if (lista.isEmpty()) {

@@ -116,7 +116,7 @@ public class TransportadoraDAO extends DAO<Transportadora>{
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
 
         return transportadoras;

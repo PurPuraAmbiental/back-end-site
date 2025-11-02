@@ -141,7 +141,7 @@ public class EmpresaDAO extends DAO<Empresa> {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
 
         return lista;

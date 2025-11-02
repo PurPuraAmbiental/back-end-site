@@ -108,7 +108,7 @@ public class AdministradorDAO extends DAO<Administrador> {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
 
         return administradores;

@@ -89,7 +89,7 @@ public class TelefoneDAO extends DAO<Telefone> {
                 listaView.add(view);
             }
         } catch (SQLException e) {
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
         return listaView;
     }
@@ -145,7 +145,7 @@ public class TelefoneDAO extends DAO<Telefone> {
             }
 
         } catch (SQLException e) {
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
 
         return telefones;
