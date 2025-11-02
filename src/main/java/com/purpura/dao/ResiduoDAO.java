@@ -109,6 +109,17 @@ public class ResiduoDAO extends DAO<Residuo> {
         return listaView;
     }
 
+    /**
+     * Lista empresas com filtro opcional pelo nome do administrador.
+     *
+     * @param precoMin preço mínimo usado no filtro
+     * @param precoMax preço máximo usado no filtro
+     * @param volumeMin volume mínimo usado no filtro
+     * @param volumeMax volume máximo usado no filtro
+     * @param unidade filtro opcional por tipo de unidade de medida
+     * @return lista de Residuo correspondentes aos filtros
+     * @throws ConnectionFailedException se a conexão com o banco falhar
+     */
     public List<ResiduoView> listarComEmpresaFiltrado(
             Double precoMin,
             Double precoMax,
