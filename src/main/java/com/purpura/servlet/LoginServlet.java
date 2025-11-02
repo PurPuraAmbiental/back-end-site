@@ -4,7 +4,6 @@ import com.purpura.common.Regex;
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
-import com.purpura.exception.DAONotFoundException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;
 import jakarta.servlet.RequestDispatcher;
@@ -55,10 +54,6 @@ public class LoginServlet extends HttpServlet {
                 rd.forward(request, response);
             }
 
-        } catch (DAONotFoundException e){
-            request.setAttribute("erro", "Erro de conexão");
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-            rd.forward(request, response);
         } catch (ConnectionFailedException e) {
             request.setAttribute("erro", "Erro de conexão");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
