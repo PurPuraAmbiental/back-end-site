@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  *  Servlet responsável por realizar a exclusão de uma transportadora
  *  do sistema, com base no CNPJ informado pelo formulário JSP.
@@ -41,9 +43,8 @@ public class DeleteTransportadoraServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
 
-        // Nome da lista e caminho do JSP usados em caso de erro
+        // Nome da lista usada em caso de erro
         String lista = "listaTransportadoras";
-        String caminho = "/WEB-INF/CRUD/transportadora.jsp";
 
         // Cria o DAO responsável pelas operações de banco de dados da transportadora
         DAO<Transportadora> dao = new TransportadoraDAO();
@@ -59,29 +60,14 @@ public class DeleteTransportadoraServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/transportadora/list");
 
         } catch (NumberFormatException e) {
-            //Erro de formatação de parâmetro
-            // Ocorre caso o valor fornecido não seja um formato válido (ex: vazio ou caracteres inválidos)
-            ErroServlet.setErro(request, response, dao,
-                    "Parâmetro inválido para nCdTransporte", lista, caminho);
-
-        } catch (ConnectionFailedException e) {
-            //Erro de conexão com o banco de dados
-            // Indica que houve falha ao tentar conectar-se ao banco
-            ErroServlet.setErro(request, response, dao,
-                    "Falha na conexão com o banco de dados. Tente novamente mais tarde.", lista, caminho);
-
-        } catch (NotFoundException e) {
-            //Transportadora não encontrada
-            // Lançado quando o CNPJ informado não corresponde a nenhum registro existente
-            ErroServlet.setErro(request, response, dao,
-                    "Transportadora não encontrada. Verifique o CNPJ informado.", lista, caminho);
-
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Erro ao processar parametros.", lista, ERROR_PAGE);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
         } catch (Exception e) {
-            //Erro genérico (não previsto)
-            // Captura quaisquer outros tipos de exceções inesperadas
-            ErroServlet.setErro(request, response, dao,
-                    "Ocorreu um erro inesperado ao deletar a transportadora: " + e.getMessage(),
-                    lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao,  "Ocorreu um erro inesperado.", lista, ERROR_PAGE);
         }
     }
 }

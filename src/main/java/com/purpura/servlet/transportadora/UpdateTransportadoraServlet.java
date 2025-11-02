@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por atualizar os dados de uma Transportadora existente.
  *
@@ -75,9 +77,12 @@ public class UpdateTransportadoraServlet extends HttpServlet {
             // Após atualização bem-sucedida, redireciona para a listagem de transportadoras
             response.sendRedirect(request.getContextPath() + "/transportadora/list");
 
-        } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            // Trata erros de conexão ou formatação e mostra mensagem personalizada
-            request.setAttribute("erro", "Erro ao atualizar Transportadora: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Erro ao processar parametros.", lista, ERROR_PAGE);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
         }
     }
 }
