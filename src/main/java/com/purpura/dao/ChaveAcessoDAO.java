@@ -7,6 +7,9 @@ import com.purpura.model.ChaveAcesso;
  * Implementa os métodos genéricos da classe DAO.
  * Veja classe abstrata para documentação detalhada dos métodos.
  *
+ * Objetivo: deixar somente quem tem uma senha, ja pre definida, conseguir se cadastrar
+ * como novo administrador!
+ *
  * @author Kevin de Oliveira
  */
 public class ChaveAcessoDAO extends DAO<ChaveAcesso>{
