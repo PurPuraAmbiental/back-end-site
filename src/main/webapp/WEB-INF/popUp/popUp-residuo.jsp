@@ -74,11 +74,30 @@
             <label>Descrição</label>
             <input type="text" name="cDescricao" id="update-residuo-cDescricao" required>
 
-            <button type="submit" onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Atualizando...';">
-                Atualizar</button>
         </form>
     </div>
 </div>
+
+<div class="popup-overlay" id="popup-delete-residuo" style="display:none;">
+    <div class="popup">
+        <button class="close-btn" onclick="fecharPopup('popup-delete-residuo')">×</button>
+        <h2>Excluir Resíduo</h2>
+
+        <form action="${pageContext.request.contextPath}/residuo/delete" method="post">
+            <p>Tem certeza que deseja excluir o resíduo <strong id="delete-residuo-nome"></strong>?</p>
+
+            <input type="hidden" name="nCdResiduo" id="delete-residuo-nCdResiduo">
+
+            <div class="botoes-principais">
+                <button type="submit" onclick="setTimeout(() => this.disabled = true, 0); this.innerText = 'Excluindo...';">Excluir</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopup('popup-delete-residuo')">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <div class="filtroPopup-overlay" id="filtroResiduo" style="display:none;">
     <div class="popup" id="filtroPopup">

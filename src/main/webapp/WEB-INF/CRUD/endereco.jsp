@@ -14,6 +14,7 @@
 <%@ page import="com.purpura.dto.EnderecoEmpresaView" %>
 <%@ page import="java.util.List" %>
 ,<%@ page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -104,15 +105,13 @@
                       Editar
                     </button>
                     <br>
-                    <!-- Formulário de exclusão com envio via POST -->
-                    <form action="${pageContext.request.contextPath}/endereco-empresa/delete"
-                          method="post"
-                          style="display:inline;">
-                        <!-- ID do endereço que será excluído -->
-                        <input type="hidden" name="nCdEnderecoEmpresa"
-                               value="<%= empresa.nCdEnderecoEmpresa() %>">
-                        <input class="add-btn" type="submit" value="Excluir">
-                    </form>
+                    <!-- ================== BOTÃO EXCLUIR ================== -->
+                    <!-- Formulário para deletar uma empresa -->
+                    <button class="add-btn"
+                            onclick="DeleteEnderecoEmpresa('<%= empresa.nCdEnderecoEmpresa() %>', '<%= empresa.cLogradouro() %>')">
+                        Excluir
+                    </button>
+
                 </td>
             </tr>
             <%
@@ -143,8 +142,8 @@
     }
 
     // Preenche o pop-up de atualização com os dados do endereço clicado
-    function UpdateEndereco(id, bairro, logradouro, estado, cidade, cep, complemento, numero, empresa) {
-        document.getElementById('upd-id').value = id;
+    function UpdateEndereco(nCdEnderecoEmpresa, bairro, logradouro, estado, cidade, cep, complemento, numero, empresa) {
+        document.getElementById('upd-nCdEnderecoEmpresa').value = nCdEnderecoEmpresa;
         document.getElementById('upd-bairro').value = bairro;
         document.getElementById('upd-logradouro').value = logradouro;
         document.getElementById('upd-estado').value = estado;
@@ -156,6 +155,12 @@
 
         // Exibe o pop-up de edição
         document.getElementById('popup-update').style.display = 'flex';
+    }
+    // ================== FUNÇÃO PARA ABRIR POPUP DE DELETE ==================
+    function DeleteEnderecoEmpresa(id, cLogradouro) {
+        document.getElementById('delete-endereco-empresa-nCdEndereco').value = id;
+        document.getElementById('delete-endereco-empresa-nome').innerText = cLogradouro;
+        document.getElementById('popup-delete-endereco-empresa').style.display = 'flex';
     }
 
     //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS

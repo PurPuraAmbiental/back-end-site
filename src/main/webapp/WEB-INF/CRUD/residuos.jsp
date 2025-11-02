@@ -71,11 +71,12 @@
                     Editar
                 </button>
 
-                <!-- BOTÃO DELETAR -->
-                <form action="${pageContext.request.contextPath}/residuo/delete" method="post" style="display:inline;">
-                    <input type="hidden" name="nCdResiduo" value="<%= residuo.nCdResiduo() %>">
-                    <input type="submit" class="add-btn" value="Excluir">
-                </form>
+                <!-- ================== BOTÃO EXCLUIR ================== -->
+                <!-- Formulário para deletar uma empresa -->
+                <button class="add-btn"
+                        onclick="DeleteResiduo('<%= residuo.nCdResiduo() %>', '<%= residuo.cNmResiduo() %>')">
+                    Excluir
+                </button>
             </td>
         </tr>
         <% } } else { %>
@@ -110,6 +111,12 @@
         document.getElementById('update-residuo-cDescricao').value = cDescricao;
 
         document.getElementById('popup-update-residuo').style.display = 'flex';
+    }
+    // ================== FUNÇÃO PARA ABRIR POPUP DE DELETE ==================
+    function DeleteResiduo(nCdResiduo, cNmResiduo) {
+        document.getElementById('delete-residuo-nCdResiduo').value = nCdResiduo;
+        document.getElementById('delete-residuo-nome').innerText = cNmResiduo;
+        document.getElementById('popup-delete-residuo').style.display = 'flex';
     }
     //FUNÇÃO PARA ABRIR O POP UP DOS FILTROS
     function filtroResiduo() {
