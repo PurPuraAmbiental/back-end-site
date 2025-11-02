@@ -22,58 +22,127 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Servlet responsável por inserir um novo Administrador no sistema.
+ *
+ * Recebe dados via POST, valida e-mail e senha, criptografa a senha
+ * e salva o administrador no banco. Dependendo do parâmetro "origem",
+ * redireciona para a lista de administradores ou adiciona o usuário à sessão.
+ *
+ *
+ * =============== ESTA CLASSE FAZ USO DE REGEX ===============================
+ *
+ * @author Bruna de Jesus e Kevin de Oliveira
+ */
 @WebServlet(name = "InsertAdministradorServlet", value = "/administrador/insert")
 public class InsertAdministradorServlet extends HttpServlet {
+    /**
+     * Processa o POST para inserir um Administrador.
+     *
+     * @param request  objeto HttpServletRequest contendo os parâmetros do formulário
+     * @param response objeto HttpServletResponse para redirecionamento ou forward
+     * @throws jakarta.servlet.ServletException se ocorrer erro no servlet
+     * @throws IOException                      se ocorrer erro de I/O
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+        // Em caso de erro, essas variáveis são usadas para repassar informações de contexto
         DAO<Administrador> dao = new AdministradorDAO();
         String caminho = "/WEB-INF/CRUD/administrador.jsp";
         String lista = "listaAdministradores";
         try {
+            // Cria um mapa para armazenar os parâmetros enviados pelo formulário
+            // O request.getParameterMap() retorna um Map<String, String[]>, então pegamos o primeiro valor de cada campo.
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
+
+            // Cria um objeto 'Administrador' a partir dos parâmetros do formulário.
             Administrador model = new Administrador(params);
 
-            if (!Regex.validarEmail(model.getCEmail())){
+            // ==================== VALIDAÇÕES DE DOS DADOS ====================
+
+            // Verifica se o e-mail digitado possui formato válido usando uma expressão regular (Regex).
+            if (!Regex.validarEmail(model.getCEmail())) {
+                // Se o e-mail for inválido, define uma mensagem de erro e retorna para a página de administrador.jsp.
                 ErroServlet.setErro(request, response, dao, "Insira um E-mail valido", lista, caminho);
-                return;
+                return; // interrompe a continuidade do servlet
             }
+
+            // Verifica se já existe um administrador cadastrado com o mesmo e-mail.
             else if (dao.findById(model.getCEmail()) != null) {
-                ErroServlet.setErro(request, response, dao, "E-mail ja cadastrado anteriormente" , lista, caminho );
+                // Caso exista, mostra uma mensagem de erro e interrompe o processo.
+                ErroServlet.setErro(request, response, dao,
+                        "E-mail ja cadastrado anteriormente", lista, caminho);
                 return;
             }
+
+            // Verifica se a senha possui pelo menos 6 caracteres.
             else if (model.getCSenha().length() < 6) {
+                // Se for menor, exibe mensagem de erro e interrompe.
                 ErroServlet.setErro(request, response, dao,
                         "A senha deve possuir no minimo 6 caracteres", lista, caminho);
                 return;
             }
+
+            // Caso todas as validações passem:
             else {
+                // Verifica se o parâmetro 'cSenha' (campo de senha) existe.
                 if (params.containsKey("cSenha")) {
+                    // Criptografa a senha utilizando a classe utilitária Criptografia.
                     String hash = Criptografia.criptografar(params.get("cSenha"));
+
+                    // Substitui a senha original pelo hash no mapa.
                     params.put("cSenha", hash);
+
+                    // Atualiza também o objeto 'model' com a senha criptografada.
                     model.setCSenha(params.get("cSenha"));
                 }
             }
+
+            // ==================== SALVAMENTO NO BANCO ====================
+
+            // Após passar nas validações e criptografar a senha, salva o administrador no banco de dados.
             dao.save(model);
 
+            // ==================== REDIRECIONAMENTO ====================
+
+            // Verifica se existe o parâmetro "origem" na requisição.
+            // Esse parâmetro indica de qual pagina o servlet foi solicitado: do cadastro (se for diferente de null)
+            // ou do Insert do crud (se for null)
             String origem = null;
             origem = request.getParameter("origem");
 
-            if(origem != null){
+            if (origem != null) {
+                // Se "origem" estiver presente, significa que o administrador acabou de se cadastrar
+                // pela lading page.
+                // Cria uma sessão e armazena o objeto 'Administrador' como atributo "usuario", para mostrar
+                // o nome do usuario na pagina.
                 HttpSession session = request.getSession();
                 session.setAttribute("usuario", model);
-                request.getRequestDispatcher("/WEB-INF/CRUD/crud.jsp").forward(request, response);                    return;
-            }
-            else{
+
+                // Encaminha o usuário para o painel principal (crud.jsp) sem perder o estado da requisição.
+                request.getRequestDispatcher("/WEB-INF/CRUD/crud.jsp").forward(request, response);
+                return;
+            } else {
+                // Caso não exista "origem", o cadastro foi feito a partir do CRUD de administradores.
+                // Então redireciona o navegador para a lista de administradores.
                 response.sendRedirect(request.getContextPath() + "/administrador/list");
             }
 
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
             ErroServlet.setErro(request, response, dao,"Erro ao inserir Administrador: " + e.getMessage(), lista, caminho);
+            // Captura erros relacionados ao banco de dados (ex: falha na conexão ou registro não encontrado)
+            // e mostra mensagem de erro personalizada.
+            ErroServlet.setErro(request, response, dao,
+                    "Erro ao inserir Administrador: " + e.getMessage(), lista, caminho);
+
         } catch (ParseException e) {
             e.printStackTrace();
             ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage() , lista, caminho);
+            // Captura erros ao converter ou processar parâmetros (ex: formato de data incorreto)
+            ErroServlet.setErro(request, response, dao,
+                    "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
         }
     }
 }

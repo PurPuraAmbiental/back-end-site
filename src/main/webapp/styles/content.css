@@ -1,22 +1,26 @@
+/* Cabeçalho da seção "Sobre Nós" com cor cinza */
 .sobre-nos-cabecalho{
   color: var(--cinza);
 }
 
-
+/* Toggle invisível para o efeito de "ler mais" */
 .ler-mais-toggle {
   display: none;
 }
 
+/* Texto oculto inicialmente com transição suave */
 .texto-oculto {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
 }
 
+/* Quando o toggle é marcado, o texto oculto expande até 500px */
 .ler-mais-toggle:checked ~ .texto-oculto {
   max-height: 500px; 
 }
 
+/* Botão de "ler mais" estilizado */
 .botao-ler-mais {
   display: inline-block;
   margin-top: 20px;
@@ -29,9 +33,12 @@
   font-weight: bold;
 }
 
+/* Efeito hover do botão "ler mais" */
 .botao-ler-mais:hover {
   background-color: #f0e6fa;
 }
+
+/* Seção "Por que escolher" com padding e centralização */
 #secao-porque-escolher {
   padding: 60px 20px;
   display: flex;
@@ -39,6 +46,7 @@
   align-items: center;
 }
 
+/* Conteúdo da seção com flex, espaçamento e estilo de card */
 #secao-porque-escolher .conteudo-secao {
   display: flex;
   flex-wrap: wrap;
@@ -51,9 +59,10 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  flex-direction: row-reverse; 
+  flex-direction: row-reverse; /* Alterna a ordem das colunas */
 }
 
+/* Texto da seção com largura mínima e máxima */
 #secao-porque-escolher .texto-secao {
   flex: 1;
   min-width: 300px;
@@ -61,27 +70,35 @@
   text-align: left;
 }
 
+/* Títulos das seções estilizados */
 .texto-secao h2 {
   font-size: 2rem;
   margin-top: 0;
   color: var(--pretoText) !important;
 }
+
+/* Parágrafos da seção com espaçamento de linha e cor */
 .texto-secao p {
   line-height: 1.6;
   color: #555;
 }
+
+/* Destaque roxo nos textos */
 .destaque-roxo { 
   color: var(--roxoclaro) !important;
-  }
+}
 
+/* Espaçamento superior do botão "ler mais" dentro da seção */
 #secao-porque-escolher .botao-ler-mais {
   margin-top: 20px;
 }
 
+/* Cabeçalho centralizado da seção sobre nós */
 .sobrenos-cabecalho {
   text-align: center;
 }
 
+/* Padding e centralização para as seções sobre nós e porque escolher */
 #secao-sobre-nos,
 #secao-porque-escolher {
   padding: 60px 20px;
@@ -90,6 +107,7 @@
   align-items: center;
 }
 
+/* Título de seção com linhas decorativas */
 .titulo-secao {
   font-size: 1.2rem;
   color: #777;
@@ -108,6 +126,7 @@
 .titulo-secao::before { left: -25%; }
 .titulo-secao::after { right: -25%; }
 
+/* Conteúdo geral da seção com flex e espaçamento */
 .conteudo-secao {
   display: flex;
   flex-wrap: wrap;
@@ -118,6 +137,7 @@
   max-width: 1200px;
 }
 
+/* Cards da seção sobre nós com padding, sombra e borda arredondada */
 #secao-sobre-nos .conteudo-secao {
   background-color: #fff;
   padding: 30px;
@@ -126,6 +146,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Container da imagem com borda arredondada e sombra */
 .container-imagem {
   flex: 1;
   min-width: 300px;
@@ -136,12 +157,14 @@
   border: 1px solid #ddd;
 }
 
+/* Imagem responsiva dentro do container */
 .imagem {
   width: 100%;
   height: auto;
   display: block;
 }
 
+/* Texto da seção com largura mínima e máxima */
 .texto-secao {
   flex: 1;
   min-width: 300px;
@@ -149,6 +172,7 @@
   text-align: left;
 }
 
+/* Botão "ler mais" com estilo consistente */
 .botao-ler-mais {
   padding: 10px 20px;
   border: 1px solid #9370db;
