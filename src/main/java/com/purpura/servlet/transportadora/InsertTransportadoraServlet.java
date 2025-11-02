@@ -1,4 +1,5 @@
 package com.purpura.servlet.transportadora;
+
 import com.purpura.common.ErroServlet;
 import com.purpura.common.Regex;
 import com.purpura.dao.DAO;
@@ -14,65 +15,107 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-/** SERVLET INSERT TRANSPORTADORA
- * Tem o objetivo de validar os dados que podem comprometer a inserção
- * no banco de dados e, uma vez validados, adiciona o endereço na lista
- * de endereços do banco.
+
+/**
+ * Servlet responsável por inserir uma nova Transportadora no sistema.
+ *
+ * Realiza validações de CNPJ e e-mail utilizando expressões regulares (Regex),
+ * garante que o CNPJ não esteja duplicado e, após validação, insere o registro no banco.
+ *
+ * =============== ESTA CLASSE FAZ USO DE REGEX ===============================
  *
  * CRUD -> CREATE
  *
  * @author Kevin de Oliveira
  * @author Bruna Oliveira
- **/
+ */
 @WebServlet(name = "InsertTransportadoraServlet", value = "/transportadora/insert")
 public class InsertTransportadoraServlet extends HttpServlet {
 
+    /**
+     * Processa a requisição POST para inserir uma nova Transportadora.
+     *
+     * @param request  objeto HttpServletRequest contendo os parâmetros do formulário
+     * @param response objeto HttpServletResponse usado para redirecionamento ou forward
+     * @throws jakarta.servlet.ServletException se ocorrer erro no servlet
+     * @throws IOException                      se ocorrer erro de entrada/saída
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
+
+        // Nome da lista e caminho do JSP que serão utilizados em caso de erro
         String lista = "listaTransportadoras";
         String caminho = "/WEB-INF/CRUD/transportadora.jsp";
+
+        // Criação do DAO para manipulação dos dados da transportadora
         DAO<Transportadora> dao = new TransportadoraDAO();
+
         try {
-            // Mapeia os parâmetros recebidos do formulário
+            // ==================== CAPTURA DOS PARÂMETROS ====================
+
+            // Mapeia os parâmetros recebidos do formulário para um mapa de chave-valor
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
 
-            // Cria modelo e DAO
+            // Cria o objeto de modelo Transportadora a partir dos parâmetros enviados
             Transportadora model = new Transportadora(params);
 
+            // Lista todas as transportadoras cadastradas (para exibição em caso de erro)
             List<?> listaTransportadoras = dao.findAll();
 
-            // VALIDAÇÃO DE DADOS
-            // em caso verdadeiro para o servlet
-            //valida cnpj a partir do regex
+            // ==================== VALIDAÇÕES DOS DADOS ====================
+
+            // Valida o CNPJ usando expressão regular
             if (!Regex.validarCnpj(model.getCCnpj())) {
-                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar transportadora. Insira um CNPJ válido.", lista, caminho);
+                ErroServlet.setErro(request, response, dao,
+                        "Não foi possível cadastrar transportadora. Insira um CNPJ válido.",
+                        lista, caminho);
                 return;
             }
-            //valida se a primary key nao é repetida,
+
+            // Verifica se já existe uma transportadora cadastrada com o mesmo CNPJ
             if (dao.findById(model.getCCnpj()) != null) {
-                ErroServlet.setErro(request, response, dao, "Não foi possível cadastrar transportadora. CNPJ já cadastrado anteriormente.", lista, caminho);
+                ErroServlet.setErro(request, response, dao,
+                        "Não foi possível cadastrar transportadora. CNPJ já cadastrado anteriormente.",
+                        lista, caminho);
                 return;
             }
-            //valida e-mail a partir do regex
+
+            // Valida o formato do e-mail informado
             if (!Regex.validarEmail(model.getCEmail())) {
-                ErroServlet.setErro(request, response, dao,"Não foi possível cadastrar transportadora. Insira um e-mail válido.", lista, caminho);
+                ErroServlet.setErro(request, response, dao,
+                        "Não foi possível cadastrar transportadora. Insira um e-mail válido.",
+                        lista, caminho);
                 return;
             }
 
+            // ==================== FORMATAÇÃO DOS DADOS ====================
 
-            // Formata o CNPJ antes de salvar, retirando qualquer caractere que atrapalhe na inserção
-            model.setCCnpj(model.getCCnpj().replace("/", "").replace(".", "").replace("-", ""));
+            // Remove caracteres especiais do CNPJ antes de salvar no banco
+            model.setCCnpj(model.getCCnpj()
+                    .replace("/", "")
+                    .replace(".", "")
+                    .replace("-", ""));
 
-            // Salva e retorna para a página de listagem
+            // ==================== SALVAMENTO NO BANCO ====================
+
+            // Insere a transportadora no banco de dados
             dao.save(model);
+
+            // Redireciona para a lista de transportadoras após o sucesso da inserção
             response.sendRedirect(request.getContextPath() + "/transportadora/list");
+
         } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            // Captura de erros específicos
-            ErroServlet.setErro(request, response, dao,"Erro ao inserir transportadora: " + e.getMessage(), lista, caminho);
+            // Captura erros esperados relacionados à conexão ou formato dos dados
+            ErroServlet.setErro(request, response, dao,
+                    "Erro ao inserir transportadora: " + e.getMessage(),
+                    lista, caminho);
+
         } catch (Exception e) {
-            // Captura geral (caso algo inesperado aconteça)
-            ErroServlet.setErro(request, response, dao,"Ocorreu um erro inesperado ao cadastrar transportadora." + e.getMessage(), lista, caminho);
+            // Captura qualquer outro erro inesperado que possa ocorrer durante o processo
+            ErroServlet.setErro(request, response, dao,
+                    "Ocorreu um erro inesperado ao cadastrar transportadora. " + e.getMessage(),
+                    lista, caminho);
         }
     }
 }
