@@ -5,18 +5,14 @@ import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.ResiduoDAO;
 import com.purpura.dto.ResiduoView;
-import com.purpura.exception.ConnectionFailedException;
-import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
 import com.purpura.model.Residuo;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
