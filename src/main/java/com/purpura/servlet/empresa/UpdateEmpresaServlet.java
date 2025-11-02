@@ -86,7 +86,7 @@ public class UpdateEmpresaServlet extends HttpServlet {
         } catch (ParseException e) {
             // Trata erros de conversão ou parsing de parâmetros
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, dao, "Erro ao processar parâmetros.", lista, ERROR_PAGE);
         }
     }
 }
