@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Página não encontrada</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/icone_purpura.svg">
     <style>
         body {
             font-family: 'Inter', sans-serif;

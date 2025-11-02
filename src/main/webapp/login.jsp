@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PurPura</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/login.css">
+    <link rel="stylesheet" herf="styles/texto.css">
+    <link rel="shortcut icon" href="../assets/icone_purpura.svg">
+    <link rel="stylesheet" href="styles/login.css">
 </head>
-<body>
+<body class="inter">
     <div class="login-container">
         <h1 class="logo">PurPura</h1>
         <p class="subtitulo">A sua jornada sustentável continua aqui!</p>

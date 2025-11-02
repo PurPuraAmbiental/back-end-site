@@ -22,4 +22,7 @@ public class Constants {
     public static final String TELEFONE_REGEX = "^\\(?[\\d]{2}\\)?\\s?[\\d]{5}-?[\\d]{4}$";
     public static final String CNPJ_REGEX = "^[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}/?[0-9]{4}-?[0-9]{2}$";
     public static final String CEP_REGEX = "^[0-9]{5}-?[0-9]{3}$";
+
+    // Caminho da tela de erro
+    public static final String ERROR_PAGE = "/WEB-INF/erro.jsp";
 }

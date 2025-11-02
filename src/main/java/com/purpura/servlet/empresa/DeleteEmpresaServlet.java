@@ -17,6 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  *  Servlet responsável por realizar a exclusão de uma empresa do sistema,
  *  removendo também os registros associados em tabelas dependentes, como
@@ -77,14 +79,9 @@ public class DeleteEmpresaServlet extends HttpServlet {
             // Redireciona para a página de listagem de empresas após exclusão bem-sucedida
             response.sendRedirect(request.getContextPath() + "/empresa/list");
 
-        } catch (NumberFormatException e) {
-            // Captura erros de formatação numérica (ex: CNPJ inválido)
-            // e retorna mensagem personalizada na JSP correspondente
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao deletar Empresa: " + e.getMessage(), lista, caminho);
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, e, "listaNome", "/WEB-INF/erro.jsp");
+            ErroServlet.setErro(request, response, dao, e, "listaNome", ERROR_PAGE);
         }
     }
 }

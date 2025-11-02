@@ -4,6 +4,7 @@ import com.purpura.common.ErroServlet;
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
 import com.purpura.model.Administrador;
 import com.purpura.util.Criptografia;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por atualizar os dados de um Administrador existente.
@@ -79,16 +82,14 @@ public class UpdateAdministradorServlet extends HttpServlet {
             // Após atualização bem-sucedida, redireciona para a listagem de administradores
             response.sendRedirect(request.getContextPath() + "/administrador/list");
 
-        } catch (ConnectionFailedException e) {
+        } catch (ConnectionFailedException | NotFoundException e) {
             // Trata erros de conexão com o banco e mostra mensagem personalizada
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao atualizar Administrador: " + e.getMessage(), lista, caminho);
+            ErroServlet.setErro(request, response, dao, e, lista, caminho);
 
         } catch (ParseException e) {
             // Trata erros de conversão ou parsing de parâmetros
             System.out.println(e.getMessage());
-            ErroServlet.setErro(request, response, dao,
-                    "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
+            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros.", lista, ERROR_PAGE);
         }
     }
 }

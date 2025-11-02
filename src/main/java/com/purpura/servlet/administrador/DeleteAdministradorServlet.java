@@ -5,12 +5,16 @@ import com.purpura.dao.AdministradorDAO;
 import com.purpura.dao.DAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  *      Servlet responsável por realizar a exclusão de um administrador
@@ -51,21 +55,9 @@ public class DeleteAdministradorServlet extends HttpServlet {
 
             // Caso dê certo, redireciona para o servlet de listar
             response.sendRedirect(request.getContextPath() + "/administrador/list");
-
-        } catch (ConnectionFailedException e) {
-            // Erro ao tentar conectar-se ao banco de dados
-            ErroServlet.setErro(request, response, dao,
-                    "Erro de conexão com o banco de dados. Tente novamente mais tarde.", lista, caminho);
-
-        } catch (NotFoundException e) {
-            // Administrador informado não foi encontrado
-            ErroServlet.setErro(request, response, dao,
-                    "Administrador não encontrado. Verifique o e-mail informado.", lista, caminho);
-
-        } catch (Exception e) {
-            // Captura qualquer outro tipo de erro inesperado
-            ErroServlet.setErro(request, response, dao,
-                    "Ocorreu um erro inesperado: " + e.getMessage(), lista, caminho);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         }
     }
 }

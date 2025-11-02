@@ -1,9 +1,11 @@
+/* Seção de planos, define espaçamento e fundo claro */
 .planos-section {
   padding: 80px 20px;
   text-align: center;
   background-color: #f8f8f8;
 }
 
+/* Cabeçalho da seção de planos */
 .planos-cabecalho h2 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -11,6 +13,7 @@
   color: var(--pretoText);
 }
 
+/* Descrição abaixo do título */
 .planos-cabecalho p {
   color: #666;
   max-width: 600px;
@@ -18,6 +21,7 @@
   line-height: 1.6;
 }
 
+/* Contêiner dos botões para escolher mensal/anual */
 .planos-seletor {
   display: inline-flex;
   background-color: #fff;
@@ -27,6 +31,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* Botões de seleção de plano */
 .plano-botao {
   border: none;
   background-color: transparent;
@@ -38,11 +43,13 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Botão ativo fica com fundo roxo e texto branco */
 .plano-botao.active {
   background-color: var(--roxoclaro);
   color: #fff;
 }
 
+/* Contêiner que agrupa os cards de planos */
 .planos-container {
   display: flex;
   justify-content: center;
@@ -51,13 +58,15 @@
   max-width: 1200px;
   margin: 0 auto;
   opacity: 1;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease; /* animação suave ao mudar a visibilidade */
 }
 
+/* Títulos dos cards dentro do container */
 .planos-container h3 {
   color: var(--roxoclaro);
 }
 
+/* Card individual de cada plano */
 .plano-card {
   background-color: #fff;
   padding: 40px;
@@ -68,24 +77,28 @@
   position: relative;
 }
 
+/* Nome do plano */
 .plano-nome {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0 0 10px;
 }
 
+/* Preço do plano (texto menor) */
 .plano-preco {
   font-size: 1.1rem;
   color: #999;
   margin: 0 0 10px;
 }
 
+/* Valor do preço em destaque */
 .plano-preco span {
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
 }
 
+/* Descrição do plano */
 .plano-descricao {
   font-size: 0.9rem;
   color: #666;
@@ -93,12 +106,14 @@
   line-height: 1.4;
 }
 
+/* Lista de benefícios do plano */
 .plano-lista {
   list-style: none;
   padding: 0;
   margin: 20px 0;
 }
 
+/* Item individual da lista de benefícios */
 .plano-lista li {
   display: flex;
   align-items: center;
@@ -108,11 +123,13 @@
   margin-bottom: 12px;
 }
 
+/* Ícone de check nos benefícios */
 .plano-check {
   color: var(--roxoclaro);
   font-weight: bold;
 }
 
+/* Card de destaque (mais popular), com fundo roxo e leve aumento de tamanho */
 .plano-destaque {
   background-color: #231d4f;
   color: #fff;

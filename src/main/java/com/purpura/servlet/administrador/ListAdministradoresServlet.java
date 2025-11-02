@@ -1,5 +1,6 @@
 package com.purpura.servlet.administrador;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.AdministradorDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
@@ -13,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por listar os administradores cadastrados no sistema.
@@ -39,10 +42,10 @@ public class ListAdministradoresServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        AdministradorDAO administradorDAO = new AdministradorDAO();
+        String caminho = "/WEB-INF/CRUD/administrador.jsp";
+        String lista = "listaAdministradores";
         try {
-            // Cria o DAO responsável pelas operações com a entidade Administrador.
-            AdministradorDAO administradorDAO = new AdministradorDAO();
 
             // Obtém o parâmetro "nomeAdministrador" enviado pela página (usado para filtragem).
             String nome = request.getParameter("nomeAdministrador");
@@ -63,21 +66,12 @@ public class ListAdministradoresServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/CRUD/administrador.jsp").forward(request, response);
 
         } catch (ConnectionFailedException | NotFoundException e) {
-            // Define uma mensagem de erro na requisição, que será exibida na página de erro.
-            request.setAttribute("erro", "Erro ao carregar lista de Administradores: " + e.getMessage());
-            // Registra o erro no console para depuração.
+            // Define uma mensagem de erro na requisição, será exibida na página de erro
             e.printStackTrace();
-            // Redireciona o usuário para a página de erro.
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
-
+            ErroServlet.setErro(request, response, administradorDAO, e, lista, ERROR_PAGE);
         } catch (Exception e) {
-            // Define mensagem genérica para erros não previstos.
-            request.setAttribute("erro", "Erro inesperado ao buscar Administradores: " + e.getMessage());
             e.printStackTrace();
-            // Encaminha para a página de erro genérica.
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, administradorDAO, "Erro interno, tente de novo mais tarde." , lista, ERROR_PAGE);
         }
     }
 }

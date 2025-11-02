@@ -1,26 +1,32 @@
+/* Aplica box-sizing: border-box a todos os elementos, garantindo que padding e borda
+   sejam incluídos no tamanho total dos elementos */
 @media screen {
   * {
-  box-sizing: border-box;
+    box-sizing: border-box;
   }
 }
 
- @media screen {
+/* Garante que html e body ocupem 100% da altura da tela */
+@media screen {
   html, body {
-  height: 100%;
+    height: 100%;
   }
 }
 
+/* Estilos gerais do body para telas (media screen) */
 @media screen {
   body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(90deg, #f7eefe 0%, #eafdf5 100%);
-  color: var(--roxoescuro);
+    margin: 0; /* Remove espaçamento padrão */
+    font-family: 'Inter', sans-serif; /* Fonte usada no site */
+    background: linear-gradient(90deg, #f7eefe 0%, #eafdf5 100%); /* Degradê horizontal */
+    color: var(--roxoescuro); /* Cor do texto usando variável customizada */
   }
 }
 
+/* Classe container definida para centralizar conteúdo
+   e limitar largura máxima da página */
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 90%; /* Mantém leve margem nas laterais para responsividade */
+  max-width: 1200px; /* Evita que o conteúdo fique muito largo em telas grandes */
+  margin: 0 auto; /* Centraliza horizontalmente */
 }
