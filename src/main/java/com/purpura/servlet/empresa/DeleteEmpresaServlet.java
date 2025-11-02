@@ -2,6 +2,8 @@ package com.purpura.servlet.empresa;
 
 import com.purpura.common.ErroServlet;
 import com.purpura.dao.*;
+import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
 import com.purpura.model.EnderecoEmpresa;
 import com.purpura.model.Residuo;
@@ -40,6 +42,9 @@ public class DeleteEmpresaServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/empresa/list");
         } catch (NumberFormatException e) {
             ErroServlet.setErro(request, response, dao, "Erro ao deletar Empresa:" + e.getMessage(), lista, caminho);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, "listaNome", "/WEB-INF/erro.jsp");
         }
     }
 }

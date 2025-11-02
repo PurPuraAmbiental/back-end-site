@@ -61,8 +61,17 @@
 <body>
 <div class="card">
     <div class="title">Ocorreu um erro ao processar a solicitação</div>
-    <div class="msg">${requestScope.erro}</div>
-    <div class="cid">Código de referência: ${requestScope.cid}</div>
+
+    <!-- Mensagem para o usuario -->
+    <div class="msg">
+        ${requestScope.erro != null ? requestScope.erro : "Ocorreu um erro inesperado."}
+    </div>
+
+    <!-- Código de erro técnico -->
+    <div class="cid">
+        Código de referência: ${requestScope.cid != null ? requestScope.cid : "N/A"}
+    </div>
+
     <a href="javascript:history.back()">Voltar</a>
 </div>
 </body>

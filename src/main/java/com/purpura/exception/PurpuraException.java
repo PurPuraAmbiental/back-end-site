@@ -1,8 +1,8 @@
 package com.purpura.exception;
 
 public abstract class PurpuraException extends RuntimeException {
-    private final String mensagemUsuario;   // mensagem amigável para o usuário
-    private final String codigoErro;     // código estável p/ identificação e logs
+    private final String mensagemUsuario;
+    private final String codigoErro;
 
     // construtor completo
     protected PurpuraException(String message, String mensagemUsuario, String codigoErro, Throwable cause) {
