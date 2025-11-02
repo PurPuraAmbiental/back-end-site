@@ -27,7 +27,7 @@ public class ChaveCadastroServlet extends HttpServlet {
             for (ChaveAcesso chaveAcesso : chaves) {
                 String chaveBanco = chaveAcesso.getCHash();
 
-                if (BCrypt.checkpw(chaveDigitada, chaveBanco)) {
+                if (BCrypt.checkpw(chaveDigitada, chaveBanco) && String.valueOf(chaveAcesso.getCAtivo()).equals("1")) {
                     chaveValida = true;
                 }
             }
@@ -39,6 +39,10 @@ public class ChaveCadastroServlet extends HttpServlet {
                 request.setAttribute("erro", "Senha Invalida");
                 request.getRequestDispatcher("/cadastro/VerificacaoAdministrador.jsp").forward(request, response);
             }
-        }catch (Exception e){}
+        }catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("erro", "Ocorreu um erro ao validar a chave de acesso. Tente novamente mais tarde.");
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
+        }
     }
 }

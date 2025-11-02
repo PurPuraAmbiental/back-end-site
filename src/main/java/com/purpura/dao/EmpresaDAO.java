@@ -83,7 +83,7 @@ public class EmpresaDAO extends DAO<Empresa> {
         List<Empresa> lista = new ArrayList<>();
 
         StringBuilder sql = new StringBuilder(
-                "SELECT e.cNmEmpresa, e.cSenha, e.cCnpj, e.cAtivo, e.cEmail, " +
+                "SELET e.cNmEmpresa, e.cSenha, e.cCnpj, e.cAtivo, e.cEmail, " +
                         "COUNT(r.nCdResiduo) AS totalResiduos " +
                         "FROM empresa e " +
                         "LEFT JOIN residuo r ON e.cCnpj = r.cCnpj " +
@@ -141,7 +141,7 @@ public class EmpresaDAO extends DAO<Empresa> {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ConnectionFailedException();
+            throw new ConnectionFailedException(e);
         }
 
         return lista;

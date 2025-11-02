@@ -1,5 +1,6 @@
 package com.purpura.servlet.empresa;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
@@ -19,9 +20,8 @@ public class ListEmpresasServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        EmpresaDAO empresaDAO = new EmpresaDAO();
         try {
-            EmpresaDAO empresaDAO = new EmpresaDAO();
-
             // Captura os parâmetros do filtro
             String nome = request.getParameter("nome");
             String email = request.getParameter("email");
@@ -44,15 +44,10 @@ public class ListEmpresasServlet extends HttpServlet {
             request.setAttribute("listaEmpresas", empresas);
             request.getRequestDispatcher("/WEB-INF/CRUD/empresa.jsp").forward(request, response);
         } catch (ConnectionFailedException | NotFoundException e) {
-            request.setAttribute("erro", "Erro ao carregar lista de Empresas: " + e.getMessage());
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, empresaDAO, "Erro interno. Tente de novo mais tarde: " + e.getMessage(), "listaEmpresa", "/WEB-INF/CRUD/empresa.jsp");
         } catch (Exception e) {
-            request.setAttribute("erro", "Erro inesperado ao buscar Empresas: " + e.getMessage());
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
-        }
+            ErroServlet.setErro(request, response, empresaDAO, "Erro interno. Tente de novo mais tarde." + e.getMessage(), "listaEmpresa", "/WEB-INF/CRUD/empresa.jsp");        }
     }
 }

@@ -30,6 +30,13 @@ public class ErroServlet {
     public static void setErro(HttpServletRequest request, HttpServletResponse response, DAO<?> dao, Exception ex, String lista, String caminho)
             throws jakarta.servlet.ServletException, IOException {
         String mensagem = (ex instanceof PurpuraException pe) ? pe.getMensagemUsuario() : "Erro ao processar a solicitação.";
+
+        if (ex instanceof PurpuraException pe) {
+            request.setAttribute("cid", pe.getCodigoErro());
+        } else {
+            request.setAttribute("cid", "ERROR");
+        }
+
         request.setAttribute(lista, dao.findAll());
         request.setAttribute("erro", mensagem);
         request.getRequestDispatcher(caminho).forward(request, response);
