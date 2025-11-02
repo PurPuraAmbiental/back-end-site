@@ -61,7 +61,7 @@ public class InsertEmpresaServlet extends HttpServlet {
         } catch (ConnectionFailedException | NotFoundException e) {
             ErroServlet.setErro(request, response, dao, "Erro ao inserir Empresa: " + e.getMessage(), lista, caminho);
         } catch (ParseException e) {
-            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: ", lista, caminho);
+            ErroServlet.setErro(request, response, dao, "Erro ao processar os parâmetros: " + e.getMessage(), lista, caminho);
         }
     }
 }
