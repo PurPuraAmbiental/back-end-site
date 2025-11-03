@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  *  Servlet responsável por realizar a exclusão de um resíduo do sistema,
  *  com base no identificador (ID) informado pelo formulário JSP.
@@ -60,33 +62,15 @@ public class DeleteResiduoServlet extends HttpServlet {
             // Redireciona o usuário para a listagem de resíduos após exclusão bem-sucedida
             response.sendRedirect(request.getContextPath() + "/residuo/list");
 
-        } catch (ConnectionFailedException e) {
-            // Erro de conexão com o banco de dados
-            // Ocorre quando há falha na tentativa de se conectar ao banco (ex: servidor inativo)
-            ErroServlet.setErro(request, response, dao,
-                    "Falha na conexão com o banco de dados. Tente novamente mais tarde.",
-                    lista, caminho);
-
-        } catch (NotFoundException e) {
-            // Resíduo não encontrado
-            // Lançado quando o ID informado não corresponde a nenhum registro existente
-            ErroServlet.setErro(request, response, dao,
-                    "Resíduo não encontrado. Verifique o código informado.",
-                    lista, caminho);
-
         } catch (NumberFormatException e) {
-            // Erro de formatação numérica
-            // Ocorre quando o valor informado não é um número válido (ex: campo vazio ou com letras)
-            ErroServlet.setErro(request, response, dao,
-                    "Código inválido. Informe um número válido para exclusão.",
-                    lista, caminho);
-
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Erro ao processar parametros.", lista, ERROR_PAGE);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
         } catch (Exception e) {
-            // Erro genérico (não previsto)
-            // Captura exceções inesperadas que possam ocorrer durante a execução
-            ErroServlet.setErro(request, response, dao,
-                    "Ocorreu um erro inesperado ao deletar o resíduo: " + e.getMessage(),
-                    lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao,  "Ocorreu um erro inesperado.", lista, ERROR_PAGE);
         }
     }
 }

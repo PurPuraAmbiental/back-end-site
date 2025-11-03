@@ -1,8 +1,10 @@
 package com.purpura.servlet.residuo;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.ResiduoDAO;
 import com.purpura.dto.ResiduoView;
 import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por listar os resíduos cadastrados no sistema.
@@ -42,10 +46,11 @@ public class ListResiduosServlet extends HttpServlet {
         // Define variáveis auxiliares para redirecionamento em caso de erro
         String lista = "listaResiduos";
         String caminho = "/WEB-INF/CRUD/residuos.jsp";
-
+        // Cria o DAO responsável pelas operações com a entidade Resíduo
+        ResiduoDAO residuoDAO = new ResiduoDAO();
+        
         try {
-            // Cria o DAO responsável pelas operações com a entidade Resíduo
-            ResiduoDAO residuoDAO = new ResiduoDAO();
+
 
             // Captura os parâmetros do filtro enviados pela página (usados para filtragem)
             String precoMinStr = request.getParameter("precoMin");
@@ -77,19 +82,15 @@ public class ListResiduosServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher(caminho);
             rd.forward(request, response);
 
-        } catch (ConnectionFailedException e) {
-            // Define uma mensagem de erro na requisição, que será exibida na página de erro
-            request.setAttribute("erro", "Erro ao carregar lista de resíduos: " + e.getMessage());
+        } catch (ConnectionFailedException | NotFoundException e) {
+            // Define uma mensagem de erro na requisição, será exibida na página de erro
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, residuoDAO, "Falha ao conectar no banco de dados", lista, ERROR_PAGE);
 
         } catch (Exception e) {
             // Define mensagem genérica para erros não previstos
-            request.setAttribute("erro", "Erro inesperado ao buscar Resíduos: " + e.getMessage());
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            ErroServlet.setErro(request, response, residuoDAO, "Ocorreu um erro inesperado.", lista, ERROR_PAGE);
         }
     }
 }
