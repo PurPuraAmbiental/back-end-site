@@ -5,6 +5,8 @@ import com.purpura.dao.DAO;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.ResiduoDAO;
 import com.purpura.dto.ResiduoView;
+import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
 import com.purpura.model.Residuo;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,6 +18,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 @WebServlet(name = "UpdateResiduoServlet", value = "/residuo/update")
 public class UpdateResiduoServlet extends HttpServlet {
@@ -61,7 +65,11 @@ public class UpdateResiduoServlet extends HttpServlet {
             dao.update(model);
             response.sendRedirect(request.getContextPath() + "/residuo/list");
         } catch (NumberFormatException e) {
-            ErroServlet.setErro(request, response, dao, "Erro ao atualizar Residuo: " + e.getMessage() , lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Erro ao processar parametros.", lista, ERROR_PAGE);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
         }
     }
     public void residuoViewSetErro(HttpServletRequest request, HttpServletResponse response, ResiduoDAO residuoDAO, List<ResiduoView> residuoView, String mensagem, String lista, String caminho)

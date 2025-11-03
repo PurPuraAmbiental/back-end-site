@@ -17,6 +17,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * SERVLET INSERT RESÍDUO
  *
@@ -105,11 +107,12 @@ public class InsertResiduoServlet extends HttpServlet {
             // Redireciona para a listagem de resíduos após sucesso
             response.sendRedirect(request.getContextPath() + "/residuo/list");
 
-        } catch (ConnectionFailedException | NotFoundException | NumberFormatException e) {
-            // Tratamento de erros específicos
-            residuoViewSetErro(request, response, residuoDAO, residuoViews,
-                    "Erro ao inserir Resíduo: " + e.getMessage(),
-                    lista, caminho);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, residuoDAO, "Erro ao processar parametros.", lista, ERROR_PAGE);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, residuoDAO, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
         }
     }
 
