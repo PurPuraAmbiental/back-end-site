@@ -70,6 +70,12 @@ public class UpdateResiduoServlet extends HttpServlet {
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
             ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
+        } catch (Exception e) {
+            //Erro genérico (não previsto)
+            // Captura qualquer outra exceção inesperada que possa ocorrer no fluxo
+            ErroServlet.setErro(request, response, dao,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
     public void residuoViewSetErro(HttpServletRequest request, HttpServletResponse response, ResiduoDAO residuoDAO, List<ResiduoView> residuoView, String mensagem, String lista, String caminho)

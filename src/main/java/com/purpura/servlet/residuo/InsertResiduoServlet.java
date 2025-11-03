@@ -113,6 +113,12 @@ public class InsertResiduoServlet extends HttpServlet {
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
             ErroServlet.setErro(request, response, residuoDAO, e , lista, ERROR_PAGE);
+        } catch (Exception e) {
+            //Erro genérico (não previsto)
+            // Captura qualquer outra exceção inesperada que possa ocorrer no fluxo
+            ErroServlet.setErro(request, response, residuoDAO,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 
