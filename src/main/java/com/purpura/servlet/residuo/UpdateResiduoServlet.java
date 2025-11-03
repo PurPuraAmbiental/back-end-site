@@ -51,7 +51,7 @@ public class UpdateResiduoServlet extends HttpServlet {
             //VALIDAÇÃO DE DADOS
             ResiduoDAO residuoDAO = new ResiduoDAO();
             List<ResiduoView> listaResiduos = residuoDAO.listarComEmpresa();
-            if (empresa == null) {
+            if (empresa != null) {
                 residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
                 return;
             } else {

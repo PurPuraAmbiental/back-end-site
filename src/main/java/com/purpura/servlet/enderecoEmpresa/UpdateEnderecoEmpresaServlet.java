@@ -68,7 +68,7 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             // ==================== VALIDAÇÕES DE DADOS ====================
 
             // Valida se a empresa existe
-            if (empresa == null) {
+            if (empresa != null) {
                 EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos,
                         "Não foi possível atualizar o endereço! Insira uma empresa cadastrada anteriormente.",
                         lista, caminho);
