@@ -158,3 +158,73 @@ body {
     margin-top: 10px;
     transition: background 0.3s ease;
 }
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    #filtroPopup {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 80px;
+        padding: 20px;
+        height: auto;
+    }
+
+    .filtroPopup-overlay {
+        align-items: center;
+    }
+
+    #filtroPopup h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #filtroPopup input {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    #filtroPopup button {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    #filtroPopup {
+        width: 92%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 60px;
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    #filtroPopup h2 {
+        font-size: 18px;
+        margin-bottom: 18px;
+        text-align: center;
+    }
+
+    #filtroPopup label {
+        font-size: 13px;
+    }
+
+    #filtroPopup input {
+        font-size: 13px;
+        padding: 9px;
+    }
+
+    #filtroPopup button {
+        font-size: 13px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .close-btn {
+        top: 10px;
+        right: 14px;
+        font-size: 20px;
+    }
+}

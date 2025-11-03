@@ -111,8 +111,29 @@
     <div class="popup" id="filtroPopup">
         <h2>Filtrar Empresa</h2>
         <button class="close-btn" onclick="fecharPopup('filtroEmpresa')">×</button>
-
-        <!-- Formulário para filtrar empresas com base em múltiplos campos -->
         <form action="${pageContext.request.contextPath}/empresa/list" method="get">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" class="input-filtro" placeholder="Nome da empresa" value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" name="cnpj" class="input-filtro" placeholder="CNPJ" value="<%= request.getParameter("cnpj") != null ? request.getParameter("cnpj") : "" %>">
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="input-filtro" placeholder="Digite o email" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
+            <br>
+            <label for="ativo">Status:</label>
+            <select name="ativo">
+                <option value="" <%= request.getParameter("ativo") == null ? "selected" : "" %>>Todos</option>
+                <option value="1" <%= "1".equals(request.getParameter("ativo")) ? "selected" : "" %>>Ativas</option>
+                <option value="0" <%= "0".equals(request.getParameter("ativo")) ? "selected" : "" %>>Inativas</option>
+            </select>
+            <br>
+            <label for="temResiduo">Resíduos:</label>
+            <select name="temResiduo">
+                <option value="" <%= request.getParameter("temResiduo") == null ? "selected" : "" %>>Todos</option>
+                <option value="1" <%= "1".equals(request.getParameter("temResiduo")) ? "selected" : "" %>>Pelo menos um resíduo</option>
+            </select>
+            <button type="submit" class="add-btn">Filtrar</button>
+        </form>
+    </div>
+</div>
