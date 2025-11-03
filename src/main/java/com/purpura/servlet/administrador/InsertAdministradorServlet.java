@@ -110,6 +110,15 @@ public class InsertAdministradorServlet extends HttpServlet {
                 }
             }
 
+
+            // Verifica se a senha e a confirmação são iguais
+            if (!model.getCSenha().equals(params.get("confirmar-senha"))) {
+                request.setAttribute("erro", "As senhas não coincidem");
+                request.getRequestDispatcher("/cadastro/cadastro.jsp").forward(request, response);
+                return; // interrompe o fluxo do servlet
+            }
+
+
             // Caso todas as validações passem:
             else {
                 // Verifica se o parâmetro 'cSenha' (campo de senha) existe.
