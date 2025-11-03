@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PurPura</title>
     <link rel="stylesheet" herf="styles/texto.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/icone_purpura.svg">
+    <link rel="shortcut icon" type="image/png" href="../assets/purpura/icone_purpura.svg">
     <link rel="stylesheet" href="styles/login.css">
 </head>
 <body class="inter">

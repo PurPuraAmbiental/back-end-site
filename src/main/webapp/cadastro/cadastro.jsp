@@ -9,7 +9,7 @@
     <title>PurPura - Cadastro</title>
     <link rel="stylesheet" href="../styles/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="../assets/icone_purpura.svg">
+    <link rel="shortcut icon" type="image/png" href="../assets/purpura/icone_purpura.svg">
 </head>
 <body>
     <div class="container-cadastro">
