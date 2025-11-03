@@ -65,7 +65,7 @@ public class UpdateTelefoneServlet extends HttpServlet {
                 params.put("cCnpj", empresa.getCCnpj());
             } else {
                 telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                        "Não foi possível atualizae Telefone! Insira uma empresa cadastrada anteriormente",
+                        "Não foi possível atualizar telefone! Insira uma empresa cadastrada anteriormente",
                         lista, caminho);
                 return;
             }
@@ -79,7 +79,7 @@ public class UpdateTelefoneServlet extends HttpServlet {
             // Valida o número de telefone
             if (!Regex.validarTelefone(model.getCNrTelefone())) {
                 telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                        "Não foi possível atualizar Telefone! Insira um Telefone válido",
+                        "Não foi possível atualizar telefone! Insira um Telefone válido",
                         lista, caminho);
                 return;
             }
@@ -87,7 +87,7 @@ public class UpdateTelefoneServlet extends HttpServlet {
             // Valida se a empresa está ativa
             if (empresa.getCAtivo() != '1') {
                 telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                        "Nao foi possivel atualizar Telefone! Insira uma empresa ativa",
+                        "Nao foi possivel atualizar telefone! Insira uma empresa ativa",
                         lista, caminho);
                 return;
             }

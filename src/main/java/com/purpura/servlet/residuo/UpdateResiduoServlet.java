@@ -45,13 +45,13 @@ public class UpdateResiduoServlet extends HttpServlet {
             if (empresa != null) {
                 params.put("cCnpj", empresa.getCCnpj());
             } else {
-                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
+                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Não foi possivel atualizar resíduo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
                 return;
             }
 
             Residuo model = new Residuo(params);
             if (empresa.getCAtivo() != '1') {
-                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa ativa" , lista, caminho);
+                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Não foi possível atualizar resíduo! Insira uma empresa ativa" , lista, caminho);
                 return;
             }
 
