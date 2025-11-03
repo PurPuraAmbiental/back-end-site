@@ -114,7 +114,7 @@
             <br>
             <!--Filtro por regiao-->
             <label for="regiao">Insira a região</label>
-            <input type="text" id="regiao" name="regiao" placeholder="Ache transportadora pertinho de você">
+            <input type="text" id="regiao" name="regiao" placeholder="Digite o nome da região">
 
             <br>
 
