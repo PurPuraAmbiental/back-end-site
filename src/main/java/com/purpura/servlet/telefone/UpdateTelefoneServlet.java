@@ -51,7 +51,7 @@ public class UpdateTelefoneServlet extends HttpServlet {
         TelefoneDAO telefoneDAO = new TelefoneDAO();
         String lista = "listaTelefones";
         String caminho = "/WEB-INF/CRUD/telefone.jsp";
-
+        List<TelefoneView> telefoneViews = telefoneDAO.listarComEmpresa();
         try {
             // Cria um mapa contendo os parâmetros enviados pelo formulário
             Map<String, String> params = new LinkedHashMap<>();
@@ -61,13 +61,20 @@ public class UpdateTelefoneServlet extends HttpServlet {
             String nomeEmpresa = params.get("cNmEmpresa");
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
-            params.put("cCnpj", empresa.getCCnpj());
+            if (empresa != null){
+                params.put("cCnpj", empresa.getCCnpj());
+            } else {
+                telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
+                        "Não foi possível atualizae Telefone! Insira uma empresa cadastrada anteriormente",
+                        lista, caminho);
+                return;
+            }
 
             // Cria um objeto 'Telefone' a partir dos parâmetros recebidos
             Telefone model = new Telefone(params);
 
             // ==================== VALIDAÇÕES DE DADOS ====================
-            List<TelefoneView> telefoneViews = telefoneDAO.listarComEmpresa();
+
 
             // Valida o número de telefone
             if (!Regex.validarTelefone(model.getCNrTelefone())) {
@@ -78,12 +85,12 @@ public class UpdateTelefoneServlet extends HttpServlet {
             }
 
             // Valida se a empresa existe
-            if (empresa == null) {
-                telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                        "Não foi possível atualizae Telefone! Insira uma empresa cadastrada anteriormente",
-                        lista, caminho);
-                return;
-            }
+//            if (empresa.getCNmEmpresa() == null) {
+//                telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
+//                        "Não foi possível atualizae Telefone! Insira uma empresa cadastrada anteriormente",
+//                        lista, caminho);
+//                return;
+//            }
 
             // Valida se a empresa está ativa
             if (empresa.getCAtivo() != '1') {
