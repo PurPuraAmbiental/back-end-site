@@ -38,7 +38,7 @@ body {
 .popup h2 {
     margin: 0 0 24px;
     font-size: 22px;
-    color: #b13cd4;
+    color: #B94CD5;
     font-weight: 600;
     text-align: left;
 }
@@ -75,7 +75,7 @@ body {
 
 /* Contorno roxo quando selecionado */
 .popup input:focus {
-    border-color: #a442c2;
+    border-color: #B94CD5;
 }
 
 /* Botão principal (Salvar/Enviar) */
@@ -147,8 +147,8 @@ body {
 /* Botão de cancelar e botões secundários */
 .popup button[type="button"], .btn-cancelar {
     background-color: #ffffff;
-    color: #b13cd4;
-    border: 2px solid #b13cd4;
+    color: #B94CD5;
+    border: 2px solid #B94CD5;
     padding: 12px 20px;
     border-radius: 10px;
     cursor: pointer;

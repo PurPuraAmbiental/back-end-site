@@ -112,7 +112,7 @@ public class InsertResiduoServlet extends HttpServlet {
             ErroServlet.setErro(request, response, residuoDAO, "Erro ao processar parametros.", lista, ERROR_PAGE);
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, residuoDAO, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, residuoDAO, e , lista, ERROR_PAGE);
         }
     }
 

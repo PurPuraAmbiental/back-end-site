@@ -62,15 +62,20 @@ public class DeleteResiduoServlet extends HttpServlet {
             // Redireciona o usuário para a listagem de resíduos após exclusão bem-sucedida
             response.sendRedirect(request.getContextPath() + "/residuo/list");
 
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, "Erro ao processar parametros.", lista, ERROR_PAGE);
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
-        } catch (Exception e) {
+            ErroServlet.setErro(request, response, dao, e, "listaNome", ERROR_PAGE);
+        } catch (NumberFormatException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao,  "Ocorreu um erro inesperado.", lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, dao,
+                    "Erro ao processar parâmetros.",
+                    lista, ERROR_PAGE);
+        } catch (Exception e) {
+            //Erro genérico (não previsto)
+            // Captura qualquer outra exceção inesperada que possa ocorrer no fluxo
+            ErroServlet.setErro(request, response, dao,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 }

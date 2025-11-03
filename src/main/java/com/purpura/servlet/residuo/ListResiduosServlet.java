@@ -85,7 +85,7 @@ public class ListResiduosServlet extends HttpServlet {
         } catch (ConnectionFailedException | NotFoundException e) {
             // Define uma mensagem de erro na requisição, será exibida na página de erro
             e.printStackTrace();
-            ErroServlet.setErro(request, response, residuoDAO, "Falha ao conectar no banco de dados", lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, residuoDAO, e, lista, ERROR_PAGE);
 
         } catch (Exception e) {
             // Define mensagem genérica para erros não previstos

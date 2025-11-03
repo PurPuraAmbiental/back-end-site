@@ -69,7 +69,7 @@ public class UpdateResiduoServlet extends HttpServlet {
             ErroServlet.setErro(request, response, dao, "Erro ao processar parametros.", lista, ERROR_PAGE);
         } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
-            ErroServlet.setErro(request, response, dao, "Falha ao conectar ao banco de dados.", lista, ERROR_PAGE);
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
         }
     }
     public void residuoViewSetErro(HttpServletRequest request, HttpServletResponse response, ResiduoDAO residuoDAO, List<ResiduoView> residuoView, String mensagem, String lista, String caminho)
