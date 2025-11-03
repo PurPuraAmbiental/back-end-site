@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Ícone do site -->
-    <link rel="icon" type="image/png" href="c:\Users\irisrodrigues-ieg\Downloads\Logo.png">
+    <link rel="shortcut icon" type="image/png" href="../../assets/purpura/icone_purpura.svg">
     <!-- Arquivo CSS para estilizar a página CRUD -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/crud.css">
     <title>CRUD</title>
