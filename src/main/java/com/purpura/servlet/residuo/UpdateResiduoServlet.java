@@ -32,15 +32,31 @@ public class UpdateResiduoServlet extends HttpServlet {
         try {
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
+
+            System.out.println(params.get("cNmEmpresa")+" | "+params.get("cCnpj"));
+
             String nomeEmpresa = params.get("cNmEmpresa");
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
-            params.put("cCnpj", empresa.getCCnpj());
-            System.out.println(params.get("cNmEmpresa")+" | "+params.get("cCnpj"));
 
-
+            //VALIDAÇÃO DE DADOS
+            ResiduoDAO residuoDAO = new ResiduoDAO();
+            List<ResiduoView> listaResiduos = residuoDAO.listarComEmpresa();
+            if (empresa != null) {
+                params.put("cCnpj", empresa.getCCnpj());
+            } else {
+                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
+                return;
+            }
 
             Residuo model = new Residuo(params);
+            if (empresa.getCAtivo() != '1') {
+                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa ativa" , lista, caminho);
+                return;
+            }
+
+            //altera os dados de acordo com o formulario
+
             model.setCNmResiduo(params.get("cNmResiduo"));
             model.setCCategoria(params.get("cCategoria"));
             model.setCDescricao(params.get("cDescricao"));
@@ -48,20 +64,6 @@ public class UpdateResiduoServlet extends HttpServlet {
             model.setNPrecoPadrao(Double.parseDouble(params.get("nPrecoPadrao")));
             model.setNVolumePadrao(Double.parseDouble(params.get("nVolumePadrao")));
             model.setCTipoUnidade(params.get("cTipoUnidade"));
-            //VALIDAÇÃO DE DADOS
-            ResiduoDAO residuoDAO = new ResiduoDAO();
-            List<ResiduoView> listaResiduos = residuoDAO.listarComEmpresa();
-            if (empresa != null) {
-                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa cadastrada anteriormente" , lista, caminho);
-                return;
-            } else {
-                model.setCCnpj(empresa.getCCnpj());
-            }
-            if (empresa.getCAtivo() != '1') {
-                residuoViewSetErro(request, response, residuoDAO, listaResiduos, "Nao foi possivel atualizar Residuo! Insira uma empresa ativa" , lista, caminho);
-                return;
-            }
-
             dao.update(model);
             response.sendRedirect(request.getContextPath() + "/residuo/list");
         } catch (NumberFormatException e) {

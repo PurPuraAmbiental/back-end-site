@@ -84,14 +84,6 @@ public class UpdateTelefoneServlet extends HttpServlet {
                 return;
             }
 
-            // Valida se a empresa existe
-//            if (empresa.getCNmEmpresa() == null) {
-//                telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-//                        "Não foi possível atualizae Telefone! Insira uma empresa cadastrada anteriormente",
-//                        lista, caminho);
-//                return;
-//            }
-
             // Valida se a empresa está ativa
             if (empresa.getCAtivo() != '1') {
                 telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,

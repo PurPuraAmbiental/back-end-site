@@ -53,22 +53,20 @@ public class UpdateEnderecoEmpresaServlet extends HttpServlet {
             // Cria um mapa contendo os parâmetros enviados pelo formulário
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
-
+            // Cria um objeto 'EnderecoEmpresa' a partir dos parâmetros recebidos
+            EnderecoEmpresa model = new EnderecoEmpresa(params);
+            List<EnderecoEmpresaView> listaEnderecos = dao.listarComEmpresa();
             // Recupera a empresa pelo nome
             String nomeEmpresa = params.get("cNmEmpresa");
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
-            params.put("cCnpj", empresa.getCCnpj());
-            System.out.println(params.get("cNmEmpresa")+" | "+params.get("cCnpj"));
-
-            // Cria um objeto 'EnderecoEmpresa' a partir dos parâmetros recebidos
-            EnderecoEmpresa model = new EnderecoEmpresa(params);
-            List<EnderecoEmpresaView> listaEnderecos = dao.listarComEmpresa();
 
             // ==================== VALIDAÇÕES DE DADOS ====================
 
             // Valida se a empresa existe
             if (empresa != null) {
+                params.put("cCnpj", empresa.getCCnpj());
+            } else {
                 EnderecoEmpresaViewSetErro(request, response, dao, listaEnderecos,
                         "Não foi possível atualizar o endereço! Insira uma empresa cadastrada anteriormente.",
                         lista, caminho);
