@@ -83,6 +83,14 @@ public class InsertTransportadoraServlet extends HttpServlet {
                 return;
             }
 
+            // Verifica se o e-mail já está cadastrado no sistema
+            if (dao.findByAttribute("cEmail", model.getCEmail()) != null) {
+                ErroServlet.setErro(request, response, dao,
+                        "Esse e-mail já foi cadastrado! Digite um e-mail válido",
+                        lista, caminho);
+                return;
+            }
+
             // Valida o formato do e-mail informado
             if (!Regex.validarEmail(model.getCEmail())) {
                 ErroServlet.setErro(request, response, dao,
