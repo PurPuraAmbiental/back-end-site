@@ -19,6 +19,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  * Servlet responsável por inserir um novo Telefone no sistema.
  *
@@ -129,10 +131,14 @@ public class InsertTelefoneServlet extends HttpServlet {
             // Isso evita o reenvio do formulário (problema de "F5" duplicar registros)
             response.sendRedirect(request.getContextPath() + "/telefone/list");
 
-        } catch (NumberFormatException | ConnectionFailedException | NotFoundException e) {
-            // Captura erros de formato ou falhas na conexão com o banco de dados
-            telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                    "Erro ao inserir Telefone: " + e.getMessage(), lista, caminho);
+        } catch (ConnectionFailedException | NotFoundException e) {
+            // Trata erros relacionados à conexão com o banco
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, telefoneDAO, e, lista, ERROR_PAGE);
+        } catch (Exception e) {
+            // Captura qualquer outro erro inesperado que possa ocorrer
+            ErroServlet.setErro(request, response, telefoneDAO,
+                "Ocorreu um erro inespearado.", lista, ERROR_PAGE);
         }
     }
 

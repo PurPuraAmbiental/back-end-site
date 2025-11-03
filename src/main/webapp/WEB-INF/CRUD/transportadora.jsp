@@ -89,7 +89,7 @@
 
                     <!-- ================== BOTÃO EXCLUIR ================== -->
                     <!-- Formulário para deletar a transportadora -->
-                    <<button class="add-btn"
+                    <button class="add-btn"
                              onclick="DeleteTransportadora('<%= transportadora.getCCnpj() %>', '<%= transportadora.getCNmTransportadora() %>')">
                     Excluir
                 </button>

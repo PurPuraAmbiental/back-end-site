@@ -1,5 +1,6 @@
 package com.purpura.servlet.telefone;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.common.Regex;
 import com.purpura.dao.EmpresaDAO;
 import com.purpura.dao.TelefoneDAO;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por atualizar os dados de um Telefone existente.
@@ -103,9 +106,13 @@ public class UpdateTelefoneServlet extends HttpServlet {
 
         } catch (ConnectionFailedException | NotFoundException  e) {
             // Trata erros de conexão com o banco e mostra mensagem personalizada
-            request.setAttribute("erro", "Erro ao atualizar Telefone: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, telefoneDAO, e, lista, ERROR_PAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, telefoneDAO,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 

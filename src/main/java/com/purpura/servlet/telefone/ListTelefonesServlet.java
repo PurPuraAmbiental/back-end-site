@@ -1,8 +1,10 @@
 package com.purpura.servlet.telefone;
 
+import com.purpura.common.ErroServlet;
 import com.purpura.dao.TelefoneDAO;
 import com.purpura.dto.TelefoneView;
 import com.purpura.exception.ConnectionFailedException;
+import com.purpura.exception.NotFoundException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.purpura.common.Constants.ERROR_PAGE;
 
 /**
  * Servlet responsável por listar os telefones das empresas cadastradas no sistema.
@@ -43,9 +47,10 @@ public class ListTelefonesServlet extends HttpServlet {
         String lista = "listaTelefones";
         String caminho = "/WEB-INF/CRUD/telefone.jsp";
 
+        // Cria o DAO responsável pelas operações com a entidade Telefone
+        TelefoneDAO telefoneDAO = new TelefoneDAO();
+
         try {
-            // Cria o DAO responsável pelas operações com a entidade Telefone
-            TelefoneDAO telefoneDAO = new TelefoneDAO();
 
             // Captura os parâmetros do filtro enviados pela página (usados para filtragem)
             String nomeEmpresa = request.getParameter("nomeEmpresa");
@@ -63,19 +68,16 @@ public class ListTelefonesServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher(caminho);
             rd.forward(request, response);
 
-        } catch (ConnectionFailedException e) {
+        } catch (ConnectionFailedException | NotFoundException e) {
             // Define uma mensagem de erro na requisição, que será exibida na página de erro
-            request.setAttribute("erro", "Erro ao carregar lista de telefones: " + e.getMessage());
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
-
+            ErroServlet.setErro(request, response, telefoneDAO, e, lista, ERROR_PAGE);
         } catch (Exception e) {
-            // Define mensagem genérica para erros não previstos
-            request.setAttribute("erro", "Erro inesperado ao buscar Telefones: " + e.getMessage());
-            e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            rd.forward(request, response);
+            //Erro genérico (não previsto)
+            // Captura qualquer outra exceção inesperada que possa ocorrer no fluxo
+            ErroServlet.setErro(request, response, telefoneDAO,
+                    "Ocorreu um erro inesperado.",
+                    lista, ERROR_PAGE);
         }
     }
 }
