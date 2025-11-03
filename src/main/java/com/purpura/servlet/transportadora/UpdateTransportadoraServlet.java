@@ -69,6 +69,14 @@ public class UpdateTransportadoraServlet extends HttpServlet {
                         lista, caminho);
                 return;
             }
+
+            // Verifica se o e-mail já está cadastrado no sistema
+            if (dao.findByAttribute("cEmail", model.getCEmail()) != null) {
+                ErroServlet.setErro(request, response, dao,
+                        "Esse e-mail já foi cadastrado! Digite um e-mail válido",
+                        lista, caminho);
+                return;
+            }
             model.setCEmail(params.get("cEmail"));
 
             // Atualiza o registro no banco de dados

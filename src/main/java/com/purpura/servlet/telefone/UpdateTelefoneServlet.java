@@ -9,7 +9,6 @@ import com.purpura.exception.ConnectionFailedException;
 import com.purpura.exception.NotFoundException;
 import com.purpura.model.Empresa;
 import com.purpura.model.Telefone;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,64 +46,69 @@ public class UpdateTelefoneServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws jakarta.servlet.ServletException, IOException {
 
-        // Em caso de erro, essas variáveis são usadas para repassar informações de contexto
+        // Variáveis usadas em caso de erro para repassar contexto
         TelefoneDAO telefoneDAO = new TelefoneDAO();
         String lista = "listaTelefones";
         String caminho = "/WEB-INF/CRUD/telefone.jsp";
-        List<TelefoneView> telefoneViews = telefoneDAO.listarComEmpresa();
+
         try {
-            // Cria um mapa contendo os parâmetros enviados pelo formulário
+            // ==================== CAPTURA E PREPARAÇÃO DOS PARÂMETROS ====================
             Map<String, String> params = new LinkedHashMap<>();
             request.getParameterMap().forEach((key, values) -> params.put(key, values[0]));
 
-            // Recupera a empresa pelo nome
+            // Recupera lista atual de telefones (usada em caso de erro)
+            List<TelefoneView> telefoneViews = telefoneDAO.listarComEmpresa();
+
+            // ==================== VALIDAÇÃO DE DADOS ====================
+
+            // Busca empresa associada pelo nome informado no formulário
             String nomeEmpresa = params.get("cNmEmpresa");
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = empresaDAO.findByAttribute("cNmEmpresa", nomeEmpresa);
-            if (empresa != null){
-                params.put("cCnpj", empresa.getCCnpj());
-            } else {
+
+            // Verifica se a empresa existe
+            if (empresa == null) {
                 telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                        "Não foi possível atualizae Telefone! Insira uma empresa cadastrada anteriormente",
+                        "Não foi possível atualizar o telefone! Insira uma empresa cadastrada anteriormente.",
                         lista, caminho);
                 return;
             }
 
-            // Cria um objeto 'Telefone' a partir dos parâmetros recebidos
-            Telefone model = new Telefone(params);
-
-            // ==================== VALIDAÇÕES DE DADOS ====================
-
-
-            // Valida o número de telefone
-            if (!Regex.validarTelefone(model.getCNrTelefone())) {
-                telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                        "Não foi possível atualizar Telefone! Insira um Telefone válido",
-                        lista, caminho);
-                return;
-            }
-
-            // Valida se a empresa está ativa
+            // Verifica se a empresa está ativa
             if (empresa.getCAtivo() != '1') {
                 telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
-                        "Nao foi possivel atualizar Telefone! Insira uma empresa ativa",
+                        "Não foi possível atualizar o telefone! Insira uma empresa ativa.",
                         lista, caminho);
                 return;
             }
 
-            // Atualiza os atributos do modelo com os novos valores do formulário
+            // Atribui o CNPJ da empresa validada
+            params.put("cCnpj", empresa.getCCnpj());
+
+            // Cria o modelo base a partir dos parâmetros recebidos
+            Telefone model = new Telefone(params);
+
+            // Valida o número de telefone com REGEX
+            if (!Regex.validarTelefone(model.getCNrTelefone())) {
+                telefoneViewSetErro(request, response, telefoneDAO, telefoneViews,
+                        "Não foi possível atualizar o telefone! Insira um número de telefone válido.",
+                        lista, caminho);
+                return;
+            }
+
+            // ==================== ATUALIZAÇÃO DO MODELO ====================
             model.setNCdTelefone(Integer.parseInt(params.get("nCdTelefone")));
             model.setCNrTelefone(params.get("cNrTelefone"));
             model.setCDescricao(params.get("cDescricao"));
+            model.setCCnpj(params.get("cCnpj"));
 
-            // Atualiza o registro no banco de dados
+            // ==================== ATUALIZAÇÃO NO BANCO ====================
             telefoneDAO.update(model);
 
-            // Após atualização bem-sucedida, redireciona para a listagem de telefones
+            // Redireciona após atualização bem-sucedida
             response.sendRedirect(request.getContextPath() + "/telefone/list");
 
-        } catch (ConnectionFailedException | NotFoundException  e) {
-            // Trata erros de conexão com o banco e mostra mensagem personalizada
+        } catch (ConnectionFailedException | NotFoundException e) {
             e.printStackTrace();
             ErroServlet.setErro(request, response, telefoneDAO, e, lista, ERROR_PAGE);
         } catch (Exception e) {
@@ -118,16 +122,6 @@ public class UpdateTelefoneServlet extends HttpServlet {
     /**
      * Método auxiliar para setar erro e repassar a lista de telefones
      * para a view quando ocorre validação ou erro de atualização.
-     *
-     * @param request  objeto HttpServletRequest
-     * @param response objeto HttpServletResponse
-     * @param telefoneDAO DAO de Telefone
-     * @param telefoneView lista de TelefoneView
-     * @param mensagem mensagem de erro a ser exibida
-     * @param lista nome do atributo da lista na requisição
-     * @param caminho caminho da página JSP
-     * @throws jakarta.servlet.ServletException se ocorrer erro no servlet
-     * @throws IOException                      se ocorrer erro de I/O
      */
     public void telefoneViewSetErro(HttpServletRequest request, HttpServletResponse response,
                                     TelefoneDAO telefoneDAO, List<TelefoneView> telefoneView,
