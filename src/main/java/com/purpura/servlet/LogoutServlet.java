@@ -32,6 +32,6 @@ import java.io.IOException;
         if(session != null){
             session.invalidate();
         }
-        response.sendRedirect(request.getContextPath());
+        response.sendRedirect(request.getContextPath() + "/index.html");
     }
 }
