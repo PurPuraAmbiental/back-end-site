@@ -51,7 +51,14 @@ public class InsertAdministradorServlet extends HttpServlet {
         // Em caso de erro, essas variáveis são usadas para repassar informações de contexto
         DAO<Administrador> dao = new AdministradorDAO();
         String caminho = "/WEB-INF/CRUD/administrador.jsp";
+        String caminhoCadastro = "/cadastro/cadastro.jsp";
         String lista = "listaAdministradores";
+
+        // Verifica se existe o parâmetro "origem" na requisição.
+        // Esse parâmetro indica de qual pagina o servlet foi solicitado: do cadastro (se for diferente de null)
+        // ou do Insert do crud (se for null)
+        String origem = null;
+        origem = request.getParameter("origem");
         try {
             // Cria um mapa para armazenar os parâmetros enviados pelo formulário
             // O request.getParameterMap() retorna um Map<String, String[]>, então pegamos o primeiro valor de cada campo.
@@ -65,25 +72,42 @@ public class InsertAdministradorServlet extends HttpServlet {
 
             // Verifica se o e-mail digitado possui formato válido usando uma expressão regular (Regex).
             if (!Regex.validarEmail(model.getCEmail())) {
+                if (origem == null) {
                 // Se o e-mail for inválido, define uma mensagem de erro e retorna para a página de administrador.jsp.
                 ErroServlet.setErro(request, response, dao, "Insira um E-mail valido", lista, caminho);
                 return; // interrompe a continuidade do servlet
+               } else {
+                    ErroServlet.setErro(request, response, dao, "Insira um E-mail valido", lista, caminhoCadastro);
+                    return;
+                }
             }
 
             // Verifica se já existe um administrador cadastrado com o mesmo e-mail.
             else if (dao.findById(model.getCEmail()) != null) {
-                // Caso exista, mostra uma mensagem de erro e interrompe o processo.
-                ErroServlet.setErro(request, response, dao,
-                        "E-mail ja cadastrado anteriormente", lista, caminho);
-                return;
+                if (origem == null) {
+                    // Caso exista, mostra uma mensagem de erro e interrompe o processo.
+                    ErroServlet.setErro(request, response, dao,
+                            "E-mail ja cadastrado anteriormente", lista, caminho);
+                    return;
+                } else {
+                    // Caso exista, mostra uma mensagem de erro e interrompe o processo.
+                    ErroServlet.setErro(request, response, dao,
+                            "E-mail ja cadastrado anteriormente", lista, caminhoCadastro);
+                }
             }
 
             // Verifica se a senha possui pelo menos 6 caracteres.
             else if (model.getCSenha().length() < 6) {
-                // Se for menor, exibe mensagem de erro e interrompe.
-                ErroServlet.setErro(request, response, dao,
-                        "A senha deve possuir no minimo 6 caracteres", lista, caminho);
-                return;
+                if (origem == null) {
+                    // Se for menor, exibe mensagem de erro e interrompe.
+                    ErroServlet.setErro(request, response, dao,
+                            "A senha deve possuir no minimo 6 caracteres", lista, caminho);
+                    return;
+                } else {
+                    ErroServlet.setErro(request, response, dao,
+                            "A senha deve possuir no minimo 6 caracteres", lista, caminhoCadastro);
+                    return;
+                }
             }
 
             // Caso todas as validações passem:
@@ -107,12 +131,6 @@ public class InsertAdministradorServlet extends HttpServlet {
             dao.save(model);
 
             // ==================== REDIRECIONAMENTO ====================
-
-            // Verifica se existe o parâmetro "origem" na requisição.
-            // Esse parâmetro indica de qual pagina o servlet foi solicitado: do cadastro (se for diferente de null)
-            // ou do Insert do crud (se for null)
-            String origem = null;
-            origem = request.getParameter("origem");
 
             if (origem != null) {
                 // Se "origem" estiver presente, significa que o administrador acabou de se cadastrar

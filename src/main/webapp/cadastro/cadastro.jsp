@@ -35,6 +35,11 @@
             </div>
             <div class="form-footer">
                 <input type="hidden" name="origem" value="crud">
+                <%-- Verifica erro, se há, exibe-o --%>
+                <% String erro = (String) request.getAttribute("erro");
+                if (erro != null){ %>
+                <h5> <%= erro%> </h5>
+                <% }%>
                 <button type="submit" class="btn-cadastro">Cadastrar</button>
                 <a href="login.jsp" class="link-login">Já tem uma conta? Faça login</a>
             </div>
