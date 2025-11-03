@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static com.purpura.common.Constants.ERROR_PAGE;
+
 /**
  *  Servlet responsável por realizar a exclusão de um telefone cadastrado
  *  no sistema, com base no identificador (ID) informado pelo formulário JSP.
@@ -33,7 +35,7 @@ public class DeleteTelefoneServlet extends HttpServlet {
      * @param request  objeto que contém os dados enviados pelo formulário JSP
      * @param response objeto usado para enviar respostas ao cliente
      * @throws jakarta.servlet.ServletException caso ocorra erro interno no servlet
-     * @throws IOException caso ocorra falha na comunicação com o cliente
+     * @throws IOException                      caso ocorra falha na comunicação com o cliente
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,34 +61,25 @@ public class DeleteTelefoneServlet extends HttpServlet {
             // Redireciona o usuário para a página de listagem após exclusão bem-sucedida
             response.sendRedirect(request.getContextPath() + "/telefone/list");
 
-        } catch (ConnectionFailedException e) {
+        } catch (ConnectionFailedException | NotFoundException e) {
             //Erro de conexão com o banco de dados
             // Ocorre quando há falha na comunicação com o servidor de banco (ex: inatividade, erro de rede)
-            ErroServlet.setErro(request, response, dao,
-                    "Falha na conexão com o banco de dados. Tente novamente mais tarde.",
-                    lista, caminho);
-
-        } catch (NotFoundException e) {
-            //Telefone não encontrado
-            // Lançado quando o ID informado não existe na tabela de telefones
-            ErroServlet.setErro(request, response, dao,
-                    "Telefone não encontrado. Verifique o código informado.",
-                    lista, caminho);
+            e.printStackTrace();
+            ErroServlet.setErro(request, response, dao, e, lista, ERROR_PAGE);
 
         } catch (NumberFormatException e) {
             //Erro de formatação numérica
             // Indica que o valor informado não pôde ser convertido para inteiro
             // (por exemplo: campo vazio ou com caracteres inválidos)
             ErroServlet.setErro(request, response, dao,
-                    "Código inválido. Informe um número válido para exclusão.",
-                    lista, caminho);
+                    "Erro ao processar parâmetros.",
+                    lista, ERROR_PAGE);
 
         } catch (Exception e) {
             //Erro genérico (não previsto)
             // Captura qualquer outro tipo de falha inesperada durante a execução
             ErroServlet.setErro(request, response, dao,
-                    "Ocorreu um erro inesperado ao deletar o telefone: " + e.getMessage(),
-                    lista, caminho);
+                    "Ocorreu um erro inesperado.", lista, ERROR_PAGE);
         }
     }
 }
