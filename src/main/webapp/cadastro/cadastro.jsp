@@ -31,7 +31,8 @@
             </div>
             <div class="form-group">
                 <label for="confirmar-senha">Confirmar Senha</label>
-                <input type="password" id="confirmar-senha" placeholder="Confirme sua senha" required>
+
+                <input type="password" name="confirmarSenha" id="confirmar-senha" placeholder="Confirme sua senha" required>
             </div>
             <div class="form-footer">
                 <input type="hidden" name="origem" value="crud">
@@ -41,7 +42,7 @@
                 <h5> <%= erro%> </h5>
                 <% }%>
                 <button type="submit" class="btn-cadastro">Cadastrar</button>
-                <a href="login.jsp" class="link-login">Já tem uma conta? Faça login</a>
+                <a href="<%=request.getContextPath()%>\login.jsp" class="link-login">Já tem uma conta? Faça login</a>
             </div>
         </form>
     </div>

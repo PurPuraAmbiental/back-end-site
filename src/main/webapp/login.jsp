@@ -28,8 +28,7 @@
             <% } %>
             <div class="form-footer">
                 <button type="submit" class="btn-login">Entrar</button>
-                <a href="cadastro.html" class="link-cadastro">Ainda não tem conta? Cadastre-se</a>
-                <a href="#" class="link-senha">Esqueceu a senha?</a>
+                <a href="<%=request.getContextPath()%>\cadastro\cadastro.jsp" class="link-cadastro">Ainda não tem conta? Cadastre-se</a>
             </div>
         </form>
     </div>

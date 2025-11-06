@@ -53,7 +53,7 @@ public class InsertAdministradorServlet extends HttpServlet {
         String caminho = "/WEB-INF/CRUD/administrador.jsp";
         String caminhoCadastro = "/cadastro/cadastro.jsp";
         String lista = "listaAdministradores";
-
+        String confirmarSenha = request.getParameter("confirmarSenha");
         // Verifica se existe o parâmetro "origem" na requisição.
         // Esse parâmetro indica de qual pagina o servlet foi solicitado: do cadastro (se for diferente de null)
         // ou do Insert do crud (se for null)
@@ -95,7 +95,6 @@ public class InsertAdministradorServlet extends HttpServlet {
                             "E-mail ja cadastrado anteriormente", lista, caminhoCadastro);
                 }
             }
-
             // Verifica se a senha possui pelo menos 6 caracteres.
             else if (model.getCSenha().length() < 6) {
                 if (origem == null) {
@@ -112,7 +111,11 @@ public class InsertAdministradorServlet extends HttpServlet {
 
 
             // Verifica se a senha e a confirmação são iguais
-            if (!model.getCSenha().equals(params.get("confirmar-senha"))) {
+            if (!model.getCSenha().equals(confirmarSenha)) {
+                System.out.println("confirmar senha: "+confirmarSenha);
+                System.out.println("senha: "+model.getCSenha());
+                System.out.println("");
+
                 request.setAttribute("erro", "As senhas não coincidem");
                 request.getRequestDispatcher("/cadastro/cadastro.jsp").forward(request, response);
                 return; // interrompe o fluxo do servlet
